@@ -1,0 +1,12 @@
+{
+  "hash": "978443a2c60dfc8e71e37aa2e899d711",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Numpy Basics\"\njupyter: python3\n---\n\n\n\n\n\nVectorization, Broadcasting 등 Numpy 기초.\n\n",
+    "supporting": [
+      "lab01-numpy-basics_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

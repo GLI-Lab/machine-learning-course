@@ -1,0 +1,6 @@
+---
+title: "Numpy Basics"
+jupyter: python3
+---
+
+Vectorization, Broadcasting 등 Numpy 기초.

@@ -1,0 +1,66 @@
+name: Publish to students branch
+
+on:                            # 실행 조건
+  push:
+    branches: main             # main 브랜치에 push할 때 자동 실행
+  workflow_dispatch:           # GitHub Actions 탭에서 수동 실행 버튼 활성화
+
+jobs:
+  convert-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Convert qmd to ipynb
+        run: |
+          for f in exercises/*.qmd assignments/*.qmd; do
+            [ -f "$f" ] && quarto convert "$f"
+          done
+
+      - name: Prepare students branch content
+        run: |
+          mkdir -p students_out/exercises students_out/assignments
+          cp README.md pixi.toml students_out/ 2>/dev/null || true
+          cp exercises/*.ipynb students_out/exercises/ 2>/dev/null || true
+          cp assignments/*.ipynb students_out/assignments/ 2>/dev/null || true
+          cat > students_out/.gitignore << 'EOF'
+          .pixi/*
+          !.pixi/config.toml
+          .ipynb_checkpoints/
+          EOF
+
+      - name: Fetch and checkout students branch
+        run: |
+          git fetch origin students 2>/dev/null || true
+          if git rev-parse --verify origin/students >/dev/null 2>&1; then
+            git checkout students
+          else
+            git checkout --orphan students
+          fi
+
+      - name: Replace tree with students content
+        run: |
+          git ls-files | xargs -r rm -f
+          git ls-files -z --directory | sort -z -r | xargs -0 rmdir 2>/dev/null || true
+          cp -r students_out/* .
+          cp students_out/.gitignore .
+
+      - name: Commit and push to students
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update ipynb from main (qmd convert)"
+            git push origin students
+          fi

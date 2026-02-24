@@ -1,0 +1,6 @@
+---
+title: "Transfer Learning"
+jupyter: python3
+---
+
+Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화.

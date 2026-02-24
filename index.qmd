@@ -1,0 +1,9 @@
+---
+title: "Machine Learning Course"
+sidebar: false
+---
+
+Welcome to the Machine Learning Course.
+
+- **Exercises**: 실습 자료
+- **Assignments**: 과제

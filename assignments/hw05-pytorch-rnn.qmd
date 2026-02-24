@@ -1,0 +1,6 @@
+---
+title: "RNN"
+jupyter: python3
+---
+
+PyTorch로 recurrent neural network 구현.

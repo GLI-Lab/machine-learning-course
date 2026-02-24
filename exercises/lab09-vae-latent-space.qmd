@@ -1,0 +1,6 @@
+---
+title: "VAE latent space"
+jupyter: python3
+---
+
+MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰.

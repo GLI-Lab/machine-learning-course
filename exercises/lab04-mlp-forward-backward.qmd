@@ -1,0 +1,6 @@
+---
+title: "MLP Forward/Backward"
+jupyter: python3
+---
+
+손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화.

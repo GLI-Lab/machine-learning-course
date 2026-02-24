@@ -1,0 +1,6 @@
+---
+title: "Bagging vs Boosting"
+jupyter: python3
+---
+
+단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.

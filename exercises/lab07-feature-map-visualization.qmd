@@ -1,0 +1,6 @@
+---
+title: "Feature map 시각화"
+jupyter: python3
+---
+
+CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증.

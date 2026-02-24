@@ -1,0 +1,6 @@
+---
+title: "K-Fold Cross-Validation"
+jupyter: python3
+---
+
+다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.

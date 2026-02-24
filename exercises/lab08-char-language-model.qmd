@@ -1,0 +1,6 @@
+---
+title: "Char-level language model"
+jupyter: python3
+---
+
+Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰).

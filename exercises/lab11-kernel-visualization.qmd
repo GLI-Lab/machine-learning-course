@@ -1,0 +1,6 @@
+---
+title: "Kernel 시각화"
+jupyter: python3
+---
+
+2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.

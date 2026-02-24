@@ -1,0 +1,66 @@
+project:
+  type: website
+  output-dir: _site
+
+execute:
+  freeze: true
+
+format:
+  html:
+    toc: true
+    toc-title: "On this page"
+    toc-location: right
+    number-sections: true
+
+website:
+  title: "Machine Learning"
+  navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Exercises
+        href: exercises/index.qmd
+      - text: Assignments
+        href: assignments/index.qmd
+      - text: GLI Lab
+        href: http://203.252.149.219:3000/
+  sidebar:
+    - id: exercises
+      title: "Exercises"
+      style: "floating"
+      collapse-level: 1
+      align: left
+      contents:
+        - section: "Exercises"
+          href: exercises/index.qmd
+          contents:
+            - exercises/lab01-numpy-basics.qmd
+            - exercises/lab02-linear-logistic-regression.qmd
+            - exercises/lab03-kfold-cv.qmd
+            - exercises/lab04-mlp-forward-backward.qmd
+            - exercises/lab05-numpy-mlp-to-pytorch.qmd
+            - exercises/lab06-optimizer-comparison.qmd
+            - exercises/lab07-feature-map-visualization.qmd
+            - exercises/lab08-char-language-model.qmd
+            - exercises/lab09-vae-latent-space.qmd
+            - exercises/lab10-transfer-learning.qmd
+            - exercises/lab11-kernel-visualization.qmd
+            - exercises/lab12-decision-tree.qmd
+            - exercises/lab13-bagging-vs-boosting.qmd
+            - exercises/lab14-naive-bayes.qmd
+    - id: assignments
+      title: "Assignments"
+      collapse-level: 1
+      align: left
+      contents:
+        - section: "Assignments"
+          href: assignments/index.qmd
+          contents:
+            - assignments/hw01-environment-setup.qmd
+            - assignments/hw02-simple-regression.qmd
+            - assignments/hw03-pytorch-mlp.qmd
+            - assignments/hw04-pytorch-cnn.qmd
+            - assignments/hw05-pytorch-rnn.qmd
+            - assignments/hw06-autoencoder.qmd
+            - assignments/hw07-svm-kernel.qmd
+            - assignments/hw08-decision-tree-ensemble.qmd

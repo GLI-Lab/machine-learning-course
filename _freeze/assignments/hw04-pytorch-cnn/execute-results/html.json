@@ -1,0 +1,12 @@
+{
+  "hash": "445f97c8de22dad1bc70b4fd1320e604",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"CNN\"\njupyter: python3\n---\n\n\n\n\n\nPyTorch로 convolutional neural network 구현.\n\n",
+    "supporting": [
+      "hw04-pytorch-cnn_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

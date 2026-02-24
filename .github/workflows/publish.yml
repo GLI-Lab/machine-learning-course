@@ -1,0 +1,29 @@
+name: Publish to gh-pages branch
+
+on:                            # 실행 조건
+  push:
+    branches: main             # main 브랜치에 push할 때 자동 실행
+  workflow_dispatch:           # GitHub Actions 탭에서 수동 실행 버튼 활성화
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # 1. 저장소 코드를 Actions 서버로 가져옴 (git clone)
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # 2. Quarto CLI 설치
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      # 3. .qmd 렌더링 → gh-pages 브랜치에 자동 push (_freeze 캐시가 있으면 Python 없이 빌드 가능)
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 자동 발급

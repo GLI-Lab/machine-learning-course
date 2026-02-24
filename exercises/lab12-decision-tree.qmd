@@ -1,0 +1,6 @@
+---
+title: "Decision Tree"
+jupyter: python3
+---
+
+Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.

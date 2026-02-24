@@ -1,0 +1,6 @@
+---
+title: "Linear & Logistic Regression"
+jupyter: python3
+---
+
+퍼셉트론으로 AND/OR/XOR 게이트 실험, decision boundary 시각화.

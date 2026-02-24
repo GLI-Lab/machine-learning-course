@@ -1,0 +1,6 @@
+---
+title: "CNN"
+jupyter: python3
+---
+
+PyTorch로 convolutional neural network 구현.

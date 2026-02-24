@@ -1,0 +1,6 @@
+---
+title: "Numpy MLP to PyTorch"
+jupyter: python3
+---
+
+Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현.

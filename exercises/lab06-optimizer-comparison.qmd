@@ -1,0 +1,6 @@
+---
+title: "Optimizer 비교"
+jupyter: python3
+---
+
+SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.

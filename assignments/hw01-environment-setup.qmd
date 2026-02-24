@@ -1,0 +1,6 @@
+---
+title: "Environment setup"
+jupyter: python3
+---
+
+Python / Numpy / Matplotlib 환경 설정 및 기초 사용.

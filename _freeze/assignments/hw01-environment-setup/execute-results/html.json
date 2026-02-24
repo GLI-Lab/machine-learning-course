@@ -1,0 +1,12 @@
+{
+  "hash": "bdeed260215f93ae93a4ad2443e4fee0",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Environment setup\"\njupyter: python3\n---\n\n\n\n\n\nPython / Numpy / Matplotlib 환경 설정 및 기초 사용.\n\n",
+    "supporting": [
+      "hw01-environment-setup_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
