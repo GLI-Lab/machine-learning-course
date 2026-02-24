@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Linear &amp; Logistic Regression – Machine Learning</title>
+<title>Lab 02 - Linear &amp; Logistic Regression – Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -116,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab02-linear-logistic-regression.html">Linear &amp; Logistic Regression</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab02-linear-logistic-regression.html">Lab 02 - Linear &amp; Logistic Regression</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -146,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/lab02-linear-logistic-regression.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Linear &amp; Logistic Regression</span></a>
+ <span class="menu-text">Lab 02 - Linear &amp; Logistic Regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -228,15 +292,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#목표" id="toc-목표" class="nav-link active" data-scroll-target="#목표"><span class="header-section-number">1</span> 목표</a></li>
+  <li><a href="#선형-회귀-1변수" id="toc-선형-회귀-1변수" class="nav-link" data-scroll-target="#선형-회귀-1변수"><span class="header-section-number">2</span> 1. 선형 회귀 (1변수)</a></li>
+  <li><a href="#퍼셉트론-and-or-xor" id="toc-퍼셉트론-and-or-xor" class="nav-link" data-scroll-target="#퍼셉트론-and-or-xor"><span class="header-section-number">3</span> 2. 퍼셉트론 (AND, OR, XOR)</a></li>
+  <li><a href="#결정-경계-시각화-and-or" id="toc-결정-경계-시각화-and-or" class="nav-link" data-scroll-target="#결정-경계-시각화-and-or"><span class="header-section-number">4</span> 3. 결정 경계 시각화 (AND / OR)</a></li>
+  <li><a href="#로지스틱-회귀-결정-경계" id="toc-로지스틱-회귀-결정-경계" class="nav-link" data-scroll-target="#로지스틱-회귀-결정-경계"><span class="header-section-number">5</span> 4. 로지스틱 회귀 (결정 경계)</a></li>
+  <li><a href="#연습" id="toc-연습" class="nav-link" data-scroll-target="#연습"><span class="header-section-number">6</span> 5. 연습</a></li>
+  <li><a href="#참고" id="toc-참고" class="nav-link" data-scroll-target="#참고"><span class="header-section-number">7</span> 참고</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab02-linear-logistic-regression.html">Linear &amp; Logistic Regression</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab02-linear-logistic-regression.html">Lab 02 - Linear &amp; Logistic Regression</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Linear &amp; Logistic Regression</h1>
+<h1 class="title">Lab 02 - Linear &amp; Logistic Regression</h1>
 </div>
 
 
@@ -253,9 +329,209 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>퍼셉트론으로 AND/OR/XOR 게이트 실험, decision boundary 시각화.</p>
+<section id="목표" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="목표"><span class="header-section-number">1</span> 목표</h2>
+<ul>
+<li><strong>선형 회귀</strong>: 최소제곱법으로 직선 피팅하기</li>
+<li><strong>퍼셉트론</strong>: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)</li>
+<li><strong>로지스틱 회귀</strong>: 시그모이드, 결정 경계(decision boundary) 시각화</li>
+</ul>
+<hr>
+</section>
+<section id="선형-회귀-1변수" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="선형-회귀-1변수"><span class="header-section-number">2</span> 1. 선형 회귀 (1변수)</h2>
+<p><span class="math inline">\(y \approx w_0 + w_1 x\)</span> 형태. 정규방정식 <span class="math inline">\(\hat{w} = (X^T X)^{-1} X^T y\)</span> 로 한 번에 구할 수 있다.</p>
+<div id="4c146310" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="285b30b0" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터: y = 2 + 3x + 노이즈</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, n)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> x <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.random.randn(n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="ec7d9341" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 설계 행렬 X: 각 행이 [1, x_i]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack([np.ones(n), x])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>w_hat <span class="op">=</span> np.linalg.solve(X.T <span class="op">@</span> X, X.T <span class="op">@</span> y)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"w_0 ="</span>, w_hat[<span class="dv">0</span>], <span class="st">", w_1 ="</span>, w_hat[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>w_0 = 2.1606891797132195 , w_1 = 2.745237372361261</code></pre>
+</div>
+</div>
+<div id="8cae1c0d" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, label<span class="op">=</span><span class="st">"data"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y_line <span class="op">=</span> w_hat[<span class="dv">0</span>] <span class="op">+</span> w_hat[<span class="dv">1</span>] <span class="op">*</span> x_line</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_line, y_line, <span class="st">"r-"</span>, label<span class="op">=</span><span class="st">"fitted"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"y"</span>)<span class="op">;</span> plt.legend()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab02-linear-logistic-regression_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="퍼셉트론-and-or-xor" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="퍼셉트론-and-or-xor"><span class="header-section-number">3</span> 2. 퍼셉트론 (AND, OR, XOR)</h2>
+<p>퍼셉트론: <span class="math inline">\(f(x) = \mathbb{1}[ w^T x + b &gt; 0 ]\)</span>. 선형 분리 가능한 문제만 풀 수 있다.</p>
+<div id="5a93ed1b" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AND, OR, XOR 진리표 (입력 2개)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X_gate <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>]])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y_and <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y_or  <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_xor <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="e4a75738" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> perceptron_predict(X, w, b):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" X: (n, d), w: (d,), b: scalar """</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (X <span class="op">@</span> w <span class="op">+</span> b <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_perceptron(X, y, lr<span class="op">=</span><span class="fl">0.1</span>, epochs<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    n, d <span class="op">=</span> X.shape</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    w, b <span class="op">=</span> np.zeros(d), <span class="fl">0.0</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> perceptron_predict(X, w, b)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        err <span class="op">=</span> y <span class="op">-</span> pred</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        w <span class="op">+=</span> lr <span class="op">*</span> (X.T <span class="op">@</span> err)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        b <span class="op">+=</span> lr <span class="op">*</span> err.<span class="bu">sum</span>()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="5723172b" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>w_and, b_and <span class="op">=</span> fit_perceptron(X_gate, y_and)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>w_or,  b_or  <span class="op">=</span> fit_perceptron(X_gate, y_or)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AND 예측:"</span>, perceptron_predict(X_gate, w_and, b_and), <span class="st">" (정답:"</span>, y_and, <span class="st">")"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"OR  예측:"</span>, perceptron_predict(X_gate, w_or,  b_or),  <span class="st">" (정답:"</span>, y_or, <span class="st">")"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>AND 예측: [0 0 0 1]  (정답: [0 0 0 1] )
+OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
+</div>
+</div>
+<div id="8f60c9c7" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>w_xor, b_xor <span class="op">=</span> fit_perceptron(X_gate, y_xor)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"XOR 예측:"</span>, perceptron_predict(X_gate, w_xor, b_xor), <span class="st">" (정답:"</span>, y_xor, <span class="st">")"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>XOR 예측: [0 0 0 0]  (정답: [0 1 1 0] )</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="결정-경계-시각화-and-or" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="결정-경계-시각화-and-or"><span class="header-section-number">4</span> 3. 결정 경계 시각화 (AND / OR)</h2>
+<p><span class="math inline">\(w_1 x_1 + w_2 x_2 + b = 0\)</span> 이 결정 경계(직선)이다. <span class="math inline">\(x_2 = -(w_1/w_2)x_1 - b/w_2\)</span>.</p>
+<div id="e1cbb50c" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_decision_boundary_2d(X, y, w, b, title<span class="op">=</span><span class="st">""</span>):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X[y<span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>], X[y<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"0"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X[y<span class="op">==</span><span class="dv">1</span>, <span class="dv">0</span>], X[y<span class="op">==</span><span class="dv">1</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"1"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>])</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.<span class="bu">abs</span>(w[<span class="dv">1</span>]) <span class="op">&gt;</span> <span class="fl">1e-8</span>:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        x2 <span class="op">=</span> <span class="op">-</span>(w[<span class="dv">0</span>] <span class="op">*</span> x1 <span class="op">+</span> b) <span class="op">/</span> w[<span class="dv">1</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        plt.plot(x1, x2, <span class="st">"k-"</span>, label<span class="op">=</span><span class="st">"decision boundary"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"$x_1$"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"$x_2$"</span>)<span class="op">;</span> plt.legend()<span class="op">;</span> plt.title(title)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c030117e" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_decision_boundary_2d(X_gate, y_and, w_and, b_and, <span class="st">"AND"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab02-linear-logistic-regression_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="42ae028a" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_decision_boundary_2d(X_gate, y_or, w_or, b_or, <span class="st">"OR"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab02-linear-logistic-regression_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="로지스틱-회귀-결정-경계" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="로지스틱-회귀-결정-경계"><span class="header-section-number">5</span> 4. 로지스틱 회귀 (결정 경계)</h2>
+<p>로지스틱 회귀: <span class="math inline">\(P(y=1|x) = \sigma(w^T x + b)\)</span>, <span class="math inline">\(\sigma(z) = 1/(1+e^{-z})\)</span>.<br>
+결정 경계는 <span class="math inline">\(\sigma=0.5\)</span> 인 곳, 즉 <span class="math inline">\(w^T x + b = 0\)</span> (직선).</p>
+<div id="19eb97ca" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>np.clip(z, <span class="op">-</span><span class="dv">500</span>, <span class="dv">500</span>)))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2D 예시 데이터: 두 클래스가 약간 겹침</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>n1, n2 <span class="op">=</span> <span class="dv">25</span>, <span class="dv">25</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> np.random.randn(n1, <span class="dv">2</span>) <span class="op">+</span> np.array([<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> np.random.randn(n2, <span class="dv">2</span>) <span class="op">+</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>X_lr <span class="op">=</span> np.vstack([X1, X2])</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>y_lr <span class="op">=</span> np.array([<span class="dv">0</span>] <span class="op">*</span> n1 <span class="op">+</span> [<span class="dv">1</span>] <span class="op">*</span> n2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="34b51e35" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_logistic_simple(X, y, lr<span class="op">=</span><span class="fl">0.1</span>, epochs<span class="op">=</span><span class="dv">2000</span>):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    n, d <span class="op">=</span> X.shape</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    w, b <span class="op">=</span> np.zeros(d), <span class="fl">0.0</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        logit <span class="op">=</span> X <span class="op">@</span> w <span class="op">+</span> b</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> sigmoid(logit)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        grad_w <span class="op">=</span> X.T <span class="op">@</span> (p <span class="op">-</span> y)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        grad_b <span class="op">=</span> (p <span class="op">-</span> y).<span class="bu">sum</span>()</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        w <span class="op">-=</span> lr <span class="op">*</span> grad_w</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        b <span class="op">-=</span> lr <span class="op">*</span> grad_b</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, b</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>w_lr, b_lr <span class="op">=</span> fit_logistic_simple(X_lr, y_lr)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>pred_lr <span class="op">=</span> (sigmoid(X_lr <span class="op">@</span> w_lr <span class="op">+</span> b_lr) <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"정확도:"</span>, (pred_lr <span class="op">==</span> y_lr).mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>정확도: 0.98</code></pre>
+</div>
+</div>
+<div id="3d841452" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_lr[y_lr<span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>], X_lr[y_lr<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"0"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_lr[y_lr<span class="op">==</span><span class="dv">1</span>, <span class="dv">0</span>], X_lr[y_lr<span class="op">==</span><span class="dv">1</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"1"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>x1_min, x1_max <span class="op">=</span> X_lr[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.5</span>, X_lr[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>x1_grid <span class="op">=</span> np.linspace(x1_min, x1_max, <span class="dv">100</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> np.<span class="bu">abs</span>(w_lr[<span class="dv">1</span>]) <span class="op">&gt;</span> <span class="fl">1e-8</span>:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    x2_boundary <span class="op">=</span> <span class="op">-</span>(w_lr[<span class="dv">0</span>] <span class="op">*</span> x1_grid <span class="op">+</span> b_lr) <span class="op">/</span> w_lr[<span class="dv">1</span>]</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    plt.plot(x1_grid, x2_boundary, <span class="st">"k-"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"decision boundary"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$x_1$"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"$x_2$"</span>)<span class="op">;</span> plt.legend()<span class="op">;</span> plt.title(<span class="st">"Logistic regression"</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab02-linear-logistic-regression_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="연습" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="연습"><span class="header-section-number">6</span> 5. 연습</h2>
+<ul>
+<li>XOR 데이터에 대해 <strong>두 개의 퍼셉트론</strong>을 써서 해결하는 방법을 생각해 보세요.<br>
+(힌트: 은닉층 하나를 두고 AND(OR, OR) 같은 구조.)</li>
+<li>위 로지스틱 회귀에서 <code>epochs</code>를 100으로 줄이면 결정 경계가 어떻게 달라지는지 확인해 보세요.</li>
+</ul>
+<hr>
+</section>
+<section id="참고" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="참고"><span class="header-section-number">7</span> 참고</h2>
+<ul>
+<li>퍼셉트론 하나 = 선형 결정 경계만 가능. XOR은 다층 퍼셉트론(MLP)으로 해결.</li>
+<li>로지스틱 회귀의 결정 경계도 선형; 비선형 경계가 필요하면 특성 추가 또는 신경망을 사용한다.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
