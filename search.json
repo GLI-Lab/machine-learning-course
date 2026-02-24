@@ -1,282 +1,85 @@
 [
   {
-    "objectID": "assignments/hw08-decision-tree-ensemble.html",
-    "href": "assignments/hw08-decision-tree-ensemble.html",
-    "title": "Decision Tree & Ensemble",
+    "objectID": "README-students.html",
+    "href": "README-students.html",
+    "title": "1 Machine Learning Course (for students)",
     "section": "",
-    "text": "Decision Tree 및 Ensemble 방법 실습.",
+    "text": "The lab environment is set up with pixi. Follow the steps below.\n\n\n\n\n\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\n\n\n\nIf you already cloned the students branch, just pull the latest changes:\ngit pull   # updates from origin/students when you're on the students branch\n\n\n\n\n\n\n\n\nInstall: https://pixi.sh/latest/getting_started/installation/\n\n\n\n\nFrom the repo root (machine-learning-course):\npixi install\nDependencies and Jupyter will be installed automatically.\n\n\n\npixi run jupyter\nOpen the URL shown in your browser\n\n\n\n\n\n\n\n\n\n\n\n\nWhen\nCommand\n\n\n\n\nFirst-time clone\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git → cd machine-learning-course\n\n\nUpdate materials\ngit pull\n\n\nInstall environment\npixi install\n\n\nRun Jupyter\npixi run jupyter"
+  },
+  {
+    "objectID": "README-students.html#git-get-the-repo-update",
+    "href": "README-students.html#git-get-the-repo-update",
+    "title": "1 Machine Learning Course (for students)",
+    "section": "",
+    "text": "git clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\n\n\n\nIf you already cloned the students branch, just pull the latest changes:\ngit pull   # updates from origin/students when you're on the students branch"
+  },
+  {
+    "objectID": "README-students.html#pixi-install-environment-and-run",
+    "href": "README-students.html#pixi-install-environment-and-run",
+    "title": "1 Machine Learning Course (for students)",
+    "section": "",
+    "text": "Install: https://pixi.sh/latest/getting_started/installation/\n\n\n\n\nFrom the repo root (machine-learning-course):\npixi install\nDependencies and Jupyter will be installed automatically.\n\n\n\npixi run jupyter\nOpen the URL shown in your browser"
+  },
+  {
+    "objectID": "README-students.html#summary",
+    "href": "README-students.html#summary",
+    "title": "1 Machine Learning Course (for students)",
+    "section": "",
+    "text": "When\nCommand\n\n\n\n\nFirst-time clone\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git → cd machine-learning-course\n\n\nUpdate materials\ngit pull\n\n\nInstall environment\npixi install\n\n\nRun Jupyter\npixi run jupyter"
+  },
+  {
+    "objectID": "assignments/hw06-autoencoder.html",
+    "href": "assignments/hw06-autoencoder.html",
+    "title": "Autoencoder",
+    "section": "",
+    "text": "PyTorch Autoencoder 구현.",
     "crumbs": [
       "Assignments",
-      "Decision Tree & Ensemble"
+      "Autoencoder"
     ]
   },
   {
-    "objectID": "assignments/hw04-pytorch-cnn.html",
-    "href": "assignments/hw04-pytorch-cnn.html",
-    "title": "CNN",
+    "objectID": "assignments/hw05-pytorch-rnn.html",
+    "href": "assignments/hw05-pytorch-rnn.html",
+    "title": "RNN",
     "section": "",
-    "text": "PyTorch로 convolutional neural network 구현.",
+    "text": "PyTorch로 recurrent neural network 구현.",
     "crumbs": [
       "Assignments",
-      "CNN"
+      "RNN"
     ]
   },
   {
-    "objectID": "assignments/hw03-pytorch-mlp.html",
-    "href": "assignments/hw03-pytorch-mlp.html",
-    "title": "Feedforward NN",
+    "objectID": "assignments/hw02-simple-regression.html",
+    "href": "assignments/hw02-simple-regression.html",
+    "title": "Simple regression",
     "section": "",
-    "text": "PyTorch로 feedforward neural network 구현 및 학습.",
+    "text": "Numpy로 매우 단순한 회귀 모델 구현.",
     "crumbs": [
       "Assignments",
-      "Feedforward NN"
+      "Simple regression"
     ]
   },
   {
-    "objectID": "assignments/index.html",
-    "href": "assignments/index.html",
-    "title": "Assignments",
+    "objectID": "assignments/hw07-svm-kernel.html",
+    "href": "assignments/hw07-svm-kernel.html",
+    "title": "SVM & Kernel",
     "section": "",
-    "text": "과제 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
-    "crumbs": [
-      "Assignments"
-    ]
-  },
-  {
-    "objectID": "assignments/hw01-environment-setup.html",
-    "href": "assignments/hw01-environment-setup.html",
-    "title": "Environment setup",
-    "section": "",
-    "text": "Python / Numpy / Matplotlib 환경 설정 및 기초 사용.",
+    "text": "SVM 및 Kernel 기법 실습.",
     "crumbs": [
       "Assignments",
-      "Environment setup"
+      "SVM & Kernel"
     ]
   },
   {
-    "objectID": "exercises/lab12-decision-tree.html",
-    "href": "exercises/lab12-decision-tree.html",
-    "title": "Decision Tree",
+    "objectID": "exercises/lab06-optimizer-comparison.html",
+    "href": "exercises/lab06-optimizer-comparison.html",
+    "title": "Optimizer 비교",
     "section": "",
-    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
+    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
     "crumbs": [
       "Exercises",
-      "Decision Tree"
-    ]
-  },
-  {
-    "objectID": "exercises/lab10-transfer-learning.html",
-    "href": "exercises/lab10-transfer-learning.html",
-    "title": "Transfer Learning",
-    "section": "",
-    "text": "Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화.",
-    "crumbs": [
-      "Exercises",
-      "Transfer Learning"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html",
-    "href": "exercises/lab02-linear-logistic-regression.html",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "",
-    "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#목표",
-    "href": "exercises/lab02-linear-logistic-regression.html#목표",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "",
-    "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
-    "href": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "2 1. 선형 회귀 (1변수)",
-    "text": "2 1. 선형 회귀 (1변수)\n\\(y \\approx w_0 + w_1 x\\) 형태. 정규방정식 \\(\\hat{w} = (X^T X)^{-1} X^T y\\) 로 한 번에 구할 수 있다.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n# 데이터: y = 2 + 3x + 노이즈\nnp.random.seed(42)\nn = 30\nx = np.linspace(0, 2, n)\ny = 2 + 3 * x + 0.5 * np.random.randn(n)\n\n\n# 설계 행렬 X: 각 행이 [1, x_i]\nX = np.column_stack([np.ones(n), x])\nw_hat = np.linalg.solve(X.T @ X, X.T @ y)\nprint(\"w_0 =\", w_hat[0], \", w_1 =\", w_hat[1])\n\nw_0 = 2.1606891797132195 , w_1 = 2.745237372361261\n\n\n\nplt.scatter(x, y, label=\"data\")\nx_line = np.linspace(0, 2, 100)\ny_line = w_hat[0] + w_hat[1] * x_line\nplt.plot(x_line, y_line, \"r-\", label=\"fitted\")\nplt.xlabel(\"x\"); plt.ylabel(\"y\"); plt.legend(); plt.show()",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
-    "href": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "3 2. 퍼셉트론 (AND, OR, XOR)",
-    "text": "3 2. 퍼셉트론 (AND, OR, XOR)\n퍼셉트론: \\(f(x) = \\mathbb{1}[ w^T x + b &gt; 0 ]\\). 선형 분리 가능한 문제만 풀 수 있다.\n\n# AND, OR, XOR 진리표 (입력 2개)\nX_gate = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\ny_and = np.array([0, 0, 0, 1])\ny_or  = np.array([0, 1, 1, 1])\ny_xor = np.array([0, 1, 1, 0])\n\n\ndef perceptron_predict(X, w, b):\n    \"\"\" X: (n, d), w: (d,), b: scalar \"\"\"\n    return (X @ w + b &gt; 0).astype(int)\n\ndef fit_perceptron(X, y, lr=0.1, epochs=100):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        pred = perceptron_predict(X, w, b)\n        err = y - pred\n        w += lr * (X.T @ err)\n        b += lr * err.sum()\n    return w, b\n\n\nw_and, b_and = fit_perceptron(X_gate, y_and)\nw_or,  b_or  = fit_perceptron(X_gate, y_or)\nprint(\"AND 예측:\", perceptron_predict(X_gate, w_and, b_and), \" (정답:\", y_and, \")\")\nprint(\"OR  예측:\", perceptron_predict(X_gate, w_or,  b_or),  \" (정답:\", y_or, \")\")\n\nAND 예측: [0 0 0 1]  (정답: [0 0 0 1] )\nOR  예측: [0 1 1 1]  (정답: [0 1 1 1] )\n\n\n\n# XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패\nw_xor, b_xor = fit_perceptron(X_gate, y_xor)\nprint(\"XOR 예측:\", perceptron_predict(X_gate, w_xor, b_xor), \" (정답:\", y_xor, \")\")\n\nXOR 예측: [0 0 0 0]  (정답: [0 1 1 0] )",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
-    "href": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "4 3. 결정 경계 시각화 (AND / OR)",
-    "text": "4 3. 결정 경계 시각화 (AND / OR)\n\\(w_1 x_1 + w_2 x_2 + b = 0\\) 이 결정 경계(직선)이다. \\(x_2 = -(w_1/w_2)x_1 - b/w_2\\).\n\ndef plot_decision_boundary_2d(X, y, w, b, title=\"\"):\n    plt.scatter(X[y==0, 0], X[y==0, 1], marker=\"o\", label=\"0\")\n    plt.scatter(X[y==1, 0], X[y==1, 1], marker=\"s\", label=\"1\")\n    x1 = np.array([-0.5, 1.5])\n    if np.abs(w[1]) &gt; 1e-8:\n        x2 = -(w[0] * x1 + b) / w[1]\n        plt.plot(x1, x2, \"k-\", label=\"decision boundary\")\n    plt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(title); plt.show()\n\n\nplot_decision_boundary_2d(X_gate, y_and, w_and, b_and, \"AND\")\n\n\n\n\n\n\n\n\n\nplot_decision_boundary_2d(X_gate, y_or, w_or, b_or, \"OR\")",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
-    "href": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "5 4. 로지스틱 회귀 (결정 경계)",
-    "text": "5 4. 로지스틱 회귀 (결정 경계)\n로지스틱 회귀: \\(P(y=1|x) = \\sigma(w^T x + b)\\), \\(\\sigma(z) = 1/(1+e^{-z})\\).\n결정 경계는 \\(\\sigma=0.5\\) 인 곳, 즉 \\(w^T x + b = 0\\) (직선).\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-np.clip(z, -500, 500)))\n\n# 2D 예시 데이터: 두 클래스가 약간 겹침\nnp.random.seed(1)\nn1, n2 = 25, 25\nX1 = np.random.randn(n1, 2) + np.array([1, 1])\nX2 = np.random.randn(n2, 2) + np.array([-1, -1])\nX_lr = np.vstack([X1, X2])\ny_lr = np.array([0] * n1 + [1] * n2)\n\n\n# 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)\ndef fit_logistic_simple(X, y, lr=0.1, epochs=2000):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        logit = X @ w + b\n        p = sigmoid(logit)\n        grad_w = X.T @ (p - y)\n        grad_b = (p - y).sum()\n        w -= lr * grad_w\n        b -= lr * grad_b\n    return w, b\n\nw_lr, b_lr = fit_logistic_simple(X_lr, y_lr)\npred_lr = (sigmoid(X_lr @ w_lr + b_lr) &gt;= 0.5).astype(int)\nprint(\"정확도:\", (pred_lr == y_lr).mean())\n\n정확도: 0.98\n\n\n\n# 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2\nplt.scatter(X_lr[y_lr==0, 0], X_lr[y_lr==0, 1], marker=\"o\", label=\"0\")\nplt.scatter(X_lr[y_lr==1, 0], X_lr[y_lr==1, 1], marker=\"s\", label=\"1\")\nx1_min, x1_max = X_lr[:, 0].min() - 0.5, X_lr[:, 0].max() + 0.5\nx1_grid = np.linspace(x1_min, x1_max, 100)\nif np.abs(w_lr[1]) &gt; 1e-8:\n    x2_boundary = -(w_lr[0] * x1_grid + b_lr) / w_lr[1]\n    plt.plot(x1_grid, x2_boundary, \"k-\", lw=2, label=\"decision boundary\")\nplt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(\"Logistic regression\"); plt.show()",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#연습",
-    "href": "exercises/lab02-linear-logistic-regression.html#연습",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "6 5. 연습",
-    "text": "6 5. 연습\n\nXOR 데이터에 대해 두 개의 퍼셉트론을 써서 해결하는 방법을 생각해 보세요.\n(힌트: 은닉층 하나를 두고 AND(OR, OR) 같은 구조.)\n위 로지스틱 회귀에서 epochs를 100으로 줄이면 결정 경계가 어떻게 달라지는지 확인해 보세요.",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#참고",
-    "href": "exercises/lab02-linear-logistic-regression.html#참고",
-    "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "7 참고",
-    "text": "7 참고\n\n퍼셉트론 하나 = 선형 결정 경계만 가능. XOR은 다층 퍼셉트론(MLP)으로 해결.\n로지스틱 회귀의 결정 경계도 선형; 비선형 경계가 필요하면 특성 추가 또는 신경망을 사용한다.",
-    "crumbs": [
-      "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
-    ]
-  },
-  {
-    "objectID": "exercises/lab05-numpy-mlp-to-pytorch.html",
-    "href": "exercises/lab05-numpy-mlp-to-pytorch.html",
-    "title": "Numpy MLP to PyTorch",
-    "section": "",
-    "text": "Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현.",
-    "crumbs": [
-      "Exercises",
-      "Numpy MLP to PyTorch"
-    ]
-  },
-  {
-    "objectID": "exercises/lab07-feature-map-visualization.html",
-    "href": "exercises/lab07-feature-map-visualization.html",
-    "title": "Feature map 시각화",
-    "section": "",
-    "text": "CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증.",
-    "crumbs": [
-      "Exercises",
-      "Feature map 시각화"
-    ]
-  },
-  {
-    "objectID": "exercises/index.html",
-    "href": "exercises/index.html",
-    "title": "Exercises",
-    "section": "",
-    "text": "실습 자료 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
-    "crumbs": [
-      "Exercises"
-    ]
-  },
-  {
-    "objectID": "exercises/lab04-mlp-forward-backward.html",
-    "href": "exercises/lab04-mlp-forward-backward.html",
-    "title": "MLP Forward/Backward",
-    "section": "",
-    "text": "손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화.",
-    "crumbs": [
-      "Exercises",
-      "MLP Forward/Backward"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Machine Learning Course",
-    "section": "",
-    "text": "Welcome to the Machine Learning Course.\n\nExercises: 실습 자료\nAssignments: 과제"
-  },
-  {
-    "objectID": "exercises/lab08-char-language-model.html",
-    "href": "exercises/lab08-char-language-model.html",
-    "title": "Char-level language model",
-    "section": "",
-    "text": "Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰).",
-    "crumbs": [
-      "Exercises",
-      "Char-level language model"
-    ]
-  },
-  {
-    "objectID": "exercises/lab09-vae-latent-space.html",
-    "href": "exercises/lab09-vae-latent-space.html",
-    "title": "VAE latent space",
-    "section": "",
-    "text": "MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰.",
-    "crumbs": [
-      "Exercises",
-      "VAE latent space"
-    ]
-  },
-  {
-    "objectID": "exercises/lab13-bagging-vs-boosting.html",
-    "href": "exercises/lab13-bagging-vs-boosting.html",
-    "title": "Bagging vs Boosting",
-    "section": "",
-    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
-    "crumbs": [
-      "Exercises",
-      "Bagging vs Boosting"
-    ]
-  },
-  {
-    "objectID": "exercises/lab03-kfold-cv.html",
-    "href": "exercises/lab03-kfold-cv.html",
-    "title": "K-Fold Cross-Validation",
-    "section": "",
-    "text": "다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.",
-    "crumbs": [
-      "Exercises",
-      "K-Fold Cross-Validation"
-    ]
-  },
-  {
-    "objectID": "exercises/lab14-naive-bayes.html",
-    "href": "exercises/lab14-naive-bayes.html",
-    "title": "Naive Bayes",
-    "section": "",
-    "text": "Likelihood/prior/posterior 직접 계산, 조건부 독립 가정 위반 시 성능 변화 실험.",
-    "crumbs": [
-      "Exercises",
-      "Naive Bayes"
-    ]
-  },
-  {
-    "objectID": "exercises/lab11-kernel-visualization.html",
-    "href": "exercises/lab11-kernel-visualization.html",
-    "title": "Kernel 시각화",
-    "section": "",
-    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
-    "crumbs": [
-      "Exercises",
-      "Kernel 시각화"
+      "Optimizer 비교"
     ]
   },
   {
@@ -368,58 +171,283 @@
     ]
   },
   {
-    "objectID": "exercises/lab06-optimizer-comparison.html",
-    "href": "exercises/lab06-optimizer-comparison.html",
-    "title": "Optimizer 비교",
+    "objectID": "exercises/lab11-kernel-visualization.html",
+    "href": "exercises/lab11-kernel-visualization.html",
+    "title": "Kernel 시각화",
     "section": "",
-    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
+    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
     "crumbs": [
       "Exercises",
-      "Optimizer 비교"
+      "Kernel 시각화"
     ]
   },
   {
-    "objectID": "assignments/hw07-svm-kernel.html",
-    "href": "assignments/hw07-svm-kernel.html",
-    "title": "SVM & Kernel",
+    "objectID": "exercises/lab14-naive-bayes.html",
+    "href": "exercises/lab14-naive-bayes.html",
+    "title": "Naive Bayes",
     "section": "",
-    "text": "SVM 및 Kernel 기법 실습.",
+    "text": "Likelihood/prior/posterior 직접 계산, 조건부 독립 가정 위반 시 성능 변화 실험.",
     "crumbs": [
-      "Assignments",
-      "SVM & Kernel"
+      "Exercises",
+      "Naive Bayes"
     ]
   },
   {
-    "objectID": "assignments/hw02-simple-regression.html",
-    "href": "assignments/hw02-simple-regression.html",
-    "title": "Simple regression",
+    "objectID": "exercises/lab03-kfold-cv.html",
+    "href": "exercises/lab03-kfold-cv.html",
+    "title": "K-Fold Cross-Validation",
     "section": "",
-    "text": "Numpy로 매우 단순한 회귀 모델 구현.",
+    "text": "다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.",
     "crumbs": [
-      "Assignments",
-      "Simple regression"
+      "Exercises",
+      "K-Fold Cross-Validation"
     ]
   },
   {
-    "objectID": "assignments/hw05-pytorch-rnn.html",
-    "href": "assignments/hw05-pytorch-rnn.html",
-    "title": "RNN",
+    "objectID": "exercises/lab13-bagging-vs-boosting.html",
+    "href": "exercises/lab13-bagging-vs-boosting.html",
+    "title": "Bagging vs Boosting",
     "section": "",
-    "text": "PyTorch로 recurrent neural network 구현.",
+    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
     "crumbs": [
-      "Assignments",
-      "RNN"
+      "Exercises",
+      "Bagging vs Boosting"
     ]
   },
   {
-    "objectID": "assignments/hw06-autoencoder.html",
-    "href": "assignments/hw06-autoencoder.html",
-    "title": "Autoencoder",
+    "objectID": "exercises/lab09-vae-latent-space.html",
+    "href": "exercises/lab09-vae-latent-space.html",
+    "title": "VAE latent space",
     "section": "",
-    "text": "PyTorch Autoencoder 구현.",
+    "text": "MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰.",
+    "crumbs": [
+      "Exercises",
+      "VAE latent space"
+    ]
+  },
+  {
+    "objectID": "exercises/lab08-char-language-model.html",
+    "href": "exercises/lab08-char-language-model.html",
+    "title": "Char-level language model",
+    "section": "",
+    "text": "Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰).",
+    "crumbs": [
+      "Exercises",
+      "Char-level language model"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Machine Learning Course",
+    "section": "",
+    "text": "Welcome to the Machine Learning Course.\n\nExercises: 실습 자료\nAssignments: 과제"
+  },
+  {
+    "objectID": "exercises/lab04-mlp-forward-backward.html",
+    "href": "exercises/lab04-mlp-forward-backward.html",
+    "title": "MLP Forward/Backward",
+    "section": "",
+    "text": "손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화.",
+    "crumbs": [
+      "Exercises",
+      "MLP Forward/Backward"
+    ]
+  },
+  {
+    "objectID": "exercises/index.html",
+    "href": "exercises/index.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "실습 자료 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
+    "crumbs": [
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/lab07-feature-map-visualization.html",
+    "href": "exercises/lab07-feature-map-visualization.html",
+    "title": "Feature map 시각화",
+    "section": "",
+    "text": "CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증.",
+    "crumbs": [
+      "Exercises",
+      "Feature map 시각화"
+    ]
+  },
+  {
+    "objectID": "exercises/lab05-numpy-mlp-to-pytorch.html",
+    "href": "exercises/lab05-numpy-mlp-to-pytorch.html",
+    "title": "Numpy MLP to PyTorch",
+    "section": "",
+    "text": "Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현.",
+    "crumbs": [
+      "Exercises",
+      "Numpy MLP to PyTorch"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html",
+    "href": "exercises/lab02-linear-logistic-regression.html",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "",
+    "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html#목표",
+    "href": "exercises/lab02-linear-logistic-regression.html#목표",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "",
+    "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
+    "href": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "2 1. 선형 회귀 (1변수)",
+    "text": "2 1. 선형 회귀 (1변수)\n\\(y \\approx w_0 + w_1 x\\) 형태. 정규방정식 \\(\\hat{w} = (X^T X)^{-1} X^T y\\) 로 한 번에 구할 수 있다.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n# 데이터: y = 2 + 3x + 노이즈\nnp.random.seed(42)\nn = 30\nx = np.linspace(0, 2, n)\ny = 2 + 3 * x + 0.5 * np.random.randn(n)\n\n\n# 설계 행렬 X: 각 행이 [1, x_i]\nX = np.column_stack([np.ones(n), x])\nw_hat = np.linalg.solve(X.T @ X, X.T @ y)\nprint(\"w_0 =\", w_hat[0], \", w_1 =\", w_hat[1])\n\nw_0 = 2.1606891797132195 , w_1 = 2.745237372361261\n\n\n\nplt.scatter(x, y, label=\"data\")\nx_line = np.linspace(0, 2, 100)\ny_line = w_hat[0] + w_hat[1] * x_line\nplt.plot(x_line, y_line, \"r-\", label=\"fitted\")\nplt.xlabel(\"x\"); plt.ylabel(\"y\"); plt.legend(); plt.show()",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
+    "href": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "3 2. 퍼셉트론 (AND, OR, XOR)",
+    "text": "3 2. 퍼셉트론 (AND, OR, XOR)\n퍼셉트론: \\(f(x) = \\mathbb{1}[ w^T x + b &gt; 0 ]\\). 선형 분리 가능한 문제만 풀 수 있다.\n\n# AND, OR, XOR 진리표 (입력 2개)\nX_gate = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\ny_and = np.array([0, 0, 0, 1])\ny_or  = np.array([0, 1, 1, 1])\ny_xor = np.array([0, 1, 1, 0])\n\n\ndef perceptron_predict(X, w, b):\n    \"\"\" X: (n, d), w: (d,), b: scalar \"\"\"\n    return (X @ w + b &gt; 0).astype(int)\n\ndef fit_perceptron(X, y, lr=0.1, epochs=100):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        pred = perceptron_predict(X, w, b)\n        err = y - pred\n        w += lr * (X.T @ err)\n        b += lr * err.sum()\n    return w, b\n\n\nw_and, b_and = fit_perceptron(X_gate, y_and)\nw_or,  b_or  = fit_perceptron(X_gate, y_or)\nprint(\"AND 예측:\", perceptron_predict(X_gate, w_and, b_and), \" (정답:\", y_and, \")\")\nprint(\"OR  예측:\", perceptron_predict(X_gate, w_or,  b_or),  \" (정답:\", y_or, \")\")\n\nAND 예측: [0 0 0 1]  (정답: [0 0 0 1] )\nOR  예측: [0 1 1 1]  (정답: [0 1 1 1] )\n\n\n\n# XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패\nw_xor, b_xor = fit_perceptron(X_gate, y_xor)\nprint(\"XOR 예측:\", perceptron_predict(X_gate, w_xor, b_xor), \" (정답:\", y_xor, \")\")\n\nXOR 예측: [0 0 0 0]  (정답: [0 1 1 0] )",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
+    "href": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "4 3. 결정 경계 시각화 (AND / OR)",
+    "text": "4 3. 결정 경계 시각화 (AND / OR)\n\\(w_1 x_1 + w_2 x_2 + b = 0\\) 이 결정 경계(직선)이다. \\(x_2 = -(w_1/w_2)x_1 - b/w_2\\).\n\ndef plot_decision_boundary_2d(X, y, w, b, title=\"\"):\n    plt.scatter(X[y==0, 0], X[y==0, 1], marker=\"o\", label=\"0\")\n    plt.scatter(X[y==1, 0], X[y==1, 1], marker=\"s\", label=\"1\")\n    x1 = np.array([-0.5, 1.5])\n    if np.abs(w[1]) &gt; 1e-8:\n        x2 = -(w[0] * x1 + b) / w[1]\n        plt.plot(x1, x2, \"k-\", label=\"decision boundary\")\n    plt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(title); plt.show()\n\n\nplot_decision_boundary_2d(X_gate, y_and, w_and, b_and, \"AND\")\n\n\n\n\n\n\n\n\n\nplot_decision_boundary_2d(X_gate, y_or, w_or, b_or, \"OR\")",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
+    "href": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "5 4. 로지스틱 회귀 (결정 경계)",
+    "text": "5 4. 로지스틱 회귀 (결정 경계)\n로지스틱 회귀: \\(P(y=1|x) = \\sigma(w^T x + b)\\), \\(\\sigma(z) = 1/(1+e^{-z})\\).\n결정 경계는 \\(\\sigma=0.5\\) 인 곳, 즉 \\(w^T x + b = 0\\) (직선).\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-np.clip(z, -500, 500)))\n\n# 2D 예시 데이터: 두 클래스가 약간 겹침\nnp.random.seed(1)\nn1, n2 = 25, 25\nX1 = np.random.randn(n1, 2) + np.array([1, 1])\nX2 = np.random.randn(n2, 2) + np.array([-1, -1])\nX_lr = np.vstack([X1, X2])\ny_lr = np.array([0] * n1 + [1] * n2)\n\n\n# 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)\ndef fit_logistic_simple(X, y, lr=0.1, epochs=2000):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        logit = X @ w + b\n        p = sigmoid(logit)\n        grad_w = X.T @ (p - y)\n        grad_b = (p - y).sum()\n        w -= lr * grad_w\n        b -= lr * grad_b\n    return w, b\n\nw_lr, b_lr = fit_logistic_simple(X_lr, y_lr)\npred_lr = (sigmoid(X_lr @ w_lr + b_lr) &gt;= 0.5).astype(int)\nprint(\"정확도:\", (pred_lr == y_lr).mean())\n\n정확도: 0.98\n\n\n\n# 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2\nplt.scatter(X_lr[y_lr==0, 0], X_lr[y_lr==0, 1], marker=\"o\", label=\"0\")\nplt.scatter(X_lr[y_lr==1, 0], X_lr[y_lr==1, 1], marker=\"s\", label=\"1\")\nx1_min, x1_max = X_lr[:, 0].min() - 0.5, X_lr[:, 0].max() + 0.5\nx1_grid = np.linspace(x1_min, x1_max, 100)\nif np.abs(w_lr[1]) &gt; 1e-8:\n    x2_boundary = -(w_lr[0] * x1_grid + b_lr) / w_lr[1]\n    plt.plot(x1_grid, x2_boundary, \"k-\", lw=2, label=\"decision boundary\")\nplt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(\"Logistic regression\"); plt.show()",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html#연습",
+    "href": "exercises/lab02-linear-logistic-regression.html#연습",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "6 5. 연습",
+    "text": "6 5. 연습\n\nXOR 데이터에 대해 두 개의 퍼셉트론을 써서 해결하는 방법을 생각해 보세요.\n(힌트: 은닉층 하나를 두고 AND(OR, OR) 같은 구조.)\n위 로지스틱 회귀에서 epochs를 100으로 줄이면 결정 경계가 어떻게 달라지는지 확인해 보세요.",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html#참고",
+    "href": "exercises/lab02-linear-logistic-regression.html#참고",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "7 참고",
+    "text": "7 참고\n\n퍼셉트론 하나 = 선형 결정 경계만 가능. XOR은 다층 퍼셉트론(MLP)으로 해결.\n로지스틱 회귀의 결정 경계도 선형; 비선형 경계가 필요하면 특성 추가 또는 신경망을 사용한다.",
+    "crumbs": [
+      "Exercises",
+      "Lab 02 - Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab10-transfer-learning.html",
+    "href": "exercises/lab10-transfer-learning.html",
+    "title": "Transfer Learning",
+    "section": "",
+    "text": "Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화.",
+    "crumbs": [
+      "Exercises",
+      "Transfer Learning"
+    ]
+  },
+  {
+    "objectID": "exercises/lab12-decision-tree.html",
+    "href": "exercises/lab12-decision-tree.html",
+    "title": "Decision Tree",
+    "section": "",
+    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
+    "crumbs": [
+      "Exercises",
+      "Decision Tree"
+    ]
+  },
+  {
+    "objectID": "assignments/hw01-environment-setup.html",
+    "href": "assignments/hw01-environment-setup.html",
+    "title": "Environment setup",
+    "section": "",
+    "text": "Python / Numpy / Matplotlib 환경 설정 및 기초 사용.",
     "crumbs": [
       "Assignments",
-      "Autoencoder"
+      "Environment setup"
+    ]
+  },
+  {
+    "objectID": "assignments/index.html",
+    "href": "assignments/index.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "과제 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "assignments/hw03-pytorch-mlp.html",
+    "href": "assignments/hw03-pytorch-mlp.html",
+    "title": "Feedforward NN",
+    "section": "",
+    "text": "PyTorch로 feedforward neural network 구현 및 학습.",
+    "crumbs": [
+      "Assignments",
+      "Feedforward NN"
+    ]
+  },
+  {
+    "objectID": "assignments/hw04-pytorch-cnn.html",
+    "href": "assignments/hw04-pytorch-cnn.html",
+    "title": "CNN",
+    "section": "",
+    "text": "PyTorch로 convolutional neural network 구현.",
+    "crumbs": [
+      "Assignments",
+      "CNN"
+    ]
+  },
+  {
+    "objectID": "assignments/hw08-decision-tree-ensemble.html",
+    "href": "assignments/hw08-decision-tree-ensemble.html",
+    "title": "Decision Tree & Ensemble",
+    "section": "",
+    "text": "Decision Tree 및 Ensemble 방법 실습.",
+    "crumbs": [
+      "Assignments",
+      "Decision Tree & Ensemble"
     ]
   }
 ]

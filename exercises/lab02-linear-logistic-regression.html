@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Byungkook Oh">
+<meta name="dcterms.date" content="2026-02-25">
 
 <title>Lab 02 - Linear &amp; Logistic Regression – Machine Learning</title>
 <style>
@@ -319,7 +321,19 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Byungkook Oh </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 25, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -341,18 +355,18 @@ window.Quarto = {
 <section id="선형-회귀-1변수" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="선형-회귀-1변수"><span class="header-section-number">2</span> 1. 선형 회귀 (1변수)</h2>
 <p><span class="math inline">\(y \approx w_0 + w_1 x\)</span> 형태. 정규방정식 <span class="math inline">\(\hat{w} = (X^T X)^{-1} X^T y\)</span> 로 한 번에 구할 수 있다.</p>
-<div id="4c146310" class="cell" data-execution_count="1">
+<div id="35c3f6ef" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="285b30b0" class="cell" data-execution_count="2">
+<div id="ad57f03e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터: y = 2 + 3x + 노이즈</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">30</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, n)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> x <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.random.randn(n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="ec7d9341" class="cell" data-execution_count="3">
+<div id="a5810700" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 설계 행렬 X: 각 행이 [1, x_i]</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack([np.ones(n), x])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>w_hat <span class="op">=</span> np.linalg.solve(X.T <span class="op">@</span> X, X.T <span class="op">@</span> y)</span>
@@ -361,7 +375,7 @@ window.Quarto = {
 <pre><code>w_0 = 2.1606891797132195 , w_1 = 2.745237372361261</code></pre>
 </div>
 </div>
-<div id="8cae1c0d" class="cell" data-execution_count="4">
+<div id="4a6294a1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, label<span class="op">=</span><span class="st">"data"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y_line <span class="op">=</span> w_hat[<span class="dv">0</span>] <span class="op">+</span> w_hat[<span class="dv">1</span>] <span class="op">*</span> x_line</span>
@@ -380,14 +394,14 @@ window.Quarto = {
 <section id="퍼셉트론-and-or-xor" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="퍼셉트론-and-or-xor"><span class="header-section-number">3</span> 2. 퍼셉트론 (AND, OR, XOR)</h2>
 <p>퍼셉트론: <span class="math inline">\(f(x) = \mathbb{1}[ w^T x + b &gt; 0 ]\)</span>. 선형 분리 가능한 문제만 풀 수 있다.</p>
-<div id="5a93ed1b" class="cell" data-execution_count="5">
+<div id="e1916ae3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AND, OR, XOR 진리표 (입력 2개)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X_gate <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>]])</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y_and <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y_or  <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_xor <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="e4a75738" class="cell" data-execution_count="6">
+<div id="f4c4fef5" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> perceptron_predict(X, w, b):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" X: (n, d), w: (d,), b: scalar """</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (X <span class="op">@</span> w <span class="op">+</span> b <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
@@ -402,7 +416,7 @@ window.Quarto = {
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        b <span class="op">+=</span> lr <span class="op">*</span> err.<span class="bu">sum</span>()</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5723172b" class="cell" data-execution_count="7">
+<div id="424f82dd" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>w_and, b_and <span class="op">=</span> fit_perceptron(X_gate, y_and)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>w_or,  b_or  <span class="op">=</span> fit_perceptron(X_gate, y_or)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AND 예측:"</span>, perceptron_predict(X_gate, w_and, b_and), <span class="st">" (정답:"</span>, y_and, <span class="st">")"</span>)</span>
@@ -412,7 +426,7 @@ window.Quarto = {
 OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
 </div>
 </div>
-<div id="8f60c9c7" class="cell" data-execution_count="8">
+<div id="d04aefb7" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>w_xor, b_xor <span class="op">=</span> fit_perceptron(X_gate, y_xor)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"XOR 예측:"</span>, perceptron_predict(X_gate, w_xor, b_xor), <span class="st">" (정답:"</span>, y_xor, <span class="st">")"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -425,7 +439,7 @@ OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
 <section id="결정-경계-시각화-and-or" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="결정-경계-시각화-and-or"><span class="header-section-number">4</span> 3. 결정 경계 시각화 (AND / OR)</h2>
 <p><span class="math inline">\(w_1 x_1 + w_2 x_2 + b = 0\)</span> 이 결정 경계(직선)이다. <span class="math inline">\(x_2 = -(w_1/w_2)x_1 - b/w_2\)</span>.</p>
-<div id="e1cbb50c" class="cell" data-execution_count="9">
+<div id="ec4dd9aa" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_decision_boundary_2d(X, y, w, b, title<span class="op">=</span><span class="st">""</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X[y<span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>], X[y<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"0"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X[y<span class="op">==</span><span class="dv">1</span>, <span class="dv">0</span>], X[y<span class="op">==</span><span class="dv">1</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"1"</span>)</span>
@@ -435,7 +449,7 @@ OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        plt.plot(x1, x2, <span class="st">"k-"</span>, label<span class="op">=</span><span class="st">"decision boundary"</span>)</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"$x_1$"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"$x_2$"</span>)<span class="op">;</span> plt.legend()<span class="op">;</span> plt.title(title)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="c030117e" class="cell" data-execution_count="10">
+<div id="26fbd2c5" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_decision_boundary_2d(X_gate, y_and, w_and, b_and, <span class="st">"AND"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -445,7 +459,7 @@ OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
 </div>
 </div>
 </div>
-<div id="42ae028a" class="cell" data-execution_count="11">
+<div id="1f73754a" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_decision_boundary_2d(X_gate, y_or, w_or, b_or, <span class="st">"OR"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -461,7 +475,7 @@ OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
 <h2 data-number="5" class="anchored" data-anchor-id="로지스틱-회귀-결정-경계"><span class="header-section-number">5</span> 4. 로지스틱 회귀 (결정 경계)</h2>
 <p>로지스틱 회귀: <span class="math inline">\(P(y=1|x) = \sigma(w^T x + b)\)</span>, <span class="math inline">\(\sigma(z) = 1/(1+e^{-z})\)</span>.<br>
 결정 경계는 <span class="math inline">\(\sigma=0.5\)</span> 인 곳, 즉 <span class="math inline">\(w^T x + b = 0\)</span> (직선).</p>
-<div id="19eb97ca" class="cell" data-execution_count="12">
+<div id="4d362b14" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>np.clip(z, <span class="op">-</span><span class="dv">500</span>, <span class="dv">500</span>)))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -473,7 +487,7 @@ OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>X_lr <span class="op">=</span> np.vstack([X1, X2])</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>y_lr <span class="op">=</span> np.array([<span class="dv">0</span>] <span class="op">*</span> n1 <span class="op">+</span> [<span class="dv">1</span>] <span class="op">*</span> n2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="34b51e35" class="cell" data-execution_count="13">
+<div id="bb8818d2" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_logistic_simple(X, y, lr<span class="op">=</span><span class="fl">0.1</span>, epochs<span class="op">=</span><span class="dv">2000</span>):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    n, d <span class="op">=</span> X.shape</span>
@@ -494,7 +508,7 @@ OR  예측: [0 1 1 1]  (정답: [0 1 1 1] )</code></pre>
 <pre><code>정확도: 0.98</code></pre>
 </div>
 </div>
-<div id="3d841452" class="cell" data-execution_count="14">
+<div id="d99764e7" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_lr[y_lr<span class="op">==</span><span class="dv">0</span>, <span class="dv">0</span>], X_lr[y_lr<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"0"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_lr[y_lr<span class="op">==</span><span class="dv">1</span>, <span class="dv">0</span>], X_lr[y_lr<span class="op">==</span><span class="dv">1</span>, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"1"</span>)</span>
