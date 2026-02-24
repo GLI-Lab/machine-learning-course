@@ -9,3 +9,5 @@
 # Quarto
 /.quarto/
 _site/
+
+*.ipynb

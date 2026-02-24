@@ -41,11 +41,13 @@ jobs:
       - name: Prepare _out and convert qmd to ipynb
         run: |
           mkdir -p _out/exercises _out/assignments
-          cp README.md pixi.toml _out/ 2>/dev/null || true
+          cp pixi.toml pixi.lock _out/ 2>/dev/null || true
+          cp README-students.md _out/README.md
           for f in exercises/*.qmd assignments/*.qmd; do
             if [ -f "$f" ]; then
-              dir=$(dirname "$f")
               base=$(basename "$f" .qmd)
+              [ "$base" = "index" ] && continue
+              dir=$(dirname "$f")
               quarto convert "$f" --output "_out/$dir/$base.ipynb"
             fi
           done
