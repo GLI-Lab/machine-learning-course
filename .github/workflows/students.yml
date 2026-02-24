@@ -1,3 +1,17 @@
+# 최초 1회 실행
+# ------------------------------------------------------------
+# 부모 커밋 없는 새 브랜치 students 생성 (작업 디렉터리 내용은 main 그대로 유지)
+# git checkout --orphan students
+
+# 스테이징·작업 디렉터리를 비움 (main에서 넘어온 파일 전부 제거)
+# git reset --hard
+
+# 빈 커밋 하나로 브랜치 시작 (원격에 push할 최소 한 개 커밋 필요)
+# git commit --allow-empty -m "Initialising students branch"
+# git push origin students
+# git checkout main
+# ------------------------------------------------------------
+
 name: Publish to students branch
 
 on:                            # 실행 조건
@@ -12,7 +26,7 @@ jobs:
       contents: write
 
     steps:
-      # 1. main 브랜치만 clone (students 브랜치는 가져오지 않음)
+      # 1. main 브랜치만 Github Actions 서버로 clone (students 브랜치의 존재 여부나 최신 상태는 모름)
       - name: Check out repository
         uses: actions/checkout@v4
         with:
@@ -22,11 +36,11 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # 3. main 기준으로 .qmd → .ipynb 변환 (같은 디렉터리에 .ipynb 생성)
+      # 3. main 기준으로 .qmd → .ipynb 변환 (같은 디렉터리에 .ipynb 생성, .qmd는 기본이 ipynb)
       - name: Convert qmd to ipynb
         run: |
           for f in exercises/*.qmd assignments/*.qmd; do
-            [ -f "$f" ] && quarto convert --to ipynb "$f"
+            [ -f "$f" ] && quarto convert "$f"
           done
 
       # 4. students 브랜치에 넣을 내용만 모음
@@ -42,12 +56,14 @@ jobs:
           .ipynb_checkpoints/
           EOF
 
-      # 5. 로컬에 students 브랜치 생성 (--orphan = 커밋 히스토리 없음)
-      #    작업 디렉터리는 그대로 → main 내용 + students_out 모두 있는 상태
-      - name: Create students branch
-        run: git checkout --orphan students
+      # 5. students 브랜치로 전환 (있으면 기존 히스토리 유지 → 변경분만 push, 없으면 orphan)
+      # 원격에서 students 브랜치 정보를 가져오고, Github Actions 서버에 students 브랜치를 생성하고 전환
+      - name: Fetch and checkout students branch
+        run: |
+          git fetch origin students
+          git checkout -B students origin/students
 
-      # 6. 전부 삭제 후 students_out만 남김
+      # 6. 작업 디렉터리를 students_out 내용으로 교체
       - name: Replace tree with students content
         run: |
           git ls-files | xargs -r rm -f
@@ -56,11 +72,15 @@ jobs:
           cp students_out/.gitignore .
           rm -rf students_out
 
-      # 7. 한 번 커밋 후 force push → 원격 students 브랜치를 이 커밋으로 덮어씀 (히스토리 불필요)
+      # 7. 변경된 파일만 커밋 후 일반 push -> gh-pages처럼 delta만 이 커밋으로 덮어씀
       - name: Commit and push to students
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Update ipynb from main (qmd convert)" || true
-          git push --force origin students
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update ipynb from main (qmd convert)"
+          fi
+          git push origin students
