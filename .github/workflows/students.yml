@@ -36,43 +36,46 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # 3. main 기준으로 .qmd → .ipynb 변환 (같은 디렉터리에 .ipynb 생성, .qmd는 기본이 ipynb)
-      - name: Convert qmd to ipynb
+      # 3. _out 디렉터리 만들고, .qmd를 여기로 직접 변환
+      #    exercises/assignments에 ipynb 안 만듦 → origin/students 브랜치에 있는 파일과 충돌하지 않기 위해서
+      - name: Prepare _out and convert qmd to ipynb
         run: |
+          mkdir -p _out/exercises _out/assignments
+          cp README.md pixi.toml _out/ 2>/dev/null || true
           for f in exercises/*.qmd assignments/*.qmd; do
-            [ -f "$f" ] && quarto convert "$f"
+            if [ -f "$f" ]; then
+              dir=$(dirname "$f")
+              base=$(basename "$f" .qmd)
+              quarto convert "$f" --output "_out/$dir/$base.ipynb"
+            fi
           done
-
-      # 4. students 브랜치에 넣을 내용만 모음
-      - name: Prepare students branch content
-        run: |
-          mkdir -p students_out/exercises students_out/assignments
-          cp README.md pixi.toml students_out/ 2>/dev/null || true
-          cp exercises/*.ipynb students_out/exercises/ 2>/dev/null || true
-          cp assignments/*.ipynb students_out/assignments/ 2>/dev/null || true
-          cat > students_out/.gitignore << 'EOF'
+          cat > _out/.gitignore << 'EOF'
+          # pixi environments
           .pixi/*
           !.pixi/config.toml
+          # VSCode & Jupyter
+          .vscode/
           .ipynb_checkpoints/
           EOF
 
-      # 5. students 브랜치로 전환 (있으면 기존 히스토리 유지 → 변경분만 push, 없으면 orphan)
-      # 원격에서 students 브랜치 정보를 가져오고, Github Actions 서버에 students 브랜치를 생성하고 전환
+      # 4. students 브랜치로 전환  (기존 히스토리 유지 → 변경분만 push)
+      #    origin/students 브랜치 정보를 가져와서, Github Actions 서버에 students 로컬 브랜치(또는 이미 있으면 리셋)를 만들고 students 로컬 브랜치로 이동
+      #    tracked 파일 → origin/students 내용으로 교체 / untracked 파일 → 건드리지 않고 그대로 유지 (단, 같은 경로에 충돌이 생기면 에러)
       - name: Fetch and checkout students branch
         run: |
           git fetch origin students
           git checkout -B students origin/students
 
-      # 6. 작업 디렉터리를 students_out 내용으로 교체
+      # 5. 작업 디렉터리를 _out 내용으로 교체
       - name: Replace tree with students content
         run: |
           git ls-files | xargs -r rm -f
           git ls-files -z --directory | sort -z -r | xargs -0 rmdir 2>/dev/null || true
-          cp -r students_out/* .
-          cp students_out/.gitignore .
-          rm -rf students_out
+          cp -r _out/* .
+          cp _out/.gitignore .
+          rm -rf _out
 
-      # 7. 변경된 파일만 커밋 후 일반 push -> gh-pages처럼 delta만 이 커밋으로 덮어씀
+      # 6. 변경된 파일만 커밋 후 일반 push → 변경분(delta)만 커밋
       - name: Commit and push to students
         run: |
           git config user.name "github-actions[bot]"

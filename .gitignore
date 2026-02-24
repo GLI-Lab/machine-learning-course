@@ -2,7 +2,9 @@
 .pixi/*
 !.pixi/config.toml
 
+# VSCode & Jupyter
 .vscode/
+.ipynb_checkpoints/
 
 # Quarto
 /.quarto/
