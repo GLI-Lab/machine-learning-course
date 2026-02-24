@@ -1,19 +1,25 @@
 [workspace]
 authors = ["GLI-Lab <glilab509@gmail.com>"]
-channels = ["conda-forge"]
+channels = ["conda-forge"]                                      
 name = "machine-learning-course"
-platforms = ["linux-64"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]      # cross-platform support for students
 version = "0.1.0"
 
 [tasks]
-jupyter = "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser"
+jupyter = "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser"  # pixi run jupyter
 
+# https://prefix.dev/channels/conda-forge/packages/pytorch
+# https://prefix.dev/channels/conda-forge/packages/torchvision
+# https://pytorch.org/get-started/locally/
 [dependencies]
 python = "3.12.*"
-numpy = "*"
-pandas = "*"
-matplotlib = "*"
-plotly = "*"
-scikit-learn = "*"
-tqdm = "*"
-jupyterlab = "*"
+numpy = "*"              # numerical computing
+pandas = "*"             # data manipulation
+scikit-learn = "*"       # machine learning
+matplotlib = "*"         # visualization
+seaborn = "*"            # visualization
+plotly = "*"             # visualization (interactive)
+tqdm = "*"               # utils
+jupyterlab = "*"         # notebook
+pytorch = "*"            # PyTorch with CPU
+torchvision = "*"        # PyTorch with CPU (datasets and models)

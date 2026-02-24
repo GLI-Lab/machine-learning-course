@@ -1,48 +1,59 @@
-# Machine Learning Course
+# Machine Learning Course (for students)
 
-```zsh
-git clone git@github.com:GLI-Lab/machine-learning-course.git
-git config user.name "GLI-Lab" 
-git config user.email "glilab509@gmail.com"
-```
+The lab environment is set up with **pixi**. Follow the steps below.
 
-## 우분투에서 설치하기
+---
+
+## 1. Git — Get the repo / Update
+
+### First time (clone)
 
 ```bash
-# 최신 버전 확인: https://quarto.org/docs/download/
-wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.42/quarto-1.6.42-linux-amd64.deb
-sudo dpkg -i quarto-1.6.42-linux-amd64.deb
-rm quarto-1.6.42-linux-amd64.deb
-
-source ~/.zshrc
-quarto --version
+git clone -b students https://github.com/GLI-Lab/machine-learning-course.git
+cd machine-learning-course
 ```
 
-## GitHub Pages 배포 (로컬 렌더 후 push)
+### Update (get latest course materials)
 
-https://quarto.org/docs/publishing/github-pages.html
+If you already cloned the `students` branch, just pull the latest changes:
 
-1. **한 번만 설정**: GitHub 저장소 **Settings → Pages**  
-   - Source: **Deploy from a branch**  
-   - Branch: **gh-pages**  
-   - Folder: **/ (root)**
+```bash
+git pull   # updates from origin/students when you're on the students branch
+```
 
-2. **배포할 때** (로컬에서 실행):
-   ```bash
-   quarto publish gh-pages book/test.ipynb --no-prompt
-   ```
-   위 명령이 렌더링 후 `gh-pages` 브랜치로 결과를 push합니다.
+---
 
+## 2. Pixi — Install environment and run
 
-3. **gh-pages 브랜치가 아직 없으면** 첫 배포 전에 한 번:
-   ```bash
-   # 부모 커밋 없는 새 브랜치 gh-pages 생성 (작업 디렉터리는 main 그대로)
-   git checkout --orphan gh-pages
-   # 스테이징·작업 디렉터리 비우기 (main 파일 전부 제거). 실행 전 변경 사항은 commit 해둘 것.
-   git reset --hard
-   # 빈 커밋 하나로 브랜치 시작 (push할 뭔가가 필요함)
-   git commit --allow-empty -m "Initialize gh-pages"
-   git push origin gh-pages
-   git checkout main
-   ```
-   그다음 위 `quarto publish gh-pages`를 실행하세요.
+### If you don't have Pixi (one-time)
+
+- **Install**: https://pixi.sh/latest/getting_started/installation/
+
+### Install project environment
+
+From the repo root (`machine-learning-course`):
+
+```bash
+pixi install
+```
+
+Dependencies and Jupyter will be installed automatically.
+
+### Run Jupyter Lab
+
+```bash
+pixi run jupyter
+```
+
+Open the URL shown in your browser
+
+---
+
+## Summary
+
+| When | Command |
+|------|---------|
+| First-time clone | `git clone -b students https://github.com/GLI-Lab/machine-learning-course.git` → `cd machine-learning-course` |
+| Update materials | `git pull` |
+| Install environment | `pixi install` |
+| Run Jupyter | `pixi run jupyter` |
