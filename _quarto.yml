@@ -14,16 +14,24 @@ format:
 
 website:
   title: "Machine Learning"
+  # Quarto 빌드 시 canonical URL, sitemap 등의 base URL을 gli.konkuk.ac.kr 기준으로 생성하도록 설정
+  site-url: https://gli.konkuk.ac.kr/board/lectures/machine-learning
   navbar:
     left:
-      - text: Home
-        href: index.qmd
-      - text: Exercises
-        href: exercises/index.qmd
-      - text: Assignments
-        href: assignments/index.qmd
-      - text: GLI Lab
+      - href: index.qmd
+        text: Home
+      - href: exercises/index.qmd
+        text: Exercises 
+      - href: assignments/index.qmd
+        text: Assignments
+      - icon: link-45deg
         href: http://203.252.149.219:3000/
+        text: GLI Lab
+    tools:
+      - icon: github
+        href: https://github.com/GLI-Lab/machine-learning-course
+        text: Machine Learning Course GitHub
+
   sidebar:
     - id: exercises
       title: "Exercises"
