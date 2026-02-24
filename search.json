@@ -1,0 +1,271 @@
+[
+  {
+    "objectID": "assignments/hw08-decision-tree-ensemble.html",
+    "href": "assignments/hw08-decision-tree-ensemble.html",
+    "title": "Decision Tree & Ensemble",
+    "section": "",
+    "text": "Decision Tree 및 Ensemble 방법 실습.",
+    "crumbs": [
+      "Assignments",
+      "Decision Tree & Ensemble"
+    ]
+  },
+  {
+    "objectID": "assignments/hw04-pytorch-cnn.html",
+    "href": "assignments/hw04-pytorch-cnn.html",
+    "title": "CNN",
+    "section": "",
+    "text": "PyTorch로 convolutional neural network 구현.",
+    "crumbs": [
+      "Assignments",
+      "CNN"
+    ]
+  },
+  {
+    "objectID": "assignments/hw03-pytorch-mlp.html",
+    "href": "assignments/hw03-pytorch-mlp.html",
+    "title": "Feedforward NN",
+    "section": "",
+    "text": "PyTorch로 feedforward neural network 구현 및 학습.",
+    "crumbs": [
+      "Assignments",
+      "Feedforward NN"
+    ]
+  },
+  {
+    "objectID": "assignments/index.html",
+    "href": "assignments/index.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "과제 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "assignments/hw01-environment-setup.html",
+    "href": "assignments/hw01-environment-setup.html",
+    "title": "Environment setup",
+    "section": "",
+    "text": "Python / Numpy / Matplotlib 환경 설정 및 기초 사용.",
+    "crumbs": [
+      "Assignments",
+      "Environment setup"
+    ]
+  },
+  {
+    "objectID": "exercises/lab12-decision-tree.html",
+    "href": "exercises/lab12-decision-tree.html",
+    "title": "Decision Tree",
+    "section": "",
+    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
+    "crumbs": [
+      "Exercises",
+      "Decision Tree"
+    ]
+  },
+  {
+    "objectID": "exercises/lab10-transfer-learning.html",
+    "href": "exercises/lab10-transfer-learning.html",
+    "title": "Transfer Learning",
+    "section": "",
+    "text": "Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화.",
+    "crumbs": [
+      "Exercises",
+      "Transfer Learning"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02-linear-logistic-regression.html",
+    "href": "exercises/lab02-linear-logistic-regression.html",
+    "title": "Linear & Logistic Regression",
+    "section": "",
+    "text": "퍼셉트론으로 AND/OR/XOR 게이트 실험, decision boundary 시각화.",
+    "crumbs": [
+      "Exercises",
+      "Linear & Logistic Regression"
+    ]
+  },
+  {
+    "objectID": "exercises/lab05-numpy-mlp-to-pytorch.html",
+    "href": "exercises/lab05-numpy-mlp-to-pytorch.html",
+    "title": "Numpy MLP to PyTorch",
+    "section": "",
+    "text": "Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현.",
+    "crumbs": [
+      "Exercises",
+      "Numpy MLP to PyTorch"
+    ]
+  },
+  {
+    "objectID": "exercises/lab07-feature-map-visualization.html",
+    "href": "exercises/lab07-feature-map-visualization.html",
+    "title": "Feature map 시각화",
+    "section": "",
+    "text": "CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증.",
+    "crumbs": [
+      "Exercises",
+      "Feature map 시각화"
+    ]
+  },
+  {
+    "objectID": "exercises/index.html",
+    "href": "exercises/index.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "실습 자료 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
+    "crumbs": [
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/lab04-mlp-forward-backward.html",
+    "href": "exercises/lab04-mlp-forward-backward.html",
+    "title": "MLP Forward/Backward",
+    "section": "",
+    "text": "손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화.",
+    "crumbs": [
+      "Exercises",
+      "MLP Forward/Backward"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Machine Learning Course",
+    "section": "",
+    "text": "Welcome to the Machine Learning Course.\n\nExercises: 실습 자료\nAssignments: 과제"
+  },
+  {
+    "objectID": "exercises/lab08-char-language-model.html",
+    "href": "exercises/lab08-char-language-model.html",
+    "title": "Char-level language model",
+    "section": "",
+    "text": "Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰).",
+    "crumbs": [
+      "Exercises",
+      "Char-level language model"
+    ]
+  },
+  {
+    "objectID": "exercises/lab09-vae-latent-space.html",
+    "href": "exercises/lab09-vae-latent-space.html",
+    "title": "VAE latent space",
+    "section": "",
+    "text": "MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰.",
+    "crumbs": [
+      "Exercises",
+      "VAE latent space"
+    ]
+  },
+  {
+    "objectID": "exercises/lab13-bagging-vs-boosting.html",
+    "href": "exercises/lab13-bagging-vs-boosting.html",
+    "title": "Bagging vs Boosting",
+    "section": "",
+    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
+    "crumbs": [
+      "Exercises",
+      "Bagging vs Boosting"
+    ]
+  },
+  {
+    "objectID": "exercises/lab03-kfold-cv.html",
+    "href": "exercises/lab03-kfold-cv.html",
+    "title": "K-Fold Cross-Validation",
+    "section": "",
+    "text": "다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.",
+    "crumbs": [
+      "Exercises",
+      "K-Fold Cross-Validation"
+    ]
+  },
+  {
+    "objectID": "exercises/lab14-naive-bayes.html",
+    "href": "exercises/lab14-naive-bayes.html",
+    "title": "Naive Bayes",
+    "section": "",
+    "text": "Likelihood/prior/posterior 직접 계산, 조건부 독립 가정 위반 시 성능 변화 실험.",
+    "crumbs": [
+      "Exercises",
+      "Naive Bayes"
+    ]
+  },
+  {
+    "objectID": "exercises/lab11-kernel-visualization.html",
+    "href": "exercises/lab11-kernel-visualization.html",
+    "title": "Kernel 시각화",
+    "section": "",
+    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
+    "crumbs": [
+      "Exercises",
+      "Kernel 시각화"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01-numpy-basics.html",
+    "href": "exercises/lab01-numpy-basics.html",
+    "title": "Numpy Basics",
+    "section": "",
+    "text": "Vectorization, Broadcasting 등 Numpy 기초.",
+    "crumbs": [
+      "Exercises",
+      "Lab 01 - Numpy Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab06-optimizer-comparison.html",
+    "href": "exercises/lab06-optimizer-comparison.html",
+    "title": "Optimizer 비교",
+    "section": "",
+    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
+    "crumbs": [
+      "Exercises",
+      "Optimizer 비교"
+    ]
+  },
+  {
+    "objectID": "assignments/hw07-svm-kernel.html",
+    "href": "assignments/hw07-svm-kernel.html",
+    "title": "SVM & Kernel",
+    "section": "",
+    "text": "SVM 및 Kernel 기법 실습.",
+    "crumbs": [
+      "Assignments",
+      "SVM & Kernel"
+    ]
+  },
+  {
+    "objectID": "assignments/hw02-simple-regression.html",
+    "href": "assignments/hw02-simple-regression.html",
+    "title": "Simple regression",
+    "section": "",
+    "text": "Numpy로 매우 단순한 회귀 모델 구현.",
+    "crumbs": [
+      "Assignments",
+      "Simple regression"
+    ]
+  },
+  {
+    "objectID": "assignments/hw05-pytorch-rnn.html",
+    "href": "assignments/hw05-pytorch-rnn.html",
+    "title": "RNN",
+    "section": "",
+    "text": "PyTorch로 recurrent neural network 구현.",
+    "crumbs": [
+      "Assignments",
+      "RNN"
+    ]
+  },
+  {
+    "objectID": "assignments/hw06-autoencoder.html",
+    "href": "assignments/hw06-autoencoder.html",
+    "title": "Autoencoder",
+    "section": "",
+    "text": "PyTorch Autoencoder 구현.",
+    "crumbs": [
+      "Assignments",
+      "Autoencoder"
+    ]
+  }
+]
