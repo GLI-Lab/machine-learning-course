@@ -2,7 +2,7 @@
   "hash": "b0e159b14c00d4ec35abcc5fc5de2290",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Decision Tree & Ensemble\"\njupyter: python3\n---\n\n\n\n\n\nDecision Tree 및 Ensemble 방법 실습.\n\n",
+    "markdown": "---\ntitle: \"Decision Tree & Ensemble\"\njupyter: python3\n---\n\n\n\n\n\n\n\nDecision Tree 및 Ensemble 방법 실습.\n\n",
     "supporting": [
       "hw08-decision-tree-ensemble_files"
     ],

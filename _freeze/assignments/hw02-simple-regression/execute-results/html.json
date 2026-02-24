@@ -2,7 +2,7 @@
   "hash": "4c5432db62dc99e17818aa9182f580a1",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Simple regression\"\njupyter: python3\n---\n\n\n\n\n\nNumpy로 매우 단순한 회귀 모델 구현.\n\n",
+    "markdown": "---\ntitle: \"Simple regression\"\njupyter: python3\n---\n\n\n\n\n\n\n\nNumpy로 매우 단순한 회귀 모델 구현.\n\n",
     "supporting": [
       "hw02-simple-regression_files"
     ],

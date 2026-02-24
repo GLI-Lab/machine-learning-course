@@ -2,7 +2,7 @@
   "hash": "45256a2b17b65b1b4137e97ae2237313",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"RNN\"\njupyter: python3\n---\n\n\n\n\n\nPyTorch로 recurrent neural network 구현.\n\n",
+    "markdown": "---\ntitle: \"RNN\"\njupyter: python3\n---\n\n\n\n\n\n\n\nPyTorch로 recurrent neural network 구현.\n\n",
     "supporting": [
       "hw05-pytorch-rnn_files"
     ],

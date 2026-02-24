@@ -2,7 +2,7 @@
   "hash": "33301de750e7e2059448a14af0ef0ff7",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Feedforward NN\"\njupyter: python3\n---\n\n\n\n\n\nPyTorch로 feedforward neural network 구현 및 학습.\n\n",
+    "markdown": "---\ntitle: \"Feedforward NN\"\njupyter: python3\n---\n\n\n\n\n\n\n\nPyTorch로 feedforward neural network 구현 및 학습.\n\n",
     "supporting": [
       "hw03-pytorch-mlp_files"
     ],

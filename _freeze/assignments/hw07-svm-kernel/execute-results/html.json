@@ -2,7 +2,7 @@
   "hash": "ed14a6b0dd9074da2c92c1395c0644e1",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"SVM & Kernel\"\njupyter: python3\n---\n\n\n\n\n\nSVM 및 Kernel 기법 실습.\n\n",
+    "markdown": "---\ntitle: \"SVM & Kernel\"\njupyter: python3\n---\n\n\n\n\n\n\n\nSVM 및 Kernel 기법 실습.\n\n",
     "supporting": [
       "hw07-svm-kernel_files"
     ],

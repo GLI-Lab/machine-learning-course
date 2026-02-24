@@ -36,8 +36,11 @@ https://quarto.org/docs/publishing/github-pages.html
 
 3. **gh-pages 브랜치가 아직 없으면** 첫 배포 전에 한 번:
    ```bash
+   # 부모 커밋 없는 새 브랜치 gh-pages 생성 (작업 디렉터리는 main 그대로)
    git checkout --orphan gh-pages
+   # 스테이징·작업 디렉터리 비우기 (main 파일 전부 제거). 실행 전 변경 사항은 commit 해둘 것.
    git reset --hard
+   # 빈 커밋 하나로 브랜치 시작 (push할 뭔가가 필요함)
    git commit --allow-empty -m "Initialize gh-pages"
    git push origin gh-pages
    git checkout main

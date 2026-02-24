@@ -2,7 +2,7 @@
   "hash": "1aa2f42d546b8569fb466881d6a14d57",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Linear & Logistic Regression\"\njupyter: python3\n---\n\n\n\n\n\n퍼셉트론으로 AND/OR/XOR 게이트 실험, decision boundary 시각화.\n\n",
+    "markdown": "---\ntitle: \"Linear & Logistic Regression\"\njupyter: python3\n---\n\n\n\n\n\n\n\n퍼셉트론으로 AND/OR/XOR 게이트 실험, decision boundary 시각화.\n\n",
     "supporting": [
       "lab02-linear-logistic-regression_files"
     ],
