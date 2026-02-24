@@ -1,0 +1,19 @@
+[workspace]
+authors = ["GLI-Lab <glilab509@gmail.com>"]
+channels = ["conda-forge"]
+name = "machine-learning-course"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+jupyter = "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser"
+
+[dependencies]
+python = "3.12.*"
+numpy = "*"
+pandas = "*"
+matplotlib = "*"
+plotly = "*"
+scikit-learn = "*"
+tqdm = "*"
+jupyterlab = "*"
