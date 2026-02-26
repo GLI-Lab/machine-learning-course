@@ -1,0 +1,177 @@
+---
+title: "Python Environment Setup"
+execute:
+  eval: false
+#   echo: false
+---
+
+## Why pixi?
+
+- The PyTorch team discontinued distribution via the Anaconda `pytorch` channel in November 2024 → conda-forge or PyPI is now recommended
+- Supports lock files (`pixi.lock`) for reproducible environments across machines and team members
+- Manages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow
+
+We find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.
+
+We will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.
+
+---
+
+## How pixi Works
+
+**When a lock file exists** (`pixi install`)
+
+- Installs the **exact versions** specified in `pixi.lock` — guarantees identical environments across all team members
+- No resolve step needed, so installation is fast
+
+**When no lock file exists** (`pixi install`)
+
+- Reads constraints from `pixi.toml` (e.g., `>=2.0`) and **resolves** the best matching versions
+- Generates a new `pixi.lock`
+- Slower due to the resolve step
+
+**When `pixi.toml` changes with an existing lock file** (e.g., after `pixi add`)
+
+- The lock file is **updated** automatically
+
+### Project Structure
+
+
+```{python}
+import numpy as np
+R=np.array([np.random.random(),np.random.random()]) # initial location
+
+print("initial location:")
+print(np.round(R,3))
+print("round   location")
+
+eps=.5                         # initial learning speed
+
+for j in range(50):            # rounds
+    eps=0.85*eps               # decrease the learning speed 
+    np.random.shuffle(alls)    # reshuffle the sample
+    for i in range(len(alls)): # loop over points of the whole sample
+        R+=eps*(alls[i]-R)     # update/learning
+    if j%5==4: print(j+1, "    ",np.round(R,3))  # print every 5th step
+```
+
+```bash
+my-project/
+├── pixi.toml       ← dependency declaration file  (commit to git)
+├── pixi.lock       ← exact pinned versions         (commit to git)
+└── .pixi/          ← actual environment folder     (add to .gitignore)
+    └── envs/
+        └── default/
+```
+
+---
+
+## One-Time Setup: Install pixi
+
+::: {.callout-warning}
+**Install under your own user account — `sudo` is almost never needed.**
+
+pixi installs by default to `~/.pixi/`, so no elevated privileges are required. Each project's environment lives inside the project folder under `.pixi/envs/`, so there is no conflict between users or projects.
+:::
+
+### Linux & macOS
+
+Expected time: **~5 minutes**
+
+```bash
+# 1. Install pixi (single binary, no sudo required)
+$ curl -fsSL https://pixi.sh/install.sh | sh   # if curl is available# if wget is available# if wget is available# if wget is available
+$ wget -qO- https://pixi.sh/install.sh | sh    # if wget is available
+
+# 2. Reload your shell to apply PATH changes
+$ source ~/.bashrc   # or ~/.zshrc depending on your shell
+
+# 3. Verify installation
+$ pixi --version
+pixi 0.63.2
+
+# 4. (Optional) Update pixi
+$ pixi self-update
+```
+
+For the full installation guide, see: <https://pixi.prefix.dev/latest/installation>
+
+---
+
+## Everyday Use
+
+### pixi run
+
+Run a command or task inside the project environment.
+
+```bash
+# Run any executable from the environment PATH
+pixi run python --version
+pixi run jupyter lab
+
+# Run a named task defined in pixi.toml
+pixi run <task-name>
+```
+
+- Works for both named tasks and any executable available in the environment PATH
+- If a task and an executable share the same name, **the task takes priority**
+- Automatically updates the lock file and installs the environment if needed
+
+### pixi exec
+
+Run a command in a **temporary, isolated environment** — independent of any `pixi.toml`.
+
+```bash
+# Run python from a temporary environment
+pixi exec python --version
+
+# Specify an exact version — pixi exec's key strength
+pixi exec --spec "python=3.12" python --version
+
+# Start JupyterLab without activating any project environment
+pixi exec jupyter lab
+
+# Clean up temporary environment cache when no longer needed
+pixi clean cache --exec
+```
+
+- Does not require a `pixi.toml` — works from any directory
+- Useful for one-off version testing or running tools outside your project
+- Each `--spec` creates a fresh temporary environment
+
+### pixi shell
+
+Activate the project environment and stay inside it.
+
+```bash
+$ pixi shell
+# environment is now active — use commands directly
+$ python script.py
+$ jupyter lab
+# when done, exit the shell to deactivate
+$ exit
+```
+
+- Keeps the environment active until you exit the shell
+- Convenient for interactive development and experimentation
+- Equivalent to `conda activate` / `micromamba activate` workflows
+
+---
+
+## Check Current Status
+
+```bash
+$ pixi info
+```
+
+This shows the pixi version, platform, cache location, and details about all environments defined in the current project — including installed packages, target platforms, and defined tasks.
+
+---
+
+## Summary
+
+| Command | Environment | Requires pixi.toml | Use case |
+|---|---|---|---|
+| `pixi run` | Project environment | ✅ | Automation, CI, team scripts |
+| `pixi exec` | Temporary environment | ❌ | One-off runs, version testing |
+| `pixi shell` | Project environment | ✅ | Interactive development |

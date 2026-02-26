@@ -5,9 +5,6 @@ name = "machine-learning-course"
 platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]      # cross-platform support for students
 version = "0.1.0"
 
-[tasks]
-jupyter = "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser"  # pixi run jupyter
-
 # https://prefix.dev/channels/conda-forge/packages/pytorch
 # https://prefix.dev/channels/conda-forge/packages/torchvision
 # https://pytorch.org/get-started/locally/
@@ -23,3 +20,9 @@ tqdm = "*"               # utils
 jupyterlab = "*"         # notebook
 pytorch = "*"            # PyTorch with CPU
 torchvision = "*"        # PyTorch with CPU (datasets and models)
+
+[environments]
+ml = []                  # .pixi/envs/ml
+
+[tasks]
+jupyter = "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser"  # pixi run jupyter

@@ -1,158 +1,227 @@
 ---
-title: "Lab 01 - Numpy Basics"
+title: "Lab 01 - NumPy Basics for Machine Learning"
 jupyter: python3
 ---
 
-## 목표
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab01-numpy-basics.ipynb)
 
-- NumPy 배열 생성, shape, dtype 다루기
-- **Vectorization**: 반복문 대신 배열 연산으로 빠르게 계산하기
-- **Broadcasting**: 서로 다른 shape의 배열이 연산될 때의 규칙 이해하기
+## Objectives
 
----
+- Understand the basic concepts of NumPy arrays: creation, `shape`, and `dtype`.
+- **Vectorization**: Learn how to replace slow Python loops with fast, C-optimized array operations.
+- **Broadcasting**: Grasp the rules NumPy uses to perform operations on arrays of different shapes.
 
-## 1. 배열 생성 및 속성
+::: {.callout-note}
+## Basic Concept: Why NumPy?
+In Machine Learning, we deal with massive amounts of data (vectors, matrices, tensors). Standard Python lists are too slow and memory-inefficient for these calculations. NumPy arrays are stored in contiguous blocks of memory and operations are implemented in highly optimized C code, making mathematical operations drastically faster. NumPy is the foundational library that modern deep learning frameworks (like PyTorch and TensorFlow) are built upon.
+:::
+
+## 1. Array Creation and Attributes
+
+Before we manipulate data, we need to know how to create arrays and inspect their properties.
+
+
 
 ```{python}
 import numpy as np
+
 ```
 
 ```{python}
-# 1차원 배열
+# 1-Dimensional Array (Vector)
 a = np.array([1, 2, 3, 4, 5])
 print("a =", a)
-print("shape:", a.shape, "  dtype:", a.dtype)
+print("shape:", a.shape) # Returns a tuple representing the size of each dimension
+print("dtype:", a.dtype) # Data type of the elements
+
 ```
 
 ```{python}
-# 2차원 배열 (행렬)
+# 2-Dimensional Array (Matrix)
 B = np.array([[1, 2], [3, 4], [5, 6]])
 print("B =\n", B)
-print("shape:", B.shape)  # (행 개수, 열 개수)
+print("shape:", B.shape)  # (number of rows, number of columns)
+
 ```
+
+::: {.callout-warning}
+
+## Caveat: Data Types (dtype)
+
+By default, NumPy might create arrays with `float64` or `int64` depending on your OS and the input. In deep learning, memory is expensive, so we often explicitly cast arrays to 32-bit floats using `a.astype(np.float32)`.
+:::
 
 ```{python}
-# 자주 쓰는 생성 함수
-print(np.zeros(5))
-print(np.ones((2, 3)))
-print(np.arange(0, 10, 2))   # start, stop(미포함), step
-print(np.linspace(0, 1, 5)) # 구간을 균등 분할
+# Frequently used creation functions
+print("Zeros:\n", np.zeros(5))               # Array of zeros
+print("Ones:\n", np.ones((2, 3)))            # 2x3 matrix of ones
+print("Arange:\n", np.arange(0, 10, 2))      # start, stop (exclusive), step
+print("Linspace:\n", np.linspace(0, 1, 5))   # 5 evenly spaced numbers between 0 and 1 (inclusive)
+
 ```
 
----
 
-## 2. 인덱싱과 슬라이싱
+## 2. Indexing and Slicing
+
+Accessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.
 
 ```{python}
 x = np.array([10, 20, 30, 40, 50])
-print(x[0], x[-1])      # 첫 원소, 마지막 원소
-print(x[1:4])           # 인덱스 1, 2, 3
-print(x[::2])            # 처음부터 끝까지 2칸씩
+print("First element:", x[0])
+print("Last element:", x[-1])
+print("Slice [1:4]:", x[1:4])     # Indices 1, 2, 3 (exclusive of 4)
+print("Step slice [::2]:", x[::2]) # Every 2nd element from start to end
+
 ```
 
 ```{python}
 M = np.arange(12).reshape(3, 4)
 print("M =\n", M)
-print("M[1, 2] =", M[1, 2])
-print("2행 전체:", M[2, :])
-print("3열 전체:", M[:, 3])
+print("Specific element M[1, 2]:", M[1, 2]) # Row 1, Column 2 (0-indexed)
+print("Entire 2nd row:", M[2, :])
+print("Entire 3rd column:", M[:, 3])
+
 ```
 
----
+::: {.callout-warning}
 
-## 3. Vectorization (벡터화)
+## Caveat: Slices are Views, Not Copies!
 
-반복문 대신 배열 전체에 한 번에 연산을 적용하면 빠르고 코드도 짧아진다.
+When you slice an array in NumPy, it returns a **view** of the original memory, not a new array. If you modify the slice, the original array is modified too. If you need an independent copy, explicitly use `.copy()`.
+
+```python
+x_slice = x[1:4].copy() 
+
+```
+
+:::
+
+## 3. Vectorization
+
+Vectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a `for` loop. This results in cleaner code and massive performance boosts.
 
 ```{python}
-# 비벡터화: for 루프
+# Non-vectorized approach: Python 'for' loop
 def sum_squares_loop(arr):
     total = 0
     for x in arr:
         total += x ** 2
     return total
 
-# 벡터화: 배열 연산
+# Vectorized approach: NumPy array operation
 def sum_squares_vec(arr):
     return (arr ** 2).sum()
+
 ```
+
+Let's test the speed difference:
 
 ```{python}
 large = np.random.randn(100_000)
+print("Loop time:")
 %timeit sum_squares_loop(large)
+print("Vectorized time:")
 %timeit sum_squares_vec(large)
+
 ```
 
+Vectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function $\sigma(z) = \frac{1}{1 + e^{-z}}$:
+
 ```{python}
-# 예: 시그모이드 σ(z) = 1 / (1 + exp(-z))
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
 z = np.linspace(-5, 5, 11)
-print("z     =", z)
+print("z          =", z)
 print("sigmoid(z) =", sigmoid(z))
-```
 
----
+```
 
 ## 4. Broadcasting
 
-shape가 다른 배열끼리 연산할 때, NumPy가 자동으로 확장하는 규칙.
+Broadcasting is a powerful mechanism that allows NumPy to perform operations on arrays of different shapes.
 
-- **규칙**: 차원을 뒤에서부터 맞춘다. 한쪽이 1이면 그 차원을 늘려서 맞춘다.
-- 예: `(3, 4)` + `(4,)` → `(4,)`를 `(1, 4)`로 보고 → `(3, 4)`와 맞춤.
+**The Rule of Broadcasting:** NumPy compares array shapes from right to left. Two dimensions are compatible if:
+
+1. They are equal, or
+2. One of them is 1.
+If an array has fewer dimensions, a dimension of `1` is implicitly prepended to its shape.
 
 ```{python}
-# (3, 4) + (4,) → 각 행에 같은 [1,2,3,4]가 더해짐
+# Shape (3, 4) + Shape (4,) 
+# The (4,) is treated as (1, 4), then copied across 3 rows to match (3, 4)
 A = np.arange(12).reshape(3, 4)
 b = np.array([1, 2, 3, 4])
 print("A =\n", A)
 print("b =", b)
 print("A + b =\n", A + b)
+
 ```
 
 ```{python}
-# (3, 4) + (3, 1) → 각 열에 같은 열 벡터가 더해짐
+# Shape (3, 4) + Shape (3, 1)
+# The (3, 1) array is copied across 4 columns to match (3, 4)
 c = np.array([[10], [20], [30]])
 print("c =\n", c)
 print("A + c =\n", A + c)
+
 ```
+
+**Practical Example: Normalizing Data**
+A very common task in ML is normalizing data (e.g., making rows sum to 1).
 
 ```{python}
-# 정규화: 각 행을 그 행의 합으로 나누기 (broadcasting 활용)
-row_sums = A.sum(axis=1, keepdims=True)  # shape (3, 1)
-print("row_sums =\n", row_sums)
+# keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)
+row_sums = A.sum(axis=1, keepdims=True)  
+print("row_sums (shape", row_sums.shape, ") =\n", row_sums)
+
 normalized = A / row_sums
-print("행 합이 1이 되도록:\n", normalized)
-print("각 행 합:", normalized.sum(axis=1))
+print("Normalized A (rows sum to 1):\n", normalized)
+print("Verify row sums:", normalized.sum(axis=1))
+
 ```
 
----
+::: {.callout-warning}
 
-## 5. 연습
+## Caveat: The Danger of Rank-1 Arrays
 
-벡터 `v`와 각 행이 `v`와 같은 행렬 `M` (shape `(4, 3)`)을 만드세요.  
-(힌트: `np.tile` 또는 broadcasting을 이용할 수 있다.)
+Arrays with shape `(N,)` are called Rank-1 arrays (e.g., `b` in the example above). They do not behave like traditional row or column vectors and can cause confusing broadcasting bugs.
+**Best Practice in ML:** Always reshape your 1D vectors into explicit 2D row matrices `(1, N)` or column matrices `(N, 1)` using `.reshape(-1, 1)` or `np.newaxis` to avoid unintended broadcasting behaviors.
+:::
+
+## 5. Exercises
+
+Create a vector `v` and a matrix `M` with shape `(4, 3)` where every row of `M` is exactly `v`.
+*(Hint: You can achieve this using `np.tile` or by utilizing broadcasting).*
 
 ```{python}
 v = np.array([1, 2, 3])
-# M = ???  # shape (4, 3), 각 행이 [1,2,3]
+# M = ???  # Desired shape (4, 3), each row is [1, 2, 3]
 # print(M)
+
 ```
+
+**Solutions:**
 
 ```{python}
-# 풀이 예시 1: tile
+# Solution 1: Using np.tile
 M1 = np.tile(v, (4, 1))
-print("tile:\n", M1)
+print("Using tile:\n", M1)
 
-# 풀이 예시 2: broadcasting
+# Solution 2: Using broadcasting
+# Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.
 M2 = v + np.zeros((4, 3))
-print("broadcasting:\n", M2)
+print("Using broadcasting:\n", M2)
+
 ```
 
----
+## Summary for Machine Learning
 
-## 참고
+* In ML, our datasets are usually represented as 2D arrays with the shape `(num_samples, num_features)`.
+* When calculating gradients, losses, or passing data through neural network layers, **never** use Python loops. Always use **Vectorization** and **Broadcasting**. It will make your code shorter, significantly faster, and easier to read.
 
-- ML에서 데이터는 보통 `(샘플 수, 특성 수)` shape의 2차원 배열로 다룬다.
-- Gradient, loss 계산 등은 벡터화·브로드캐스팅을 쓰면 구현이 단순해지고 속도도 빨라진다.
+```
+
+Would you like me to add a section specifically covering Matrix Multiplication (`np.dot` vs `@`), as that is also a crucial NumPy concept for Machine Learning?
+
+```

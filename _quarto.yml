@@ -6,11 +6,22 @@ execute:
   freeze: auto
 
 format:
+  # https://quarto.org/docs/reference/formats/html.html
+  # https://quarto.org/docs/output-formats/html-themes.html
   html:
+    fontsize: 16.5px
     toc: true
-    toc-title: "On this page"
+    # toc-title: "On this page"
     toc-location: right
-    number-sections: true
+    # number-sections: true
+    theme:
+      light: [flatly, style.scss]  # flatly, cosmo, litera
+    code-copy: true
+    # code-overflow: wrap
+    grid:
+      sidebar-width: 250px
+      body-width: 900px
+      margin-width: 300px
 
 website:
   title: "Machine Learning"
@@ -36,12 +47,12 @@ website:
     - id: exercises
       title: "Exercises"
       style: "floating"
-      collapse-level: 1
-      align: left
+      collapse-level: 3
       contents:
         - section: "Exercises"
           href: exercises/index.qmd
           contents:
+            - exercises/python-environment.qmd
             - exercises/lab01-numpy-basics.qmd
             - exercises/lab02-linear-logistic-regression.qmd
             - exercises/lab03-kfold-cv.qmd

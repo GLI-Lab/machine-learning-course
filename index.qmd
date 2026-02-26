@@ -1,9 +1,44 @@
 ---
 title: "Machine Learning Course"
-sidebar: false
 ---
 
-Welcome to the Machine Learning Course.
+Welcome to the Machine Learning Course. This page provides all the materials you need for exercises and assignments throughout the semester.
 
-- **Exercises**: 실습 자료
-- **Assignments**: 과제
+## Course Materials
+
+- **Exercises**: In-class practice materials and notebooks
+- **Assignments**: Graded homework submissions
+
+## Exercises
+
+| Week | Topic | Materials |
+|------|-------|-----------|
+| Week 1 | Introduction to ML | [Exercise 1](#) |
+| Week 2 | Data Preprocessing | [Exercise 2](#) |
+| Week 3 | K-Nearest Neighbors | [Exercise 3](#) |
+| Week 4 | Linear Regression | [Exercise 4](#) |
+| Week 5 | Logistic Regression | [Exercise 5](#) |
+
+## Assignments
+
+| # | Topic | Due Date | Submission |
+|---|-------|----------|------------|
+| Assignment 1 | KNN Implementation | TBD | `.py` file |
+| Assignment 2 | Regression Analysis | TBD | `.py` file |
+
+## Submission Guidelines
+
+- All assignments must be submitted as `.py` files.
+- Your code must pass the provided `doctest` before submission.
+- Late submissions will not be accepted unless prior approval is given.
+
+## How to Run Doctests
+
+To verify your assignment before submission, run the following command:
+```bash
+python -m doctest assignment.py -v
+```
+
+## Contact
+
+For questions regarding course materials or assignments, please reach out via the course discussion board or email the instructor.

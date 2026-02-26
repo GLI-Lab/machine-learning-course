@@ -18,31 +18,15 @@ source ~/.zshrc
 quarto --version
 ```
 
-## GitHub Pages 배포 (로컬 렌더 후 push)
+## PM2 등록하기
+```bash
+# 수업서버 Preview 서버 시작
+pm2 start pixi --name "ml-course-preview" -- run quarto preview --port 4000 --host 0.0.0.0
+```
 
-https://quarto.org/docs/publishing/github-pages.html
+`<IP>:4000` 으로 접속 가능
 
-1. **한 번만 설정**: GitHub 저장소 **Settings → Pages**  
-   - Source: **Deploy from a branch**  
-   - Branch: **gh-pages**  
-   - Folder: **/ (root)**
+## GitHub Pages 배포
 
-2. **배포할 때** (로컬에서 실행):
-   ```bash
-   quarto publish gh-pages book/test.ipynb --no-prompt
-   ```
-   위 명령이 렌더링 후 `gh-pages` 브랜치로 결과를 push합니다.
+.github/workflows 활용
 
-
-3. **gh-pages 브랜치가 아직 없으면** 첫 배포 전에 한 번:
-   ```bash
-   # 부모 커밋 없는 새 브랜치 gh-pages 생성 (작업 디렉터리는 main 그대로)
-   git checkout --orphan gh-pages
-   # 스테이징·작업 디렉터리 비우기 (main 파일 전부 제거). 실행 전 변경 사항은 commit 해둘 것.
-   git reset --hard
-   # 빈 커밋 하나로 브랜치 시작 (push할 뭔가가 필요함)
-   git commit --allow-empty -m "Initialize gh-pages"
-   git push origin gh-pages
-   git checkout main
-   ```
-   그다음 위 `quarto publish gh-pages`를 실행하세요.
