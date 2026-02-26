@@ -36,21 +36,39 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # 3. _out 디렉터리 만들고, .qmd를 여기로 직접 변환
-      #    exercises/assignments에 ipynb 안 만듦 → origin/students 브랜치에 있는 파일과 충돌하지 않기 위해서
-      - name: Prepare _out and convert qmd to ipynb
+      # 3. Prepare _out, modify qmd, and convert to ipynb
+      - name: Prepare _out, modify qmd, and convert to ipynb
         run: |
           mkdir -p _out/exercises _out/assignments
           cp pixi.toml pixi.lock _out/ 2>/dev/null || true
           cp README-students.md _out/README.md
-          for f in exercises/*.qmd assignments/*.qmd; do
+          
+          # (1) 원본 훼손 방지를 위해 exercises와 assignments 폴더 내용을 _out으로 먼저 복사
+          cp -r exercises/* _out/exercises/ 2>/dev/null || true
+          cp -r assignments/* _out/assignments/ 2>/dev/null || true
+          
+          # (2) 파이썬 스크립트 실행 (_out 폴더 내의 .qmd Callout 치환)
+          python3 scripts/convert_callouts.py
+          
+          # (3) _out 폴더 내부의 치환된 qmd 파일들을 ipynb로 변환하고 qmd는 삭제
+          for f in _out/exercises/*.qmd _out/assignments/*.qmd; do
             if [ -f "$f" ]; then
               base=$(basename "$f" .qmd)
-              [ "$base" = "index" ] && continue
+              
+              # index.qmd는 배포하지 않으므로 삭제 후 스킵
+              if [ "$base" = "index" ]; then
+                rm "$f"
+                continue
+              fi
+              
               dir=$(dirname "$f")
-              quarto convert "$f" --output "_out/$dir/$base.ipynb"
+              quarto convert "$f" --output "$dir/$base.ipynb"
+              
+              # 변환 완료 후 학생용 브랜치에 qmd가 남지 않도록 삭제
+              rm "$f"
             fi
           done
+          
           cat > _out/.gitignore << 'EOF'
           # pixi environments
           .pixi/*

@@ -1,0 +1,170 @@
+---
+title: "Lab 01 - Python Basics for Machine Learning" 
+jupyter: python3
+---
+
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab01/python-basics.ipynb)
+
+## Objectives
+
+* Understand core Python data structures: **Lists** and **Dictionaries**.
+* **Functions and Control Flow**: Learn how to write modular, reusable logic for data processing.
+* **List Comprehensions**: Grasp the "Pythonic" way to create and filter lists efficiently.
+* **Classes and Objects**: Get introduced to the basics of Object-Oriented Programming (OOP), which is crucial for defining neural networks.
+
+::: {.callout-note}
+
+## Basic Concept: Why Python for Machine Learning?
+
+Python is the lingua franca of modern Machine Learning. While standard Python is not fast enough for heavy matrix mathematics (which is why we use C-optimized libraries like NumPy or PyTorch), its clean syntax and massive ecosystem make it the perfect "glue" language. We rely on plain Python to load configurations, clean text data, build data loading pipelines, and orchestrate complex model training loops.
+:::
+
+## 1. Core Data Structures: Lists and Dictionaries
+
+Before we get to matrices, we need to know how standard Python stores sequences and key-value pairs.
+
+```{python}
+# Lists: Ordered, mutable sequences
+# Often used to store file paths, feature names, or a sequence of transformations.
+features = ['age', 'income', 'height', 'weight']
+print("Original features:", features)
+
+# Appending and accessing
+features.append('blood_pressure')
+print("First feature:", features[0])
+print("Last feature:", features[-1])
+
+```
+
+```{python}
+# Dictionaries: Unordered key-value pairs (Hash Maps)
+# Essential for storing model hyperparameters or configurations.
+hyperparameters = {
+    'learning_rate': 0.001,
+    'batch_size': 32,
+    'optimizer': 'Adam'
+}
+
+print("Current Learning Rate:", hyperparameters['learning_rate'])
+
+# Adding a new key-value pair
+hyperparameters['epochs'] = 50
+print("Updated Config:", hyperparameters)
+
+```
+
+::: {.callout-warning}
+
+## Caveat: Lists are Slow for Math
+
+Standard Python lists can hold elements of different data types (e.g., `[1, "hello", 3.14]`). Because of this flexibility, Python must check the type of each element during iteration, making mathematical operations on standard lists extremely slow compared to NumPy arrays.
+:::
+
+## 2. Functions and Control Flow
+
+Machine learning workflows require modular code. We use functions to isolate tasks like data cleaning, metric calculation, or model evaluation.
+
+```{python}
+def categorize_age(age):
+    """A simple function using control flow to categorize numerical data."""
+    if age < 18:
+        return 'Minor'
+    elif age < 65:
+        return 'Adult'
+    else:
+        return 'Senior'
+
+# Testing the function
+ages = [15, 34, 72]
+for a in ages:
+    print(f"Age {a} is categorized as: {categorize_age(a)}")
+
+```
+
+## 3. List Comprehensions
+
+List comprehensions provide a concise, readable, and often faster way to create lists compared to standard `for` loops. They are ubiquitous in Python data pipelines.
+
+```{python}
+# Non-comprehension approach: Standard loop
+raw_text = ["  Hello ", "WORLD  ", " machine learning"]
+clean_text_loop = []
+for word in raw_text:
+    clean_text_loop.append(word.strip().lower())
+
+print("Cleaned with loop:", clean_text_loop)
+
+# Pythonic approach: List Comprehension
+clean_text_comp = [word.strip().lower() for word in raw_text]
+print("Cleaned with comprehension:", clean_text_comp)
+
+```
+
+You can also add conditional logic (filtering) inside a comprehension:
+
+```{python}
+# Extract only the positive numbers
+numbers = [-5, 2, -1, 10, 8]
+positives = [n for n in numbers if n > 0]
+print("Positive numbers only:", positives)
+
+```
+
+## 4. Basics of Classes (OOP)
+
+In modern deep learning frameworks like PyTorch, you define your neural networks by writing a Python `class`. Understanding how to initialize a class and define its methods is strictly required.
+
+```{python}
+class SimpleScaler:
+    """A mock object mimicking a data scaler (like in scikit-learn)."""
+    
+    # The __init__ method runs when you create a new instance
+    def __init__(self, scale_factor):
+        self.scale_factor = scale_factor  # Store data inside the object
+        
+    # A method belonging to the class
+    def transform(self, data):
+        return [x * self.scale_factor for x in data]
+
+# Instantiate the object
+scaler = SimpleScaler(scale_factor=0.5)
+
+# Use the object's method
+raw_data = [10, 20, 30]
+scaled_data = scaler.transform(raw_data)
+print("Scaled data:", scaled_data)
+
+```
+
+## 5. Exercises
+
+You are given a list of dictionaries representing a tiny dataset of students and their test scores.
+Write a list comprehension that extracts the names of students who scored **higher than 80**.
+
+```{python}
+students = [
+    {'name': 'Alice', 'score': 85},
+    {'name': 'Bob', 'score': 72},
+    {'name': 'Charlie', 'score': 90},
+    {'name': 'Diana', 'score': 65}
+]
+
+# top_students = ???
+# print(top_students)
+
+```
+
+**Solutions:**
+
+```{python}
+# Solution using list comprehension with a condition
+top_students = [student['name'] for student in students if student['score'] > 80]
+print("Students with score > 80:", top_students)
+
+```
+
+## Summary for Machine Learning
+
+* Use **Dictionaries** to manage hyperparameters and configuration settings cleanly.
+* Master **List Comprehensions**; you will use them constantly for parsing text, filtering file paths, and formatting raw input data before feeding it into NumPy or pandas.
+* **Classes** are the building blocks of Deep Learning frameworks. You will use `__init__` to define your network layers and class methods to define how data passes through them.

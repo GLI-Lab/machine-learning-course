@@ -3,7 +3,7 @@ title: "Lab 01 - NumPy Basics for Machine Learning"
 jupyter: python3
 ---
 
-[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab01-numpy-basics.ipynb)
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab01/numpy-basics.ipynb)
 
 ## Objectives
 
