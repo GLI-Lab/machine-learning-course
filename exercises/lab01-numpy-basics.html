@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab 01 - Numpy Basics – Machine Learning</title>
+<title>Lab 01 - NumPy Basics for Machine Learning – Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4e8fe47326731e3c57018d5c52c7687a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -153,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab01-numpy-basics.html">Lab 01 - Numpy Basics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab01-numpy-basics.html">Lab 01 - NumPy Basics for Machine Learning</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -176,8 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../exercises/python-environment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Environment Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../exercises/lab01-numpy-basics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Lab 01 - Numpy Basics</span></a>
+ <span class="menu-text">Lab 01 - NumPy Basics for Machine Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,22 +305,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#목표" id="toc-목표" class="nav-link active" data-scroll-target="#목표"><span class="header-section-number">1</span> 목표</a></li>
-  <li><a href="#배열-생성-및-속성" id="toc-배열-생성-및-속성" class="nav-link" data-scroll-target="#배열-생성-및-속성"><span class="header-section-number">2</span> 1. 배열 생성 및 속성</a></li>
-  <li><a href="#인덱싱과-슬라이싱" id="toc-인덱싱과-슬라이싱" class="nav-link" data-scroll-target="#인덱싱과-슬라이싱"><span class="header-section-number">3</span> 2. 인덱싱과 슬라이싱</a></li>
-  <li><a href="#vectorization-벡터화" id="toc-vectorization-벡터화" class="nav-link" data-scroll-target="#vectorization-벡터화"><span class="header-section-number">4</span> 3. Vectorization (벡터화)</a></li>
-  <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="header-section-number">5</span> 4. Broadcasting</a></li>
-  <li><a href="#연습" id="toc-연습" class="nav-link" data-scroll-target="#연습"><span class="header-section-number">6</span> 5. 연습</a></li>
-  <li><a href="#참고" id="toc-참고" class="nav-link" data-scroll-target="#참고"><span class="header-section-number">7</span> 참고</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#array-creation-and-attributes" id="toc-array-creation-and-attributes" class="nav-link" data-scroll-target="#array-creation-and-attributes">1. Array Creation and Attributes</a></li>
+  <li><a href="#indexing-and-slicing" id="toc-indexing-and-slicing" class="nav-link" data-scroll-target="#indexing-and-slicing">2. Indexing and Slicing</a></li>
+  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization">3. Vectorization</a></li>
+  <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting">4. Broadcasting</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">5. Exercises</a></li>
+  <li><a href="#summary-for-machine-learning" id="toc-summary-for-machine-learning" class="nav-link" data-scroll-target="#summary-for-machine-learning">Summary for Machine Learning</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab01-numpy-basics.html">Lab 01 - Numpy Basics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab01-numpy-basics.html">Lab 01 - NumPy Basics for Machine Learning</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Lab 01 - Numpy Basics</h1>
+<h1 class="title">Lab 01 - NumPy Basics for Machine Learning</h1>
 </div>
 
 
@@ -302,35 +337,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="목표" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="목표"><span class="header-section-number">1</span> 목표</h2>
+<p><a href="https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab01-numpy-basics.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li>NumPy 배열 생성, shape, dtype 다루기</li>
-<li><strong>Vectorization</strong>: 반복문 대신 배열 연산으로 빠르게 계산하기</li>
-<li><strong>Broadcasting</strong>: 서로 다른 shape의 배열이 연산될 때의 규칙 이해하기</li>
+<li>Understand the basic concepts of NumPy arrays: creation, <code>shape</code>, and <code>dtype</code>.</li>
+<li><strong>Vectorization</strong>: Learn how to replace slow Python loops with fast, C-optimized array operations.</li>
+<li><strong>Broadcasting</strong>: Grasp the rules NumPy uses to perform operations on arrays of different shapes.</li>
 </ul>
-<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Basic Concept: Why NumPy?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In Machine Learning, we deal with massive amounts of data (vectors, matrices, tensors). Standard Python lists are too slow and memory-inefficient for these calculations. NumPy arrays are stored in contiguous blocks of memory and operations are implemented in highly optimized C code, making mathematical operations drastically faster. NumPy is the foundational library that modern deep learning frameworks (like PyTorch and TensorFlow) are built upon.</p>
+</div>
+</div>
 </section>
-<section id="배열-생성-및-속성" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="배열-생성-및-속성"><span class="header-section-number">2</span> 1. 배열 생성 및 속성</h2>
-<div id="493da002" class="cell" data-execution_count="1">
+<section id="array-creation-and-attributes" class="level2">
+<h2 class="anchored" data-anchor-id="array-creation-and-attributes">1. Array Creation and Attributes</h2>
+<p>Before we manipulate data, we need to know how to create arrays and inspect their properties.</p>
+<div id="13c5e5e1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d4206655" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1차원 배열</span></span>
+<div id="d597063c" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1-Dimensional Array (Vector)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"a ="</span>, a)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, a.shape, <span class="st">"  dtype:"</span>, a.dtype)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, a.shape) <span class="co"># Returns a tuple representing the size of each dimension</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dtype:"</span>, a.dtype) <span class="co"># Data type of the elements</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>a = [1 2 3 4 5]
-shape: (5,)   dtype: int64</code></pre>
+shape: (5,)
+dtype: int64</code></pre>
 </div>
 </div>
-<div id="eb230dd9" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2차원 배열 (행렬)</span></span>
+<div id="9ae7758e" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-Dimensional Array (Matrix)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>, <span class="dv">6</span>]])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"B =</span><span class="ch">\n</span><span class="st">"</span>, B)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, B.shape)  <span class="co"># (행 개수, 열 개수)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, B.shape)  <span class="co"># (number of rows, number of columns)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>B =
  [[1 2]
@@ -339,107 +390,145 @@ shape: (5,)   dtype: int64</code></pre>
 shape: (3, 2)</code></pre>
 </div>
 </div>
-<div id="1a17895c" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 자주 쓰는 생성 함수</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.zeros(<span class="dv">5</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.ones((<span class="dv">2</span>, <span class="dv">3</span>)))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>))   <span class="co"># start, stop(미포함), step</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="co"># 구간을 균등 분할</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Caveat: Data Types (dtype)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By default, NumPy might create arrays with <code>float64</code> or <code>int64</code> depending on your OS and the input. In deep learning, memory is expensive, so we often explicitly cast arrays to 32-bit floats using <code>a.astype(np.float32)</code>.</p>
+</div>
+</div>
+<div id="4c17f7a6" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequently used creation functions</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Zeros:</span><span class="ch">\n</span><span class="st">"</span>, np.zeros(<span class="dv">5</span>))               <span class="co"># Array of zeros</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ones:</span><span class="ch">\n</span><span class="st">"</span>, np.ones((<span class="dv">2</span>, <span class="dv">3</span>)))            <span class="co"># 2x3 matrix of ones</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Arange:</span><span class="ch">\n</span><span class="st">"</span>, np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>))      <span class="co"># start, stop (exclusive), step</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Linspace:</span><span class="ch">\n</span><span class="st">"</span>, np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>))   <span class="co"># 5 evenly spaced numbers between 0 and 1 (inclusive)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[0. 0. 0. 0. 0.]
-[[1. 1. 1.]
+<pre><code>Zeros:
+ [0. 0. 0. 0. 0.]
+Ones:
+ [[1. 1. 1.]
  [1. 1. 1.]]
-[0 2 4 6 8]
-[0.   0.25 0.5  0.75 1.  ]</code></pre>
+Arange:
+ [0 2 4 6 8]
+Linspace:
+ [0.   0.25 0.5  0.75 1.  ]</code></pre>
 </div>
 </div>
-<hr>
 </section>
-<section id="인덱싱과-슬라이싱" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="인덱싱과-슬라이싱"><span class="header-section-number">3</span> 2. 인덱싱과 슬라이싱</h2>
-<div id="fc7657ef" class="cell" data-execution_count="5">
+<section id="indexing-and-slicing" class="level2">
+<h2 class="anchored" data-anchor-id="indexing-and-slicing">2. Indexing and Slicing</h2>
+<p>Accessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.</p>
+<div id="2f857927" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>])</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">0</span>], x[<span class="op">-</span><span class="dv">1</span>])      <span class="co"># 첫 원소, 마지막 원소</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">1</span>:<span class="dv">4</span>])           <span class="co"># 인덱스 1, 2, 3</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[::<span class="dv">2</span>])            <span class="co"># 처음부터 끝까지 2칸씩</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First element:"</span>, x[<span class="dv">0</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Last element:"</span>, x[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Slice [1:4]:"</span>, x[<span class="dv">1</span>:<span class="dv">4</span>])     <span class="co"># Indices 1, 2, 3 (exclusive of 4)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Step slice [::2]:"</span>, x[::<span class="dv">2</span>]) <span class="co"># Every 2nd element from start to end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>10 50
-[20 30 40]
-[10 30 50]</code></pre>
+<pre><code>First element: 10
+Last element: 50
+Slice [1:4]: [20 30 40]
+Step slice [::2]: [10 30 50]</code></pre>
 </div>
 </div>
-<div id="a542366c" class="cell" data-execution_count="6">
+<div id="d89bbd45" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape(<span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"M =</span><span class="ch">\n</span><span class="st">"</span>, M)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"M[1, 2] ="</span>, M[<span class="dv">1</span>, <span class="dv">2</span>])</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2행 전체:"</span>, M[<span class="dv">2</span>, :])</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"3열 전체:"</span>, M[:, <span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Specific element M[1, 2]:"</span>, M[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="co"># Row 1, Column 2 (0-indexed)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Entire 2nd row:"</span>, M[<span class="dv">2</span>, :])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Entire 3rd column:"</span>, M[:, <span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>M =
  [[ 0  1  2  3]
  [ 4  5  6  7]
  [ 8  9 10 11]]
-M[1, 2] = 6
-2행 전체: [ 8  9 10 11]
-3열 전체: [ 3  7 11]</code></pre>
+Specific element M[1, 2]: 6
+Entire 2nd row: [ 8  9 10 11]
+Entire 3rd column: [ 3  7 11]</code></pre>
 </div>
 </div>
-<hr>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Caveat: Slices are Views, Not Copies!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you slice an array in NumPy, it returns a <strong>view</strong> of the original memory, not a new array. If you modify the slice, the original array is modified too. If you need an independent copy, explicitly use <code>.copy()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x_slice <span class="op">=</span> x[<span class="dv">1</span>:<span class="dv">4</span>].copy() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </section>
-<section id="vectorization-벡터화" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="vectorization-벡터화"><span class="header-section-number">4</span> 3. Vectorization (벡터화)</h2>
-<p>반복문 대신 배열 전체에 한 번에 연산을 적용하면 빠르고 코드도 짧아진다.</p>
-<div id="c84995b6" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 비벡터화: for 루프</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_squares_loop(arr):</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> arr:</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> x <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 벡터화: 배열 연산</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_squares_vec(arr):</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (arr <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="vectorization" class="level2">
+<h2 class="anchored" data-anchor-id="vectorization">3. Vectorization</h2>
+<p>Vectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a <code>for</code> loop. This results in cleaner code and massive performance boosts.</p>
+<div id="90c4f25d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-vectorized approach: Python 'for' loop</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_squares_loop(arr):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> arr:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> x <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorized approach: NumPy array operation</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_squares_vec(arr):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (arr <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="b28f625f" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> np.random.randn(<span class="dv">100_000</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit sum_squares_loop(large)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit sum_squares_vec(large)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s test the speed difference:</p>
+<div id="c813dcf6" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> np.random.randn(<span class="dv">100_000</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loop time:"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit sum_squares_loop(large)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Vectorized time:"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit sum_squares_vec(large)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>8.76 ms ± 165 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-24.3 μs ± 98.5 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
+<pre><code>Loop time:
+8.32 ms ± 55.6 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+Vectorized time:
+24.2 μs ± 15.7 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
 </div>
 </div>
-<div id="5ba8b59a" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 예: 시그모이드 σ(z) = 1 / (1 + exp(-z))</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>z))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"z     ="</span>, z)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sigmoid(z) ="</span>, sigmoid(z))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Vectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function <span class="math inline">\(\sigma(z) = \frac{1}{1 + e^{-z}}\)</span>:</p>
+<div id="9c4e02db" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>z))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"z          ="</span>, z)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sigmoid(z) ="</span>, sigmoid(z))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>z     = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]
+<pre><code>z          = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]
 sigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5
  0.73105858 0.88079708 0.95257413 0.98201379 0.99330715]</code></pre>
 </div>
 </div>
-<hr>
 </section>
-<section id="broadcasting" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="broadcasting"><span class="header-section-number">5</span> 4. Broadcasting</h2>
-<p>shape가 다른 배열끼리 연산할 때, NumPy가 자동으로 확장하는 규칙.</p>
-<ul>
-<li><strong>규칙</strong>: 차원을 뒤에서부터 맞춘다. 한쪽이 1이면 그 차원을 늘려서 맞춘다.</li>
-<li>예: <code>(3, 4)</code> + <code>(4,)</code> → <code>(4,)</code>를 <code>(1, 4)</code>로 보고 → <code>(3, 4)</code>와 맞춤.</li>
-</ul>
-<div id="ca68986b" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (3, 4) + (4,) → 각 행에 같은 [1,2,3,4]가 더해짐</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape(<span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A =</span><span class="ch">\n</span><span class="st">"</span>, A)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"b ="</span>, b)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A + b =</span><span class="ch">\n</span><span class="st">"</span>, A <span class="op">+</span> b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="broadcasting" class="level2">
+<h2 class="anchored" data-anchor-id="broadcasting">4. Broadcasting</h2>
+<p>Broadcasting is a powerful mechanism that allows NumPy to perform operations on arrays of different shapes.</p>
+<p><strong>The Rule of Broadcasting:</strong> NumPy compares array shapes from right to left. Two dimensions are compatible if:</p>
+<ol type="1">
+<li>They are equal, or</li>
+<li>One of them is 1. If an array has fewer dimensions, a dimension of <code>1</code> is implicitly prepended to its shape.</li>
+</ol>
+<div id="1745ad67" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shape (3, 4) + Shape (4,) </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The (4,) is treated as (1, 4), then copied across 3 rows to match (3, 4)</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A =</span><span class="ch">\n</span><span class="st">"</span>, A)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"b ="</span>, b)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A + b =</span><span class="ch">\n</span><span class="st">"</span>, A <span class="op">+</span> b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A =
  [[ 0  1  2  3]
@@ -452,11 +541,12 @@ A + b =
  [ 9 11 13 15]]</code></pre>
 </div>
 </div>
-<div id="47d79e25" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (3, 4) + (3, 1) → 각 열에 같은 열 벡터가 더해짐</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([[<span class="dv">10</span>], [<span class="dv">20</span>], [<span class="dv">30</span>]])</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"c =</span><span class="ch">\n</span><span class="st">"</span>, c)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A + c =</span><span class="ch">\n</span><span class="st">"</span>, A <span class="op">+</span> c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="44f6c422" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shape (3, 4) + Shape (3, 1)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The (3, 1) array is copied across 4 columns to match (3, 4)</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([[<span class="dv">10</span>], [<span class="dv">20</span>], [<span class="dv">30</span>]])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"c =</span><span class="ch">\n</span><span class="st">"</span>, c)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A + c =</span><span class="ch">\n</span><span class="st">"</span>, A <span class="op">+</span> c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>c =
  [[10]
@@ -468,65 +558,82 @@ A + c =
  [38 39 40 41]]</code></pre>
 </div>
 </div>
-<div id="a4427499" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 정규화: 각 행을 그 행의 합으로 나누기 (broadcasting 활용)</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>row_sums <span class="op">=</span> A.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)  <span class="co"># shape (3, 1)</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"row_sums =</span><span class="ch">\n</span><span class="st">"</span>, row_sums)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> A <span class="op">/</span> row_sums</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"행 합이 1이 되도록:</span><span class="ch">\n</span><span class="st">"</span>, normalized)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"각 행 합:"</span>, normalized.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Practical Example: Normalizing Data</strong> A very common task in ML is normalizing data (e.g., making rows sum to 1).</p>
+<div id="294a585e" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>row_sums <span class="op">=</span> A.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)  </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"row_sums (shape"</span>, row_sums.shape, <span class="st">") =</span><span class="ch">\n</span><span class="st">"</span>, row_sums)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> A <span class="op">/</span> row_sums</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Normalized A (rows sum to 1):</span><span class="ch">\n</span><span class="st">"</span>, normalized)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Verify row sums:"</span>, normalized.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>row_sums =
+<pre><code>row_sums (shape (3, 1) ) =
  [[ 6]
  [22]
  [38]]
-행 합이 1이 되도록:
+Normalized A (rows sum to 1):
  [[0.         0.16666667 0.33333333 0.5       ]
  [0.18181818 0.22727273 0.27272727 0.31818182]
  [0.21052632 0.23684211 0.26315789 0.28947368]]
-각 행 합: [1. 1. 1.]</code></pre>
+Verify row sums: [1. 1. 1.]</code></pre>
 </div>
 </div>
-<hr>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Caveat: The Danger of Rank-1 Arrays
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Arrays with shape <code>(N,)</code> are called Rank-1 arrays (e.g., <code>b</code> in the example above). They do not behave like traditional row or column vectors and can cause confusing broadcasting bugs. <strong>Best Practice in ML:</strong> Always reshape your 1D vectors into explicit 2D row matrices <code>(1, N)</code> or column matrices <code>(N, 1)</code> using <code>.reshape(-1, 1)</code> or <code>np.newaxis</code> to avoid unintended broadcasting behaviors.</p>
+</div>
+</div>
 </section>
-<section id="연습" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="연습"><span class="header-section-number">6</span> 5. 연습</h2>
-<p>벡터 <code>v</code>와 각 행이 <code>v</code>와 같은 행렬 <code>M</code> (shape <code>(4, 3)</code>)을 만드세요.<br>
-(힌트: <code>np.tile</code> 또는 broadcasting을 이용할 수 있다.)</p>
-<div id="975db643" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># M = ???  # shape (4, 3), 각 행이 [1,2,3]</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(M)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">5. Exercises</h2>
+<p>Create a vector <code>v</code> and a matrix <code>M</code> with shape <code>(4, 3)</code> where every row of <code>M</code> is exactly <code>v</code>. <em>(Hint: You can achieve this using <code>np.tile</code> or by utilizing broadcasting).</em></p>
+<div id="ab05306f" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># M = ???  # Desired shape (4, 3), each row is [1, 2, 3]</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(M)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="579c0818" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 풀이 예시 1: tile</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> np.tile(v, (<span class="dv">4</span>, <span class="dv">1</span>))</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tile:</span><span class="ch">\n</span><span class="st">"</span>, M1)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 풀이 예시 2: broadcasting</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> v <span class="op">+</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"broadcasting:</span><span class="ch">\n</span><span class="st">"</span>, M2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Solutions:</strong></p>
+<div id="bba1bfda" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 1: Using np.tile</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> np.tile(v, (<span class="dv">4</span>, <span class="dv">1</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using tile:</span><span class="ch">\n</span><span class="st">"</span>, M1)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 2: Using broadcasting</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> v <span class="op">+</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using broadcasting:</span><span class="ch">\n</span><span class="st">"</span>, M2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tile:
+<pre><code>Using tile:
  [[1 2 3]
  [1 2 3]
  [1 2 3]
  [1 2 3]]
-broadcasting:
+Using broadcasting:
  [[1. 2. 3.]
  [1. 2. 3.]
  [1. 2. 3.]
  [1. 2. 3.]]</code></pre>
 </div>
 </div>
-<hr>
 </section>
-<section id="참고" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="참고"><span class="header-section-number">7</span> 참고</h2>
+<section id="summary-for-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="summary-for-machine-learning">Summary for Machine Learning</h2>
 <ul>
-<li>ML에서 데이터는 보통 <code>(샘플 수, 특성 수)</code> shape의 2차원 배열로 다룬다.</li>
-<li>Gradient, loss 계산 등은 벡터화·브로드캐스팅을 쓰면 구현이 단순해지고 속도도 빨라진다.</li>
+<li>In ML, our datasets are usually represented as 2D arrays with the shape <code>(num_samples, num_features)</code>.</li>
+<li>When calculating gradients, losses, or passing data through neural network layers, <strong>never</strong> use Python loops. Always use <strong>Vectorization</strong> and <strong>Broadcasting</strong>. It will make your code shorter, significantly faster, and easier to read.</li>
 </ul>
+<pre><code>
+Would you like me to add a section specifically covering Matrix Multiplication (`np.dot` vs `@`), as that is also a crucial NumPy concept for Machine Learning?
+</code></pre>
 
 
 </section>

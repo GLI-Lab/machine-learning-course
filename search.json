@@ -2,30 +2,41 @@
   {
     "objectID": "README-students.html",
     "href": "README-students.html",
-    "title": "1 Machine Learning Course (for students)",
+    "title": "Machine Learning Course (for students)",
     "section": "",
     "text": "The lab environment is set up with pixi. Follow the steps below.\n\n\n\n\n\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\n\n\n\nIf you already cloned the students branch, just pull the latest changes:\ngit pull   # updates from origin/students when you're on the students branch\n\n\n\n\n\n\n\n\nInstall: https://pixi.sh/latest/getting_started/installation/\n\n\n\n\nFrom the repo root (machine-learning-course):\npixi install\nDependencies and Jupyter will be installed automatically.\n\n\n\npixi run jupyter\nOpen the URL shown in your browser\n\n\n\n\n\n\n\n\n\n\n\n\nWhen\nCommand\n\n\n\n\nFirst-time clone\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git → cd machine-learning-course\n\n\nUpdate materials\ngit pull\n\n\nInstall environment\npixi install\n\n\nRun Jupyter\npixi run jupyter"
   },
   {
     "objectID": "README-students.html#git-get-the-repo-update",
     "href": "README-students.html#git-get-the-repo-update",
-    "title": "1 Machine Learning Course (for students)",
+    "title": "Machine Learning Course (for students)",
     "section": "",
     "text": "git clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\n\n\n\nIf you already cloned the students branch, just pull the latest changes:\ngit pull   # updates from origin/students when you're on the students branch"
   },
   {
     "objectID": "README-students.html#pixi-install-environment-and-run",
     "href": "README-students.html#pixi-install-environment-and-run",
-    "title": "1 Machine Learning Course (for students)",
+    "title": "Machine Learning Course (for students)",
     "section": "",
     "text": "Install: https://pixi.sh/latest/getting_started/installation/\n\n\n\n\nFrom the repo root (machine-learning-course):\npixi install\nDependencies and Jupyter will be installed automatically.\n\n\n\npixi run jupyter\nOpen the URL shown in your browser"
   },
   {
     "objectID": "README-students.html#summary",
     "href": "README-students.html#summary",
-    "title": "1 Machine Learning Course (for students)",
+    "title": "Machine Learning Course (for students)",
     "section": "",
     "text": "When\nCommand\n\n\n\n\nFirst-time clone\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git → cd machine-learning-course\n\n\nUpdate materials\ngit pull\n\n\nInstall environment\npixi install\n\n\nRun Jupyter\npixi run jupyter"
+  },
+  {
+    "objectID": "assignments/hw08-decision-tree-ensemble.html",
+    "href": "assignments/hw08-decision-tree-ensemble.html",
+    "title": "Decision Tree & Ensemble",
+    "section": "",
+    "text": "Decision Tree 및 Ensemble 방법 실습.",
+    "crumbs": [
+      "Assignments",
+      "Decision Tree & Ensemble"
+    ]
   },
   {
     "objectID": "assignments/hw06-autoencoder.html",
@@ -50,135 +61,96 @@
     ]
   },
   {
-    "objectID": "assignments/hw02-simple-regression.html",
-    "href": "assignments/hw02-simple-regression.html",
-    "title": "Simple regression",
+    "objectID": "assignments/hw01-environment-setup.html",
+    "href": "assignments/hw01-environment-setup.html",
+    "title": "Environment setup",
     "section": "",
-    "text": "Numpy로 매우 단순한 회귀 모델 구현.",
+    "text": "Python / Numpy / Matplotlib 환경 설정 및 기초 사용.",
     "crumbs": [
       "Assignments",
-      "Simple regression"
+      "Environment setup"
     ]
   },
   {
-    "objectID": "assignments/hw07-svm-kernel.html",
-    "href": "assignments/hw07-svm-kernel.html",
-    "title": "SVM & Kernel",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Machine Learning Course",
     "section": "",
-    "text": "SVM 및 Kernel 기법 실습.",
-    "crumbs": [
-      "Assignments",
-      "SVM & Kernel"
-    ]
+    "text": "Welcome to the Machine Learning Course. This page provides all the materials you need for exercises and assignments throughout the semester."
   },
   {
-    "objectID": "exercises/lab06-optimizer-comparison.html",
-    "href": "exercises/lab06-optimizer-comparison.html",
-    "title": "Optimizer 비교",
+    "objectID": "index.html#course-materials",
+    "href": "index.html#course-materials",
+    "title": "Machine Learning Course",
+    "section": "Course Materials",
+    "text": "Course Materials\n\nExercises: In-class practice materials and notebooks\nAssignments: Graded homework submissions"
+  },
+  {
+    "objectID": "index.html#exercises",
+    "href": "index.html#exercises",
+    "title": "Machine Learning Course",
+    "section": "Exercises",
+    "text": "Exercises\n\n\n\nWeek\nTopic\nMaterials\n\n\n\n\nWeek 1\nIntroduction to ML\nExercise 1\n\n\nWeek 2\nData Preprocessing\nExercise 2\n\n\nWeek 3\nK-Nearest Neighbors\nExercise 3\n\n\nWeek 4\nLinear Regression\nExercise 4\n\n\nWeek 5\nLogistic Regression\nExercise 5"
+  },
+  {
+    "objectID": "index.html#assignments",
+    "href": "index.html#assignments",
+    "title": "Machine Learning Course",
+    "section": "Assignments",
+    "text": "Assignments\n\n\n\n#\nTopic\nDue Date\nSubmission\n\n\n\n\nAssignment 1\nKNN Implementation\nTBD\n.py file\n\n\nAssignment 2\nRegression Analysis\nTBD\n.py file"
+  },
+  {
+    "objectID": "index.html#submission-guidelines",
+    "href": "index.html#submission-guidelines",
+    "title": "Machine Learning Course",
+    "section": "Submission Guidelines",
+    "text": "Submission Guidelines\n\nAll assignments must be submitted as .py files.\nYour code must pass the provided doctest before submission.\nLate submissions will not be accepted unless prior approval is given."
+  },
+  {
+    "objectID": "index.html#how-to-run-doctests",
+    "href": "index.html#how-to-run-doctests",
+    "title": "Machine Learning Course",
+    "section": "How to Run Doctests",
+    "text": "How to Run Doctests\nTo verify your assignment before submission, run the following command:\npython -m doctest assignment.py -v"
+  },
+  {
+    "objectID": "index.html#contact",
+    "href": "index.html#contact",
+    "title": "Machine Learning Course",
+    "section": "Contact",
+    "text": "Contact\nFor questions regarding course materials or assignments, please reach out via the course discussion board or email the instructor."
+  },
+  {
+    "objectID": "exercises/lab09-vae-latent-space.html",
+    "href": "exercises/lab09-vae-latent-space.html",
+    "title": "VAE latent space",
     "section": "",
-    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
+    "text": "MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰.",
     "crumbs": [
       "Exercises",
-      "Optimizer 비교"
+      "VAE latent space"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html",
-    "href": "exercises/lab01-numpy-basics.html",
-    "title": "Lab 01 - Numpy Basics",
+    "objectID": "exercises/lab10-transfer-learning.html",
+    "href": "exercises/lab10-transfer-learning.html",
+    "title": "Transfer Learning",
     "section": "",
-    "text": "NumPy 배열 생성, shape, dtype 다루기\nVectorization: 반복문 대신 배열 연산으로 빠르게 계산하기\nBroadcasting: 서로 다른 shape의 배열이 연산될 때의 규칙 이해하기",
+    "text": "Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화.",
     "crumbs": [
       "Exercises",
-      "Lab 01 - Numpy Basics"
+      "Transfer Learning"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#목표",
-    "href": "exercises/lab01-numpy-basics.html#목표",
-    "title": "Lab 01 - Numpy Basics",
+    "objectID": "exercises/lab04-mlp-forward-backward.html",
+    "href": "exercises/lab04-mlp-forward-backward.html",
+    "title": "MLP Forward/Backward",
     "section": "",
-    "text": "NumPy 배열 생성, shape, dtype 다루기\nVectorization: 반복문 대신 배열 연산으로 빠르게 계산하기\nBroadcasting: 서로 다른 shape의 배열이 연산될 때의 규칙 이해하기",
+    "text": "손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화.",
     "crumbs": [
       "Exercises",
-      "Lab 01 - Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01-numpy-basics.html#배열-생성-및-속성",
-    "href": "exercises/lab01-numpy-basics.html#배열-생성-및-속성",
-    "title": "Lab 01 - Numpy Basics",
-    "section": "2 1. 배열 생성 및 속성",
-    "text": "2 1. 배열 생성 및 속성\n\nimport numpy as np\n\n\n# 1차원 배열\na = np.array([1, 2, 3, 4, 5])\nprint(\"a =\", a)\nprint(\"shape:\", a.shape, \"  dtype:\", a.dtype)\n\na = [1 2 3 4 5]\nshape: (5,)   dtype: int64\n\n\n\n# 2차원 배열 (행렬)\nB = np.array([[1, 2], [3, 4], [5, 6]])\nprint(\"B =\\n\", B)\nprint(\"shape:\", B.shape)  # (행 개수, 열 개수)\n\nB =\n [[1 2]\n [3 4]\n [5 6]]\nshape: (3, 2)\n\n\n\n# 자주 쓰는 생성 함수\nprint(np.zeros(5))\nprint(np.ones((2, 3)))\nprint(np.arange(0, 10, 2))   # start, stop(미포함), step\nprint(np.linspace(0, 1, 5)) # 구간을 균등 분할\n\n[0. 0. 0. 0. 0.]\n[[1. 1. 1.]\n [1. 1. 1.]]\n[0 2 4 6 8]\n[0.   0.25 0.5  0.75 1.  ]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01 - Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01-numpy-basics.html#인덱싱과-슬라이싱",
-    "href": "exercises/lab01-numpy-basics.html#인덱싱과-슬라이싱",
-    "title": "Lab 01 - Numpy Basics",
-    "section": "3 2. 인덱싱과 슬라이싱",
-    "text": "3 2. 인덱싱과 슬라이싱\n\nx = np.array([10, 20, 30, 40, 50])\nprint(x[0], x[-1])      # 첫 원소, 마지막 원소\nprint(x[1:4])           # 인덱스 1, 2, 3\nprint(x[::2])            # 처음부터 끝까지 2칸씩\n\n10 50\n[20 30 40]\n[10 30 50]\n\n\n\nM = np.arange(12).reshape(3, 4)\nprint(\"M =\\n\", M)\nprint(\"M[1, 2] =\", M[1, 2])\nprint(\"2행 전체:\", M[2, :])\nprint(\"3열 전체:\", M[:, 3])\n\nM =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nM[1, 2] = 6\n2행 전체: [ 8  9 10 11]\n3열 전체: [ 3  7 11]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01 - Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01-numpy-basics.html#vectorization-벡터화",
-    "href": "exercises/lab01-numpy-basics.html#vectorization-벡터화",
-    "title": "Lab 01 - Numpy Basics",
-    "section": "4 3. Vectorization (벡터화)",
-    "text": "4 3. Vectorization (벡터화)\n반복문 대신 배열 전체에 한 번에 연산을 적용하면 빠르고 코드도 짧아진다.\n\n# 비벡터화: for 루프\ndef sum_squares_loop(arr):\n    total = 0\n    for x in arr:\n        total += x ** 2\n    return total\n\n# 벡터화: 배열 연산\ndef sum_squares_vec(arr):\n    return (arr ** 2).sum()\n\n\nlarge = np.random.randn(100_000)\n%timeit sum_squares_loop(large)\n%timeit sum_squares_vec(large)\n\n8.76 ms ± 165 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)\n24.3 μs ± 98.5 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\n\n\n\n# 예: 시그모이드 σ(z) = 1 / (1 + exp(-z))\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\nz = np.linspace(-5, 5, 11)\nprint(\"z     =\", z)\nprint(\"sigmoid(z) =\", sigmoid(z))\n\nz     = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]\nsigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5\n 0.73105858 0.88079708 0.95257413 0.98201379 0.99330715]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01 - Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01-numpy-basics.html#broadcasting",
-    "href": "exercises/lab01-numpy-basics.html#broadcasting",
-    "title": "Lab 01 - Numpy Basics",
-    "section": "5 4. Broadcasting",
-    "text": "5 4. Broadcasting\nshape가 다른 배열끼리 연산할 때, NumPy가 자동으로 확장하는 규칙.\n\n규칙: 차원을 뒤에서부터 맞춘다. 한쪽이 1이면 그 차원을 늘려서 맞춘다.\n예: (3, 4) + (4,) → (4,)를 (1, 4)로 보고 → (3, 4)와 맞춤.\n\n\n# (3, 4) + (4,) → 각 행에 같은 [1,2,3,4]가 더해짐\nA = np.arange(12).reshape(3, 4)\nb = np.array([1, 2, 3, 4])\nprint(\"A =\\n\", A)\nprint(\"b =\", b)\nprint(\"A + b =\\n\", A + b)\n\nA =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nb = [1 2 3 4]\nA + b =\n [[ 1  3  5  7]\n [ 5  7  9 11]\n [ 9 11 13 15]]\n\n\n\n# (3, 4) + (3, 1) → 각 열에 같은 열 벡터가 더해짐\nc = np.array([[10], [20], [30]])\nprint(\"c =\\n\", c)\nprint(\"A + c =\\n\", A + c)\n\nc =\n [[10]\n [20]\n [30]]\nA + c =\n [[10 11 12 13]\n [24 25 26 27]\n [38 39 40 41]]\n\n\n\n# 정규화: 각 행을 그 행의 합으로 나누기 (broadcasting 활용)\nrow_sums = A.sum(axis=1, keepdims=True)  # shape (3, 1)\nprint(\"row_sums =\\n\", row_sums)\nnormalized = A / row_sums\nprint(\"행 합이 1이 되도록:\\n\", normalized)\nprint(\"각 행 합:\", normalized.sum(axis=1))\n\nrow_sums =\n [[ 6]\n [22]\n [38]]\n행 합이 1이 되도록:\n [[0.         0.16666667 0.33333333 0.5       ]\n [0.18181818 0.22727273 0.27272727 0.31818182]\n [0.21052632 0.23684211 0.26315789 0.28947368]]\n각 행 합: [1. 1. 1.]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01 - Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01-numpy-basics.html#연습",
-    "href": "exercises/lab01-numpy-basics.html#연습",
-    "title": "Lab 01 - Numpy Basics",
-    "section": "6 5. 연습",
-    "text": "6 5. 연습\n벡터 v와 각 행이 v와 같은 행렬 M (shape (4, 3))을 만드세요.\n(힌트: np.tile 또는 broadcasting을 이용할 수 있다.)\n\nv = np.array([1, 2, 3])\n# M = ???  # shape (4, 3), 각 행이 [1,2,3]\n# print(M)\n\n\n# 풀이 예시 1: tile\nM1 = np.tile(v, (4, 1))\nprint(\"tile:\\n\", M1)\n\n# 풀이 예시 2: broadcasting\nM2 = v + np.zeros((4, 3))\nprint(\"broadcasting:\\n\", M2)\n\ntile:\n [[1 2 3]\n [1 2 3]\n [1 2 3]\n [1 2 3]]\nbroadcasting:\n [[1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01 - Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01-numpy-basics.html#참고",
-    "href": "exercises/lab01-numpy-basics.html#참고",
-    "title": "Lab 01 - Numpy Basics",
-    "section": "7 참고",
-    "text": "7 참고\n\nML에서 데이터는 보통 (샘플 수, 특성 수) shape의 2차원 배열로 다룬다.\nGradient, loss 계산 등은 벡터화·브로드캐스팅을 쓰면 구현이 단순해지고 속도도 빨라진다.",
-    "crumbs": [
-      "Exercises",
-      "Lab 01 - Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab11-kernel-visualization.html",
-    "href": "exercises/lab11-kernel-visualization.html",
-    "title": "Kernel 시각화",
-    "section": "",
-    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
-    "crumbs": [
-      "Exercises",
-      "Kernel 시각화"
+      "MLP Forward/Backward"
     ]
   },
   {
@@ -193,36 +165,25 @@
     ]
   },
   {
-    "objectID": "exercises/lab03-kfold-cv.html",
-    "href": "exercises/lab03-kfold-cv.html",
-    "title": "K-Fold Cross-Validation",
+    "objectID": "exercises/lab06-optimizer-comparison.html",
+    "href": "exercises/lab06-optimizer-comparison.html",
+    "title": "Optimizer 비교",
     "section": "",
-    "text": "다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.",
+    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
     "crumbs": [
       "Exercises",
-      "K-Fold Cross-Validation"
+      "Optimizer 비교"
     ]
   },
   {
-    "objectID": "exercises/lab13-bagging-vs-boosting.html",
-    "href": "exercises/lab13-bagging-vs-boosting.html",
-    "title": "Bagging vs Boosting",
+    "objectID": "exercises/lab11-kernel-visualization.html",
+    "href": "exercises/lab11-kernel-visualization.html",
+    "title": "Kernel 시각화",
     "section": "",
-    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
+    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
     "crumbs": [
       "Exercises",
-      "Bagging vs Boosting"
-    ]
-  },
-  {
-    "objectID": "exercises/lab09-vae-latent-space.html",
-    "href": "exercises/lab09-vae-latent-space.html",
-    "title": "VAE latent space",
-    "section": "",
-    "text": "MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰.",
-    "crumbs": [
-      "Exercises",
-      "VAE latent space"
+      "Kernel 시각화"
     ]
   },
   {
@@ -237,21 +198,14 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Machine Learning Course",
+    "objectID": "exercises/lab12-decision-tree.html",
+    "href": "exercises/lab12-decision-tree.html",
+    "title": "Decision Tree",
     "section": "",
-    "text": "Welcome to the Machine Learning Course.\n\nExercises: 실습 자료\nAssignments: 과제"
-  },
-  {
-    "objectID": "exercises/lab04-mlp-forward-backward.html",
-    "href": "exercises/lab04-mlp-forward-backward.html",
-    "title": "MLP Forward/Backward",
-    "section": "",
-    "text": "손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화.",
+    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
     "crumbs": [
       "Exercises",
-      "MLP Forward/Backward"
+      "Decision Tree"
     ]
   },
   {
@@ -265,25 +219,91 @@
     ]
   },
   {
-    "objectID": "exercises/lab07-feature-map-visualization.html",
-    "href": "exercises/lab07-feature-map-visualization.html",
-    "title": "Feature map 시각화",
+    "objectID": "exercises/python-environment.html",
+    "href": "exercises/python-environment.html",
+    "title": "Python Environment Setup",
     "section": "",
-    "text": "CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증.",
+    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
     "crumbs": [
       "Exercises",
-      "Feature map 시각화"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab05-numpy-mlp-to-pytorch.html",
-    "href": "exercises/lab05-numpy-mlp-to-pytorch.html",
-    "title": "Numpy MLP to PyTorch",
+    "objectID": "exercises/python-environment.html#why-pixi",
+    "href": "exercises/python-environment.html#why-pixi",
+    "title": "Python Environment Setup",
     "section": "",
-    "text": "Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현.",
+    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
     "crumbs": [
       "Exercises",
-      "Numpy MLP to PyTorch"
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/python-environment.html#how-pixi-works",
+    "href": "exercises/python-environment.html#how-pixi-works",
+    "title": "Python Environment Setup",
+    "section": "How pixi Works",
+    "text": "How pixi Works\nWhen a lock file exists (pixi install)\n\nInstalls the exact versions specified in pixi.lock — guarantees identical environments across all team members\nNo resolve step needed, so installation is fast\n\nWhen no lock file exists (pixi install)\n\nReads constraints from pixi.toml (e.g., &gt;=2.0) and resolves the best matching versions\nGenerates a new pixi.lock\nSlower due to the resolve step\n\nWhen pixi.toml changes with an existing lock file (e.g., after pixi add)\n\nThe lock file is updated automatically\n\n\nProject Structure\n\nimport numpy as np\nR=np.array([np.random.random(),np.random.random()]) # initial location\n\nprint(\"initial location:\")\nprint(np.round(R,3))\nprint(\"round   location\")\n\neps=.5                         # initial learning speed\n\nfor j in range(50):            # rounds\n    eps=0.85*eps               # decrease the learning speed \n    np.random.shuffle(alls)    # reshuffle the sample\n    for i in range(len(alls)): # loop over points of the whole sample\n        R+=eps*(alls[i]-R)     # update/learning\n    if j%5==4: print(j+1, \"    \",np.round(R,3))  # print every 5th step\n\nmy-project/\n├── pixi.toml       ← dependency declaration file  (commit to git)\n├── pixi.lock       ← exact pinned versions         (commit to git)\n└── .pixi/          ← actual environment folder     (add to .gitignore)\n    └── envs/\n        └── default/",
+    "crumbs": [
+      "Exercises",
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/python-environment.html#one-time-setup-install-pixi",
+    "href": "exercises/python-environment.html#one-time-setup-install-pixi",
+    "title": "Python Environment Setup",
+    "section": "One-Time Setup: Install pixi",
+    "text": "One-Time Setup: Install pixi\n\n\n\n\n\n\nWarning\n\n\n\nInstall under your own user account — sudo is almost never needed.\npixi installs by default to ~/.pixi/, so no elevated privileges are required. Each project’s environment lives inside the project folder under .pixi/envs/, so there is no conflict between users or projects.\n\n\n\nLinux & macOS\nExpected time: ~5 minutes\n# 1. Install pixi (single binary, no sudo required)\n$ curl -fsSL https://pixi.sh/install.sh | sh   # if curl is available# if wget is available# if wget is available# if wget is available\n$ wget -qO- https://pixi.sh/install.sh | sh    # if wget is available\n\n# 2. Reload your shell to apply PATH changes\n$ source ~/.bashrc   # or ~/.zshrc depending on your shell\n\n# 3. Verify installation\n$ pixi --version\npixi 0.63.2\n\n# 4. (Optional) Update pixi\n$ pixi self-update\nFor the full installation guide, see: https://pixi.prefix.dev/latest/installation",
+    "crumbs": [
+      "Exercises",
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/python-environment.html#everyday-use",
+    "href": "exercises/python-environment.html#everyday-use",
+    "title": "Python Environment Setup",
+    "section": "Everyday Use",
+    "text": "Everyday Use\n\npixi run\nRun a command or task inside the project environment.\n# Run any executable from the environment PATH\npixi run python --version\npixi run jupyter lab\n\n# Run a named task defined in pixi.toml\npixi run &lt;task-name&gt;\n\nWorks for both named tasks and any executable available in the environment PATH\nIf a task and an executable share the same name, the task takes priority\nAutomatically updates the lock file and installs the environment if needed\n\n\n\npixi exec\nRun a command in a temporary, isolated environment — independent of any pixi.toml.\n# Run python from a temporary environment\npixi exec python --version\n\n# Specify an exact version — pixi exec's key strength\npixi exec --spec \"python=3.12\" python --version\n\n# Start JupyterLab without activating any project environment\npixi exec jupyter lab\n\n# Clean up temporary environment cache when no longer needed\npixi clean cache --exec\n\nDoes not require a pixi.toml — works from any directory\nUseful for one-off version testing or running tools outside your project\nEach --spec creates a fresh temporary environment\n\n\n\npixi shell\nActivate the project environment and stay inside it.\n$ pixi shell\n# environment is now active — use commands directly\n$ python script.py\n$ jupyter lab\n# when done, exit the shell to deactivate\n$ exit\n\nKeeps the environment active until you exit the shell\nConvenient for interactive development and experimentation\nEquivalent to conda activate / micromamba activate workflows",
+    "crumbs": [
+      "Exercises",
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/python-environment.html#check-current-status",
+    "href": "exercises/python-environment.html#check-current-status",
+    "title": "Python Environment Setup",
+    "section": "Check Current Status",
+    "text": "Check Current Status\n$ pixi info\nThis shows the pixi version, platform, cache location, and details about all environments defined in the current project — including installed packages, target platforms, and defined tasks.",
+    "crumbs": [
+      "Exercises",
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/python-environment.html#summary",
+    "href": "exercises/python-environment.html#summary",
+    "title": "Python Environment Setup",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\n\n\n\n\n\nCommand\nEnvironment\nRequires pixi.toml\nUse case\n\n\n\n\npixi run\nProject environment\n✅\nAutomation, CI, team scripts\n\n\npixi exec\nTemporary environment\n❌\nOne-off runs, version testing\n\n\npixi shell\nProject environment\n✅\nInteractive development",
+    "crumbs": [
+      "Exercises",
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/lab13-bagging-vs-boosting.html",
+    "href": "exercises/lab13-bagging-vs-boosting.html",
+    "title": "Bagging vs Boosting",
+    "section": "",
+    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
+    "crumbs": [
+      "Exercises",
+      "Bagging vs Boosting"
     ]
   },
   {
@@ -312,8 +332,8 @@
     "objectID": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
     "href": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
     "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "2 1. 선형 회귀 (1변수)",
-    "text": "2 1. 선형 회귀 (1변수)\n\\(y \\approx w_0 + w_1 x\\) 형태. 정규방정식 \\(\\hat{w} = (X^T X)^{-1} X^T y\\) 로 한 번에 구할 수 있다.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n# 데이터: y = 2 + 3x + 노이즈\nnp.random.seed(42)\nn = 30\nx = np.linspace(0, 2, n)\ny = 2 + 3 * x + 0.5 * np.random.randn(n)\n\n\n# 설계 행렬 X: 각 행이 [1, x_i]\nX = np.column_stack([np.ones(n), x])\nw_hat = np.linalg.solve(X.T @ X, X.T @ y)\nprint(\"w_0 =\", w_hat[0], \", w_1 =\", w_hat[1])\n\nw_0 = 2.1606891797132195 , w_1 = 2.745237372361261\n\n\n\nplt.scatter(x, y, label=\"data\")\nx_line = np.linspace(0, 2, 100)\ny_line = w_hat[0] + w_hat[1] * x_line\nplt.plot(x_line, y_line, \"r-\", label=\"fitted\")\nplt.xlabel(\"x\"); plt.ylabel(\"y\"); plt.legend(); plt.show()",
+    "section": "1. 선형 회귀 (1변수)",
+    "text": "1. 선형 회귀 (1변수)\n\\(y \\approx w_0 + w_1 x\\) 형태. 정규방정식 \\(\\hat{w} = (X^T X)^{-1} X^T y\\) 로 한 번에 구할 수 있다.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n# 데이터: y = 2 + 3x + 노이즈\nnp.random.seed(42)\nn = 30\nx = np.linspace(0, 2, n)\ny = 2 + 3 * x + 0.5 * np.random.randn(n)\n\n\n# 설계 행렬 X: 각 행이 [1, x_i]\nX = np.column_stack([np.ones(n), x])\nw_hat = np.linalg.solve(X.T @ X, X.T @ y)\nprint(\"w_0 =\", w_hat[0], \", w_1 =\", w_hat[1])\n\nw_0 = 2.1606891797132195 , w_1 = 2.745237372361261\n\n\n\nplt.scatter(x, y, label=\"data\")\nx_line = np.linspace(0, 2, 100)\ny_line = w_hat[0] + w_hat[1] * x_line\nplt.plot(x_line, y_line, \"r-\", label=\"fitted\")\nplt.xlabel(\"x\"); plt.ylabel(\"y\"); plt.legend(); plt.show()",
     "crumbs": [
       "Exercises",
       "Lab 02 - Linear & Logistic Regression"
@@ -323,8 +343,8 @@
     "objectID": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
     "href": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
     "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "3 2. 퍼셉트론 (AND, OR, XOR)",
-    "text": "3 2. 퍼셉트론 (AND, OR, XOR)\n퍼셉트론: \\(f(x) = \\mathbb{1}[ w^T x + b &gt; 0 ]\\). 선형 분리 가능한 문제만 풀 수 있다.\n\n# AND, OR, XOR 진리표 (입력 2개)\nX_gate = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\ny_and = np.array([0, 0, 0, 1])\ny_or  = np.array([0, 1, 1, 1])\ny_xor = np.array([0, 1, 1, 0])\n\n\ndef perceptron_predict(X, w, b):\n    \"\"\" X: (n, d), w: (d,), b: scalar \"\"\"\n    return (X @ w + b &gt; 0).astype(int)\n\ndef fit_perceptron(X, y, lr=0.1, epochs=100):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        pred = perceptron_predict(X, w, b)\n        err = y - pred\n        w += lr * (X.T @ err)\n        b += lr * err.sum()\n    return w, b\n\n\nw_and, b_and = fit_perceptron(X_gate, y_and)\nw_or,  b_or  = fit_perceptron(X_gate, y_or)\nprint(\"AND 예측:\", perceptron_predict(X_gate, w_and, b_and), \" (정답:\", y_and, \")\")\nprint(\"OR  예측:\", perceptron_predict(X_gate, w_or,  b_or),  \" (정답:\", y_or, \")\")\n\nAND 예측: [0 0 0 1]  (정답: [0 0 0 1] )\nOR  예측: [0 1 1 1]  (정답: [0 1 1 1] )\n\n\n\n# XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패\nw_xor, b_xor = fit_perceptron(X_gate, y_xor)\nprint(\"XOR 예측:\", perceptron_predict(X_gate, w_xor, b_xor), \" (정답:\", y_xor, \")\")\n\nXOR 예측: [0 0 0 0]  (정답: [0 1 1 0] )",
+    "section": "2. 퍼셉트론 (AND, OR, XOR)",
+    "text": "2. 퍼셉트론 (AND, OR, XOR)\n퍼셉트론: \\(f(x) = \\mathbb{1}[ w^T x + b &gt; 0 ]\\). 선형 분리 가능한 문제만 풀 수 있다.\n\n# AND, OR, XOR 진리표 (입력 2개)\nX_gate = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\ny_and = np.array([0, 0, 0, 1])\ny_or  = np.array([0, 1, 1, 1])\ny_xor = np.array([0, 1, 1, 0])\n\n\ndef perceptron_predict(X, w, b):\n    \"\"\" X: (n, d), w: (d,), b: scalar \"\"\"\n    return (X @ w + b &gt; 0).astype(int)\n\ndef fit_perceptron(X, y, lr=0.1, epochs=100):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        pred = perceptron_predict(X, w, b)\n        err = y - pred\n        w += lr * (X.T @ err)\n        b += lr * err.sum()\n    return w, b\n\n\nw_and, b_and = fit_perceptron(X_gate, y_and)\nw_or,  b_or  = fit_perceptron(X_gate, y_or)\nprint(\"AND 예측:\", perceptron_predict(X_gate, w_and, b_and), \" (정답:\", y_and, \")\")\nprint(\"OR  예측:\", perceptron_predict(X_gate, w_or,  b_or),  \" (정답:\", y_or, \")\")\n\nAND 예측: [0 0 0 1]  (정답: [0 0 0 1] )\nOR  예측: [0 1 1 1]  (정답: [0 1 1 1] )\n\n\n\n# XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패\nw_xor, b_xor = fit_perceptron(X_gate, y_xor)\nprint(\"XOR 예측:\", perceptron_predict(X_gate, w_xor, b_xor), \" (정답:\", y_xor, \")\")\n\nXOR 예측: [0 0 0 0]  (정답: [0 1 1 0] )",
     "crumbs": [
       "Exercises",
       "Lab 02 - Linear & Logistic Regression"
@@ -334,8 +354,8 @@
     "objectID": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
     "href": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
     "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "4 3. 결정 경계 시각화 (AND / OR)",
-    "text": "4 3. 결정 경계 시각화 (AND / OR)\n\\(w_1 x_1 + w_2 x_2 + b = 0\\) 이 결정 경계(직선)이다. \\(x_2 = -(w_1/w_2)x_1 - b/w_2\\).\n\ndef plot_decision_boundary_2d(X, y, w, b, title=\"\"):\n    plt.scatter(X[y==0, 0], X[y==0, 1], marker=\"o\", label=\"0\")\n    plt.scatter(X[y==1, 0], X[y==1, 1], marker=\"s\", label=\"1\")\n    x1 = np.array([-0.5, 1.5])\n    if np.abs(w[1]) &gt; 1e-8:\n        x2 = -(w[0] * x1 + b) / w[1]\n        plt.plot(x1, x2, \"k-\", label=\"decision boundary\")\n    plt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(title); plt.show()\n\n\nplot_decision_boundary_2d(X_gate, y_and, w_and, b_and, \"AND\")\n\n\n\n\n\n\n\n\n\nplot_decision_boundary_2d(X_gate, y_or, w_or, b_or, \"OR\")",
+    "section": "3. 결정 경계 시각화 (AND / OR)",
+    "text": "3. 결정 경계 시각화 (AND / OR)\n\\(w_1 x_1 + w_2 x_2 + b = 0\\) 이 결정 경계(직선)이다. \\(x_2 = -(w_1/w_2)x_1 - b/w_2\\).\n\ndef plot_decision_boundary_2d(X, y, w, b, title=\"\"):\n    plt.scatter(X[y==0, 0], X[y==0, 1], marker=\"o\", label=\"0\")\n    plt.scatter(X[y==1, 0], X[y==1, 1], marker=\"s\", label=\"1\")\n    x1 = np.array([-0.5, 1.5])\n    if np.abs(w[1]) &gt; 1e-8:\n        x2 = -(w[0] * x1 + b) / w[1]\n        plt.plot(x1, x2, \"k-\", label=\"decision boundary\")\n    plt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(title); plt.show()\n\n\nplot_decision_boundary_2d(X_gate, y_and, w_and, b_and, \"AND\")\n\n\n\n\n\n\n\n\n\nplot_decision_boundary_2d(X_gate, y_or, w_or, b_or, \"OR\")",
     "crumbs": [
       "Exercises",
       "Lab 02 - Linear & Logistic Regression"
@@ -345,8 +365,8 @@
     "objectID": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
     "href": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
     "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "5 4. 로지스틱 회귀 (결정 경계)",
-    "text": "5 4. 로지스틱 회귀 (결정 경계)\n로지스틱 회귀: \\(P(y=1|x) = \\sigma(w^T x + b)\\), \\(\\sigma(z) = 1/(1+e^{-z})\\).\n결정 경계는 \\(\\sigma=0.5\\) 인 곳, 즉 \\(w^T x + b = 0\\) (직선).\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-np.clip(z, -500, 500)))\n\n# 2D 예시 데이터: 두 클래스가 약간 겹침\nnp.random.seed(1)\nn1, n2 = 25, 25\nX1 = np.random.randn(n1, 2) + np.array([1, 1])\nX2 = np.random.randn(n2, 2) + np.array([-1, -1])\nX_lr = np.vstack([X1, X2])\ny_lr = np.array([0] * n1 + [1] * n2)\n\n\n# 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)\ndef fit_logistic_simple(X, y, lr=0.1, epochs=2000):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        logit = X @ w + b\n        p = sigmoid(logit)\n        grad_w = X.T @ (p - y)\n        grad_b = (p - y).sum()\n        w -= lr * grad_w\n        b -= lr * grad_b\n    return w, b\n\nw_lr, b_lr = fit_logistic_simple(X_lr, y_lr)\npred_lr = (sigmoid(X_lr @ w_lr + b_lr) &gt;= 0.5).astype(int)\nprint(\"정확도:\", (pred_lr == y_lr).mean())\n\n정확도: 0.98\n\n\n\n# 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2\nplt.scatter(X_lr[y_lr==0, 0], X_lr[y_lr==0, 1], marker=\"o\", label=\"0\")\nplt.scatter(X_lr[y_lr==1, 0], X_lr[y_lr==1, 1], marker=\"s\", label=\"1\")\nx1_min, x1_max = X_lr[:, 0].min() - 0.5, X_lr[:, 0].max() + 0.5\nx1_grid = np.linspace(x1_min, x1_max, 100)\nif np.abs(w_lr[1]) &gt; 1e-8:\n    x2_boundary = -(w_lr[0] * x1_grid + b_lr) / w_lr[1]\n    plt.plot(x1_grid, x2_boundary, \"k-\", lw=2, label=\"decision boundary\")\nplt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(\"Logistic regression\"); plt.show()",
+    "section": "4. 로지스틱 회귀 (결정 경계)",
+    "text": "4. 로지스틱 회귀 (결정 경계)\n로지스틱 회귀: \\(P(y=1|x) = \\sigma(w^T x + b)\\), \\(\\sigma(z) = 1/(1+e^{-z})\\).\n결정 경계는 \\(\\sigma=0.5\\) 인 곳, 즉 \\(w^T x + b = 0\\) (직선).\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-np.clip(z, -500, 500)))\n\n# 2D 예시 데이터: 두 클래스가 약간 겹침\nnp.random.seed(1)\nn1, n2 = 25, 25\nX1 = np.random.randn(n1, 2) + np.array([1, 1])\nX2 = np.random.randn(n2, 2) + np.array([-1, -1])\nX_lr = np.vstack([X1, X2])\ny_lr = np.array([0] * n1 + [1] * n2)\n\n\n# 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)\ndef fit_logistic_simple(X, y, lr=0.1, epochs=2000):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        logit = X @ w + b\n        p = sigmoid(logit)\n        grad_w = X.T @ (p - y)\n        grad_b = (p - y).sum()\n        w -= lr * grad_w\n        b -= lr * grad_b\n    return w, b\n\nw_lr, b_lr = fit_logistic_simple(X_lr, y_lr)\npred_lr = (sigmoid(X_lr @ w_lr + b_lr) &gt;= 0.5).astype(int)\nprint(\"정확도:\", (pred_lr == y_lr).mean())\n\n정확도: 0.98\n\n\n\n# 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2\nplt.scatter(X_lr[y_lr==0, 0], X_lr[y_lr==0, 1], marker=\"o\", label=\"0\")\nplt.scatter(X_lr[y_lr==1, 0], X_lr[y_lr==1, 1], marker=\"s\", label=\"1\")\nx1_min, x1_max = X_lr[:, 0].min() - 0.5, X_lr[:, 0].max() + 0.5\nx1_grid = np.linspace(x1_min, x1_max, 100)\nif np.abs(w_lr[1]) &gt; 1e-8:\n    x2_boundary = -(w_lr[0] * x1_grid + b_lr) / w_lr[1]\n    plt.plot(x1_grid, x2_boundary, \"k-\", lw=2, label=\"decision boundary\")\nplt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(\"Logistic regression\"); plt.show()",
     "crumbs": [
       "Exercises",
       "Lab 02 - Linear & Logistic Regression"
@@ -356,8 +376,8 @@
     "objectID": "exercises/lab02-linear-logistic-regression.html#연습",
     "href": "exercises/lab02-linear-logistic-regression.html#연습",
     "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "6 5. 연습",
-    "text": "6 5. 연습\n\nXOR 데이터에 대해 두 개의 퍼셉트론을 써서 해결하는 방법을 생각해 보세요.\n(힌트: 은닉층 하나를 두고 AND(OR, OR) 같은 구조.)\n위 로지스틱 회귀에서 epochs를 100으로 줄이면 결정 경계가 어떻게 달라지는지 확인해 보세요.",
+    "section": "5. 연습",
+    "text": "5. 연습\n\nXOR 데이터에 대해 두 개의 퍼셉트론을 써서 해결하는 방법을 생각해 보세요.\n(힌트: 은닉층 하나를 두고 AND(OR, OR) 같은 구조.)\n위 로지스틱 회귀에서 epochs를 100으로 줄이면 결정 경계가 어떻게 달라지는지 확인해 보세요.",
     "crumbs": [
       "Exercises",
       "Lab 02 - Linear & Logistic Regression"
@@ -367,44 +387,121 @@
     "objectID": "exercises/lab02-linear-logistic-regression.html#참고",
     "href": "exercises/lab02-linear-logistic-regression.html#참고",
     "title": "Lab 02 - Linear & Logistic Regression",
-    "section": "7 참고",
-    "text": "7 참고\n\n퍼셉트론 하나 = 선형 결정 경계만 가능. XOR은 다층 퍼셉트론(MLP)으로 해결.\n로지스틱 회귀의 결정 경계도 선형; 비선형 경계가 필요하면 특성 추가 또는 신경망을 사용한다.",
+    "section": "참고",
+    "text": "참고\n\n퍼셉트론 하나 = 선형 결정 경계만 가능. XOR은 다층 퍼셉트론(MLP)으로 해결.\n로지스틱 회귀의 결정 경계도 선형; 비선형 경계가 필요하면 특성 추가 또는 신경망을 사용한다.",
     "crumbs": [
       "Exercises",
       "Lab 02 - Linear & Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab10-transfer-learning.html",
-    "href": "exercises/lab10-transfer-learning.html",
-    "title": "Transfer Learning",
-    "section": "",
-    "text": "Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화.",
+    "objectID": "exercises/lab01-numpy-basics.html#objectives",
+    "href": "exercises/lab01-numpy-basics.html#objectives",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "Objectives",
+    "text": "Objectives\n\nUnderstand the basic concepts of NumPy arrays: creation, shape, and dtype.\nVectorization: Learn how to replace slow Python loops with fast, C-optimized array operations.\nBroadcasting: Grasp the rules NumPy uses to perform operations on arrays of different shapes.\n\n\n\n\n\n\n\nNoteBasic Concept: Why NumPy?\n\n\n\nIn Machine Learning, we deal with massive amounts of data (vectors, matrices, tensors). Standard Python lists are too slow and memory-inefficient for these calculations. NumPy arrays are stored in contiguous blocks of memory and operations are implemented in highly optimized C code, making mathematical operations drastically faster. NumPy is the foundational library that modern deep learning frameworks (like PyTorch and TensorFlow) are built upon.",
     "crumbs": [
       "Exercises",
-      "Transfer Learning"
+      "Lab 01 - NumPy Basics for Machine Learning"
     ]
   },
   {
-    "objectID": "exercises/lab12-decision-tree.html",
-    "href": "exercises/lab12-decision-tree.html",
-    "title": "Decision Tree",
-    "section": "",
-    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
+    "objectID": "exercises/lab01-numpy-basics.html#array-creation-and-attributes",
+    "href": "exercises/lab01-numpy-basics.html#array-creation-and-attributes",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "1. Array Creation and Attributes",
+    "text": "1. Array Creation and Attributes\nBefore we manipulate data, we need to know how to create arrays and inspect their properties.\n\nimport numpy as np\n\n\n# 1-Dimensional Array (Vector)\na = np.array([1, 2, 3, 4, 5])\nprint(\"a =\", a)\nprint(\"shape:\", a.shape) # Returns a tuple representing the size of each dimension\nprint(\"dtype:\", a.dtype) # Data type of the elements\n\na = [1 2 3 4 5]\nshape: (5,)\ndtype: int64\n\n\n\n# 2-Dimensional Array (Matrix)\nB = np.array([[1, 2], [3, 4], [5, 6]])\nprint(\"B =\\n\", B)\nprint(\"shape:\", B.shape)  # (number of rows, number of columns)\n\nB =\n [[1 2]\n [3 4]\n [5 6]]\nshape: (3, 2)\n\n\n\n\n\n\n\n\nWarningCaveat: Data Types (dtype)\n\n\n\nBy default, NumPy might create arrays with float64 or int64 depending on your OS and the input. In deep learning, memory is expensive, so we often explicitly cast arrays to 32-bit floats using a.astype(np.float32).\n\n\n\n# Frequently used creation functions\nprint(\"Zeros:\\n\", np.zeros(5))               # Array of zeros\nprint(\"Ones:\\n\", np.ones((2, 3)))            # 2x3 matrix of ones\nprint(\"Arange:\\n\", np.arange(0, 10, 2))      # start, stop (exclusive), step\nprint(\"Linspace:\\n\", np.linspace(0, 1, 5))   # 5 evenly spaced numbers between 0 and 1 (inclusive)\n\nZeros:\n [0. 0. 0. 0. 0.]\nOnes:\n [[1. 1. 1.]\n [1. 1. 1.]]\nArange:\n [0 2 4 6 8]\nLinspace:\n [0.   0.25 0.5  0.75 1.  ]",
     "crumbs": [
       "Exercises",
-      "Decision Tree"
+      "Lab 01 - NumPy Basics for Machine Learning"
     ]
   },
   {
-    "objectID": "assignments/hw01-environment-setup.html",
-    "href": "assignments/hw01-environment-setup.html",
-    "title": "Environment setup",
-    "section": "",
-    "text": "Python / Numpy / Matplotlib 환경 설정 및 기초 사용.",
+    "objectID": "exercises/lab01-numpy-basics.html#indexing-and-slicing",
+    "href": "exercises/lab01-numpy-basics.html#indexing-and-slicing",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "2. Indexing and Slicing",
+    "text": "2. Indexing and Slicing\nAccessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.\n\nx = np.array([10, 20, 30, 40, 50])\nprint(\"First element:\", x[0])\nprint(\"Last element:\", x[-1])\nprint(\"Slice [1:4]:\", x[1:4])     # Indices 1, 2, 3 (exclusive of 4)\nprint(\"Step slice [::2]:\", x[::2]) # Every 2nd element from start to end\n\nFirst element: 10\nLast element: 50\nSlice [1:4]: [20 30 40]\nStep slice [::2]: [10 30 50]\n\n\n\nM = np.arange(12).reshape(3, 4)\nprint(\"M =\\n\", M)\nprint(\"Specific element M[1, 2]:\", M[1, 2]) # Row 1, Column 2 (0-indexed)\nprint(\"Entire 2nd row:\", M[2, :])\nprint(\"Entire 3rd column:\", M[:, 3])\n\nM =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nSpecific element M[1, 2]: 6\nEntire 2nd row: [ 8  9 10 11]\nEntire 3rd column: [ 3  7 11]\n\n\n\n\n\n\n\n\nWarningCaveat: Slices are Views, Not Copies!\n\n\n\nWhen you slice an array in NumPy, it returns a view of the original memory, not a new array. If you modify the slice, the original array is modified too. If you need an independent copy, explicitly use .copy().\nx_slice = x[1:4].copy()",
     "crumbs": [
-      "Assignments",
-      "Environment setup"
+      "Exercises",
+      "Lab 01 - NumPy Basics for Machine Learning"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01-numpy-basics.html#vectorization",
+    "href": "exercises/lab01-numpy-basics.html#vectorization",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "3. Vectorization",
+    "text": "3. Vectorization\nVectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a for loop. This results in cleaner code and massive performance boosts.\n\n# Non-vectorized approach: Python 'for' loop\ndef sum_squares_loop(arr):\n    total = 0\n    for x in arr:\n        total += x ** 2\n    return total\n\n# Vectorized approach: NumPy array operation\ndef sum_squares_vec(arr):\n    return (arr ** 2).sum()\n\nLet’s test the speed difference:\n\nlarge = np.random.randn(100_000)\nprint(\"Loop time:\")\n%timeit sum_squares_loop(large)\nprint(\"Vectorized time:\")\n%timeit sum_squares_vec(large)\n\nLoop time:\n8.32 ms ± 55.6 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)\nVectorized time:\n24.2 μs ± 15.7 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\n\n\nVectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function \\(\\sigma(z) = \\frac{1}{1 + e^{-z}}\\):\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\nz = np.linspace(-5, 5, 11)\nprint(\"z          =\", z)\nprint(\"sigmoid(z) =\", sigmoid(z))\n\nz          = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]\nsigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5\n 0.73105858 0.88079708 0.95257413 0.98201379 0.99330715]",
+    "crumbs": [
+      "Exercises",
+      "Lab 01 - NumPy Basics for Machine Learning"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01-numpy-basics.html#broadcasting",
+    "href": "exercises/lab01-numpy-basics.html#broadcasting",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "4. Broadcasting",
+    "text": "4. Broadcasting\nBroadcasting is a powerful mechanism that allows NumPy to perform operations on arrays of different shapes.\nThe Rule of Broadcasting: NumPy compares array shapes from right to left. Two dimensions are compatible if:\n\nThey are equal, or\nOne of them is 1. If an array has fewer dimensions, a dimension of 1 is implicitly prepended to its shape.\n\n\n# Shape (3, 4) + Shape (4,) \n# The (4,) is treated as (1, 4), then copied across 3 rows to match (3, 4)\nA = np.arange(12).reshape(3, 4)\nb = np.array([1, 2, 3, 4])\nprint(\"A =\\n\", A)\nprint(\"b =\", b)\nprint(\"A + b =\\n\", A + b)\n\nA =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nb = [1 2 3 4]\nA + b =\n [[ 1  3  5  7]\n [ 5  7  9 11]\n [ 9 11 13 15]]\n\n\n\n# Shape (3, 4) + Shape (3, 1)\n# The (3, 1) array is copied across 4 columns to match (3, 4)\nc = np.array([[10], [20], [30]])\nprint(\"c =\\n\", c)\nprint(\"A + c =\\n\", A + c)\n\nc =\n [[10]\n [20]\n [30]]\nA + c =\n [[10 11 12 13]\n [24 25 26 27]\n [38 39 40 41]]\n\n\nPractical Example: Normalizing Data A very common task in ML is normalizing data (e.g., making rows sum to 1).\n\n# keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)\nrow_sums = A.sum(axis=1, keepdims=True)  \nprint(\"row_sums (shape\", row_sums.shape, \") =\\n\", row_sums)\n\nnormalized = A / row_sums\nprint(\"Normalized A (rows sum to 1):\\n\", normalized)\nprint(\"Verify row sums:\", normalized.sum(axis=1))\n\nrow_sums (shape (3, 1) ) =\n [[ 6]\n [22]\n [38]]\nNormalized A (rows sum to 1):\n [[0.         0.16666667 0.33333333 0.5       ]\n [0.18181818 0.22727273 0.27272727 0.31818182]\n [0.21052632 0.23684211 0.26315789 0.28947368]]\nVerify row sums: [1. 1. 1.]\n\n\n\n\n\n\n\n\nWarningCaveat: The Danger of Rank-1 Arrays\n\n\n\nArrays with shape (N,) are called Rank-1 arrays (e.g., b in the example above). They do not behave like traditional row or column vectors and can cause confusing broadcasting bugs. Best Practice in ML: Always reshape your 1D vectors into explicit 2D row matrices (1, N) or column matrices (N, 1) using .reshape(-1, 1) or np.newaxis to avoid unintended broadcasting behaviors.",
+    "crumbs": [
+      "Exercises",
+      "Lab 01 - NumPy Basics for Machine Learning"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01-numpy-basics.html#exercises",
+    "href": "exercises/lab01-numpy-basics.html#exercises",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "5. Exercises",
+    "text": "5. Exercises\nCreate a vector v and a matrix M with shape (4, 3) where every row of M is exactly v. (Hint: You can achieve this using np.tile or by utilizing broadcasting).\n\nv = np.array([1, 2, 3])\n# M = ???  # Desired shape (4, 3), each row is [1, 2, 3]\n# print(M)\n\nSolutions:\n\n# Solution 1: Using np.tile\nM1 = np.tile(v, (4, 1))\nprint(\"Using tile:\\n\", M1)\n\n# Solution 2: Using broadcasting\n# Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.\nM2 = v + np.zeros((4, 3))\nprint(\"Using broadcasting:\\n\", M2)\n\nUsing tile:\n [[1 2 3]\n [1 2 3]\n [1 2 3]\n [1 2 3]]\nUsing broadcasting:\n [[1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]]",
+    "crumbs": [
+      "Exercises",
+      "Lab 01 - NumPy Basics for Machine Learning"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01-numpy-basics.html#summary-for-machine-learning",
+    "href": "exercises/lab01-numpy-basics.html#summary-for-machine-learning",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "Summary for Machine Learning",
+    "text": "Summary for Machine Learning\n\nIn ML, our datasets are usually represented as 2D arrays with the shape (num_samples, num_features).\nWhen calculating gradients, losses, or passing data through neural network layers, never use Python loops. Always use Vectorization and Broadcasting. It will make your code shorter, significantly faster, and easier to read.\n\n\nWould you like me to add a section specifically covering Matrix Multiplication (`np.dot` vs `@`), as that is also a crucial NumPy concept for Machine Learning?",
+    "crumbs": [
+      "Exercises",
+      "Lab 01 - NumPy Basics for Machine Learning"
+    ]
+  },
+  {
+    "objectID": "exercises/lab07-feature-map-visualization.html",
+    "href": "exercises/lab07-feature-map-visualization.html",
+    "title": "Feature map 시각화",
+    "section": "",
+    "text": "CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증.",
+    "crumbs": [
+      "Exercises",
+      "Feature map 시각화"
+    ]
+  },
+  {
+    "objectID": "exercises/lab05-numpy-mlp-to-pytorch.html",
+    "href": "exercises/lab05-numpy-mlp-to-pytorch.html",
+    "title": "Numpy MLP to PyTorch",
+    "section": "",
+    "text": "Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현.",
+    "crumbs": [
+      "Exercises",
+      "Numpy MLP to PyTorch"
+    ]
+  },
+  {
+    "objectID": "exercises/lab03-kfold-cv.html",
+    "href": "exercises/lab03-kfold-cv.html",
+    "title": "K-Fold Cross-Validation",
+    "section": "",
+    "text": "다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.",
+    "crumbs": [
+      "Exercises",
+      "K-Fold Cross-Validation"
     ]
   },
   {
@@ -415,17 +512,6 @@
     "text": "과제 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
     "crumbs": [
       "Assignments"
-    ]
-  },
-  {
-    "objectID": "assignments/hw03-pytorch-mlp.html",
-    "href": "assignments/hw03-pytorch-mlp.html",
-    "title": "Feedforward NN",
-    "section": "",
-    "text": "PyTorch로 feedforward neural network 구현 및 학습.",
-    "crumbs": [
-      "Assignments",
-      "Feedforward NN"
     ]
   },
   {
@@ -440,14 +526,36 @@
     ]
   },
   {
-    "objectID": "assignments/hw08-decision-tree-ensemble.html",
-    "href": "assignments/hw08-decision-tree-ensemble.html",
-    "title": "Decision Tree & Ensemble",
+    "objectID": "assignments/hw03-pytorch-mlp.html",
+    "href": "assignments/hw03-pytorch-mlp.html",
+    "title": "Feedforward NN",
     "section": "",
-    "text": "Decision Tree 및 Ensemble 방법 실습.",
+    "text": "PyTorch로 feedforward neural network 구현 및 학습.",
     "crumbs": [
       "Assignments",
-      "Decision Tree & Ensemble"
+      "Feedforward NN"
+    ]
+  },
+  {
+    "objectID": "assignments/hw02-simple-regression.html",
+    "href": "assignments/hw02-simple-regression.html",
+    "title": "Simple regression",
+    "section": "",
+    "text": "Numpy로 매우 단순한 회귀 모델 구현.",
+    "crumbs": [
+      "Assignments",
+      "Simple regression"
+    ]
+  },
+  {
+    "objectID": "assignments/hw07-svm-kernel.html",
+    "href": "assignments/hw07-svm-kernel.html",
+    "title": "SVM & Kernel",
+    "section": "",
+    "text": "SVM 및 Kernel 기법 실습.",
+    "crumbs": [
+      "Assignments",
+      "SVM & Kernel"
     ]
   }
 ]

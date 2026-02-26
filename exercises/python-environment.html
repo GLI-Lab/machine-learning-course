@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>K-Fold Cross-Validation – Machine Learning</title>
+<title>Python Environment Setup – Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -118,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab03-kfold-cv.html">K-Fold Cross-Validation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/python-environment.html">Python Environment Setup</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -141,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/python-environment.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/python-environment.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Python Environment Setup</span></a>
   </div>
 </li>
@@ -159,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/lab03-kfold-cv.html" class="sidebar-item-text sidebar-link active">
+  <a href="../exercises/lab03-kfold-cv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">K-Fold Cross-Validation</span></a>
   </div>
 </li>
@@ -236,15 +271,37 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-pixi" id="toc-why-pixi" class="nav-link active" data-scroll-target="#why-pixi">Why pixi?</a></li>
+  <li><a href="#how-pixi-works" id="toc-how-pixi-works" class="nav-link" data-scroll-target="#how-pixi-works">How pixi Works</a>
+  <ul class="collapse">
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
+  </ul></li>
+  <li><a href="#one-time-setup-install-pixi" id="toc-one-time-setup-install-pixi" class="nav-link" data-scroll-target="#one-time-setup-install-pixi">One-Time Setup: Install pixi</a>
+  <ul class="collapse">
+  <li><a href="#linux-macos" id="toc-linux-macos" class="nav-link" data-scroll-target="#linux-macos">Linux &amp; macOS</a></li>
+  </ul></li>
+  <li><a href="#everyday-use" id="toc-everyday-use" class="nav-link" data-scroll-target="#everyday-use">Everyday Use</a>
+  <ul class="collapse">
+  <li><a href="#pixi-run" id="toc-pixi-run" class="nav-link" data-scroll-target="#pixi-run">pixi run</a></li>
+  <li><a href="#pixi-exec" id="toc-pixi-exec" class="nav-link" data-scroll-target="#pixi-exec">pixi exec</a></li>
+  <li><a href="#pixi-shell" id="toc-pixi-shell" class="nav-link" data-scroll-target="#pixi-shell">pixi shell</a></li>
+  </ul></li>
+  <li><a href="#check-current-status" id="toc-check-current-status" class="nav-link" data-scroll-target="#check-current-status">Check Current Status</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/lab03-kfold-cv.html">K-Fold Cross-Validation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/python-environment.html">Python Environment Setup</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">K-Fold Cross-Validation</h1>
+<h1 class="title">Python Environment Setup</h1>
 </div>
 
 
@@ -261,9 +318,199 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.</p>
+<section id="why-pixi" class="level2">
+<h2 class="anchored" data-anchor-id="why-pixi">Why pixi?</h2>
+<ul>
+<li>The PyTorch team discontinued distribution via the Anaconda <code>pytorch</code> channel in November 2024 → conda-forge or PyPI is now recommended</li>
+<li>Supports lock files (<code>pixi.lock</code>) for reproducible environments across machines and team members</li>
+<li>Manages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow</li>
+</ul>
+<p>We find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.</p>
+<p>We will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.</p>
+<hr>
+</section>
+<section id="how-pixi-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-pixi-works">How pixi Works</h2>
+<p><strong>When a lock file exists</strong> (<code>pixi install</code>)</p>
+<ul>
+<li>Installs the <strong>exact versions</strong> specified in <code>pixi.lock</code> — guarantees identical environments across all team members</li>
+<li>No resolve step needed, so installation is fast</li>
+</ul>
+<p><strong>When no lock file exists</strong> (<code>pixi install</code>)</p>
+<ul>
+<li>Reads constraints from <code>pixi.toml</code> (e.g., <code>&gt;=2.0</code>) and <strong>resolves</strong> the best matching versions</li>
+<li>Generates a new <code>pixi.lock</code></li>
+<li>Slower due to the resolve step</li>
+</ul>
+<p><strong>When <code>pixi.toml</code> changes with an existing lock file</strong> (e.g., after <code>pixi add</code>)</p>
+<ul>
+<li>The lock file is <strong>updated</strong> automatically</li>
+</ul>
+<section id="project-structure" class="level3">
+<h3 class="anchored" data-anchor-id="project-structure">Project Structure</h3>
+<div id="427d0050" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>R<span class="op">=</span>np.array([np.random.random(),np.random.random()]) <span class="co"># initial location</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"initial location:"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>(R,<span class="dv">3</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"round   location"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>eps<span class="op">=</span><span class="fl">.5</span>                         <span class="co"># initial learning speed</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):            <span class="co"># rounds</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    eps<span class="op">=</span><span class="fl">0.85</span><span class="op">*</span>eps               <span class="co"># decrease the learning speed </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    np.random.shuffle(alls)    <span class="co"># reshuffle the sample</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(alls)): <span class="co"># loop over points of the whole sample</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        R<span class="op">+=</span>eps<span class="op">*</span>(alls[i]<span class="op">-</span>R)     <span class="co"># update/learning</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> j<span class="op">%</span><span class="dv">5</span><span class="op">==</span><span class="dv">4</span>: <span class="bu">print</span>(j<span class="op">+</span><span class="dv">1</span>, <span class="st">"    "</span>,np.<span class="bu">round</span>(R,<span class="dv">3</span>))  <span class="co"># print every 5th step</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my-project/</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> pixi.toml       ← dependency declaration file  <span class="er">(</span><span class="ex">commit</span> to git<span class="kw">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> pixi.lock       ← exact pinned versions         <span class="er">(</span><span class="ex">commit</span> to git<span class="kw">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> .pixi/          ← actual environment folder     <span class="er">(</span><span class="ex">add</span> to .gitignore<span class="kw">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> envs/</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="ex">└──</span> default/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="one-time-setup-install-pixi" class="level2">
+<h2 class="anchored" data-anchor-id="one-time-setup-install-pixi">One-Time Setup: Install pixi</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Install under your own user account — <code>sudo</code> is almost never needed.</strong></p>
+<p>pixi installs by default to <code>~/.pixi/</code>, so no elevated privileges are required. Each project’s environment lives inside the project folder under <code>.pixi/envs/</code>, so there is no conflict between users or projects.</p>
+</div>
+</div>
+<section id="linux-macos" class="level3">
+<h3 class="anchored" data-anchor-id="linux-macos">Linux &amp; macOS</h3>
+<p>Expected time: <strong>~5 minutes</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Install pixi (single binary, no sudo required)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> curl <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span>   <span class="co"># if curl is available# if wget is available# if wget is available# if wget is available</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wget <span class="at">-qO-</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span>    <span class="co"># if wget is available</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Reload your shell to apply PATH changes</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> source ~/.bashrc   <span class="co"># or ~/.zshrc depending on your shell</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Verify installation</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pixi <span class="at">--version</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> 0.63.2</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. (Optional) Update pixi</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pixi self-update</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For the full installation guide, see: <a href="https://pixi.prefix.dev/latest/installation" class="uri">https://pixi.prefix.dev/latest/installation</a></p>
+<hr>
+</section>
+</section>
+<section id="everyday-use" class="level2">
+<h2 class="anchored" data-anchor-id="everyday-use">Everyday Use</h2>
+<section id="pixi-run" class="level3">
+<h3 class="anchored" data-anchor-id="pixi-run">pixi run</h3>
+<p>Run a command or task inside the project environment.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run any executable from the environment PATH</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run python <span class="at">--version</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter lab</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a named task defined in pixi.toml</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run <span class="op">&lt;</span>task-name<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Works for both named tasks and any executable available in the environment PATH</li>
+<li>If a task and an executable share the same name, <strong>the task takes priority</strong></li>
+<li>Automatically updates the lock file and installs the environment if needed</li>
+</ul>
+</section>
+<section id="pixi-exec" class="level3">
+<h3 class="anchored" data-anchor-id="pixi-exec">pixi exec</h3>
+<p>Run a command in a <strong>temporary, isolated environment</strong> — independent of any <code>pixi.toml</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run python from a temporary environment</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> exec python <span class="at">--version</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify an exact version — pixi exec's key strength</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> exec <span class="at">--spec</span> <span class="st">"python=3.12"</span> python <span class="at">--version</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Start JupyterLab without activating any project environment</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> exec jupyter lab</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up temporary environment cache when no longer needed</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> clean cache <span class="at">--exec</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Does not require a <code>pixi.toml</code> — works from any directory</li>
+<li>Useful for one-off version testing or running tools outside your project</li>
+<li>Each <code>--spec</code> creates a fresh temporary environment</li>
+</ul>
+</section>
+<section id="pixi-shell" class="level3">
+<h3 class="anchored" data-anchor-id="pixi-shell">pixi shell</h3>
+<p>Activate the project environment and stay inside it.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pixi shell</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># environment is now active — use commands directly</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python script.py</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> jupyter lab</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># when done, exit the shell to deactivate</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> exit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Keeps the environment active until you exit the shell</li>
+<li>Convenient for interactive development and experimentation</li>
+<li>Equivalent to <code>conda activate</code> / <code>micromamba activate</code> workflows</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="check-current-status" class="level2">
+<h2 class="anchored" data-anchor-id="check-current-status">Check Current Status</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pixi info</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This shows the pixi version, platform, cache location, and details about all environments defined in the current project — including installed packages, target platforms, and defined tasks.</p>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Environment</th>
+<th>Requires pixi.toml</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pixi run</code></td>
+<td>Project environment</td>
+<td>✅</td>
+<td>Automation, CI, team scripts</td>
+</tr>
+<tr class="even">
+<td><code>pixi exec</code></td>
+<td>Temporary environment</td>
+<td>❌</td>
+<td>One-off runs, version testing</td>
+</tr>
+<tr class="odd">
+<td><code>pixi shell</code></td>
+<td>Project environment</td>
+<td>✅</td>
+<td>Interactive development</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
