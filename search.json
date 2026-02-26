@@ -132,6 +132,90 @@
     ]
   },
   {
+    "objectID": "exercises/lab01/python-basics.html#objectives",
+    "href": "exercises/lab01/python-basics.html#objectives",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "Objectives",
+    "text": "Objectives\n\nUnderstand core Python data structures: Lists and Dictionaries.\nFunctions and Control Flow: Learn how to write modular, reusable logic for data processing.\nList Comprehensions: Grasp the “Pythonic” way to create and filter lists efficiently.\nClasses and Objects: Get introduced to the basics of Object-Oriented Programming (OOP), which is crucial for defining neural networks.\n\n\n\n\n\n\n\nNoteBasic Concept: Why Python for Machine Learning?\n\n\n\nPython is the lingua franca of modern Machine Learning. While standard Python is not fast enough for heavy matrix mathematics (which is why we use C-optimized libraries like NumPy or PyTorch), its clean syntax and massive ecosystem make it the perfect “glue” language. We rely on plain Python to load configurations, clean text data, build data loading pipelines, and orchestrate complex model training loops.",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#core-data-structures-lists-and-dictionaries",
+    "href": "exercises/lab01/python-basics.html#core-data-structures-lists-and-dictionaries",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "1. Core Data Structures: Lists and Dictionaries",
+    "text": "1. Core Data Structures: Lists and Dictionaries\nBefore we get to matrices, we need to know how standard Python stores sequences and key-value pairs.\n\n# Lists: Ordered, mutable sequences\n# Often used to store file paths, feature names, or a sequence of transformations.\nfeatures = ['age', 'income', 'height', 'weight']\nprint(\"Original features:\", features)\n\n# Appending and accessing\nfeatures.append('blood_pressure')\nprint(\"First feature:\", features[0])\nprint(\"Last feature:\", features[-1])\n\nOriginal features: ['age', 'income', 'height', 'weight']\nFirst feature: age\nLast feature: blood_pressure\n\n\n\n# Dictionaries: Unordered key-value pairs (Hash Maps)\n# Essential for storing model hyperparameters or configurations.\nhyperparameters = {\n    'learning_rate': 0.001,\n    'batch_size': 32,\n    'optimizer': 'Adam'\n}\n\nprint(\"Current Learning Rate:\", hyperparameters['learning_rate'])\n\n# Adding a new key-value pair\nhyperparameters['epochs'] = 50\nprint(\"Updated Config:\", hyperparameters)\n\nCurrent Learning Rate: 0.001\nUpdated Config: {'learning_rate': 0.001, 'batch_size': 32, 'optimizer': 'Adam', 'epochs': 50}\n\n\n\n\n\n\n\n\nWarningCaveat: Lists are Slow for Math\n\n\n\nStandard Python lists can hold elements of different data types (e.g., [1, \"hello\", 3.14]). Because of this flexibility, Python must check the type of each element during iteration, making mathematical operations on standard lists extremely slow compared to NumPy arrays.",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#functions-and-control-flow",
+    "href": "exercises/lab01/python-basics.html#functions-and-control-flow",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "2. Functions and Control Flow",
+    "text": "2. Functions and Control Flow\nMachine learning workflows require modular code. We use functions to isolate tasks like data cleaning, metric calculation, or model evaluation.\n\ndef categorize_age(age):\n    \"\"\"A simple function using control flow to categorize numerical data.\"\"\"\n    if age &lt; 18:\n        return 'Minor'\n    elif age &lt; 65:\n        return 'Adult'\n    else:\n        return 'Senior'\n\n# Testing the function\nages = [15, 34, 72]\nfor a in ages:\n    print(f\"Age {a} is categorized as: {categorize_age(a)}\")\n\nAge 15 is categorized as: Minor\nAge 34 is categorized as: Adult\nAge 72 is categorized as: Senior",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#list-comprehensions",
+    "href": "exercises/lab01/python-basics.html#list-comprehensions",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "3. List Comprehensions",
+    "text": "3. List Comprehensions\nList comprehensions provide a concise, readable, and often faster way to create lists compared to standard for loops. They are ubiquitous in Python data pipelines.\n\n# Non-comprehension approach: Standard loop\nraw_text = [\"  Hello \", \"WORLD  \", \" machine learning\"]\nclean_text_loop = []\nfor word in raw_text:\n    clean_text_loop.append(word.strip().lower())\n\nprint(\"Cleaned with loop:\", clean_text_loop)\n\n# Pythonic approach: List Comprehension\nclean_text_comp = [word.strip().lower() for word in raw_text]\nprint(\"Cleaned with comprehension:\", clean_text_comp)\n\nCleaned with loop: ['hello', 'world', 'machine learning']\nCleaned with comprehension: ['hello', 'world', 'machine learning']\n\n\nYou can also add conditional logic (filtering) inside a comprehension:\n\n# Extract only the positive numbers\nnumbers = [-5, 2, -1, 10, 8]\npositives = [n for n in numbers if n &gt; 0]\nprint(\"Positive numbers only:\", positives)\n\nPositive numbers only: [2, 10, 8]",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#basics-of-classes-oop",
+    "href": "exercises/lab01/python-basics.html#basics-of-classes-oop",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "4. Basics of Classes (OOP)",
+    "text": "4. Basics of Classes (OOP)\nIn modern deep learning frameworks like PyTorch, you define your neural networks by writing a Python class. Understanding how to initialize a class and define its methods is strictly required.\n\nclass SimpleScaler:\n    \"\"\"A mock object mimicking a data scaler (like in scikit-learn).\"\"\"\n    \n    # The __init__ method runs when you create a new instance\n    def __init__(self, scale_factor):\n        self.scale_factor = scale_factor  # Store data inside the object\n        \n    # A method belonging to the class\n    def transform(self, data):\n        return [x * self.scale_factor for x in data]\n\n# Instantiate the object\nscaler = SimpleScaler(scale_factor=0.5)\n\n# Use the object's method\nraw_data = [10, 20, 30]\nscaled_data = scaler.transform(raw_data)\nprint(\"Scaled data:\", scaled_data)\n\nScaled data: [5.0, 10.0, 15.0]",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#exercises",
+    "href": "exercises/lab01/python-basics.html#exercises",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "5. Exercises",
+    "text": "5. Exercises\nYou are given a list of dictionaries representing a tiny dataset of students and their test scores. Write a list comprehension that extracts the names of students who scored higher than 80.\n\nstudents = [\n    {'name': 'Alice', 'score': 85},\n    {'name': 'Bob', 'score': 72},\n    {'name': 'Charlie', 'score': 90},\n    {'name': 'Diana', 'score': 65}\n]\n\n# top_students = ???\n# print(top_students)\n\nSolutions:\n\n# Solution using list comprehension with a condition\ntop_students = [student['name'] for student in students if student['score'] &gt; 80]\nprint(\"Students with score &gt; 80:\", top_students)\n\nStudents with score &gt; 80: ['Alice', 'Charlie']",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#summary-for-machine-learning",
+    "href": "exercises/lab01/python-basics.html#summary-for-machine-learning",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "Summary for Machine Learning",
+    "text": "Summary for Machine Learning\n\nUse Dictionaries to manage hyperparameters and configuration settings cleanly.\nMaster List Comprehensions; you will use them constantly for parsing text, filtering file paths, and formatting raw input data before feeding it into NumPy or pandas.\nClasses are the building blocks of Deep Learning frameworks. You will use __init__ to define your network layers and class methods to define how data passes through them.",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Python Basics"
+    ]
+  },
+  {
     "objectID": "exercises/lab10-transfer-learning.html",
     "href": "exercises/lab10-transfer-learning.html",
     "title": "Transfer Learning",
@@ -151,159 +235,6 @@
     "crumbs": [
       "Exercises",
       "MLP Forward/Backward"
-    ]
-  },
-  {
-    "objectID": "exercises/lab14-naive-bayes.html",
-    "href": "exercises/lab14-naive-bayes.html",
-    "title": "Naive Bayes",
-    "section": "",
-    "text": "Likelihood/prior/posterior 직접 계산, 조건부 독립 가정 위반 시 성능 변화 실험.",
-    "crumbs": [
-      "Exercises",
-      "Naive Bayes"
-    ]
-  },
-  {
-    "objectID": "exercises/lab06-optimizer-comparison.html",
-    "href": "exercises/lab06-optimizer-comparison.html",
-    "title": "Optimizer 비교",
-    "section": "",
-    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
-    "crumbs": [
-      "Exercises",
-      "Optimizer 비교"
-    ]
-  },
-  {
-    "objectID": "exercises/lab11-kernel-visualization.html",
-    "href": "exercises/lab11-kernel-visualization.html",
-    "title": "Kernel 시각화",
-    "section": "",
-    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
-    "crumbs": [
-      "Exercises",
-      "Kernel 시각화"
-    ]
-  },
-  {
-    "objectID": "exercises/lab08-char-language-model.html",
-    "href": "exercises/lab08-char-language-model.html",
-    "title": "Char-level language model",
-    "section": "",
-    "text": "Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰).",
-    "crumbs": [
-      "Exercises",
-      "Char-level language model"
-    ]
-  },
-  {
-    "objectID": "exercises/lab12-decision-tree.html",
-    "href": "exercises/lab12-decision-tree.html",
-    "title": "Decision Tree",
-    "section": "",
-    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
-    "crumbs": [
-      "Exercises",
-      "Decision Tree"
-    ]
-  },
-  {
-    "objectID": "exercises/index.html",
-    "href": "exercises/index.html",
-    "title": "Exercises",
-    "section": "",
-    "text": "실습 자료 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
-    "crumbs": [
-      "Exercises"
-    ]
-  },
-  {
-    "objectID": "exercises/python-environment.html",
-    "href": "exercises/python-environment.html",
-    "title": "Python Environment Setup",
-    "section": "",
-    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
-    "crumbs": [
-      "Exercises",
-      "Python Environment Setup"
-    ]
-  },
-  {
-    "objectID": "exercises/python-environment.html#why-pixi",
-    "href": "exercises/python-environment.html#why-pixi",
-    "title": "Python Environment Setup",
-    "section": "",
-    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
-    "crumbs": [
-      "Exercises",
-      "Python Environment Setup"
-    ]
-  },
-  {
-    "objectID": "exercises/python-environment.html#how-pixi-works",
-    "href": "exercises/python-environment.html#how-pixi-works",
-    "title": "Python Environment Setup",
-    "section": "How pixi Works",
-    "text": "How pixi Works\nWhen a lock file exists (pixi install)\n\nInstalls the exact versions specified in pixi.lock — guarantees identical environments across all team members\nNo resolve step needed, so installation is fast\n\nWhen no lock file exists (pixi install)\n\nReads constraints from pixi.toml (e.g., &gt;=2.0) and resolves the best matching versions\nGenerates a new pixi.lock\nSlower due to the resolve step\n\nWhen pixi.toml changes with an existing lock file (e.g., after pixi add)\n\nThe lock file is updated automatically\n\n\nProject Structure\n\nimport numpy as np\nR=np.array([np.random.random(),np.random.random()]) # initial location\n\nprint(\"initial location:\")\nprint(np.round(R,3))\nprint(\"round   location\")\n\neps=.5                         # initial learning speed\n\nfor j in range(50):            # rounds\n    eps=0.85*eps               # decrease the learning speed \n    np.random.shuffle(alls)    # reshuffle the sample\n    for i in range(len(alls)): # loop over points of the whole sample\n        R+=eps*(alls[i]-R)     # update/learning\n    if j%5==4: print(j+1, \"    \",np.round(R,3))  # print every 5th step\n\nmy-project/\n├── pixi.toml       ← dependency declaration file  (commit to git)\n├── pixi.lock       ← exact pinned versions         (commit to git)\n└── .pixi/          ← actual environment folder     (add to .gitignore)\n    └── envs/\n        └── default/",
-    "crumbs": [
-      "Exercises",
-      "Python Environment Setup"
-    ]
-  },
-  {
-    "objectID": "exercises/python-environment.html#one-time-setup-install-pixi",
-    "href": "exercises/python-environment.html#one-time-setup-install-pixi",
-    "title": "Python Environment Setup",
-    "section": "One-Time Setup: Install pixi",
-    "text": "One-Time Setup: Install pixi\n\n\n\n\n\n\nWarning\n\n\n\nInstall under your own user account — sudo is almost never needed.\npixi installs by default to ~/.pixi/, so no elevated privileges are required. Each project’s environment lives inside the project folder under .pixi/envs/, so there is no conflict between users or projects.\n\n\n\nLinux & macOS\nExpected time: ~5 minutes\n# 1. Install pixi (single binary, no sudo required)\n$ curl -fsSL https://pixi.sh/install.sh | sh   # if curl is available# if wget is available# if wget is available# if wget is available\n$ wget -qO- https://pixi.sh/install.sh | sh    # if wget is available\n\n# 2. Reload your shell to apply PATH changes\n$ source ~/.bashrc   # or ~/.zshrc depending on your shell\n\n# 3. Verify installation\n$ pixi --version\npixi 0.63.2\n\n# 4. (Optional) Update pixi\n$ pixi self-update\nFor the full installation guide, see: https://pixi.prefix.dev/latest/installation",
-    "crumbs": [
-      "Exercises",
-      "Python Environment Setup"
-    ]
-  },
-  {
-    "objectID": "exercises/python-environment.html#everyday-use",
-    "href": "exercises/python-environment.html#everyday-use",
-    "title": "Python Environment Setup",
-    "section": "Everyday Use",
-    "text": "Everyday Use\n\npixi run\nRun a command or task inside the project environment.\n# Run any executable from the environment PATH\npixi run python --version\npixi run jupyter lab\n\n# Run a named task defined in pixi.toml\npixi run &lt;task-name&gt;\n\nWorks for both named tasks and any executable available in the environment PATH\nIf a task and an executable share the same name, the task takes priority\nAutomatically updates the lock file and installs the environment if needed\n\n\n\npixi exec\nRun a command in a temporary, isolated environment — independent of any pixi.toml.\n# Run python from a temporary environment\npixi exec python --version\n\n# Specify an exact version — pixi exec's key strength\npixi exec --spec \"python=3.12\" python --version\n\n# Start JupyterLab without activating any project environment\npixi exec jupyter lab\n\n# Clean up temporary environment cache when no longer needed\npixi clean cache --exec\n\nDoes not require a pixi.toml — works from any directory\nUseful for one-off version testing or running tools outside your project\nEach --spec creates a fresh temporary environment\n\n\n\npixi shell\nActivate the project environment and stay inside it.\n$ pixi shell\n# environment is now active — use commands directly\n$ python script.py\n$ jupyter lab\n# when done, exit the shell to deactivate\n$ exit\n\nKeeps the environment active until you exit the shell\nConvenient for interactive development and experimentation\nEquivalent to conda activate / micromamba activate workflows",
-    "crumbs": [
-      "Exercises",
-      "Python Environment Setup"
-    ]
-  },
-  {
-    "objectID": "exercises/python-environment.html#check-current-status",
-    "href": "exercises/python-environment.html#check-current-status",
-    "title": "Python Environment Setup",
-    "section": "Check Current Status",
-    "text": "Check Current Status\n$ pixi info\nThis shows the pixi version, platform, cache location, and details about all environments defined in the current project — including installed packages, target platforms, and defined tasks.",
-    "crumbs": [
-      "Exercises",
-      "Python Environment Setup"
-    ]
-  },
-  {
-    "objectID": "exercises/python-environment.html#summary",
-    "href": "exercises/python-environment.html#summary",
-    "title": "Python Environment Setup",
-    "section": "Summary",
-    "text": "Summary\n\n\n\n\n\n\n\n\n\nCommand\nEnvironment\nRequires pixi.toml\nUse case\n\n\n\n\npixi run\nProject environment\n✅\nAutomation, CI, team scripts\n\n\npixi exec\nTemporary environment\n❌\nOne-off runs, version testing\n\n\npixi shell\nProject environment\n✅\nInteractive development",
-    "crumbs": [
-      "Exercises",
-      "Python Environment Setup"
-    ]
-  },
-  {
-    "objectID": "exercises/lab13-bagging-vs-boosting.html",
-    "href": "exercises/lab13-bagging-vs-boosting.html",
-    "title": "Bagging vs Boosting",
-    "section": "",
-    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
-    "crumbs": [
-      "Exercises",
-      "Bagging vs Boosting"
     ]
   },
   {
@@ -395,80 +326,156 @@
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#objectives",
-    "href": "exercises/lab01-numpy-basics.html#objectives",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "Objectives",
-    "text": "Objectives\n\nUnderstand the basic concepts of NumPy arrays: creation, shape, and dtype.\nVectorization: Learn how to replace slow Python loops with fast, C-optimized array operations.\nBroadcasting: Grasp the rules NumPy uses to perform operations on arrays of different shapes.\n\n\n\n\n\n\n\nNoteBasic Concept: Why NumPy?\n\n\n\nIn Machine Learning, we deal with massive amounts of data (vectors, matrices, tensors). Standard Python lists are too slow and memory-inefficient for these calculations. NumPy arrays are stored in contiguous blocks of memory and operations are implemented in highly optimized C code, making mathematical operations drastically faster. NumPy is the foundational library that modern deep learning frameworks (like PyTorch and TensorFlow) are built upon.",
+    "objectID": "exercises/lab13-bagging-vs-boosting.html",
+    "href": "exercises/lab13-bagging-vs-boosting.html",
+    "title": "Bagging vs Boosting",
+    "section": "",
+    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
     "crumbs": [
       "Exercises",
-      "Lab 01 - NumPy Basics for Machine Learning"
+      "Bagging vs Boosting"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#array-creation-and-attributes",
-    "href": "exercises/lab01-numpy-basics.html#array-creation-and-attributes",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "1. Array Creation and Attributes",
-    "text": "1. Array Creation and Attributes\nBefore we manipulate data, we need to know how to create arrays and inspect their properties.\n\nimport numpy as np\n\n\n# 1-Dimensional Array (Vector)\na = np.array([1, 2, 3, 4, 5])\nprint(\"a =\", a)\nprint(\"shape:\", a.shape) # Returns a tuple representing the size of each dimension\nprint(\"dtype:\", a.dtype) # Data type of the elements\n\na = [1 2 3 4 5]\nshape: (5,)\ndtype: int64\n\n\n\n# 2-Dimensional Array (Matrix)\nB = np.array([[1, 2], [3, 4], [5, 6]])\nprint(\"B =\\n\", B)\nprint(\"shape:\", B.shape)  # (number of rows, number of columns)\n\nB =\n [[1 2]\n [3 4]\n [5 6]]\nshape: (3, 2)\n\n\n\n\n\n\n\n\nWarningCaveat: Data Types (dtype)\n\n\n\nBy default, NumPy might create arrays with float64 or int64 depending on your OS and the input. In deep learning, memory is expensive, so we often explicitly cast arrays to 32-bit floats using a.astype(np.float32).\n\n\n\n# Frequently used creation functions\nprint(\"Zeros:\\n\", np.zeros(5))               # Array of zeros\nprint(\"Ones:\\n\", np.ones((2, 3)))            # 2x3 matrix of ones\nprint(\"Arange:\\n\", np.arange(0, 10, 2))      # start, stop (exclusive), step\nprint(\"Linspace:\\n\", np.linspace(0, 1, 5))   # 5 evenly spaced numbers between 0 and 1 (inclusive)\n\nZeros:\n [0. 0. 0. 0. 0.]\nOnes:\n [[1. 1. 1.]\n [1. 1. 1.]]\nArange:\n [0 2 4 6 8]\nLinspace:\n [0.   0.25 0.5  0.75 1.  ]",
+    "objectID": "exercises/python-environment.html",
+    "href": "exercises/python-environment.html",
+    "title": "Python Environment Setup",
+    "section": "",
+    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
     "crumbs": [
       "Exercises",
-      "Lab 01 - NumPy Basics for Machine Learning"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#indexing-and-slicing",
-    "href": "exercises/lab01-numpy-basics.html#indexing-and-slicing",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "2. Indexing and Slicing",
-    "text": "2. Indexing and Slicing\nAccessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.\n\nx = np.array([10, 20, 30, 40, 50])\nprint(\"First element:\", x[0])\nprint(\"Last element:\", x[-1])\nprint(\"Slice [1:4]:\", x[1:4])     # Indices 1, 2, 3 (exclusive of 4)\nprint(\"Step slice [::2]:\", x[::2]) # Every 2nd element from start to end\n\nFirst element: 10\nLast element: 50\nSlice [1:4]: [20 30 40]\nStep slice [::2]: [10 30 50]\n\n\n\nM = np.arange(12).reshape(3, 4)\nprint(\"M =\\n\", M)\nprint(\"Specific element M[1, 2]:\", M[1, 2]) # Row 1, Column 2 (0-indexed)\nprint(\"Entire 2nd row:\", M[2, :])\nprint(\"Entire 3rd column:\", M[:, 3])\n\nM =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nSpecific element M[1, 2]: 6\nEntire 2nd row: [ 8  9 10 11]\nEntire 3rd column: [ 3  7 11]\n\n\n\n\n\n\n\n\nWarningCaveat: Slices are Views, Not Copies!\n\n\n\nWhen you slice an array in NumPy, it returns a view of the original memory, not a new array. If you modify the slice, the original array is modified too. If you need an independent copy, explicitly use .copy().\nx_slice = x[1:4].copy()",
+    "objectID": "exercises/python-environment.html#why-pixi",
+    "href": "exercises/python-environment.html#why-pixi",
+    "title": "Python Environment Setup",
+    "section": "",
+    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
     "crumbs": [
       "Exercises",
-      "Lab 01 - NumPy Basics for Machine Learning"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#vectorization",
-    "href": "exercises/lab01-numpy-basics.html#vectorization",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "3. Vectorization",
-    "text": "3. Vectorization\nVectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a for loop. This results in cleaner code and massive performance boosts.\n\n# Non-vectorized approach: Python 'for' loop\ndef sum_squares_loop(arr):\n    total = 0\n    for x in arr:\n        total += x ** 2\n    return total\n\n# Vectorized approach: NumPy array operation\ndef sum_squares_vec(arr):\n    return (arr ** 2).sum()\n\nLet’s test the speed difference:\n\nlarge = np.random.randn(100_000)\nprint(\"Loop time:\")\n%timeit sum_squares_loop(large)\nprint(\"Vectorized time:\")\n%timeit sum_squares_vec(large)\n\nLoop time:\n8.32 ms ± 55.6 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)\nVectorized time:\n24.2 μs ± 15.7 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\n\n\nVectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function \\(\\sigma(z) = \\frac{1}{1 + e^{-z}}\\):\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\nz = np.linspace(-5, 5, 11)\nprint(\"z          =\", z)\nprint(\"sigmoid(z) =\", sigmoid(z))\n\nz          = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]\nsigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5\n 0.73105858 0.88079708 0.95257413 0.98201379 0.99330715]",
+    "objectID": "exercises/python-environment.html#how-pixi-works",
+    "href": "exercises/python-environment.html#how-pixi-works",
+    "title": "Python Environment Setup",
+    "section": "How pixi Works",
+    "text": "How pixi Works\nWhen a lock file exists (pixi install)\n\nInstalls the exact versions specified in pixi.lock — guarantees identical environments across all team members\nNo resolve step needed, so installation is fast\n\nWhen no lock file exists (pixi install)\n\nReads constraints from pixi.toml (e.g., &gt;=2.0) and resolves the best matching versions\nGenerates a new pixi.lock\nSlower due to the resolve step\n\nWhen pixi.toml changes with an existing lock file (e.g., after pixi add)\n\nThe lock file is updated automatically\n\n\nProject Structure\n\nimport numpy as np\nR=np.array([np.random.random(),np.random.random()]) # initial location\n\nprint(\"initial location:\")\nprint(np.round(R,3))\nprint(\"round   location\")\n\neps=.5                         # initial learning speed\n\nfor j in range(50):            # rounds\n    eps=0.85*eps               # decrease the learning speed \n    np.random.shuffle(alls)    # reshuffle the sample\n    for i in range(len(alls)): # loop over points of the whole sample\n        R+=eps*(alls[i]-R)     # update/learning\n    if j%5==4: print(j+1, \"    \",np.round(R,3))  # print every 5th step\n\nmy-project/\n├── pixi.toml       ← dependency declaration file  (commit to git)\n├── pixi.lock       ← exact pinned versions         (commit to git)\n└── .pixi/          ← actual environment folder     (add to .gitignore)\n    └── envs/\n        └── default/",
     "crumbs": [
       "Exercises",
-      "Lab 01 - NumPy Basics for Machine Learning"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#broadcasting",
-    "href": "exercises/lab01-numpy-basics.html#broadcasting",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "4. Broadcasting",
-    "text": "4. Broadcasting\nBroadcasting is a powerful mechanism that allows NumPy to perform operations on arrays of different shapes.\nThe Rule of Broadcasting: NumPy compares array shapes from right to left. Two dimensions are compatible if:\n\nThey are equal, or\nOne of them is 1. If an array has fewer dimensions, a dimension of 1 is implicitly prepended to its shape.\n\n\n# Shape (3, 4) + Shape (4,) \n# The (4,) is treated as (1, 4), then copied across 3 rows to match (3, 4)\nA = np.arange(12).reshape(3, 4)\nb = np.array([1, 2, 3, 4])\nprint(\"A =\\n\", A)\nprint(\"b =\", b)\nprint(\"A + b =\\n\", A + b)\n\nA =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nb = [1 2 3 4]\nA + b =\n [[ 1  3  5  7]\n [ 5  7  9 11]\n [ 9 11 13 15]]\n\n\n\n# Shape (3, 4) + Shape (3, 1)\n# The (3, 1) array is copied across 4 columns to match (3, 4)\nc = np.array([[10], [20], [30]])\nprint(\"c =\\n\", c)\nprint(\"A + c =\\n\", A + c)\n\nc =\n [[10]\n [20]\n [30]]\nA + c =\n [[10 11 12 13]\n [24 25 26 27]\n [38 39 40 41]]\n\n\nPractical Example: Normalizing Data A very common task in ML is normalizing data (e.g., making rows sum to 1).\n\n# keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)\nrow_sums = A.sum(axis=1, keepdims=True)  \nprint(\"row_sums (shape\", row_sums.shape, \") =\\n\", row_sums)\n\nnormalized = A / row_sums\nprint(\"Normalized A (rows sum to 1):\\n\", normalized)\nprint(\"Verify row sums:\", normalized.sum(axis=1))\n\nrow_sums (shape (3, 1) ) =\n [[ 6]\n [22]\n [38]]\nNormalized A (rows sum to 1):\n [[0.         0.16666667 0.33333333 0.5       ]\n [0.18181818 0.22727273 0.27272727 0.31818182]\n [0.21052632 0.23684211 0.26315789 0.28947368]]\nVerify row sums: [1. 1. 1.]\n\n\n\n\n\n\n\n\nWarningCaveat: The Danger of Rank-1 Arrays\n\n\n\nArrays with shape (N,) are called Rank-1 arrays (e.g., b in the example above). They do not behave like traditional row or column vectors and can cause confusing broadcasting bugs. Best Practice in ML: Always reshape your 1D vectors into explicit 2D row matrices (1, N) or column matrices (N, 1) using .reshape(-1, 1) or np.newaxis to avoid unintended broadcasting behaviors.",
+    "objectID": "exercises/python-environment.html#one-time-setup-install-pixi",
+    "href": "exercises/python-environment.html#one-time-setup-install-pixi",
+    "title": "Python Environment Setup",
+    "section": "One-Time Setup: Install pixi",
+    "text": "One-Time Setup: Install pixi\n\n\n\n\n\n\nWarning\n\n\n\nInstall under your own user account — sudo is almost never needed.\npixi installs by default to ~/.pixi/, so no elevated privileges are required. Each project’s environment lives inside the project folder under .pixi/envs/, so there is no conflict between users or projects.\n\n\n\nLinux & macOS\nExpected time: ~5 minutes\n# 1. Install pixi (single binary, no sudo required)\n$ curl -fsSL https://pixi.sh/install.sh | sh   # if curl is available# if wget is available# if wget is available# if wget is available\n$ wget -qO- https://pixi.sh/install.sh | sh    # if wget is available\n\n# 2. Reload your shell to apply PATH changes\n$ source ~/.bashrc   # or ~/.zshrc depending on your shell\n\n# 3. Verify installation\n$ pixi --version\npixi 0.63.2\n\n# 4. (Optional) Update pixi\n$ pixi self-update\nFor the full installation guide, see: https://pixi.prefix.dev/latest/installation",
     "crumbs": [
       "Exercises",
-      "Lab 01 - NumPy Basics for Machine Learning"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#exercises",
-    "href": "exercises/lab01-numpy-basics.html#exercises",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "5. Exercises",
-    "text": "5. Exercises\nCreate a vector v and a matrix M with shape (4, 3) where every row of M is exactly v. (Hint: You can achieve this using np.tile or by utilizing broadcasting).\n\nv = np.array([1, 2, 3])\n# M = ???  # Desired shape (4, 3), each row is [1, 2, 3]\n# print(M)\n\nSolutions:\n\n# Solution 1: Using np.tile\nM1 = np.tile(v, (4, 1))\nprint(\"Using tile:\\n\", M1)\n\n# Solution 2: Using broadcasting\n# Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.\nM2 = v + np.zeros((4, 3))\nprint(\"Using broadcasting:\\n\", M2)\n\nUsing tile:\n [[1 2 3]\n [1 2 3]\n [1 2 3]\n [1 2 3]]\nUsing broadcasting:\n [[1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]]",
+    "objectID": "exercises/python-environment.html#everyday-use",
+    "href": "exercises/python-environment.html#everyday-use",
+    "title": "Python Environment Setup",
+    "section": "Everyday Use",
+    "text": "Everyday Use\n\npixi run\nRun a command or task inside the project environment.\n# Run any executable from the environment PATH\npixi run python --version\npixi run jupyter lab\n\n# Run a named task defined in pixi.toml\npixi run &lt;task-name&gt;\n\nWorks for both named tasks and any executable available in the environment PATH\nIf a task and an executable share the same name, the task takes priority\nAutomatically updates the lock file and installs the environment if needed\n\n\n\npixi exec\nRun a command in a temporary, isolated environment — independent of any pixi.toml.\n# Run python from a temporary environment\npixi exec python --version\n\n# Specify an exact version — pixi exec's key strength\npixi exec --spec \"python=3.12\" python --version\n\n# Start JupyterLab without activating any project environment\npixi exec jupyter lab\n\n# Clean up temporary environment cache when no longer needed\npixi clean cache --exec\n\nDoes not require a pixi.toml — works from any directory\nUseful for one-off version testing or running tools outside your project\nEach --spec creates a fresh temporary environment\n\n\n\npixi shell\nActivate the project environment and stay inside it.\n$ pixi shell\n# environment is now active — use commands directly\n$ python script.py\n$ jupyter lab\n# when done, exit the shell to deactivate\n$ exit\n\nKeeps the environment active until you exit the shell\nConvenient for interactive development and experimentation\nEquivalent to conda activate / micromamba activate workflows",
     "crumbs": [
       "Exercises",
-      "Lab 01 - NumPy Basics for Machine Learning"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab01-numpy-basics.html#summary-for-machine-learning",
-    "href": "exercises/lab01-numpy-basics.html#summary-for-machine-learning",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "Summary for Machine Learning",
-    "text": "Summary for Machine Learning\n\nIn ML, our datasets are usually represented as 2D arrays with the shape (num_samples, num_features).\nWhen calculating gradients, losses, or passing data through neural network layers, never use Python loops. Always use Vectorization and Broadcasting. It will make your code shorter, significantly faster, and easier to read.\n\n\nWould you like me to add a section specifically covering Matrix Multiplication (`np.dot` vs `@`), as that is also a crucial NumPy concept for Machine Learning?",
+    "objectID": "exercises/python-environment.html#check-current-status",
+    "href": "exercises/python-environment.html#check-current-status",
+    "title": "Python Environment Setup",
+    "section": "Check Current Status",
+    "text": "Check Current Status\n$ pixi info\nThis shows the pixi version, platform, cache location, and details about all environments defined in the current project — including installed packages, target platforms, and defined tasks.",
     "crumbs": [
       "Exercises",
-      "Lab 01 - NumPy Basics for Machine Learning"
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/python-environment.html#summary",
+    "href": "exercises/python-environment.html#summary",
+    "title": "Python Environment Setup",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\n\n\n\n\n\nCommand\nEnvironment\nRequires pixi.toml\nUse case\n\n\n\n\npixi run\nProject environment\n✅\nAutomation, CI, team scripts\n\n\npixi exec\nTemporary environment\n❌\nOne-off runs, version testing\n\n\npixi shell\nProject environment\n✅\nInteractive development",
+    "crumbs": [
+      "Exercises",
+      "Python Environment Setup"
+    ]
+  },
+  {
+    "objectID": "exercises/index.html",
+    "href": "exercises/index.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "실습 자료 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
+    "crumbs": [
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/lab12-decision-tree.html",
+    "href": "exercises/lab12-decision-tree.html",
+    "title": "Decision Tree",
+    "section": "",
+    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
+    "crumbs": [
+      "Exercises",
+      "Decision Tree"
+    ]
+  },
+  {
+    "objectID": "exercises/lab08-char-language-model.html",
+    "href": "exercises/lab08-char-language-model.html",
+    "title": "Char-level language model",
+    "section": "",
+    "text": "Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰).",
+    "crumbs": [
+      "Exercises",
+      "Char-level language model"
+    ]
+  },
+  {
+    "objectID": "exercises/lab11-kernel-visualization.html",
+    "href": "exercises/lab11-kernel-visualization.html",
+    "title": "Kernel 시각화",
+    "section": "",
+    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
+    "crumbs": [
+      "Exercises",
+      "Kernel 시각화"
+    ]
+  },
+  {
+    "objectID": "exercises/lab06-optimizer-comparison.html",
+    "href": "exercises/lab06-optimizer-comparison.html",
+    "title": "Optimizer 비교",
+    "section": "",
+    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
+    "crumbs": [
+      "Exercises",
+      "Optimizer 비교"
+    ]
+  },
+  {
+    "objectID": "exercises/lab14-naive-bayes.html",
+    "href": "exercises/lab14-naive-bayes.html",
+    "title": "Naive Bayes",
+    "section": "",
+    "text": "Likelihood/prior/posterior 직접 계산, 조건부 독립 가정 위반 시 성능 변화 실험.",
+    "crumbs": [
+      "Exercises",
+      "Naive Bayes"
     ]
   },
   {
@@ -480,6 +487,90 @@
     "crumbs": [
       "Exercises",
       "Feature map 시각화"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/numpy-basics.html#objectives",
+    "href": "exercises/lab01/numpy-basics.html#objectives",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "Objectives",
+    "text": "Objectives\n\nUnderstand the basic concepts of NumPy arrays: creation, shape, and dtype.\nVectorization: Learn how to replace slow Python loops with fast, C-optimized array operations.\nBroadcasting: Grasp the rules NumPy uses to perform operations on arrays of different shapes.\n\n\n\n\n\n\n\nNoteBasic Concept: Why NumPy?\n\n\n\nIn Machine Learning, we deal with massive amounts of data (vectors, matrices, tensors). Standard Python lists are too slow and memory-inefficient for these calculations. NumPy arrays are stored in contiguous blocks of memory and operations are implemented in highly optimized C code, making mathematical operations drastically faster. NumPy is the foundational library that modern deep learning frameworks (like PyTorch and TensorFlow) are built upon.",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Numpy Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/numpy-basics.html#array-creation-and-attributes",
+    "href": "exercises/lab01/numpy-basics.html#array-creation-and-attributes",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "1. Array Creation and Attributes",
+    "text": "1. Array Creation and Attributes\nBefore we manipulate data, we need to know how to create arrays and inspect their properties.\n\nimport numpy as np\n\n\n# 1-Dimensional Array (Vector)\na = np.array([1, 2, 3, 4, 5])\nprint(\"a =\", a)\nprint(\"shape:\", a.shape) # Returns a tuple representing the size of each dimension\nprint(\"dtype:\", a.dtype) # Data type of the elements\n\na = [1 2 3 4 5]\nshape: (5,)\ndtype: int64\n\n\n\n# 2-Dimensional Array (Matrix)\nB = np.array([[1, 2], [3, 4], [5, 6]])\nprint(\"B =\\n\", B)\nprint(\"shape:\", B.shape)  # (number of rows, number of columns)\n\nB =\n [[1 2]\n [3 4]\n [5 6]]\nshape: (3, 2)\n\n\n\n\n\n\n\n\nWarningCaveat: Data Types (dtype)\n\n\n\nBy default, NumPy might create arrays with float64 or int64 depending on your OS and the input. In deep learning, memory is expensive, so we often explicitly cast arrays to 32-bit floats using a.astype(np.float32).\n\n\n\n# Frequently used creation functions\nprint(\"Zeros:\\n\", np.zeros(5))               # Array of zeros\nprint(\"Ones:\\n\", np.ones((2, 3)))            # 2x3 matrix of ones\nprint(\"Arange:\\n\", np.arange(0, 10, 2))      # start, stop (exclusive), step\nprint(\"Linspace:\\n\", np.linspace(0, 1, 5))   # 5 evenly spaced numbers between 0 and 1 (inclusive)\n\nZeros:\n [0. 0. 0. 0. 0.]\nOnes:\n [[1. 1. 1.]\n [1. 1. 1.]]\nArange:\n [0 2 4 6 8]\nLinspace:\n [0.   0.25 0.5  0.75 1.  ]",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Numpy Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/numpy-basics.html#indexing-and-slicing",
+    "href": "exercises/lab01/numpy-basics.html#indexing-and-slicing",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "2. Indexing and Slicing",
+    "text": "2. Indexing and Slicing\nAccessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.\n\nx = np.array([10, 20, 30, 40, 50])\nprint(\"First element:\", x[0])\nprint(\"Last element:\", x[-1])\nprint(\"Slice [1:4]:\", x[1:4])     # Indices 1, 2, 3 (exclusive of 4)\nprint(\"Step slice [::2]:\", x[::2]) # Every 2nd element from start to end\n\nFirst element: 10\nLast element: 50\nSlice [1:4]: [20 30 40]\nStep slice [::2]: [10 30 50]\n\n\n\nM = np.arange(12).reshape(3, 4)\nprint(\"M =\\n\", M)\nprint(\"Specific element M[1, 2]:\", M[1, 2]) # Row 1, Column 2 (0-indexed)\nprint(\"Entire 2nd row:\", M[2, :])\nprint(\"Entire 3rd column:\", M[:, 3])\n\nM =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nSpecific element M[1, 2]: 6\nEntire 2nd row: [ 8  9 10 11]\nEntire 3rd column: [ 3  7 11]\n\n\n\n\n\n\n\n\nWarningCaveat: Slices are Views, Not Copies!\n\n\n\nWhen you slice an array in NumPy, it returns a view of the original memory, not a new array. If you modify the slice, the original array is modified too. If you need an independent copy, explicitly use .copy().\nx_slice = x[1:4].copy()",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Numpy Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/numpy-basics.html#vectorization",
+    "href": "exercises/lab01/numpy-basics.html#vectorization",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "3. Vectorization",
+    "text": "3. Vectorization\nVectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a for loop. This results in cleaner code and massive performance boosts.\n\n# Non-vectorized approach: Python 'for' loop\ndef sum_squares_loop(arr):\n    total = 0\n    for x in arr:\n        total += x ** 2\n    return total\n\n# Vectorized approach: NumPy array operation\ndef sum_squares_vec(arr):\n    return (arr ** 2).sum()\n\nLet’s test the speed difference:\n\nlarge = np.random.randn(100_000)\nprint(\"Loop time:\")\n%timeit sum_squares_loop(large)\nprint(\"Vectorized time:\")\n%timeit sum_squares_vec(large)\n\nLoop time:\n8.37 ms ± 48.7 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)\nVectorized time:\n24.2 μs ± 22.4 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\n\n\nVectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function \\(\\sigma(z) = \\frac{1}{1 + e^{-z}}\\):\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\nz = np.linspace(-5, 5, 11)\nprint(\"z          =\", z)\nprint(\"sigmoid(z) =\", sigmoid(z))\n\nz          = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]\nsigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5\n 0.73105858 0.88079708 0.95257413 0.98201379 0.99330715]",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Numpy Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/numpy-basics.html#broadcasting",
+    "href": "exercises/lab01/numpy-basics.html#broadcasting",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "4. Broadcasting",
+    "text": "4. Broadcasting\nBroadcasting is a powerful mechanism that allows NumPy to perform operations on arrays of different shapes.\nThe Rule of Broadcasting: NumPy compares array shapes from right to left. Two dimensions are compatible if:\n\nThey are equal, or\nOne of them is 1. If an array has fewer dimensions, a dimension of 1 is implicitly prepended to its shape.\n\n\n# Shape (3, 4) + Shape (4,) \n# The (4,) is treated as (1, 4), then copied across 3 rows to match (3, 4)\nA = np.arange(12).reshape(3, 4)\nb = np.array([1, 2, 3, 4])\nprint(\"A =\\n\", A)\nprint(\"b =\", b)\nprint(\"A + b =\\n\", A + b)\n\nA =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nb = [1 2 3 4]\nA + b =\n [[ 1  3  5  7]\n [ 5  7  9 11]\n [ 9 11 13 15]]\n\n\n\n# Shape (3, 4) + Shape (3, 1)\n# The (3, 1) array is copied across 4 columns to match (3, 4)\nc = np.array([[10], [20], [30]])\nprint(\"c =\\n\", c)\nprint(\"A + c =\\n\", A + c)\n\nc =\n [[10]\n [20]\n [30]]\nA + c =\n [[10 11 12 13]\n [24 25 26 27]\n [38 39 40 41]]\n\n\nPractical Example: Normalizing Data A very common task in ML is normalizing data (e.g., making rows sum to 1).\n\n# keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)\nrow_sums = A.sum(axis=1, keepdims=True)  \nprint(\"row_sums (shape\", row_sums.shape, \") =\\n\", row_sums)\n\nnormalized = A / row_sums\nprint(\"Normalized A (rows sum to 1):\\n\", normalized)\nprint(\"Verify row sums:\", normalized.sum(axis=1))\n\nrow_sums (shape (3, 1) ) =\n [[ 6]\n [22]\n [38]]\nNormalized A (rows sum to 1):\n [[0.         0.16666667 0.33333333 0.5       ]\n [0.18181818 0.22727273 0.27272727 0.31818182]\n [0.21052632 0.23684211 0.26315789 0.28947368]]\nVerify row sums: [1. 1. 1.]\n\n\n\n\n\n\n\n\nWarningCaveat: The Danger of Rank-1 Arrays\n\n\n\nArrays with shape (N,) are called Rank-1 arrays (e.g., b in the example above). They do not behave like traditional row or column vectors and can cause confusing broadcasting bugs. Best Practice in ML: Always reshape your 1D vectors into explicit 2D row matrices (1, N) or column matrices (N, 1) using .reshape(-1, 1) or np.newaxis to avoid unintended broadcasting behaviors.",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Numpy Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/numpy-basics.html#exercises",
+    "href": "exercises/lab01/numpy-basics.html#exercises",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "5. Exercises",
+    "text": "5. Exercises\nCreate a vector v and a matrix M with shape (4, 3) where every row of M is exactly v. (Hint: You can achieve this using np.tile or by utilizing broadcasting).\n\nv = np.array([1, 2, 3])\n# M = ???  # Desired shape (4, 3), each row is [1, 2, 3]\n# print(M)\n\nSolutions:\n\n# Solution 1: Using np.tile\nM1 = np.tile(v, (4, 1))\nprint(\"Using tile:\\n\", M1)\n\n# Solution 2: Using broadcasting\n# Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.\nM2 = v + np.zeros((4, 3))\nprint(\"Using broadcasting:\\n\", M2)\n\nUsing tile:\n [[1 2 3]\n [1 2 3]\n [1 2 3]\n [1 2 3]]\nUsing broadcasting:\n [[1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]]",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Numpy Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/numpy-basics.html#summary-for-machine-learning",
+    "href": "exercises/lab01/numpy-basics.html#summary-for-machine-learning",
+    "title": "Lab 01 - NumPy Basics for Machine Learning",
+    "section": "Summary for Machine Learning",
+    "text": "Summary for Machine Learning\n\nIn ML, our datasets are usually represented as 2D arrays with the shape (num_samples, num_features).\nWhen calculating gradients, losses, or passing data through neural network layers, never use Python loops. Always use Vectorization and Broadcasting. It will make your code shorter, significantly faster, and easier to read.\n\n\nWould you like me to add a section specifically covering Matrix Multiplication (`np.dot` vs `@`), as that is also a crucial NumPy concept for Machine Learning?",
+    "crumbs": [
+      "Exercises",
+      "Lab 01",
+      "Numpy Basics"
     ]
   },
   {
