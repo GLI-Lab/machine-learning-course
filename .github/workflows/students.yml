@@ -50,23 +50,21 @@ jobs:
           # (2) 파이썬 스크립트 실행 (_out 폴더 내의 .qmd Callout 치환)
           python3 scripts/convert_callouts.py
           
-          # (3) _out 폴더 내부의 치환된 qmd 파일들을 ipynb로 변환하고 qmd는 삭제
-          for f in _out/exercises/*.qmd _out/assignments/*.qmd; do
-            if [ -f "$f" ]; then
-              base=$(basename "$f" .qmd)
-              
-              # index.qmd는 배포하지 않으므로 삭제 후 스킵
-              if [ "$base" = "index" ]; then
-                rm "$f"
-                continue
-              fi
-              
-              dir=$(dirname "$f")
-              quarto convert "$f" --output "$dir/$base.ipynb"
-              
-              # 변환 완료 후 학생용 브랜치에 qmd가 남지 않도록 삭제
+          # (3) find 명령어로 하위 폴더 깊이와 상관없이 모든 .qmd 파일을 찾아 변환
+          find _out/exercises _out/assignments -type f -name "*.qmd" 2>/dev/null | while read -r f; do
+            base=$(basename "$f" .qmd)
+            
+            # index.qmd는 배포하지 않으므로 삭제 후 스킵
+            if [ "$base" = "index" ]; then
               rm "$f"
+              continue
             fi
+            
+            dir=$(dirname "$f")
+            quarto convert "$f" --output "$dir/$base.ipynb"
+            
+            # 변환 완료 후 학생용 브랜치에 qmd가 남지 않도록 삭제
+            rm "$f"
           done
           
           cat > _out/.gitignore << 'EOF'
