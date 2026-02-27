@@ -327,8 +327,15 @@ window.Quarto = {
   <li><a href="#indexing-and-slicing" id="toc-indexing-and-slicing" class="nav-link" data-scroll-target="#indexing-and-slicing">2. Indexing and Slicing</a></li>
   <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization">3. Vectorization</a></li>
   <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting">4. Broadcasting</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">5. Exercises</a></li>
+  <li><a href="#image-feature-extraction" id="toc-image-feature-extraction" class="nav-link" data-scroll-target="#image-feature-extraction">5. Image Feature Extraction</a>
+  <ul class="collapse">
+  <li><a href="#loading-the-image-grayscale-and-color" id="toc-loading-the-image-grayscale-and-color" class="nav-link" data-scroll-target="#loading-the-image-grayscale-and-color">Loading the image: grayscale and color</a></li>
+  <li><a href="#local-windows-and-simple-blur" id="toc-local-windows-and-simple-blur" class="nav-link" data-scroll-target="#local-windows-and-simple-blur">Local windows and simple blur</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">6. Exercises</a></li>
   <li><a href="#summary-for-machine-learning" id="toc-summary-for-machine-learning" class="nav-link" data-scroll-target="#summary-for-machine-learning">Summary for Machine Learning</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
 </nav>
     </div>
@@ -379,22 +386,30 @@ window.Quarto = {
 <section id="array-creation-and-attributes" class="level2">
 <h2 class="anchored" data-anchor-id="array-creation-and-attributes">1. Array Creation and Attributes</h2>
 <p>Before we manipulate data, we need to know how to create arrays and inspect their properties.</p>
-<div id="9f21541f" class="cell" data-execution_count="1">
+<div id="c975d16e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="00dcfad7" class="cell" data-execution_count="2">
+<div id="1e1aa830" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1-Dimensional Array (Vector)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"a ="</span>, a)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, a.shape) <span class="co"># Returns a tuple representing the size of each dimension</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dtype:"</span>, a.dtype) <span class="co"># Data type of the elements</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dtype:"</span>, a.dtype) <span class="co"># Data type of the elements</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"b ="</span>, b)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, b.shape) <span class="co"># Returns a tuple representing the size of each dimension</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dtype:"</span>, b.dtype) <span class="co"># Data type of the elements</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>a = [1 2 3 4 5]
 shape: (5,)
-dtype: int64</code></pre>
+dtype: int64
+b = [1. 2. 3. 4. 5.]
+shape: (5,)
+dtype: float64</code></pre>
 </div>
 </div>
-<div id="fa8a1c77" class="cell" data-execution_count="3">
+<div id="8d37c5f5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-Dimensional Array (Matrix)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>, <span class="dv">6</span>]])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"B =</span><span class="ch">\n</span><span class="st">"</span>, B)</span>
@@ -420,7 +435,7 @@ shape: (3, 2)</code></pre>
 <p>By default, NumPy might create arrays with <code>float64</code> or <code>int64</code> depending on your OS and the input. In deep learning, memory is expensive, so we often explicitly cast arrays to 32-bit floats using <code>a.astype(np.float32)</code>.</p>
 </div>
 </div>
-<div id="850fbeea" class="cell" data-execution_count="4">
+<div id="d5ebbda3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequently used creation functions</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Zeros:</span><span class="ch">\n</span><span class="st">"</span>, np.zeros(<span class="dv">5</span>))               <span class="co"># Array of zeros</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ones:</span><span class="ch">\n</span><span class="st">"</span>, np.ones((<span class="dv">2</span>, <span class="dv">3</span>)))            <span class="co"># 2x3 matrix of ones</span></span>
@@ -442,7 +457,7 @@ Linspace:
 <section id="indexing-and-slicing" class="level2">
 <h2 class="anchored" data-anchor-id="indexing-and-slicing">2. Indexing and Slicing</h2>
 <p>Accessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.</p>
-<div id="4004b23f" class="cell" data-execution_count="5">
+<div id="af47fe0a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First element:"</span>, x[<span class="dv">0</span>])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Last element:"</span>, x[<span class="op">-</span><span class="dv">1</span>])</span>
@@ -455,7 +470,7 @@ Slice [1:4]: [20 30 40]
 Step slice [::2]: [10 30 50]</code></pre>
 </div>
 </div>
-<div id="85491645" class="cell" data-execution_count="6">
+<div id="5d2b184e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape(<span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"M =</span><span class="ch">\n</span><span class="st">"</span>, M)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Specific element M[1, 2]:"</span>, M[<span class="dv">1</span>, <span class="dv">2</span>]) <span class="co"># Row 1, Column 2 (0-indexed)</span></span>
@@ -489,7 +504,7 @@ Entire 3rd column: [ 3  7 11]</code></pre>
 <section id="vectorization" class="level2">
 <h2 class="anchored" data-anchor-id="vectorization">3. Vectorization</h2>
 <p>Vectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a <code>for</code> loop. This results in cleaner code and massive performance boosts.</p>
-<div id="40e169e7" class="cell" data-execution_count="7">
+<div id="c3358eea" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-vectorized approach: Python 'for' loop</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_squares_loop(arr):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
@@ -502,7 +517,7 @@ Entire 3rd column: [ 3  7 11]</code></pre>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (arr <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s test the speed difference:</p>
-<div id="b2aedd41" class="cell" data-execution_count="8">
+<div id="05045282" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> np.random.randn(<span class="dv">100_000</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loop time:"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit sum_squares_loop(large)</span>
@@ -510,13 +525,13 @@ Entire 3rd column: [ 3  7 11]</code></pre>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit sum_squares_vec(large)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Loop time:
-8.37 ms ± 48.7 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+8.56 ms ± 51.5 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 Vectorized time:
-24.2 μs ± 22.4 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
+24.5 μs ± 242 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
 </div>
 </div>
 <p>Vectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function <span class="math inline">\(\sigma(z) = \frac{1}{1 + e^{-z}}\)</span>:</p>
-<div id="5c0f837d" class="cell" data-execution_count="9">
+<div id="0bac35a8" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>z))</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -538,7 +553,7 @@ sigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5
 <li>They are equal, or</li>
 <li>One of them is 1. If an array has fewer dimensions, a dimension of <code>1</code> is implicitly prepended to its shape.</li>
 </ol>
-<div id="ac313818" class="cell" data-execution_count="10">
+<div id="70407f19" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shape (3, 4) + Shape (4,) </span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The (4,) is treated as (1, 4), then copied across 3 rows to match (3, 4)</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape(<span class="dv">3</span>, <span class="dv">4</span>)</span>
@@ -558,7 +573,7 @@ A + b =
  [ 9 11 13 15]]</code></pre>
 </div>
 </div>
-<div id="24845975" class="cell" data-execution_count="11">
+<div id="67f348ec" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shape (3, 4) + Shape (3, 1)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The (3, 1) array is copied across 4 columns to match (3, 4)</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([[<span class="dv">10</span>], [<span class="dv">20</span>], [<span class="dv">30</span>]])</span>
@@ -576,7 +591,7 @@ A + c =
 </div>
 </div>
 <p><strong>Practical Example: Normalizing Data</strong> A very common task in ML is normalizing data (e.g., making rows sum to 1).</p>
-<div id="e1398ea8" class="cell" data-execution_count="12">
+<div id="4f31cc22" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>row_sums <span class="op">=</span> A.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)  </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"row_sums (shape"</span>, row_sums.shape, <span class="st">") =</span><span class="ch">\n</span><span class="st">"</span>, row_sums)</span>
@@ -610,24 +625,165 @@ Verify row sums: [1. 1. 1.]</code></pre>
 </div>
 </div>
 </section>
+<section id="image-feature-extraction" class="level2">
+<h2 class="anchored" data-anchor-id="image-feature-extraction">5. Image Feature Extraction</h2>
+<p>A single photo (e.g.&nbsp;of a house or street) is just a NumPy array: <strong>grayscale</strong> images have shape <code>(height, width)</code> and <strong>color</strong> images <code>(height, width, 3)</code> for red, green, and blue. We will load both versions of the same scene, compare how they are stored, then use <strong>sliding local windows</strong> over the grayscale image to build a simple blur—each output pixel is the mean of a small square of input pixels. The same idea (local windows over a grid) appears in time series (rolling averages) and in convolutional layers in deep learning.</p>
+<section id="loading-the-image-grayscale-and-color" class="level3">
+<h3 class="anchored" data-anchor-id="loading-the-image-grayscale-and-color">Loading the image: grayscale and color</h3>
+<p>We use two files: a grayscale PNG and an RGB PNG of the same scene. The image is of the Lorch Monastery church; the original photograph is available at <a href="https://commons.wikimedia.org/wiki/File:Lorch_(W.)_-_Kloster_Lorch_-_Klosterkirche_-_Ansicht_von_SO_(1).jpg">Wikimedia Commons</a>. Grayscale images give one number per pixel, while RGB images give three numbers per pixel (one for each of red, green, and blue). If your grayscale file is instead stored as three identical channels (R=G=B), we collapse it to 2D so we have a single intensity per pixel.</p>
+<div id="a56970e0" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.image <span class="im">as</span> mpimg</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>img_gray <span class="op">=</span> mpimg.imread(<span class="st">"../../data/image_gray.png"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>img_rgb <span class="op">=</span> mpimg.imread(<span class="st">"../../data/image_rgb.png"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grayscale shape :"</span>, img_gray.shape, <span class="st">"→ one value per pixel"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RGB shape       :"</span>, img_rgb.shape, <span class="st">"→ three values per pixel"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Grayscale shape : (317, 500) → one value per pixel
+RGB shape       : (317, 500, 3) → three values per pixel</code></pre>
+</div>
+</div>
+<div id="ce27c7dd" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].imshow(img_gray, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Grayscale"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].imshow(img_rgb)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"RGB"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="numpy-basics_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="local-windows-and-simple-blur" class="level3">
+<h3 class="anchored" data-anchor-id="local-windows-and-simple-blur">Local windows and simple blur</h3>
+<p>Replace each pixel by the <strong>mean</strong> of a small square (e.g.&nbsp;10×10) around it. That gives a blurred image: edges soften and noise is reduced. We do this by sweeping a <strong>sliding window</strong> over the array—same idea as a rolling mean along a 1D signal, but in 2D.</p>
+<p>A 3×3 window in the top-left corner of the grayscale image looks like this:</p>
+<div id="44d6dfbf" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>top_left <span class="op">=</span> img_gray[:<span class="dv">3</span>, :<span class="dv">3</span>]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Top-left 3×3 block:</span><span class="ch">\n</span><span class="st">"</span>, top_left)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean of this block:"</span>, top_left.mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Top-left 3×3 block:
+ [[0.85882354 0.85882354 0.85882354]
+ [0.83137256 0.83137256 0.8352941 ]
+ [0.8235294  0.8235294  0.827451  ]]
+Mean of this block: 0.83878</code></pre>
+</div>
+</div>
+<p><strong>Double loop:</strong> For every possible top-left corner <code>(i, j)</code> on the <strong>full image</strong>, take the block <code>img[i:i+size, j:j+size]</code>, compute its mean, and store it. Clear, but many Python iterations.</p>
+<div id="78cf107b" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> img_gray.shape</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>mm, nn <span class="op">=</span> m <span class="op">-</span> size <span class="op">+</span> <span class="dv">1</span>, n <span class="op">-</span> size <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>result_loop <span class="op">=</span> np.empty((mm, nn))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(mm):</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(nn):</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        result_loop[i, j] <span class="op">=</span> img_gray[i : i <span class="op">+</span> size, j : j <span class="op">+</span> size].mean()</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_loop():</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.empty((mm, nn))</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(mm):</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(nn):</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>            r[i, j] <span class="op">=</span> img_gray[i : i <span class="op">+</span> size, j : j <span class="op">+</span> size].mean()</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>t_loop <span class="op">=</span> timeit.repeat(run_loop, number<span class="op">=</span><span class="dv">1</span>, repeat<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loop:       </span><span class="sc">{:.4f}</span><span class="st"> s (mean of 10 runs)"</span>.<span class="bu">format</span>(np.mean(t_loop)))</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Blurred shape:"</span>, result_loop.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loop:       0.4025 s (mean of 10 runs)
+Blurred shape: (308, 491)</code></pre>
+</div>
+</div>
+<p><strong>Vectorized view with <code>as_strided</code>:</strong> NumPy’s <code>stride_tricks.as_strided</code> lets you reinterpret the same memory as a 4D array of overlapping windows over the <strong>full image</strong>. No extra memory for the tiles; we only change how we index into the array. Then we take the mean over the last two axes to get one number per window.</p>
+<div id="bdd0e507" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.lib <span class="im">import</span> stride_tricks</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>shape <span class="op">=</span> (mm, nn, size, size)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>strides <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> img_gray.strides</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>windows <span class="op">=</span> stride_tricks.as_strided(img_gray, shape<span class="op">=</span>shape, strides<span class="op">=</span>strides)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>result_vec <span class="op">=</span> windows.mean(axis<span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_vec():</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> stride_tricks.as_strided(img_gray, shape<span class="op">=</span>shape, strides<span class="op">=</span>strides)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w.mean(axis<span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>))</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>t_vec <span class="op">=</span> timeit.repeat(run_vec, number<span class="op">=</span><span class="dv">1</span>, repeat<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Vectorized: </span><span class="sc">{:.4f}</span><span class="st"> s (mean of 10 runs)"</span>.<span class="bu">format</span>(np.mean(t_vec)))</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Same as loop:"</span>, np.allclose(result_loop, result_vec))</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Speedup:     </span><span class="sc">{:.1f}</span><span class="st">x"</span>.<span class="bu">format</span>(np.mean(t_loop) <span class="op">/</span> np.mean(t_vec)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Vectorized: 0.0189 s (mean of 10 runs)
+Same as loop: True
+Speedup:     21.2x</code></pre>
+</div>
+</div>
+<p><strong>Output comparison:</strong> Both methods produce the same blurred image over the full image; the vectorized version is typically much faster.</p>
+<div id="7f0fa095" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].imshow(img_gray, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Original (full image)"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].imshow(result_loop, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Blurred (loop)"</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].imshow(result_vec, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"Blurred (vectorized)"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].axis(<span class="st">"off"</span>)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="numpy-basics_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Strides and views
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>strides</strong> of an array tell how many bytes to skip when moving by one step along each dimension. <code>as_strided</code> only changes the shape and strides; it does not copy data, so you get a new <em>view</em> of the same buffer. For production code, libraries like Scikit-Learn provide helpers to extract sliding windows without writing strides by hand.</p>
+</div>
+</div>
+</section>
+</section>
 <section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">5. Exercises</h2>
+<h2 class="anchored" data-anchor-id="exercises">6. Exercises</h2>
 <p>Create a vector <code>v</code> and a matrix <code>M</code> with shape <code>(4, 3)</code> where every row of <code>M</code> is exactly <code>v</code>. <em>(Hint: You can achieve this using <code>np.tile</code> or by utilizing broadcasting).</em></p>
-<div id="d4802f69" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># M = ???  # Desired shape (4, 3), each row is [1, 2, 3]</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(M)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c7cc7862" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># M = ???  # Desired shape (4, 3), each row is [1, 2, 3]</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(M)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Solutions:</strong></p>
-<div id="dc16f841" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 1: Using np.tile</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> np.tile(v, (<span class="dv">4</span>, <span class="dv">1</span>))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using tile:</span><span class="ch">\n</span><span class="st">"</span>, M1)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 2: Using broadcasting</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> v <span class="op">+</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using broadcasting:</span><span class="ch">\n</span><span class="st">"</span>, M2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="69b01d0f" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 1: Using np.tile</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> np.tile(v, (<span class="dv">4</span>, <span class="dv">1</span>))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using tile:</span><span class="ch">\n</span><span class="st">"</span>, M1)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 2: Using broadcasting</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> v <span class="op">+</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using broadcasting:</span><span class="ch">\n</span><span class="st">"</span>, M2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Using tile:
  [[1 2 3]
@@ -648,9 +804,21 @@ Using broadcasting:
 <li>In ML, our datasets are usually represented as 2D arrays with the shape <code>(num_samples, num_features)</code>.</li>
 <li>When calculating gradients, losses, or passing data through neural network layers, <strong>never</strong> use Python loops. Always use <strong>Vectorization</strong> and <strong>Broadcasting</strong>. It will make your code shorter, significantly faster, and easier to read.</li>
 </ul>
-<pre><code>
-Would you like me to add a section specifically covering Matrix Multiplication (`np.dot` vs `@`), as that is also a crucial NumPy concept for Machine Learning?
-</code></pre>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://www.statlearning.com/">Python for Data Analysis</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Lorch_(W.)_-_Kloster_Lorch_-_Klosterkirche_-_Ansicht_von_SO_(1).jpg">Wikimedia Commons</a></li>
+</ul>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://github.com/jakevdp/WhirlwindTourOfPython/?tab=readme-ov-file">A Whirlwind Tour of Python</a></li>
+<li><a href="https://github.com/jakevdp/PythonDataScienceHandbook">Python Data Science Handbook</a></li>
+<li><a href="https://realpython.com/learning-paths/data-science-python-core-skills/">Data Science With Python Core Skills</a></li>
+</ul>
 
 
 </section>
