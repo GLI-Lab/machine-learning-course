@@ -39,13 +39,11 @@ jobs:
       # 3. Prepare _out, modify qmd, and convert to ipynb
       - name: Prepare _out, modify qmd, and convert to ipynb
         run: |
-          mkdir -p _out/exercises _out/assignments
+          mkdir -p _out
           cp pixi.toml pixi.lock _out/ 2>/dev/null || true
           cp README-students.md _out/README.md
-          
-          # (1) 원본 훼손 방지를 위해 exercises와 assignments 폴더 내용을 _out으로 먼저 복사
-          cp -r exercises/* _out/exercises/ 2>/dev/null || true
-          cp -r assignments/* _out/assignments/ 2>/dev/null || true
+          # (1) exercises, assignments, data 폴더 통째로 _out으로 복사
+          cp -r exercises assignments data _out/ 2>/dev/null || true
           
           # (2) 파이썬 스크립트 실행 (_out 폴더 내의 .qmd Callout 치환)
           python3 scripts/convert_callouts.py

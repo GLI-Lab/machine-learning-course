@@ -168,3 +168,13 @@ print("Students with score > 80:", top_students)
 * Use **Dictionaries** to manage hyperparameters and configuration settings cleanly.
 * Master **List Comprehensions**; you will use them constantly for parsing text, filtering file paths, and formatting raw input data before feeding it into NumPy or pandas.
 * **Classes** are the building blocks of Deep Learning frameworks. You will use `__init__` to define your network layers and class methods to define how data passes through them.
+
+## References
+
+- [Python for Data Analysis](https://www.statlearning.com/)
+
+## Further Reading
+
+- [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython/?tab=readme-ov-file)
+- [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook)
+- [Data Science With Python Core Skills](https://realpython.com/learning-paths/data-science-python-core-skills/)

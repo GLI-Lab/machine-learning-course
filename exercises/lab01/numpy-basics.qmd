@@ -24,7 +24,6 @@ Before we manipulate data, we need to know how to create arrays and inspect thei
 
 ```{python}
 import numpy as np
-
 ```
 
 ```{python}
@@ -34,6 +33,10 @@ print("a =", a)
 print("shape:", a.shape) # Returns a tuple representing the size of each dimension
 print("dtype:", a.dtype) # Data type of the elements
 
+b = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+print("b =", b)
+print("shape:", b.shape) # Returns a tuple representing the size of each dimension
+print("dtype:", b.dtype) # Data type of the elements
 ```
 
 ```{python}
@@ -41,7 +44,6 @@ print("dtype:", a.dtype) # Data type of the elements
 B = np.array([[1, 2], [3, 4], [5, 6]])
 print("B =\n", B)
 print("shape:", B.shape)  # (number of rows, number of columns)
-
 ```
 
 ::: {.callout-warning}
@@ -57,7 +59,6 @@ print("Zeros:\n", np.zeros(5))               # Array of zeros
 print("Ones:\n", np.ones((2, 3)))            # 2x3 matrix of ones
 print("Arange:\n", np.arange(0, 10, 2))      # start, stop (exclusive), step
 print("Linspace:\n", np.linspace(0, 1, 5))   # 5 evenly spaced numbers between 0 and 1 (inclusive)
-
 ```
 
 
@@ -71,7 +72,6 @@ print("First element:", x[0])
 print("Last element:", x[-1])
 print("Slice [1:4]:", x[1:4])     # Indices 1, 2, 3 (exclusive of 4)
 print("Step slice [::2]:", x[::2]) # Every 2nd element from start to end
-
 ```
 
 ```{python}
@@ -80,7 +80,6 @@ print("M =\n", M)
 print("Specific element M[1, 2]:", M[1, 2]) # Row 1, Column 2 (0-indexed)
 print("Entire 2nd row:", M[2, :])
 print("Entire 3rd column:", M[:, 3])
-
 ```
 
 ::: {.callout-warning}
@@ -111,7 +110,6 @@ def sum_squares_loop(arr):
 # Vectorized approach: NumPy array operation
 def sum_squares_vec(arr):
     return (arr ** 2).sum()
-
 ```
 
 Let's test the speed difference:
@@ -122,7 +120,6 @@ print("Loop time:")
 %timeit sum_squares_loop(large)
 print("Vectorized time:")
 %timeit sum_squares_vec(large)
-
 ```
 
 Vectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function $\sigma(z) = \frac{1}{1 + e^{-z}}$:
@@ -134,7 +131,6 @@ def sigmoid(z):
 z = np.linspace(-5, 5, 11)
 print("z          =", z)
 print("sigmoid(z) =", sigmoid(z))
-
 ```
 
 ## 4. Broadcasting
@@ -155,7 +151,6 @@ b = np.array([1, 2, 3, 4])
 print("A =\n", A)
 print("b =", b)
 print("A + b =\n", A + b)
-
 ```
 
 ```{python}
@@ -164,7 +159,6 @@ print("A + b =\n", A + b)
 c = np.array([[10], [20], [30]])
 print("c =\n", c)
 print("A + c =\n", A + c)
-
 ```
 
 **Practical Example: Normalizing Data**
@@ -178,7 +172,6 @@ print("row_sums (shape", row_sums.shape, ") =\n", row_sums)
 normalized = A / row_sums
 print("Normalized A (rows sum to 1):\n", normalized)
 print("Verify row sums:", normalized.sum(axis=1))
-
 ```
 
 ::: {.callout-warning}
@@ -189,7 +182,116 @@ Arrays with shape `(N,)` are called Rank-1 arrays (e.g., `b` in the example abov
 **Best Practice in ML:** Always reshape your 1D vectors into explicit 2D row matrices `(1, N)` or column matrices `(N, 1)` using `.reshape(-1, 1)` or `np.newaxis` to avoid unintended broadcasting behaviors.
 :::
 
-## 5. Exercises
+## 5. Image Feature Extraction
+
+A single photo (e.g. of a house or street) is just a NumPy array: **grayscale** images have shape `(height, width)` and **color** images `(height, width, 3)` for red, green, and blue. We will load both versions of the same scene, compare how they are stored, then use **sliding local windows** over the grayscale image to build a simple blur—each output pixel is the mean of a small square of input pixels. The same idea (local windows over a grid) appears in time series (rolling averages) and in convolutional layers in deep learning.
+
+### Loading the image: grayscale and color
+
+We use two files: a grayscale PNG and an RGB PNG of the same scene. The image is of the Lorch Monastery church; the original photograph is available at [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lorch_(W.)_-_Kloster_Lorch_-_Klosterkirche_-_Ansicht_von_SO_(1).jpg). Grayscale images give one number per pixel, while RGB images give three numbers per pixel (one for each of red, green, and blue). If your grayscale file is instead stored as three identical channels (R=G=B), we collapse it to 2D so we have a single intensity per pixel.
+
+```{python}
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+
+img_gray = mpimg.imread("../../data/image_gray.png")
+img_rgb = mpimg.imread("../../data/image_rgb.png")
+
+print("Grayscale shape :", img_gray.shape, "→ one value per pixel")
+print("RGB shape       :", img_rgb.shape, "→ three values per pixel")
+```
+
+```{python}
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+axes[0].imshow(img_gray, cmap='gray')
+axes[0].set_title("Grayscale")
+axes[0].axis("off")
+axes[1].imshow(img_rgb)
+axes[1].set_title("RGB")
+axes[1].axis("off")
+plt.tight_layout()
+plt.show()
+```
+
+### Local windows and simple blur
+
+Replace each pixel by the **mean** of a small square (e.g. 10×10) around it. That gives a blurred image: edges soften and noise is reduced. We do this by sweeping a **sliding window** over the array—same idea as a rolling mean along a 1D signal, but in 2D.
+
+A 3×3 window in the top-left corner of the grayscale image looks like this:
+
+```{python}
+top_left = img_gray[:3, :3]
+print("Top-left 3×3 block:\n", top_left)
+print("Mean of this block:", top_left.mean())
+```
+
+**Double loop:** For every possible top-left corner `(i, j)` on the **full image**, take the block `img[i:i+size, j:j+size]`, compute its mean, and store it. Clear, but many Python iterations.
+
+```{python}
+import timeit
+
+size = 10
+m, n = img_gray.shape
+mm, nn = m - size + 1, n - size + 1
+
+result_loop = np.empty((mm, nn))
+for i in range(mm):
+    for j in range(nn):
+        result_loop[i, j] = img_gray[i : i + size, j : j + size].mean()
+
+def run_loop():
+    r = np.empty((mm, nn))
+    for i in range(mm):
+        for j in range(nn):
+            r[i, j] = img_gray[i : i + size, j : j + size].mean()
+    return r
+t_loop = timeit.repeat(run_loop, number=1, repeat=10)
+print("Loop:       {:.4f} s (mean of 10 runs)".format(np.mean(t_loop)))
+print("Blurred shape:", result_loop.shape)
+```
+
+**Vectorized view with `as_strided`:** NumPy’s `stride_tricks.as_strided` lets you reinterpret the same memory as a 4D array of overlapping windows over the **full image**. No extra memory for the tiles; we only change how we index into the array. Then we take the mean over the last two axes to get one number per window.
+
+```{python}
+from numpy.lib import stride_tricks
+
+shape = (mm, nn, size, size)
+strides = 2 * img_gray.strides
+windows = stride_tricks.as_strided(img_gray, shape=shape, strides=strides)
+result_vec = windows.mean(axis=(-1, -2))
+
+def run_vec():
+    w = stride_tricks.as_strided(img_gray, shape=shape, strides=strides)
+    return w.mean(axis=(-1, -2))
+t_vec = timeit.repeat(run_vec, number=1, repeat=10)
+print("Vectorized: {:.4f} s (mean of 10 runs)".format(np.mean(t_vec)))
+print("Same as loop:", np.allclose(result_loop, result_vec))
+print("Speedup:     {:.1f}x".format(np.mean(t_loop) / np.mean(t_vec)))
+```
+
+**Output comparison:** Both methods produce the same blurred image over the full image; the vectorized version is typically much faster.
+
+```{python}
+fig, axes = plt.subplots(1, 3, figsize=(12, 4))
+axes[0].imshow(img_gray, cmap='gray')
+axes[0].set_title("Original (full image)")
+axes[0].axis("off")
+axes[1].imshow(result_loop, cmap='gray')
+axes[1].set_title("Blurred (loop)")
+axes[1].axis("off")
+axes[2].imshow(result_vec, cmap='gray')
+axes[2].set_title("Blurred (vectorized)")
+axes[2].axis("off")
+plt.tight_layout()
+plt.show()
+```
+
+::: {.callout-tip}
+## Strides and views
+The **strides** of an array tell how many bytes to skip when moving by one step along each dimension. `as_strided` only changes the shape and strides; it does not copy data, so you get a new *view* of the same buffer. For production code, libraries like Scikit-Learn provide helpers to extract sliding windows without writing strides by hand.
+:::
+
+## 6. Exercises
 
 Create a vector `v` and a matrix `M` with shape `(4, 3)` where every row of `M` is exactly `v`.
 *(Hint: You can achieve this using `np.tile` or by utilizing broadcasting).*
@@ -198,7 +300,6 @@ Create a vector `v` and a matrix `M` with shape `(4, 3)` where every row of `M` 
 v = np.array([1, 2, 3])
 # M = ???  # Desired shape (4, 3), each row is [1, 2, 3]
 # print(M)
-
 ```
 
 **Solutions:**
@@ -212,7 +313,6 @@ print("Using tile:\n", M1)
 # Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.
 M2 = v + np.zeros((4, 3))
 print("Using broadcasting:\n", M2)
-
 ```
 
 ## Summary for Machine Learning
@@ -220,8 +320,13 @@ print("Using broadcasting:\n", M2)
 * In ML, our datasets are usually represented as 2D arrays with the shape `(num_samples, num_features)`.
 * When calculating gradients, losses, or passing data through neural network layers, **never** use Python loops. Always use **Vectorization** and **Broadcasting**. It will make your code shorter, significantly faster, and easier to read.
 
-```
+## References
 
-Would you like me to add a section specifically covering Matrix Multiplication (`np.dot` vs `@`), as that is also a crucial NumPy concept for Machine Learning?
+- [Python for Data Analysis](https://www.statlearning.com/)
+- [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lorch_(W.)_-_Kloster_Lorch_-_Klosterkirche_-_Ansicht_von_SO_(1).jpg)
 
-```
+## Further Reading
+
+- [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython/?tab=readme-ov-file)
+- [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook)
+- [Data Science With Python Core Skills](https://realpython.com/learning-paths/data-science-python-core-skills/)
