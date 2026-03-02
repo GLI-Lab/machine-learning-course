@@ -115,7 +115,7 @@ website:
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
                 - text: "TBA3"
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab8. Attention Mechanisms"
+            - section: "Lab9. Attention Mechanisms"
               contents:
                 - text: "TBA1"
                   # href: exercises/lab14-naive-bayes.qmd
@@ -123,7 +123,7 @@ website:
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
                 - text: "TBA3"
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab9. Generative Models"
+            - section: "Lab10. Generative Models"
               contents:
                 - text: "TBA1"
                   # href: exercises/lab14-naive-bayes.qmd
@@ -131,7 +131,7 @@ website:
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
                 - text: "TBA3"
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab10. Representations"
+            - section: "Lab11. Representations"
               contents:
                 - text: "TBA1"
                   # href: exercises/lab14-naive-bayes.qmd
@@ -139,7 +139,7 @@ website:
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
                 - text: "TBA3"
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmdd
-            - section: "Lab11. SVM and Kernels"
+            - section: "Lab12. SVM and Kernels"
               contents:
                 - text: "TBA1"
                   # href: exercises/lab14-naive-bayes.qmd
@@ -147,7 +147,7 @@ website:
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
                 - text: "TBA3"
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab12. Decision Trees"
+            - section: "Lab13. Decision Trees"
               contents:
                 - text: "TBA1"
                   # href: exercises/lab14-naive-bayes.qmd
@@ -155,7 +155,7 @@ website:
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
                 - text: "TBA3"
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab13. Ensemble Methods"
+            - section: "Lab14. Ensemble Methods"
               contents:
                 - text: "TBA1"
                   # href: exercises/lab14-naive-bayes.qmd
@@ -163,7 +163,7 @@ website:
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
                 - text: "TBA3"
                   # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab14. Bayesian Learning"
+            - section: "Lab15. Bayesian Learning"
               contents:
                 - text: "TBA1"
                   # href: exercises/lab14-naive-bayes.qmd

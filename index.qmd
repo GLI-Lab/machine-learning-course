@@ -32,7 +32,7 @@ Every lab notebook follows the same internal layout so you always know where to 
 **Workflow:**
 
 1. **Run and Observe:** Execute the cells sequentially, always from top to bottom. Deeply understand how the mathematical equations from the lecture translate into NumPy operations or PyTorch layers. Pay close attention to how data shapes transform at each step.
-2. **Experiment Freely:** Labs are exploratory playgrounds. Once you have run the provided code and observed its default output, tinker freely. Change hyperparameters, alter architectures, or intentionally break the code to see what errors PyTorch throws. Some cells include optional challenge prompts marked with a comment like `# OPTIONAL:`.
+2. **Experiment Freely:** Labs are exploratory playgrounds. Once you have run the provided code and observed its default output, tinker freely. Change hyperparameters, alter architectures, or intentionally break the code to see what errors PyTorch throws.
 
 ::: {.callout-warning}
 ## Always Run Cells from Top to Bottom
