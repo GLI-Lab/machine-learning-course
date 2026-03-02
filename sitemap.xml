@@ -2,114 +2,130 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/README-students.html</loc>
-    <lastmod>2026-02-27T03:58:21.132Z</lastmod>
+    <lastmod>2026-03-02T15:56:59.922Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw08-decision-tree-ensemble.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw05/hw05.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw06-autoencoder.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw01/hw01.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw05-pytorch-rnn.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw07/hw07.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw01-environment-setup.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw02/hw02.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
     <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/index.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab09-vae-latent-space.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab03/lab03.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab01/python-basics.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab11/lab11.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab10-transfer-learning.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab02/linear-and-logistic-regression.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab04-mlp-forward-backward.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab01/matplotlib-basics.html</loc>
+    <lastmod>2026-03-02T15:56:59.934Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab02-linear-logistic-regression.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab01/pandas-basics.html</loc>
+    <lastmod>2026-03-02T15:56:59.934Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab13-bagging-vs-boosting.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab12/lab12.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/python-environment.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab05/lab05.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab06/lab06.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab14/lab14.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab04/lab04.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
     <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/index.html</loc>
-    <lastmod>2026-02-27T03:58:21.138Z</lastmod>
+    <lastmod>2026-03-02T15:56:59.934Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab12-decision-tree.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab10/lab10.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab08-char-language-model.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab08/lab08.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab11-kernel-visualization.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/environment-setup.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab06-optimizer-comparison.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab14-naive-bayes.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab07-feature-map-visualization.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab13/lab13.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
     <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab01/numpy-basics.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <lastmod>2026-03-02T15:56:59.934Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab05-numpy-mlp-to-pytorch.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab01/python-basics.html</loc>
+    <lastmod>2026-03-02T15:56:59.934Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab03-kfold-cv.html</loc>
-    <lastmod>2026-02-27T03:58:21.139Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab02/perceptron-limits.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab02/evaluation-metrics.html</loc>
+    <lastmod>2026-03-02T15:56:59.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab09/lab09.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/exercises/lab07/lab07.html</loc>
+    <lastmod>2026-03-02T15:56:59.935Z</lastmod>
   </url>
   <url>
     <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/index.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw04-pytorch-cnn.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw08/hw08.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw03-pytorch-mlp.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw04/hw04.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw02-simple-regression.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw03/hw03.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
   <url>
-    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw07-svm-kernel.html</loc>
-    <lastmod>2026-02-27T03:58:21.137Z</lastmod>
+    <loc>https://gli.konkuk.ac.kr/board/lectures/machine-learning/assignments/hw06/hw06.html</loc>
+    <lastmod>2026-03-02T15:56:59.933Z</lastmod>
   </url>
 </urlset>

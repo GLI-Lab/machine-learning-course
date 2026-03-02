@@ -28,47 +28,47 @@
     "text": "When\nCommand\n\n\n\n\nFirst-time clone\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git → cd machine-learning-course\n\n\nUpdate materials\ngit pull\n\n\nInstall environment\npixi install\n\n\nRun Jupyter\npixi run jupyter"
   },
   {
-    "objectID": "assignments/hw08-decision-tree-ensemble.html",
-    "href": "assignments/hw08-decision-tree-ensemble.html",
-    "title": "Decision Tree & Ensemble",
-    "section": "",
-    "text": "Decision Tree 및 Ensemble 방법 실습.",
-    "crumbs": [
-      "Assignments",
-      "Decision Tree & Ensemble"
-    ]
-  },
-  {
-    "objectID": "assignments/hw06-autoencoder.html",
-    "href": "assignments/hw06-autoencoder.html",
-    "title": "Autoencoder",
-    "section": "",
-    "text": "PyTorch Autoencoder 구현.",
-    "crumbs": [
-      "Assignments",
-      "Autoencoder"
-    ]
-  },
-  {
-    "objectID": "assignments/hw05-pytorch-rnn.html",
-    "href": "assignments/hw05-pytorch-rnn.html",
-    "title": "RNN",
+    "objectID": "assignments/hw05/hw05.html",
+    "href": "assignments/hw05/hw05.html",
+    "title": "Recurrent Neural Network with PyTorch",
     "section": "",
     "text": "PyTorch로 recurrent neural network 구현.",
     "crumbs": [
       "Assignments",
-      "RNN"
+      "HW5 (~TBA)"
     ]
   },
   {
-    "objectID": "assignments/hw01-environment-setup.html",
-    "href": "assignments/hw01-environment-setup.html",
-    "title": "Environment setup",
+    "objectID": "assignments/hw01/hw01.html",
+    "href": "assignments/hw01/hw01.html",
+    "title": "Numerical Programming with NumPy",
     "section": "",
-    "text": "Python / Numpy / Matplotlib 환경 설정 및 기초 사용.",
+    "text": "Lab 01 (Python, NumPy, Pandas, Matplotlib)에서 다룬 연습 문제를 모았습니다.\n\nPython Basics (Lab 01)\nYou are given a list of dictionaries representing a tiny dataset of students and their test scores. Write a list comprehension that extracts the names of students who scored higher than 80.\n\nstudents = [\n    {'name': 'Alice', 'score': 85},\n    {'name': 'Bob', 'score': 72},\n    {'name': 'Charlie', 'score': 90},\n    {'name': 'Diana', 'score': 65}\n]\n\n# top_students = ???\n# print(top_students)\n\nSolutions:\n\n# Solution using list comprehension with a condition\ntop_students = [student['name'] for student in students if student['score'] &gt; 80]\nprint(\"Students with score &gt; 80:\", top_students)\n\nStudents with score &gt; 80: ['Alice', 'Charlie']\n\n\n\n\nNumPy Basics (Lab 01)\nCreate a vector v and a matrix M with shape (4, 3) where every row of M is exactly v. (Hint: You can achieve this using np.tile or by utilizing broadcasting).\n\nimport numpy as np\n\nv = np.array([1, 2, 3])\n# M = ???  # Desired shape (4, 3), each row is [1, 2, 3]\n# print(M)\n\nSolutions:\n\n# Solution 1: Using np.tile\nM1 = np.tile(v, (4, 1))\nprint(\"Using tile:\\n\", M1)\n\n# Solution 2: Using broadcasting\n# Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.\nM2 = v + np.zeros((4, 3))\nprint(\"Using broadcasting:\\n\", M2)\n\nUsing tile:\n [[1 2 3]\n [1 2 3]\n [1 2 3]\n [1 2 3]]\nUsing broadcasting:\n [[1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]]\n\n\n\n\nPandas Basics (Lab 01)\nYou are given a small dataset of housing prices. Write pandas code to:\n\nExtract all houses with more than 2 bedrooms.\nSeparate the filtered data into features (\\(X\\)) containing ‘Bedrooms’ and ‘SqFt’, and the target label (\\(y\\)) containing ‘Price’.\n\n\nimport pandas as pd\n\nhousing_data = {\n    'Bedrooms': [2, 3, 4, 2, 5],\n    'SqFt': [1200, 1800, 2400, 900, 3000],\n    'Price': [250000, 350000, 500000, 200000, 650000]\n}\nhouses_df = pd.DataFrame(housing_data)\n\n# 1. large_houses = ???\n# 2. X = ???\n# 2. y = ???\n\n# print(\"X:\\n\", X)\n# print(\"y:\\n\", y)\n\nSolutions:\n\n# 1. Filter for houses with &gt; 2 bedrooms\nlarge_houses = houses_df[houses_df['Bedrooms'] &gt; 2]\n\n# 2. Extract X (features) and y (target)\nX = large_houses[['Bedrooms', 'SqFt']]\ny = large_houses['Price']\n\nprint(\"Features (X):\\n\", X)\nprint(\"\\nTarget (y):\\n\", y)\n\nFeatures (X):\n    Bedrooms  SqFt\n1         3  1800\n2         4  2400\n4         5  3000\n\nTarget (y):\n 1    350000\n2    500000\n4    650000\nName: Price, dtype: int64\n\n\n\n\nMatplotlib Basics (Lab 01)\nUsing the numpy arrays provided below, create a scatter plot.\n\nMake the points green triangles (marker='^').\nAdd a title: “Engine Size vs. Horsepower”.\nLabel the x-axis “Engine Size (L)” and the y-axis “Horsepower”.\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nengine_size = np.array([1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0, 6.0])\nhorsepower = np.array([110, 150, 180, 220, 260, 300, 380, 450])\n\n# fig, ax = plt.subplots()\n# Your plotting code here...\n\n# plt.show()\n\nSolutions:\n\nfig, ax = plt.subplots(figsize=(6, 4))\n\n# 1. Plot green triangles\nax.scatter(engine_size, horsepower, color='green', marker='^', s=100) # s sets the marker size\n\n# 2 & 3. Add titles and labels\nax.set_title(\"Engine Size vs. Horsepower\")\nax.set_xlabel(\"Engine Size (L)\")\nax.set_ylabel(\"Horsepower\")\nax.grid(True, alpha=0.3)\n\nplt.show()",
     "crumbs": [
       "Assignments",
-      "Environment setup"
+      "HW1 (~26.03.10)"
+    ]
+  },
+  {
+    "objectID": "assignments/hw07/hw07.html",
+    "href": "assignments/hw07/hw07.html",
+    "title": "SVM and Kernel Methods",
+    "section": "",
+    "text": "SVM 및 Kernel 기법 실습.",
+    "crumbs": [
+      "Assignments",
+      "HW7 (~TBA)"
+    ]
+  },
+  {
+    "objectID": "assignments/hw02/hw02.html",
+    "href": "assignments/hw02/hw02.html",
+    "title": "Linear Regression with NumPy",
+    "section": "",
+    "text": "Numpy로 매우 단순한 회귀 모델 구현.",
+    "crumbs": [
+      "Assignments",
+      "HW2 (~TBA)"
     ]
   },
   {
@@ -121,397 +121,492 @@
     "text": "Contact\nFor questions regarding course materials or assignments, please reach out via the course discussion board or email the instructor."
   },
   {
-    "objectID": "exercises/lab09-vae-latent-space.html",
-    "href": "exercises/lab09-vae-latent-space.html",
-    "title": "VAE latent space",
+    "objectID": "exercises/lab03/lab03.html",
+    "href": "exercises/lab03/lab03.html",
+    "title": "K-Fold Cross-Validation",
     "section": "",
-    "text": "MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰.",
-    "crumbs": [
-      "Exercises",
-      "VAE latent space"
-    ]
+    "text": "다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰."
   },
   {
-    "objectID": "exercises/lab01/python-basics.html#objectives",
-    "href": "exercises/lab01/python-basics.html#objectives",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "Objectives",
-    "text": "Objectives\n\nUnderstand core Python data structures: Lists and Dictionaries.\nFunctions and Control Flow: Learn how to write modular, reusable logic for data processing.\nList Comprehensions: Grasp the “Pythonic” way to create and filter lists efficiently.\nClasses and Objects: Get introduced to the basics of Object-Oriented Programming (OOP), which is crucial for defining neural networks.\n\n\n\n\n\n\n\nNoteBasic Concept: Why Python for Machine Learning?\n\n\n\nPython is the lingua franca of modern Machine Learning. While standard Python is not fast enough for heavy matrix mathematics (which is why we use C-optimized libraries like NumPy or PyTorch), its clean syntax and massive ecosystem make it the perfect “glue” language. We rely on plain Python to load configurations, clean text data, build data loading pipelines, and orchestrate complex model training loops.",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#core-data-structures-lists-and-dictionaries",
-    "href": "exercises/lab01/python-basics.html#core-data-structures-lists-and-dictionaries",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "1. Core Data Structures: Lists and Dictionaries",
-    "text": "1. Core Data Structures: Lists and Dictionaries\nBefore we get to matrices, we need to know how standard Python stores sequences and key-value pairs.\n\n# Lists: Ordered, mutable sequences\n# Often used to store file paths, feature names, or a sequence of transformations.\nfeatures = ['age', 'income', 'height', 'weight']\nprint(\"Original features:\", features)\n\n# Appending and accessing\nfeatures.append('blood_pressure')\nprint(\"First feature:\", features[0])\nprint(\"Last feature:\", features[-1])\n\nOriginal features: ['age', 'income', 'height', 'weight']\nFirst feature: age\nLast feature: blood_pressure\n\n\n\n# Dictionaries: Unordered key-value pairs (Hash Maps)\n# Essential for storing model hyperparameters or configurations.\nhyperparameters = {\n    'learning_rate': 0.001,\n    'batch_size': 32,\n    'optimizer': 'Adam'\n}\n\nprint(\"Current Learning Rate:\", hyperparameters['learning_rate'])\n\n# Adding a new key-value pair\nhyperparameters['epochs'] = 50\nprint(\"Updated Config:\", hyperparameters)\n\nCurrent Learning Rate: 0.001\nUpdated Config: {'learning_rate': 0.001, 'batch_size': 32, 'optimizer': 'Adam', 'epochs': 50}\n\n\n\n\n\n\n\n\nWarningCaveat: Lists are Slow for Math\n\n\n\nStandard Python lists can hold elements of different data types (e.g., [1, \"hello\", 3.14]). Because of this flexibility, Python must check the type of each element during iteration, making mathematical operations on standard lists extremely slow compared to NumPy arrays.",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#functions-and-control-flow",
-    "href": "exercises/lab01/python-basics.html#functions-and-control-flow",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "2. Functions and Control Flow",
-    "text": "2. Functions and Control Flow\nMachine learning workflows require modular code. We use functions to isolate tasks like data cleaning, metric calculation, or model evaluation.\n\ndef categorize_age(age):\n    \"\"\"A simple function using control flow to categorize numerical data.\"\"\"\n    if age &lt; 18:\n        return 'Minor'\n    elif age &lt; 65:\n        return 'Adult'\n    else:\n        return 'Senior'\n\n# Testing the function\nages = [15, 34, 72]\nfor a in ages:\n    print(f\"Age {a} is categorized as: {categorize_age(a)}\")\n\nAge 15 is categorized as: Minor\nAge 34 is categorized as: Adult\nAge 72 is categorized as: Senior",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#list-comprehensions",
-    "href": "exercises/lab01/python-basics.html#list-comprehensions",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "3. List Comprehensions",
-    "text": "3. List Comprehensions\nList comprehensions provide a concise, readable, and often faster way to create lists compared to standard for loops. They are ubiquitous in Python data pipelines.\n\n# Non-comprehension approach: Standard loop\nraw_text = [\"  Hello \", \"WORLD  \", \" machine learning\"]\nclean_text_loop = []\nfor word in raw_text:\n    clean_text_loop.append(word.strip().lower())\n\nprint(\"Cleaned with loop:\", clean_text_loop)\n\n# Pythonic approach: List Comprehension\nclean_text_comp = [word.strip().lower() for word in raw_text]\nprint(\"Cleaned with comprehension:\", clean_text_comp)\n\nCleaned with loop: ['hello', 'world', 'machine learning']\nCleaned with comprehension: ['hello', 'world', 'machine learning']\n\n\nYou can also add conditional logic (filtering) inside a comprehension:\n\n# Extract only the positive numbers\nnumbers = [-5, 2, -1, 10, 8]\npositives = [n for n in numbers if n &gt; 0]\nprint(\"Positive numbers only:\", positives)\n\nPositive numbers only: [2, 10, 8]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#basics-of-classes-oop",
-    "href": "exercises/lab01/python-basics.html#basics-of-classes-oop",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "4. Basics of Classes (OOP)",
-    "text": "4. Basics of Classes (OOP)\nIn modern deep learning frameworks like PyTorch, you define your neural networks by writing a Python class. Understanding how to initialize a class and define its methods is strictly required.\n\nclass SimpleScaler:\n    \"\"\"A mock object mimicking a data scaler (like in scikit-learn).\"\"\"\n    \n    # The __init__ method runs when you create a new instance\n    def __init__(self, scale_factor):\n        self.scale_factor = scale_factor  # Store data inside the object\n        \n    # A method belonging to the class\n    def transform(self, data):\n        return [x * self.scale_factor for x in data]\n\n# Instantiate the object\nscaler = SimpleScaler(scale_factor=0.5)\n\n# Use the object's method\nraw_data = [10, 20, 30]\nscaled_data = scaler.transform(raw_data)\nprint(\"Scaled data:\", scaled_data)\n\nScaled data: [5.0, 10.0, 15.0]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#exercises",
-    "href": "exercises/lab01/python-basics.html#exercises",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "5. Exercises",
-    "text": "5. Exercises\nYou are given a list of dictionaries representing a tiny dataset of students and their test scores. Write a list comprehension that extracts the names of students who scored higher than 80.\n\nstudents = [\n    {'name': 'Alice', 'score': 85},\n    {'name': 'Bob', 'score': 72},\n    {'name': 'Charlie', 'score': 90},\n    {'name': 'Diana', 'score': 65}\n]\n\n# top_students = ???\n# print(top_students)\n\nSolutions:\n\n# Solution using list comprehension with a condition\ntop_students = [student['name'] for student in students if student['score'] &gt; 80]\nprint(\"Students with score &gt; 80:\", top_students)\n\nStudents with score &gt; 80: ['Alice', 'Charlie']",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#summary-for-machine-learning",
-    "href": "exercises/lab01/python-basics.html#summary-for-machine-learning",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "Summary for Machine Learning",
-    "text": "Summary for Machine Learning\n\nUse Dictionaries to manage hyperparameters and configuration settings cleanly.\nMaster List Comprehensions; you will use them constantly for parsing text, filtering file paths, and formatting raw input data before feeding it into NumPy or pandas.\nClasses are the building blocks of Deep Learning frameworks. You will use __init__ to define your network layers and class methods to define how data passes through them.",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#references",
-    "href": "exercises/lab01/python-basics.html#references",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "References",
-    "text": "References\n\nPython for Data Analysis",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/python-basics.html#further-reading",
-    "href": "exercises/lab01/python-basics.html#further-reading",
-    "title": "Lab 01 - Python Basics for Machine Learning",
-    "section": "Further Reading",
-    "text": "Further Reading\n\nA Whirlwind Tour of Python\nPython Data Science Handbook\nData Science With Python Core Skills",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab10-transfer-learning.html",
-    "href": "exercises/lab10-transfer-learning.html",
-    "title": "Transfer Learning",
+    "objectID": "exercises/lab11/lab11.html",
+    "href": "exercises/lab11/lab11.html",
+    "title": "Kernel 시각화",
     "section": "",
-    "text": "Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화.",
-    "crumbs": [
-      "Exercises",
-      "Transfer Learning"
-    ]
+    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰."
   },
   {
-    "objectID": "exercises/lab04-mlp-forward-backward.html",
-    "href": "exercises/lab04-mlp-forward-backward.html",
-    "title": "MLP Forward/Backward",
-    "section": "",
-    "text": "손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화.",
-    "crumbs": [
-      "Exercises",
-      "MLP Forward/Backward"
-    ]
-  },
-  {
-    "objectID": "exercises/lab02-linear-logistic-regression.html",
-    "href": "exercises/lab02-linear-logistic-regression.html",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html",
+    "href": "exercises/lab02/linear-and-logistic-regression.html",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "",
     "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#목표",
-    "href": "exercises/lab02-linear-logistic-regression.html#목표",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html#목표",
+    "href": "exercises/lab02/linear-and-logistic-regression.html#목표",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "",
     "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
-    "href": "exercises/lab02-linear-logistic-regression.html#선형-회귀-1변수",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html#선형-회귀-1변수",
+    "href": "exercises/lab02/linear-and-logistic-regression.html#선형-회귀-1변수",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "1. 선형 회귀 (1변수)",
     "text": "1. 선형 회귀 (1변수)\n\\(y \\approx w_0 + w_1 x\\) 형태. 정규방정식 \\(\\hat{w} = (X^T X)^{-1} X^T y\\) 로 한 번에 구할 수 있다.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n# 데이터: y = 2 + 3x + 노이즈\nnp.random.seed(42)\nn = 30\nx = np.linspace(0, 2, n)\ny = 2 + 3 * x + 0.5 * np.random.randn(n)\n\n\n# 설계 행렬 X: 각 행이 [1, x_i]\nX = np.column_stack([np.ones(n), x])\nw_hat = np.linalg.solve(X.T @ X, X.T @ y)\nprint(\"w_0 =\", w_hat[0], \", w_1 =\", w_hat[1])\n\nw_0 = 2.1606891797132195 , w_1 = 2.745237372361261\n\n\n\nplt.scatter(x, y, label=\"data\")\nx_line = np.linspace(0, 2, 100)\ny_line = w_hat[0] + w_hat[1] * x_line\nplt.plot(x_line, y_line, \"r-\", label=\"fitted\")\nplt.xlabel(\"x\"); plt.ylabel(\"y\"); plt.legend(); plt.show()",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
-    "href": "exercises/lab02-linear-logistic-regression.html#퍼셉트론-and-or-xor",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html#퍼셉트론-and-or-xor",
+    "href": "exercises/lab02/linear-and-logistic-regression.html#퍼셉트론-and-or-xor",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "2. 퍼셉트론 (AND, OR, XOR)",
     "text": "2. 퍼셉트론 (AND, OR, XOR)\n퍼셉트론: \\(f(x) = \\mathbb{1}[ w^T x + b &gt; 0 ]\\). 선형 분리 가능한 문제만 풀 수 있다.\n\n# AND, OR, XOR 진리표 (입력 2개)\nX_gate = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\ny_and = np.array([0, 0, 0, 1])\ny_or  = np.array([0, 1, 1, 1])\ny_xor = np.array([0, 1, 1, 0])\n\n\ndef perceptron_predict(X, w, b):\n    \"\"\" X: (n, d), w: (d,), b: scalar \"\"\"\n    return (X @ w + b &gt; 0).astype(int)\n\ndef fit_perceptron(X, y, lr=0.1, epochs=100):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        pred = perceptron_predict(X, w, b)\n        err = y - pred\n        w += lr * (X.T @ err)\n        b += lr * err.sum()\n    return w, b\n\n\nw_and, b_and = fit_perceptron(X_gate, y_and)\nw_or,  b_or  = fit_perceptron(X_gate, y_or)\nprint(\"AND 예측:\", perceptron_predict(X_gate, w_and, b_and), \" (정답:\", y_and, \")\")\nprint(\"OR  예측:\", perceptron_predict(X_gate, w_or,  b_or),  \" (정답:\", y_or, \")\")\n\nAND 예측: [0 0 0 1]  (정답: [0 0 0 1] )\nOR  예측: [0 1 1 1]  (정답: [0 1 1 1] )\n\n\n\n# XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패\nw_xor, b_xor = fit_perceptron(X_gate, y_xor)\nprint(\"XOR 예측:\", perceptron_predict(X_gate, w_xor, b_xor), \" (정답:\", y_xor, \")\")\n\nXOR 예측: [0 0 0 0]  (정답: [0 1 1 0] )",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
-    "href": "exercises/lab02-linear-logistic-regression.html#결정-경계-시각화-and-or",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html#결정-경계-시각화-and-or",
+    "href": "exercises/lab02/linear-and-logistic-regression.html#결정-경계-시각화-and-or",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "3. 결정 경계 시각화 (AND / OR)",
     "text": "3. 결정 경계 시각화 (AND / OR)\n\\(w_1 x_1 + w_2 x_2 + b = 0\\) 이 결정 경계(직선)이다. \\(x_2 = -(w_1/w_2)x_1 - b/w_2\\).\n\ndef plot_decision_boundary_2d(X, y, w, b, title=\"\"):\n    plt.scatter(X[y==0, 0], X[y==0, 1], marker=\"o\", label=\"0\")\n    plt.scatter(X[y==1, 0], X[y==1, 1], marker=\"s\", label=\"1\")\n    x1 = np.array([-0.5, 1.5])\n    if np.abs(w[1]) &gt; 1e-8:\n        x2 = -(w[0] * x1 + b) / w[1]\n        plt.plot(x1, x2, \"k-\", label=\"decision boundary\")\n    plt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(title); plt.show()\n\n\nplot_decision_boundary_2d(X_gate, y_and, w_and, b_and, \"AND\")\n\n\n\n\n\n\n\n\n\nplot_decision_boundary_2d(X_gate, y_or, w_or, b_or, \"OR\")",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
-    "href": "exercises/lab02-linear-logistic-regression.html#로지스틱-회귀-결정-경계",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html#로지스틱-회귀-결정-경계",
+    "href": "exercises/lab02/linear-and-logistic-regression.html#로지스틱-회귀-결정-경계",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "4. 로지스틱 회귀 (결정 경계)",
     "text": "4. 로지스틱 회귀 (결정 경계)\n로지스틱 회귀: \\(P(y=1|x) = \\sigma(w^T x + b)\\), \\(\\sigma(z) = 1/(1+e^{-z})\\).\n결정 경계는 \\(\\sigma=0.5\\) 인 곳, 즉 \\(w^T x + b = 0\\) (직선).\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-np.clip(z, -500, 500)))\n\n# 2D 예시 데이터: 두 클래스가 약간 겹침\nnp.random.seed(1)\nn1, n2 = 25, 25\nX1 = np.random.randn(n1, 2) + np.array([1, 1])\nX2 = np.random.randn(n2, 2) + np.array([-1, -1])\nX_lr = np.vstack([X1, X2])\ny_lr = np.array([0] * n1 + [1] * n2)\n\n\n# 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)\ndef fit_logistic_simple(X, y, lr=0.1, epochs=2000):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        logit = X @ w + b\n        p = sigmoid(logit)\n        grad_w = X.T @ (p - y)\n        grad_b = (p - y).sum()\n        w -= lr * grad_w\n        b -= lr * grad_b\n    return w, b\n\nw_lr, b_lr = fit_logistic_simple(X_lr, y_lr)\npred_lr = (sigmoid(X_lr @ w_lr + b_lr) &gt;= 0.5).astype(int)\nprint(\"정확도:\", (pred_lr == y_lr).mean())\n\n정확도: 0.98\n\n\n\n# 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2\nplt.scatter(X_lr[y_lr==0, 0], X_lr[y_lr==0, 1], marker=\"o\", label=\"0\")\nplt.scatter(X_lr[y_lr==1, 0], X_lr[y_lr==1, 1], marker=\"s\", label=\"1\")\nx1_min, x1_max = X_lr[:, 0].min() - 0.5, X_lr[:, 0].max() + 0.5\nx1_grid = np.linspace(x1_min, x1_max, 100)\nif np.abs(w_lr[1]) &gt; 1e-8:\n    x2_boundary = -(w_lr[0] * x1_grid + b_lr) / w_lr[1]\n    plt.plot(x1_grid, x2_boundary, \"k-\", lw=2, label=\"decision boundary\")\nplt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(\"Logistic regression\"); plt.show()",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#연습",
-    "href": "exercises/lab02-linear-logistic-regression.html#연습",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html#연습",
+    "href": "exercises/lab02/linear-and-logistic-regression.html#연습",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "5. 연습",
     "text": "5. 연습\n\nXOR 데이터에 대해 두 개의 퍼셉트론을 써서 해결하는 방법을 생각해 보세요.\n(힌트: 은닉층 하나를 두고 AND(OR, OR) 같은 구조.)\n위 로지스틱 회귀에서 epochs를 100으로 줄이면 결정 경계가 어떻게 달라지는지 확인해 보세요.",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab02-linear-logistic-regression.html#참고",
-    "href": "exercises/lab02-linear-logistic-regression.html#참고",
+    "objectID": "exercises/lab02/linear-and-logistic-regression.html#참고",
+    "href": "exercises/lab02/linear-and-logistic-regression.html#참고",
     "title": "Lab 02 - Linear & Logistic Regression",
     "section": "참고",
     "text": "참고\n\n퍼셉트론 하나 = 선형 결정 경계만 가능. XOR은 다층 퍼셉트론(MLP)으로 해결.\n로지스틱 회귀의 결정 경계도 선형; 비선형 경계가 필요하면 특성 추가 또는 신경망을 사용한다.",
     "crumbs": [
       "Exercises",
-      "Lab 02 - Linear & Logistic Regression"
+      "Lab2. Linear Models",
+      "Linear and Logistic Regression"
     ]
   },
   {
-    "objectID": "exercises/lab13-bagging-vs-boosting.html",
-    "href": "exercises/lab13-bagging-vs-boosting.html",
-    "title": "Bagging vs Boosting",
+    "objectID": "exercises/lab01/matplotlib-basics.html",
+    "href": "exercises/lab01/matplotlib-basics.html",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
     "section": "",
-    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화.",
+    "text": "Understand the anatomy of a Matplotlib figure: Figures and Axes.\nBasic Plotting: Learn how to create line plots, scatter plots, and histograms.\nCustomization: Master adding titles, labels, legends, and adjusting colors to make charts readable.\nSubplots: Learn how to display multiple plots side-by-side, a common task when comparing model metrics.\n\n\n\n\n\n\n\nNoteBasic Concept: Why Matplotlib for Machine Learning?\n\n\n\nIn Machine Learning, flying blind is dangerous. You need to visualize your data before training a model (Exploratory Data Analysis) to spot outliers or distinct clusters. During and after training, you must plot “loss curves” to diagnose if your model is learning, overfitting, or underfitting. Matplotlib is the foundational plotting library in Python. While libraries like Seaborn or Plotly offer higher-level wrappers, they are almost all built on top of Matplotlib’s core engine.",
     "crumbs": [
       "Exercises",
-      "Bagging vs Boosting"
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
     ]
   },
   {
-    "objectID": "exercises/python-environment.html",
-    "href": "exercises/python-environment.html",
-    "title": "Python Environment Setup",
+    "objectID": "exercises/lab01/matplotlib-basics.html#objectives",
+    "href": "exercises/lab01/matplotlib-basics.html#objectives",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
     "section": "",
-    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
+    "text": "Understand the anatomy of a Matplotlib figure: Figures and Axes.\nBasic Plotting: Learn how to create line plots, scatter plots, and histograms.\nCustomization: Master adding titles, labels, legends, and adjusting colors to make charts readable.\nSubplots: Learn how to display multiple plots side-by-side, a common task when comparing model metrics.\n\n\n\n\n\n\n\nNoteBasic Concept: Why Matplotlib for Machine Learning?\n\n\n\nIn Machine Learning, flying blind is dangerous. You need to visualize your data before training a model (Exploratory Data Analysis) to spot outliers or distinct clusters. During and after training, you must plot “loss curves” to diagnose if your model is learning, overfitting, or underfitting. Matplotlib is the foundational plotting library in Python. While libraries like Seaborn or Plotly offer higher-level wrappers, they are almost all built on top of Matplotlib’s core engine.",
     "crumbs": [
       "Exercises",
-      "Python Environment Setup"
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
     ]
   },
   {
-    "objectID": "exercises/python-environment.html#why-pixi",
-    "href": "exercises/python-environment.html#why-pixi",
-    "title": "Python Environment Setup",
+    "objectID": "exercises/lab01/matplotlib-basics.html#the-anatomy-of-a-plot-basic-line-plots",
+    "href": "exercises/lab01/matplotlib-basics.html#the-anatomy-of-a-plot-basic-line-plots",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
+    "section": "1. The Anatomy of a Plot & Basic Line Plots",
+    "text": "1. The Anatomy of a Plot & Basic Line Plots\nBefore writing code, it is important to understand Matplotlib’s two main objects:\n\nFigure: The overall window or page that everything is drawn on.\nAxes: The actual plot (the area with the x and y coordinates, data, labels, etc.). A Figure can contain multiple Axes.\n\nLet’s start with a simple line plot, which is commonly used to plot training loss over time (epochs).\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Generate some dummy data representing training epochs and loss\nepochs = np.arange(1, 11)\nloss = np.array([2.5, 1.8, 1.2, 0.9, 0.7, 0.55, 0.45, 0.38, 0.32, 0.30])\n\n# Create a Figure and an Axes object (The Object-Oriented approach)\nfig, ax = plt.subplots(figsize=(8, 4))\n\n# Plot the data\nax.plot(epochs, loss, marker='o', linestyle='-', color='b', label='Training Loss')\n\n# Customize the plot\nax.set_title(\"Model Training Progress\")\nax.set_xlabel(\"Epoch\")\nax.set_ylabel(\"Loss\")\nax.grid(True, linestyle='--', alpha=0.6)\nax.legend()\n\n# Display the plot\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningCaveat: The Two Interfaces\n\n\n\nMatplotlib has two ways to write code: the Pyplot API (e.g., plt.plot(), plt.title()) and the Object-Oriented (OO) API (e.g., ax.plot(), ax.set_title()). Best Practice in ML: Use the Object-Oriented API (fig, ax = plt.subplots()). It is much more robust when you need to create complex dashboards with multiple subplots.",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/matplotlib-basics.html#scatter-plots-feature-visualization",
+    "href": "exercises/lab01/matplotlib-basics.html#scatter-plots-feature-visualization",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
+    "section": "2. Scatter Plots (Feature Visualization)",
+    "text": "2. Scatter Plots (Feature Visualization)\nScatter plots are arguably the most important plots in Machine Learning. They allow you to visualize the relationship between two features and see if your classes are easily separable.\n\n# Generate fake dataset: Height (cm) vs Weight (kg) for two different classes\nnp.random.seed(42)\nheight_cats = np.random.normal(25, 3, 50)\nweight_cats = height_cats * 0.2 + np.random.normal(0, 1, 50)\n\nheight_dogs = np.random.normal(50, 8, 50)\nweight_dogs = height_dogs * 0.4 + np.random.normal(0, 3, 50)\n\nfig, ax = plt.subplots(figsize=(7, 5))\n\n# Scatter plot for Cats (Red)\nax.scatter(height_cats, weight_cats, color='red', label='Cats', alpha=0.7, edgecolors='k')\n\n# Scatter plot for Dogs (Blue)\nax.scatter(height_dogs, weight_dogs, color='blue', label='Dogs', alpha=0.7, edgecolors='k')\n\nax.set_title(\"Height vs Weight by Species\")\nax.set_xlabel(\"Height (cm)\")\nax.set_ylabel(\"Weight (kg)\")\nax.legend()\n\nplt.show()",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/matplotlib-basics.html#histograms-data-distributions",
+    "href": "exercises/lab01/matplotlib-basics.html#histograms-data-distributions",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
+    "section": "3. Histograms (Data Distributions)",
+    "text": "3. Histograms (Data Distributions)\nMachine learning models assume certain distributions in your data. Histograms help you verify if your features are normally distributed or if they are skewed and require normalization.\n\n# Generate random data representing house prices\nprices = np.random.lognormal(mean=11.5, sigma=0.5, size=1000)\n\nfig, ax = plt.subplots(figsize=(7, 4))\n\n# Plot histogram with 30 bins\nax.hist(prices, bins=30, color='green', edgecolor='black', alpha=0.7)\n\nax.set_title(\"Distribution of House Prices\")\nax.set_xlabel(\"Price ($)\")\nax.set_ylabel(\"Frequency\")\n\nplt.show()",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/matplotlib-basics.html#subplots-multiple-plots-at-once",
+    "href": "exercises/lab01/matplotlib-basics.html#subplots-multiple-plots-at-once",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
+    "section": "4. Subplots (Multiple Plots at Once)",
+    "text": "4. Subplots (Multiple Plots at Once)\nWhen evaluating models, you rarely look at just one metric. You might want to see Accuracy and Loss side-by-side.\n\n# Dummy data\nx = np.linspace(0, 10, 100)\ny1 = np.sin(x)\ny2 = np.cos(x)\n\n# Create a 1x2 grid of plots\nfig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 4))\n\n# First subplot (axes[0])\naxes[0].plot(x, y1, color='purple')\naxes[0].set_title(\"Sine Wave\")\n\n# Second subplot (axes[1])\naxes[1].plot(x, y2, color='orange', linestyle='--')\naxes[1].set_title(\"Cosine Wave\")\n\n# Adjust spacing between plots to prevent overlapping labels\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/matplotlib-basics.html#summary-for-machine-learning",
+    "href": "exercises/lab01/matplotlib-basics.html#summary-for-machine-learning",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
+    "section": "Summary for Machine Learning",
+    "text": "Summary for Machine Learning\n\nLine Plots (ax.plot): Use these to visualize time-series data or track training/validation metrics over time (Epochs).\nScatter Plots (ax.scatter): Your go-to tool for visualizing feature relationships and class separability in classification tasks.\nHistograms (ax.hist): Essential for checking the distribution of a single variable before feeding it into a model.",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/matplotlib-basics.html#references",
+    "href": "exercises/lab01/matplotlib-basics.html#references",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
+    "section": "References",
+    "text": "References\n\nMatplotlib Official Documentation",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/matplotlib-basics.html#further-reading",
+    "href": "exercises/lab01/matplotlib-basics.html#further-reading",
+    "title": "Lab 01 - Matplotlib Basics for Machine Learning",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nMatplotlib Usage Guide\nPython Data Science Handbook - Matplotlib Chapter",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Matplotlib Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/pandas-basics.html",
+    "href": "exercises/lab01/pandas-basics.html",
+    "title": "Machine Learning",
     "section": "",
-    "text": "The PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024 → conda-forge or PyPI is now recommended\nSupports lock files (pixi.lock) for reproducible environments across machines and team members\nManages dependency conflicts that arise from mixing conda and pip — pixi handles both in a unified workflow\n\nWe find pixi is much faster than conda/mamba (by design), and the lock file makes replicating environments far easier than conda, where even pinned versions still require the solver to run.\nWe will offer support during the first week at office hours for installing or maintaining this environment on your laptop. It is ultimately your responsibility to acquire and maintain the packages and environments you need.",
+    "text": "Here is a Lab 01 notebook document for pandas, matching the exact style, tone, and formatting of your NumPy and Python basics labs.",
     "crumbs": [
       "Exercises",
-      "Python Environment Setup"
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
     ]
   },
   {
-    "objectID": "exercises/python-environment.html#how-pixi-works",
-    "href": "exercises/python-environment.html#how-pixi-works",
-    "title": "Python Environment Setup",
-    "section": "How pixi Works",
-    "text": "How pixi Works\nWhen a lock file exists (pixi install)\n\nInstalls the exact versions specified in pixi.lock — guarantees identical environments across all team members\nNo resolve step needed, so installation is fast\n\nWhen no lock file exists (pixi install)\n\nReads constraints from pixi.toml (e.g., &gt;=2.0) and resolves the best matching versions\nGenerates a new pixi.lock\nSlower due to the resolve step\n\nWhen pixi.toml changes with an existing lock file (e.g., after pixi add)\n\nThe lock file is updated automatically\n\n\nProject Structure\n\nimport numpy as np\nR=np.array([np.random.random(),np.random.random()]) # initial location\n\nprint(\"initial location:\")\nprint(np.round(R,3))\nprint(\"round   location\")\n\neps=.5                         # initial learning speed\n\nfor j in range(50):            # rounds\n    eps=0.85*eps               # decrease the learning speed \n    np.random.shuffle(alls)    # reshuffle the sample\n    for i in range(len(alls)): # loop over points of the whole sample\n        R+=eps*(alls[i]-R)     # update/learning\n    if j%5==4: print(j+1, \"    \",np.round(R,3))  # print every 5th step\n\nmy-project/\n├── pixi.toml       ← dependency declaration file  (commit to git)\n├── pixi.lock       ← exact pinned versions         (commit to git)\n└── .pixi/          ← actual environment folder     (add to .gitignore)\n    └── envs/\n        └── default/",
+    "objectID": "exercises/lab01/pandas-basics.html#title-lab-01---pandas-basics-for-machine-learning-jupyter-python3",
+    "href": "exercises/lab01/pandas-basics.html#title-lab-01---pandas-basics-for-machine-learning-jupyter-python3",
+    "title": "Machine Learning",
+    "section": "title: “Lab 01 - Pandas Basics for Machine Learning” jupyter: python3",
+    "text": "title: “Lab 01 - Pandas Basics for Machine Learning” jupyter: python3",
     "crumbs": [
       "Exercises",
-      "Python Environment Setup"
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
     ]
   },
   {
-    "objectID": "exercises/python-environment.html#one-time-setup-install-pixi",
-    "href": "exercises/python-environment.html#one-time-setup-install-pixi",
-    "title": "Python Environment Setup",
-    "section": "One-Time Setup: Install pixi",
-    "text": "One-Time Setup: Install pixi\n\n\n\n\n\n\nWarning\n\n\n\nInstall under your own user account — sudo is almost never needed.\npixi installs by default to ~/.pixi/, so no elevated privileges are required. Each project’s environment lives inside the project folder under .pixi/envs/, so there is no conflict between users or projects.\n\n\n\nLinux & macOS\nExpected time: ~5 minutes\n# 1. Install pixi (single binary, no sudo required)\n$ curl -fsSL https://pixi.sh/install.sh | sh   # if curl is available# if wget is available# if wget is available# if wget is available\n$ wget -qO- https://pixi.sh/install.sh | sh    # if wget is available\n\n# 2. Reload your shell to apply PATH changes\n$ source ~/.bashrc   # or ~/.zshrc depending on your shell\n\n# 3. Verify installation\n$ pixi --version\npixi 0.63.2\n\n# 4. (Optional) Update pixi\n$ pixi self-update\nFor the full installation guide, see: https://pixi.prefix.dev/latest/installation",
+    "objectID": "exercises/lab01/pandas-basics.html#objectives",
+    "href": "exercises/lab01/pandas-basics.html#objectives",
+    "title": "Machine Learning",
+    "section": "Objectives",
+    "text": "Objectives\n\nUnderstand core pandas data structures: Series and DataFrames.\nData Inspection: Learn how to quickly explore and summarize a dataset.\nIndexing and Filtering: Master extracting specific rows and columns (crucial for separating features from targets).\nHandling Missing Data: Learn techniques to clean dirty data before feeding it into a machine learning model.\n\n\n\n\n\n\n\nNoteBasic Concept: Why Pandas for Machine Learning?\n\n\n\nWhile NumPy handles the heavy mathematical lifting, pandas is the ultimate tool for data manipulation and analysis. Real-world data is messy: it has missing values, inconsistent formatting, and mixed data types (text, dates, numbers). Pandas is built on top of NumPy but provides a tabular interface (like Excel or SQL) that makes cleaning, filtering, and preparing datasets for Machine Learning highly intuitive.",
     "crumbs": [
       "Exercises",
-      "Python Environment Setup"
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
     ]
   },
   {
-    "objectID": "exercises/python-environment.html#everyday-use",
-    "href": "exercises/python-environment.html#everyday-use",
-    "title": "Python Environment Setup",
-    "section": "Everyday Use",
-    "text": "Everyday Use\n\npixi run\nRun a command or task inside the project environment.\n# Run any executable from the environment PATH\npixi run python --version\npixi run jupyter lab\n\n# Run a named task defined in pixi.toml\npixi run &lt;task-name&gt;\n\nWorks for both named tasks and any executable available in the environment PATH\nIf a task and an executable share the same name, the task takes priority\nAutomatically updates the lock file and installs the environment if needed\n\n\n\npixi exec\nRun a command in a temporary, isolated environment — independent of any pixi.toml.\n# Run python from a temporary environment\npixi exec python --version\n\n# Specify an exact version — pixi exec's key strength\npixi exec --spec \"python=3.12\" python --version\n\n# Start JupyterLab without activating any project environment\npixi exec jupyter lab\n\n# Clean up temporary environment cache when no longer needed\npixi clean cache --exec\n\nDoes not require a pixi.toml — works from any directory\nUseful for one-off version testing or running tools outside your project\nEach --spec creates a fresh temporary environment\n\n\n\npixi shell\nActivate the project environment and stay inside it.\n$ pixi shell\n# environment is now active — use commands directly\n$ python script.py\n$ jupyter lab\n# when done, exit the shell to deactivate\n$ exit\n\nKeeps the environment active until you exit the shell\nConvenient for interactive development and experimentation\nEquivalent to conda activate / micromamba activate workflows",
+    "objectID": "exercises/lab01/pandas-basics.html#core-data-structures-series-and-dataframes",
+    "href": "exercises/lab01/pandas-basics.html#core-data-structures-series-and-dataframes",
+    "title": "Machine Learning",
+    "section": "1. Core Data Structures: Series and DataFrames",
+    "text": "1. Core Data Structures: Series and DataFrames\nPandas has two primary data structures. A Series is a 1-dimensional array (like a single column), and a DataFrame is a 2-dimensional table made up of multiple Series.\n\nimport pandas as pd\nimport numpy as np\n\n# 1-Dimensional: Series\n# You can think of it as a single column of data with an index\nages = pd.Series([25, 30, 22, 45, 33], name=\"Age\")\nprint(\"Series:\\n\", ages)\nprint(\"\\nShape:\", ages.shape)\n\nSeries:\n 0    25\n1    30\n2    22\n3    45\n4    33\nName: Age, dtype: int64\n\nShape: (5,)\n\n\n\n# 2-Dimensional: DataFrame\n# The most common way to create a DataFrame from scratch is using a dictionary\ndata = {\n    'Name': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'],\n    'Age': [25, np.nan, 22, 45, 33], # Note the missing value (NaN) for Bob\n    'Income': [55000, 48000, 32000, 110000, 75000],\n    'Purchased': [0, 1, 0, 1, 1]\n}\n\ndf = pd.DataFrame(data)\nprint(\"DataFrame:\\n\", df)\n\nDataFrame:\n       Name   Age  Income  Purchased\n0    Alice  25.0   55000          0\n1      Bob   NaN   48000          1\n2  Charlie  22.0   32000          0\n3    Diana  45.0  110000          1\n4      Eve  33.0   75000          1",
     "crumbs": [
       "Exercises",
-      "Python Environment Setup"
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
     ]
   },
   {
-    "objectID": "exercises/python-environment.html#check-current-status",
-    "href": "exercises/python-environment.html#check-current-status",
-    "title": "Python Environment Setup",
-    "section": "Check Current Status",
-    "text": "Check Current Status\n$ pixi info\nThis shows the pixi version, platform, cache location, and details about all environments defined in the current project — including installed packages, target platforms, and defined tasks.",
+    "objectID": "exercises/lab01/pandas-basics.html#inspecting-data",
+    "href": "exercises/lab01/pandas-basics.html#inspecting-data",
+    "title": "Machine Learning",
+    "section": "2. Inspecting Data",
+    "text": "2. Inspecting Data\nBefore applying any Machine Learning algorithm, you must understand the shape, distribution, and types of your data.\n\n# View the first few rows (default is 5)\nprint(\"Head:\\n\", df.head(3))\n\n# Get a concise summary of the DataFrame, including data types and non-null counts\nprint(\"\\n--- DataFrame Info ---\")\ndf.info()\n\n# Generate descriptive statistics for numerical columns\nprint(\"\\n--- Summary Statistics ---\")\nprint(df.describe())\n\nHead:\n       Name   Age  Income  Purchased\n0    Alice  25.0   55000          0\n1      Bob   NaN   48000          1\n2  Charlie  22.0   32000          0\n\n--- DataFrame Info ---\n&lt;class 'pandas.DataFrame'&gt;\nRangeIndex: 5 entries, 0 to 4\nData columns (total 4 columns):\n #   Column     Non-Null Count  Dtype  \n---  ------     --------------  -----  \n 0   Name       5 non-null      str    \n 1   Age        4 non-null      float64\n 2   Income     5 non-null      int64  \n 3   Purchased  5 non-null      int64  \ndtypes: float64(1), int64(2), str(1)\nmemory usage: 292.0 bytes\n\n--- Summary Statistics ---\n             Age         Income  Purchased\ncount   4.000000       5.000000   5.000000\nmean   31.250000   64000.000000   0.600000\nstd    10.275375   29991.665509   0.547723\nmin    22.000000   32000.000000   0.000000\n25%    24.250000   48000.000000   0.000000\n50%    29.000000   55000.000000   1.000000\n75%    36.000000   75000.000000   1.000000\nmax    45.000000  110000.000000   1.000000",
     "crumbs": [
       "Exercises",
-      "Python Environment Setup"
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
     ]
   },
   {
-    "objectID": "exercises/python-environment.html#summary",
-    "href": "exercises/python-environment.html#summary",
-    "title": "Python Environment Setup",
-    "section": "Summary",
-    "text": "Summary\n\n\n\n\n\n\n\n\n\nCommand\nEnvironment\nRequires pixi.toml\nUse case\n\n\n\n\npixi run\nProject environment\n✅\nAutomation, CI, team scripts\n\n\npixi exec\nTemporary environment\n❌\nOne-off runs, version testing\n\n\npixi shell\nProject environment\n✅\nInteractive development",
+    "objectID": "exercises/lab01/pandas-basics.html#indexing-and-slicing-feature-extraction",
+    "href": "exercises/lab01/pandas-basics.html#indexing-and-slicing-feature-extraction",
+    "title": "Machine Learning",
+    "section": "3. Indexing and Slicing (Feature Extraction)",
+    "text": "3. Indexing and Slicing (Feature Extraction)\nIn Machine Learning, a standard task is splitting your DataFrame into Features (\\(X\\)) and Labels (\\(y\\)). Pandas provides powerful .loc (label-based) and .iloc (integer position-based) indexers.\n\n# Selecting a single column returns a Series\ny = df['Purchased'] \nprint(\"Target Label (y):\\n\", y.values) # .values converts it to a NumPy array\n\n# Selecting multiple columns returns a smaller DataFrame\nX_subset = df[['Age', 'Income']]\nprint(\"\\nFeature Subset (X):\\n\", X_subset)\n\nTarget Label (y):\n [0 1 0 1 1]\n\nFeature Subset (X):\n     Age  Income\n0  25.0   55000\n1   NaN   48000\n2  22.0   32000\n3  45.0  110000\n4  33.0   75000\n\n\nUsing .iloc is the most reliable way to split features and targets based on column order.\n\n# df.iloc[rows, columns]\n# Select all rows (:), and all columns EXCEPT the last one (:-1)\nX = df.iloc[:, :-1] \nprint(\"All Features (X):\\n\", X)\n\n# Select all rows (:), and ONLY the last column (-1)\ny = df.iloc[:, -1]\nprint(\"\\nTarget (y):\\n\", y)\n\nAll Features (X):\n       Name   Age  Income\n0    Alice  25.0   55000\n1      Bob   NaN   48000\n2  Charlie  22.0   32000\n3    Diana  45.0  110000\n4      Eve  33.0   75000\n\nTarget (y):\n 0    0\n1    1\n2    0\n3    1\n4    1\nName: Purchased, dtype: int64\n\n\n\n\n\n\n\n\nWarningCaveat: .loc vs .iloc\n\n\n\nA very common source of bugs!\n\nUse df.loc[] when you want to select data by its name/label (e.g., column ‘Age’ or row index ‘User_5’).\nUse df.iloc[] when you want to select data by its numerical position (e.g., the 0th row, or the last column -1), just like standard NumPy slicing.",
     "crumbs": [
       "Exercises",
-      "Python Environment Setup"
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
     ]
+  },
+  {
+    "objectID": "exercises/lab01/pandas-basics.html#filtering-and-handling-missing-data",
+    "href": "exercises/lab01/pandas-basics.html#filtering-and-handling-missing-data",
+    "title": "Machine Learning",
+    "section": "4. Filtering and Handling Missing Data",
+    "text": "4. Filtering and Handling Missing Data\nMachine Learning models cannot process NaN (Not a Number) values. You must either drop the rows containing them or fill them with a logical replacement (Imputation).\n\n# Filtering: Find all rows where Income is greater than 50,000\nhigh_income = df[df['Income'] &gt; 50000]\nprint(\"High Income Customers:\\n\", high_income)\n\nHigh Income Customers:\n     Name   Age  Income  Purchased\n0  Alice  25.0   55000          0\n3  Diana  45.0  110000          1\n4    Eve  33.0   75000          1\n\n\n\n# Check for missing values\nprint(\"Missing values per column:\\n\", df.isna().sum())\n\n# Strategy 1: Drop any row containing a missing value\ndf_dropped = df.dropna()\nprint(\"\\nDataFrame after dropna():\\n\", df_dropped)\n\n# Strategy 2: Fill missing values with the column mean (Common ML Imputation)\nmean_age = df['Age'].mean()\ndf_filled = df.copy()\ndf_filled['Age'] = df_filled['Age'].fillna(mean_age)\nprint(f\"\\nDataFrame after filling NaN with mean ({mean_age}):\\n\", df_filled)\n\nMissing values per column:\n Name         0\nAge          1\nIncome       0\nPurchased    0\ndtype: int64\n\nDataFrame after dropna():\n       Name   Age  Income  Purchased\n0    Alice  25.0   55000          0\n2  Charlie  22.0   32000          0\n3    Diana  45.0  110000          1\n4      Eve  33.0   75000          1\n\nDataFrame after filling NaN with mean (31.25):\n       Name    Age  Income  Purchased\n0    Alice  25.00   55000          0\n1      Bob  31.25   48000          1\n2  Charlie  22.00   32000          0\n3    Diana  45.00  110000          1\n4      Eve  33.00   75000          1",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/pandas-basics.html#summary-for-machine-learning",
+    "href": "exercises/lab01/pandas-basics.html#summary-for-machine-learning",
+    "title": "Machine Learning",
+    "section": "Summary for Machine Learning",
+    "text": "Summary for Machine Learning\n\nExploratory Data Analysis (EDA): Always use .head(), .info(), and .describe() to understand your data before building models.\nData Preparation: Pandas is your primary tool for filtering out noise, handling NaN values, and converting categorical text into numbers.\nScikit-Learn Integration: Most modern ML libraries, like Scikit-Learn, natively accept pandas DataFrames as inputs for training models. When passing data to PyTorch or TensorFlow, you will often convert DataFrames to NumPy arrays first using .values.",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/pandas-basics.html#references",
+    "href": "exercises/lab01/pandas-basics.html#references",
+    "title": "Machine Learning",
+    "section": "References",
+    "text": "References\n\nPython for Data Analysis (Written by the creator of pandas, Wes McKinney)",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/pandas-basics.html#further-reading",
+    "href": "exercises/lab01/pandas-basics.html#further-reading",
+    "title": "Machine Learning",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nPandas Official Getting Started Guide\nA Whirlwind Tour of Python\nPython Data Science Handbook",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Pandas Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab12/lab12.html",
+    "href": "exercises/lab12/lab12.html",
+    "title": "Decision Tree",
+    "section": "",
+    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험."
+  },
+  {
+    "objectID": "exercises/lab05/lab05.html",
+    "href": "exercises/lab05/lab05.html",
+    "title": "Numpy MLP to PyTorch",
+    "section": "",
+    "text": "Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현."
+  },
+  {
+    "objectID": "exercises/lab06/lab06.html",
+    "href": "exercises/lab06/lab06.html",
+    "title": "Optimizer 비교",
+    "section": "",
+    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교."
+  },
+  {
+    "objectID": "exercises/lab14/lab14.html",
+    "href": "exercises/lab14/lab14.html",
+    "title": "Naive Bayes",
+    "section": "",
+    "text": "Likelihood/prior/posterior 직접 계산, 조건부 독립 가정 위반 시 성능 변화 실험."
+  },
+  {
+    "objectID": "exercises/lab04/lab04.html",
+    "href": "exercises/lab04/lab04.html",
+    "title": "MLP Forward/Backward",
+    "section": "",
+    "text": "손으로 gradient 계산 후 numerical gradient checking, 활성함수별 gradient flow 시각화."
   },
   {
     "objectID": "exercises/index.html",
     "href": "exercises/index.html",
-    "title": "Exercises",
+    "title": "Exercises Guide",
     "section": "",
-    "text": "실습 자료 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
+    "text": "Labs are the hands-on companion to each lecture unit. Each lab is a short, focused session designed to help you build intuition for the theoretical concepts introduced in class by working directly with code. You will run, visualize, and experiment with the ideas so that by the time you reach a homework assignment, the underlying mechanics feel familiar.\nLabs are not graded. They exist entirely for your learning benefit.\nThe table below maps each lab to its parent unit. Labs within the same unit share a prefix (e.g., Lab 2-1, Lab 2-2).\n\n\n\n\n\n\nNoteLabs Marked TBD\n\n\n\nLabs marked as TBD have tentative topics that may be added, removed, or reordered as the course progresses.\n\n\nLab 1: Introduction to ML\n\nLab 1-1: Setting Up the Programming Environment\nLab 1-2: Python Basics and NumPy Fundamentals (Vectorization, Broadcasting)\nLab 1-3: K-NN Distance Computation via NumPy Broadcasting\n\nLab 2: Linear Models\n\nLab 2-1: Perceptron Limits and Decision Boundaries\nLab 2-2: Linear and Logistic Regression via Gradient Descent\nLab 2-3: Classification Metrics and ROC Curves\n\nLab 3: Multi-Layer Perceptron (TBD)\n\nLab 3-1: MLP Forward/Backward Pass and Numerical Gradient Checking\nLab 3-2: Vanishing Gradient: Sigmoid vs. ReLU\n\nLab 4: Model Validation (TBD)\n\nLab 4-1: From NumPy to PyTorch (Dataset, DataLoader, TensorBoard)\nLab 4-2: Autograd and Automatic Differentiation\nLab 4-3: K-Fold Cross-Validation with PyTorch DataLoader\nLab 4-4: Custom Dataset and DataLoader\nLab 4-5: Data Leakage Demo\n\nLab 5: Model Generalization (TBD)\n\nLab 5-1: Overfitting and Underfitting via MLP Capacity\nLab 5-2: Regularization (Dropout, Weight Decay, BatchNorm)\nLab 5-3: Early Stopping and Model Checkpointing\n\nLab 6: Convolutional Neural Networks (TBD)\n\nLab 6-1: CNN Architecture Design and Parameter Counting\nLab 6-2: Effect of Kernel Size, Stride, and Padding on Feature Maps\nLab 6-3: Visualizing Learned First-Layer Filters\n\nLab 8: Recurrent Neural Networks (TBD)\n\nLab 8-1: RNN vs. GRU vs. LSTM on Variable-Length Sequences\nLab 8-2: Character-Level Language Model and Text Generation\nLab 8-3: Gradient Norm Tracking and Vanishing Gradients in RNNs\n\nLab 9: Attention Mechanisms (TBD)\n\nLab 9-1: Self-Attention from Scratch with NumPy\nLab 9-2: Vision Transformer Input Pipeline (Patch Embedding and Positional Encoding)\n\nLab 10: Generative Models (TBD)\n\nLab 10-1: Autoencoder Latent Space Visualization on MNIST\nLab 10-2: VAE Latent Space Interpolation\nLab 10-3: GAN Training Dynamics\n\nLab 11: Representations (TBD)\n\nLab 11-1: Fine-Tuning vs. Feature Extraction with Pretrained ResNet\nLab 11-2: High-Dimensional Feature Visualization and Clustering\nLab 11-3: Cross-Entropy Loss vs. Triplet Loss Feature Space\n\nLab 12: Support Vector Machines and Kernels (TBD)\n\nLab 12-1: Kernel Visualization and Hyperparameter Effects (C and gamma)\n\nLab 13: Decision Trees (TBD)\n\nLab 13-1: Decision Tree Implementation from Scratch (Gini/Entropy Split)\n\nLab 14: Ensemble Methods (TBD)\n\nLab 14-1: Bagging vs. Boosting: Bias-Variance Tradeoff and Feature Importance\n\nLab 15: Bayesian Learning (TBD)\n\nLab 15-1: Naive Bayes Spam Classifier from Scratch with NumPy",
     "crumbs": [
       "Exercises"
     ]
   },
   {
-    "objectID": "exercises/lab12-decision-tree.html",
-    "href": "exercises/lab12-decision-tree.html",
-    "title": "Decision Tree",
+    "objectID": "exercises/index.html#labs",
+    "href": "exercises/index.html#labs",
+    "title": "Exercises Guide",
     "section": "",
-    "text": "Gini/Entropy 기반 split 로직 Numpy 구현, 트리 깊이별 decision boundary 시각화 및 분산(instability) 실험.",
+    "text": "Labs are the hands-on companion to each lecture unit. Each lab is a short, focused session designed to help you build intuition for the theoretical concepts introduced in class by working directly with code. You will run, visualize, and experiment with the ideas so that by the time you reach a homework assignment, the underlying mechanics feel familiar.\nLabs are not graded. They exist entirely for your learning benefit.\nThe table below maps each lab to its parent unit. Labs within the same unit share a prefix (e.g., Lab 2-1, Lab 2-2).\n\n\n\n\n\n\nNoteLabs Marked TBD\n\n\n\nLabs marked as TBD have tentative topics that may be added, removed, or reordered as the course progresses.\n\n\nLab 1: Introduction to ML\n\nLab 1-1: Setting Up the Programming Environment\nLab 1-2: Python Basics and NumPy Fundamentals (Vectorization, Broadcasting)\nLab 1-3: K-NN Distance Computation via NumPy Broadcasting\n\nLab 2: Linear Models\n\nLab 2-1: Perceptron Limits and Decision Boundaries\nLab 2-2: Linear and Logistic Regression via Gradient Descent\nLab 2-3: Classification Metrics and ROC Curves\n\nLab 3: Multi-Layer Perceptron (TBD)\n\nLab 3-1: MLP Forward/Backward Pass and Numerical Gradient Checking\nLab 3-2: Vanishing Gradient: Sigmoid vs. ReLU\n\nLab 4: Model Validation (TBD)\n\nLab 4-1: From NumPy to PyTorch (Dataset, DataLoader, TensorBoard)\nLab 4-2: Autograd and Automatic Differentiation\nLab 4-3: K-Fold Cross-Validation with PyTorch DataLoader\nLab 4-4: Custom Dataset and DataLoader\nLab 4-5: Data Leakage Demo\n\nLab 5: Model Generalization (TBD)\n\nLab 5-1: Overfitting and Underfitting via MLP Capacity\nLab 5-2: Regularization (Dropout, Weight Decay, BatchNorm)\nLab 5-3: Early Stopping and Model Checkpointing\n\nLab 6: Convolutional Neural Networks (TBD)\n\nLab 6-1: CNN Architecture Design and Parameter Counting\nLab 6-2: Effect of Kernel Size, Stride, and Padding on Feature Maps\nLab 6-3: Visualizing Learned First-Layer Filters\n\nLab 8: Recurrent Neural Networks (TBD)\n\nLab 8-1: RNN vs. GRU vs. LSTM on Variable-Length Sequences\nLab 8-2: Character-Level Language Model and Text Generation\nLab 8-3: Gradient Norm Tracking and Vanishing Gradients in RNNs\n\nLab 9: Attention Mechanisms (TBD)\n\nLab 9-1: Self-Attention from Scratch with NumPy\nLab 9-2: Vision Transformer Input Pipeline (Patch Embedding and Positional Encoding)\n\nLab 10: Generative Models (TBD)\n\nLab 10-1: Autoencoder Latent Space Visualization on MNIST\nLab 10-2: VAE Latent Space Interpolation\nLab 10-3: GAN Training Dynamics\n\nLab 11: Representations (TBD)\n\nLab 11-1: Fine-Tuning vs. Feature Extraction with Pretrained ResNet\nLab 11-2: High-Dimensional Feature Visualization and Clustering\nLab 11-3: Cross-Entropy Loss vs. Triplet Loss Feature Space\n\nLab 12: Support Vector Machines and Kernels (TBD)\n\nLab 12-1: Kernel Visualization and Hyperparameter Effects (C and gamma)\n\nLab 13: Decision Trees (TBD)\n\nLab 13-1: Decision Tree Implementation from Scratch (Gini/Entropy Split)\n\nLab 14: Ensemble Methods (TBD)\n\nLab 14-1: Bagging vs. Boosting: Bias-Variance Tradeoff and Feature Importance\n\nLab 15: Bayesian Learning (TBD)\n\nLab 15-1: Naive Bayes Spam Classifier from Scratch with NumPy",
     "crumbs": [
-      "Exercises",
-      "Decision Tree"
+      "Exercises"
     ]
   },
   {
-    "objectID": "exercises/lab08-char-language-model.html",
-    "href": "exercises/lab08-char-language-model.html",
+    "objectID": "exercises/index.html#what-you-will-receive",
+    "href": "exercises/index.html#what-you-will-receive",
+    "title": "Exercises Guide",
+    "section": "What You Will Receive",
+    "text": "What You Will Receive\nFor each lab you will receive a single Jupyter notebook:\n\nlabXX.ipynb: A guided notebook with explanations and complete, runnable code for you to explore and experiment with.\n\nSome labs also include small data files or image assets placed in a shared data/ folder at the top level of the course repository.",
+    "crumbs": [
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/index.html#workflow",
+    "href": "exercises/index.html#workflow",
+    "title": "Exercises Guide",
+    "section": "Workflow",
+    "text": "Workflow\n\nStep 1: Open the Lab Notebook\nLaunch the notebook using JupyterLab or Google Colab. Each lab notebook opens with a brief motivation section explaining what you are about to explore and why it matters in the context of machine learning.\n\n\n\n\n\n\nNoteRunning Cells in Order\n\n\n\nAlways run notebook cells from top to bottom. If you skip a cell or run them out of order, later cells may fail because variables or imports from earlier cells are missing.\n\n\n\n\nStep 2: Run and Observe\nUnlike the homework assignments, labs do not require you to write code from scratch or fill in TODO blocks. Instead, complete and working code is provided for you. Your primary task is to run the cells, read the accompanying markdown explanations, and deeply understand how the mathematical equations from the lecture translate into NumPy operations or PyTorch layers. Pay close attention to how the data shapes transform at each step.\n\n\nStep 3: Experiment Freely\nLabs are exploratory playgrounds. Once you have run the provided code and observed its default output, you are highly encouraged to tinker with it.\nTry changing hyperparameters (like learning rates, batch sizes, or network depth), altering architectures, or even breaking things on purpose to see what kind of error messages PyTorch throws. Some cells include optional challenge prompts marked with a comment like # OPTIONAL:. Tinkering freely is one of the best ways to build intuition before tackling the homework.",
+    "crumbs": [
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/index.html#navigating-the-notebook-structure",
+    "href": "exercises/index.html#navigating-the-notebook-structure",
+    "title": "Exercises Guide",
+    "section": "Navigating the Notebook Structure",
+    "text": "Navigating the Notebook Structure\nEvery lab notebook follows the same internal layout so you always know where to look.\nObjectives lists the specific skills or concepts you will practice in that lab. Read this before you start.\nBackground gives a concise reminder of the theory needed for the tasks. This is not a replacement for the lecture; it is a quick reference.\nExperiments contains the executable cells where you will run the provided implementations, visualize the results, and observe the internal mechanics of the machine learning models.",
+    "crumbs": [
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/lab10/lab10.html",
+    "href": "exercises/lab10/lab10.html",
+    "title": "Transfer Learning",
+    "section": "",
+    "text": "Pretrained ResNet feature extractor vs fine-tuning 성능 비교, Grad-CAM으로 모델 attention 영역 시각화."
+  },
+  {
+    "objectID": "exercises/lab08/lab08.html",
+    "href": "exercises/lab08/lab08.html",
     "title": "Char-level language model",
     "section": "",
-    "text": "Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰).",
+    "text": "Vanilla RNN vs LSTM으로 텍스트 생성, hidden state 변화 시각화 및 gradient norm 추적(vanishing gradient 관찰)."
+  },
+  {
+    "objectID": "exercises/environment-setup.html",
+    "href": "exercises/environment-setup.html",
+    "title": "Python Environment Setup",
+    "section": "",
+    "text": "This course supports two ways to run labs. Choose the one that fits your setup.\nOption A: VSCode or JupyterLab + pixi (Local) — Recommended for consistent, reproducible environments. All dependencies are pinned via a lock file, so your environment matches every other student’s exactly. Requires a one-time setup on your machine.\nOption B: Google Colab (Cloud) — No installation needed. Open any lab notebook directly in your browser using the Colab badge at the top of each notebook. Best if you do not want to manage a local environment.\n\n\n\n\n\n\nTipRecommendation\n\n\n\nWe recommend Option A for all students. The pixi environment guarantees that your code runs identically to the instructor’s setup, which makes debugging and grading straightforward. Option B is a convenient fallback, but Colab sessions are ephemeral and require re-running setup cells every time you reconnect.\nHowever, if your lab requires access to high-performance GPUs or you need to replicate a specific computing environment (e.g., for reproducibility experiments or benchmarking), Option B may be more appropriate. Colab provides free access to cloud GPUs that may not be available on your local machine.\n\n\nBoth options provide access to all required packages. The sections below walk through each option in detail.",
     "crumbs": [
       "Exercises",
-      "Char-level language model"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab11-kernel-visualization.html",
-    "href": "exercises/lab11-kernel-visualization.html",
-    "title": "Kernel 시각화",
+    "objectID": "exercises/environment-setup.html#overview",
+    "href": "exercises/environment-setup.html#overview",
+    "title": "Python Environment Setup",
     "section": "",
-    "text": "2D 데이터에서 linear/RBF/poly kernel의 decision boundary 비교, C·gamma 변화에 따른 margin 변화 관찰.",
+    "text": "This course supports two ways to run labs. Choose the one that fits your setup.\nOption A: VSCode or JupyterLab + pixi (Local) — Recommended for consistent, reproducible environments. All dependencies are pinned via a lock file, so your environment matches every other student’s exactly. Requires a one-time setup on your machine.\nOption B: Google Colab (Cloud) — No installation needed. Open any lab notebook directly in your browser using the Colab badge at the top of each notebook. Best if you do not want to manage a local environment.\n\n\n\n\n\n\nTipRecommendation\n\n\n\nWe recommend Option A for all students. The pixi environment guarantees that your code runs identically to the instructor’s setup, which makes debugging and grading straightforward. Option B is a convenient fallback, but Colab sessions are ephemeral and require re-running setup cells every time you reconnect.\nHowever, if your lab requires access to high-performance GPUs or you need to replicate a specific computing environment (e.g., for reproducibility experiments or benchmarking), Option B may be more appropriate. Colab provides free access to cloud GPUs that may not be available on your local machine.\n\n\nBoth options provide access to all required packages. The sections below walk through each option in detail.",
     "crumbs": [
       "Exercises",
-      "Kernel 시각화"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab06-optimizer-comparison.html",
-    "href": "exercises/lab06-optimizer-comparison.html",
-    "title": "Optimizer 비교",
-    "section": "",
-    "text": "SGD/Momentum/Adam의 loss surface 위 궤적 시각화, Dropout·weight decay·BatchNorm 유무에 따른 학습 곡선 비교.",
+    "objectID": "exercises/environment-setup.html#option-a-vscode-or-jupyterlab-pixi-local",
+    "href": "exercises/environment-setup.html#option-a-vscode-or-jupyterlab-pixi-local",
+    "title": "Python Environment Setup",
+    "section": "Option A: VSCode or JupyterLab + pixi (Local)",
+    "text": "Option A: VSCode or JupyterLab + pixi (Local)\n\nWhy pixi?\nThe PyTorch team discontinued distribution via the Anaconda pytorch channel in November 2024. The recommended approach is now conda-forge or PyPI, both of which pixi handles natively.\nCompared to conda or mamba, pixi offers three main advantages for this course. It is significantly faster at solving and installing environments. It uses a lock file (pixi.lock) that pins every dependency to an exact version, so every student gets an identical environment. It also handles the common conflict between conda-managed and pip-managed packages in a single unified workflow.\n\n\nStep 1: Install pixi\n\n\n\n\n\n\nWarningNo sudo Required\n\n\n\npixi installs by default to ~/.pixi/ under your own user account. Elevated privileges are almost never needed. Each project environment lives inside the project folder under .pixi/envs/, so there is no conflict between users or projects on shared machines.\n\n\nLinux and macOS\n# Choose one depending on what is available on your system\ncurl -fsSL https://pixi.sh/install.sh | sh\n# or:\nwget -qO- https://pixi.sh/install.sh | sh\n\n# Reload your shell to apply PATH changes\nsource ~/.bashrc     # use ~/.zshrc if you are on zsh\n\n# Verify installation\npixi --version\n# Expected: pixi 0.63.2  (or newer)\nWindows — Open PowerShell:\niwr -useb https://pixi.sh/install.ps1 | iex\nRestart your terminal and run pixi --version to verify.\nFor the full installation guide, see https://pixi.prefix.dev/latest/installation.\n\n\nStep 2: Clone the Course Repository\ngit clone --branch students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\nAfter cloning, the repository structure will look like this:\nmachine-learning-course/       # course repository root\n├── pixi.toml                  # dependency declarations\n├── pixi.lock                  # exact pinned versions\n├── data/                      # shared datasets used across labs\n├── assignments/               # homeworks for students\n│   ├── hw01/\n│   ├── hw02/\n├── exercises/                 # lab notebooks for students\n│   ├── lab01/\n│   ├── lab02/\n│   └── ...\n\n\nStep 3: Install All Required Packages\nNavigate into the repository folder and run:\npixi install\nThis reads pixi.lock and installs every package at its exact pinned version. Because no version resolution is needed, this step is fast. The following packages are installed as part of the course environment — you do not need to install them separately.\n\nnumpy: array operations and linear algebra\nmatplotlib: visualization\njupyterlab: interactive notebook interface\ntorch and torchvision: deep learning (used from Unit 4 onward)\nsklearn: evaluation utilities and datasets\n\n\n\n\n\n\n\nNoteHow pixi install Behaves\n\n\n\nWhen pixi.lock exists (the normal case after cloning), pixi installs exact pinned versions with no solver step — this is fast.\nWhen no lock file exists, pixi reads constraints from pixi.toml, resolves versions, writes a new pixi.lock, then installs. This is slower due to the resolver, but only happens once.\nWhen pixi.toml is modified (e.g., after pixi add &lt;package&gt;), the lock file is updated automatically on the next pixi install or pixi run.\n\n\n\n\nStep 4: Open a Lab Notebook\nYou can open lab notebooks using either JupyterLab or VSCode. Both work with the pixi environment.\nJupyterLab — Launch from the repository root:\npixi run jupyter\nThis starts a JupyterLab server on port 8888. It does not open a browser automatically, so copy the URL printed in your terminal and paste it into your browser. The URL will look like this:\nhttp://127.0.0.1:8888/lab?token=your_token_here\nUse this command at the start of every lab session.\nVSCode — Open the repository folder in VSCode, then select the pixi kernel for your notebooks:\n\nOpen any .ipynb file in VSCode.\nClick Select Kernel in the top-right corner of the notebook editor.\nChoose Python Environments, then select the interpreter located at .pixi/envs/default/bin/python inside the repository folder.\n\n\n\n\n\n\n\nNoteEveryday Workflow\n\n\n\nFor all regular lab work, pixi run jupyter or opening notebooks in VSCode is all you need. If you prefer staying in an activated shell for an extended session, run pixi shell to activate the environment directly, then launch tools from there. Exit with exit when done.",
     "crumbs": [
       "Exercises",
-      "Optimizer 비교"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab14-naive-bayes.html",
-    "href": "exercises/lab14-naive-bayes.html",
-    "title": "Naive Bayes",
-    "section": "",
-    "text": "Likelihood/prior/posterior 직접 계산, 조건부 독립 가정 위반 시 성능 변화 실험.",
+    "objectID": "exercises/environment-setup.html#option-b-google-colab-cloud",
+    "href": "exercises/environment-setup.html#option-b-google-colab-cloud",
+    "title": "Python Environment Setup",
+    "section": "Option B: Google Colab (Cloud)",
+    "text": "Option B: Google Colab (Cloud)\nGoogle Colab lets you run any lab notebook directly in your browser with no local installation. To open a lab, click the Colab badge at the top of each notebook:\n\nColab already has most course packages pre-installed, including numpy, matplotlib, sklearn, and recent versions of torch. You may need to install any course-specific utilities by running the setup cell at the very top of each notebook, which will look like this:\n# Run this cell only if you are on Google Colab\n!pip install &lt;course-specific-package&gt;\nLab notebooks that use datasets stored in the course repository (under data/) require an extra step on Colab. Since Colab cannot access your local file system, clone the course repository at the start of each session:\n# Run this cell only if you are on Google Colab\n!git clone --branch students https://github.com/GLI-Lab/machine-learning-course.git\nEach notebook will include this cell already. You just need to run it before proceeding.\n\n\n\n\n\n\nWarningColab Limitations\n\n\n\nColab environments are ephemeral: any package you install or file you download is lost when the session ends or times out. You will need to re-run all setup cells at the start of every new session.\nFor consistent, persistent environments across all labs, the local pixi setup (Option A) is strongly recommended.",
     "crumbs": [
       "Exercises",
-      "Naive Bayes"
+      "Python Environment Setup"
     ]
   },
   {
-    "objectID": "exercises/lab07-feature-map-visualization.html",
-    "href": "exercises/lab07-feature-map-visualization.html",
-    "title": "Feature map 시각화",
+    "objectID": "exercises/lab13/lab13.html",
+    "href": "exercises/lab13/lab13.html",
+    "title": "Bagging vs Boosting",
     "section": "",
-    "text": "CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증.",
-    "crumbs": [
-      "Exercises",
-      "Feature map 시각화"
-    ]
+    "text": "단일 트리 vs Random Forest vs XGBoost의 bias-variance tradeoff 실험, feature importance 시각화."
   },
   {
     "objectID": "exercises/lab01/numpy-basics.html#objectives",
@@ -521,7 +616,7 @@
     "text": "Objectives\n\nUnderstand the basic concepts of NumPy arrays: creation, shape, and dtype.\nVectorization: Learn how to replace slow Python loops with fast, C-optimized array operations.\nBroadcasting: Grasp the rules NumPy uses to perform operations on arrays of different shapes.\n\n\n\n\n\n\n\nNoteBasic Concept: Why NumPy?\n\n\n\nIn Machine Learning, we deal with massive amounts of data (vectors, matrices, tensors). Standard Python lists are too slow and memory-inefficient for these calculations. NumPy arrays are stored in contiguous blocks of memory and operations are implemented in highly optimized C code, making mathematical operations drastically faster. NumPy is the foundational library that modern deep learning frameworks (like PyTorch and TensorFlow) are built upon.",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -533,7 +628,7 @@
     "text": "1. Array Creation and Attributes\nBefore we manipulate data, we need to know how to create arrays and inspect their properties.\n\nimport numpy as np\n\n\n# 1-Dimensional Array (Vector)\na = np.array([1, 2, 3, 4, 5])\nprint(\"a =\", a)\nprint(\"shape:\", a.shape) # Returns a tuple representing the size of each dimension\nprint(\"dtype:\", a.dtype) # Data type of the elements\n\nb = np.array([1.0, 2.0, 3.0, 4.0, 5.0])\nprint(\"b =\", b)\nprint(\"shape:\", b.shape) # Returns a tuple representing the size of each dimension\nprint(\"dtype:\", b.dtype) # Data type of the elements\n\na = [1 2 3 4 5]\nshape: (5,)\ndtype: int64\nb = [1. 2. 3. 4. 5.]\nshape: (5,)\ndtype: float64\n\n\n\n# 2-Dimensional Array (Matrix)\nB = np.array([[1, 2], [3, 4], [5, 6]])\nprint(\"B =\\n\", B)\nprint(\"shape:\", B.shape)  # (number of rows, number of columns)\n\nB =\n [[1 2]\n [3 4]\n [5 6]]\nshape: (3, 2)\n\n\n\n\n\n\n\n\nWarningCaveat: Data Types (dtype)\n\n\n\nBy default, NumPy might create arrays with float64 or int64 depending on your OS and the input. In deep learning, memory is expensive, so we often explicitly cast arrays to 32-bit floats using a.astype(np.float32).\n\n\n\n# Frequently used creation functions\nprint(\"Zeros:\\n\", np.zeros(5))               # Array of zeros\nprint(\"Ones:\\n\", np.ones((2, 3)))            # 2x3 matrix of ones\nprint(\"Arange:\\n\", np.arange(0, 10, 2))      # start, stop (exclusive), step\nprint(\"Linspace:\\n\", np.linspace(0, 1, 5))   # 5 evenly spaced numbers between 0 and 1 (inclusive)\n\nZeros:\n [0. 0. 0. 0. 0.]\nOnes:\n [[1. 1. 1.]\n [1. 1. 1.]]\nArange:\n [0 2 4 6 8]\nLinspace:\n [0.   0.25 0.5  0.75 1.  ]",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -545,7 +640,7 @@
     "text": "2. Indexing and Slicing\nAccessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.\n\nx = np.array([10, 20, 30, 40, 50])\nprint(\"First element:\", x[0])\nprint(\"Last element:\", x[-1])\nprint(\"Slice [1:4]:\", x[1:4])     # Indices 1, 2, 3 (exclusive of 4)\nprint(\"Step slice [::2]:\", x[::2]) # Every 2nd element from start to end\n\nFirst element: 10\nLast element: 50\nSlice [1:4]: [20 30 40]\nStep slice [::2]: [10 30 50]\n\n\n\nM = np.arange(12).reshape(3, 4)\nprint(\"M =\\n\", M)\nprint(\"Specific element M[1, 2]:\", M[1, 2]) # Row 1, Column 2 (0-indexed)\nprint(\"Entire 2nd row:\", M[2, :])\nprint(\"Entire 3rd column:\", M[:, 3])\n\nM =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nSpecific element M[1, 2]: 6\nEntire 2nd row: [ 8  9 10 11]\nEntire 3rd column: [ 3  7 11]\n\n\n\n\n\n\n\n\nWarningCaveat: Slices are Views, Not Copies!\n\n\n\nWhen you slice an array in NumPy, it returns a view of the original memory, not a new array. If you modify the slice, the original array is modified too. If you need an independent copy, explicitly use .copy().\nx_slice = x[1:4].copy()",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -554,10 +649,10 @@
     "href": "exercises/lab01/numpy-basics.html#vectorization",
     "title": "Lab 01 - NumPy Basics for Machine Learning",
     "section": "3. Vectorization",
-    "text": "3. Vectorization\nVectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a for loop. This results in cleaner code and massive performance boosts.\n\n# Non-vectorized approach: Python 'for' loop\ndef sum_squares_loop(arr):\n    total = 0\n    for x in arr:\n        total += x ** 2\n    return total\n\n# Vectorized approach: NumPy array operation\ndef sum_squares_vec(arr):\n    return (arr ** 2).sum()\n\nLet’s test the speed difference:\n\nlarge = np.random.randn(100_000)\nprint(\"Loop time:\")\n%timeit sum_squares_loop(large)\nprint(\"Vectorized time:\")\n%timeit sum_squares_vec(large)\n\nLoop time:\n8.56 ms ± 51.5 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)\nVectorized time:\n24.5 μs ± 242 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\n\n\nVectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function \\(\\sigma(z) = \\frac{1}{1 + e^{-z}}\\):\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\nz = np.linspace(-5, 5, 11)\nprint(\"z          =\", z)\nprint(\"sigmoid(z) =\", sigmoid(z))\n\nz          = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]\nsigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5\n 0.73105858 0.88079708 0.95257413 0.98201379 0.99330715]",
+    "text": "3. Vectorization\nVectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a for loop. This results in cleaner code and massive performance boosts.\n\n# Non-vectorized approach: Python 'for' loop\ndef sum_squares_loop(arr):\n    total = 0\n    for x in arr:\n        total += x ** 2\n    return total\n\n# Vectorized approach: NumPy array operation\ndef sum_squares_vec(arr):\n    return (arr ** 2).sum()\n\nLet’s test the speed difference:\n\nlarge = np.random.randn(100_000)\nprint(\"Loop time:\")\n%timeit sum_squares_loop(large)\nprint(\"Vectorized time:\")\n%timeit sum_squares_vec(large)\n\nLoop time:\n8.4 ms ± 35.8 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)\nVectorized time:\n24.5 μs ± 189 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\n\n\nVectorization makes applying mathematical functions to arrays trivial. For example, implementing the Sigmoid activation function \\(\\sigma(z) = \\frac{1}{1 + e^{-z}}\\):\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\nz = np.linspace(-5, 5, 11)\nprint(\"z          =\", z)\nprint(\"sigmoid(z) =\", sigmoid(z))\n\nz          = [-5. -4. -3. -2. -1.  0.  1.  2.  3.  4.  5.]\nsigmoid(z) = [0.00669285 0.01798621 0.04742587 0.11920292 0.26894142 0.5\n 0.73105858 0.88079708 0.95257413 0.98201379 0.99330715]",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -569,7 +664,7 @@
     "text": "4. Broadcasting\nBroadcasting is a powerful mechanism that allows NumPy to perform operations on arrays of different shapes.\nThe Rule of Broadcasting: NumPy compares array shapes from right to left. Two dimensions are compatible if:\n\nThey are equal, or\nOne of them is 1. If an array has fewer dimensions, a dimension of 1 is implicitly prepended to its shape.\n\n\n# Shape (3, 4) + Shape (4,) \n# The (4,) is treated as (1, 4), then copied across 3 rows to match (3, 4)\nA = np.arange(12).reshape(3, 4)\nb = np.array([1, 2, 3, 4])\nprint(\"A =\\n\", A)\nprint(\"b =\", b)\nprint(\"A + b =\\n\", A + b)\n\nA =\n [[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\nb = [1 2 3 4]\nA + b =\n [[ 1  3  5  7]\n [ 5  7  9 11]\n [ 9 11 13 15]]\n\n\n\n# Shape (3, 4) + Shape (3, 1)\n# The (3, 1) array is copied across 4 columns to match (3, 4)\nc = np.array([[10], [20], [30]])\nprint(\"c =\\n\", c)\nprint(\"A + c =\\n\", A + c)\n\nc =\n [[10]\n [20]\n [30]]\nA + c =\n [[10 11 12 13]\n [24 25 26 27]\n [38 39 40 41]]\n\n\nPractical Example: Normalizing Data A very common task in ML is normalizing data (e.g., making rows sum to 1).\n\n# keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)\nrow_sums = A.sum(axis=1, keepdims=True)  \nprint(\"row_sums (shape\", row_sums.shape, \") =\\n\", row_sums)\n\nnormalized = A / row_sums\nprint(\"Normalized A (rows sum to 1):\\n\", normalized)\nprint(\"Verify row sums:\", normalized.sum(axis=1))\n\nrow_sums (shape (3, 1) ) =\n [[ 6]\n [22]\n [38]]\nNormalized A (rows sum to 1):\n [[0.         0.16666667 0.33333333 0.5       ]\n [0.18181818 0.22727273 0.27272727 0.31818182]\n [0.21052632 0.23684211 0.26315789 0.28947368]]\nVerify row sums: [1. 1. 1.]\n\n\n\n\n\n\n\n\nWarningCaveat: The Danger of Rank-1 Arrays\n\n\n\nArrays with shape (N,) are called Rank-1 arrays (e.g., b in the example above). They do not behave like traditional row or column vectors and can cause confusing broadcasting bugs. Best Practice in ML: Always reshape your 1D vectors into explicit 2D row matrices (1, N) or column matrices (N, 1) using .reshape(-1, 1) or np.newaxis to avoid unintended broadcasting behaviors.",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -578,22 +673,10 @@
     "href": "exercises/lab01/numpy-basics.html#image-feature-extraction",
     "title": "Lab 01 - NumPy Basics for Machine Learning",
     "section": "5. Image Feature Extraction",
-    "text": "5. Image Feature Extraction\nA single photo (e.g. of a house or street) is just a NumPy array: grayscale images have shape (height, width) and color images (height, width, 3) for red, green, and blue. We will load both versions of the same scene, compare how they are stored, then use sliding local windows over the grayscale image to build a simple blur—each output pixel is the mean of a small square of input pixels. The same idea (local windows over a grid) appears in time series (rolling averages) and in convolutional layers in deep learning.\n\nLoading the image: grayscale and color\nWe use two files: a grayscale PNG and an RGB PNG of the same scene. The image is of the Lorch Monastery church; the original photograph is available at Wikimedia Commons. Grayscale images give one number per pixel, while RGB images give three numbers per pixel (one for each of red, green, and blue). If your grayscale file is instead stored as three identical channels (R=G=B), we collapse it to 2D so we have a single intensity per pixel.\n\nimport matplotlib.image as mpimg\nimport matplotlib.pyplot as plt\n\nimg_gray = mpimg.imread(\"../../data/image_gray.png\")\nimg_rgb = mpimg.imread(\"../../data/image_rgb.png\")\n\nprint(\"Grayscale shape :\", img_gray.shape, \"→ one value per pixel\")\nprint(\"RGB shape       :\", img_rgb.shape, \"→ three values per pixel\")\n\nGrayscale shape : (317, 500) → one value per pixel\nRGB shape       : (317, 500, 3) → three values per pixel\n\n\n\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\naxes[0].imshow(img_gray, cmap='gray')\naxes[0].set_title(\"Grayscale\")\naxes[0].axis(\"off\")\naxes[1].imshow(img_rgb)\naxes[1].set_title(\"RGB\")\naxes[1].axis(\"off\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nLocal windows and simple blur\nReplace each pixel by the mean of a small square (e.g. 10×10) around it. That gives a blurred image: edges soften and noise is reduced. We do this by sweeping a sliding window over the array—same idea as a rolling mean along a 1D signal, but in 2D.\nA 3×3 window in the top-left corner of the grayscale image looks like this:\n\ntop_left = img_gray[:3, :3]\nprint(\"Top-left 3×3 block:\\n\", top_left)\nprint(\"Mean of this block:\", top_left.mean())\n\nTop-left 3×3 block:\n [[0.85882354 0.85882354 0.85882354]\n [0.83137256 0.83137256 0.8352941 ]\n [0.8235294  0.8235294  0.827451  ]]\nMean of this block: 0.83878\n\n\nDouble loop: For every possible top-left corner (i, j) on the full image, take the block img[i:i+size, j:j+size], compute its mean, and store it. Clear, but many Python iterations.\n\nimport timeit\n\nsize = 10\nm, n = img_gray.shape\nmm, nn = m - size + 1, n - size + 1\n\nresult_loop = np.empty((mm, nn))\nfor i in range(mm):\n    for j in range(nn):\n        result_loop[i, j] = img_gray[i : i + size, j : j + size].mean()\n\ndef run_loop():\n    r = np.empty((mm, nn))\n    for i in range(mm):\n        for j in range(nn):\n            r[i, j] = img_gray[i : i + size, j : j + size].mean()\n    return r\nt_loop = timeit.repeat(run_loop, number=1, repeat=10)\nprint(\"Loop:       {:.4f} s (mean of 10 runs)\".format(np.mean(t_loop)))\nprint(\"Blurred shape:\", result_loop.shape)\n\nLoop:       0.4025 s (mean of 10 runs)\nBlurred shape: (308, 491)\n\n\nVectorized view with as_strided: NumPy’s stride_tricks.as_strided lets you reinterpret the same memory as a 4D array of overlapping windows over the full image. No extra memory for the tiles; we only change how we index into the array. Then we take the mean over the last two axes to get one number per window.\n\nfrom numpy.lib import stride_tricks\n\nshape = (mm, nn, size, size)\nstrides = 2 * img_gray.strides\nwindows = stride_tricks.as_strided(img_gray, shape=shape, strides=strides)\nresult_vec = windows.mean(axis=(-1, -2))\n\ndef run_vec():\n    w = stride_tricks.as_strided(img_gray, shape=shape, strides=strides)\n    return w.mean(axis=(-1, -2))\nt_vec = timeit.repeat(run_vec, number=1, repeat=10)\nprint(\"Vectorized: {:.4f} s (mean of 10 runs)\".format(np.mean(t_vec)))\nprint(\"Same as loop:\", np.allclose(result_loop, result_vec))\nprint(\"Speedup:     {:.1f}x\".format(np.mean(t_loop) / np.mean(t_vec)))\n\nVectorized: 0.0189 s (mean of 10 runs)\nSame as loop: True\nSpeedup:     21.2x\n\n\nOutput comparison: Both methods produce the same blurred image over the full image; the vectorized version is typically much faster.\n\nfig, axes = plt.subplots(1, 3, figsize=(12, 4))\naxes[0].imshow(img_gray, cmap='gray')\naxes[0].set_title(\"Original (full image)\")\naxes[0].axis(\"off\")\naxes[1].imshow(result_loop, cmap='gray')\naxes[1].set_title(\"Blurred (loop)\")\naxes[1].axis(\"off\")\naxes[2].imshow(result_vec, cmap='gray')\naxes[2].set_title(\"Blurred (vectorized)\")\naxes[2].axis(\"off\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipStrides and views\n\n\n\nThe strides of an array tell how many bytes to skip when moving by one step along each dimension. as_strided only changes the shape and strides; it does not copy data, so you get a new view of the same buffer. For production code, libraries like Scikit-Learn provide helpers to extract sliding windows without writing strides by hand.",
+    "text": "5. Image Feature Extraction\nA single photo (e.g. of a house or street) is just a NumPy array: grayscale images have shape (height, width) and color images (height, width, 3) for red, green, and blue. We will load both versions of the same scene, compare how they are stored, then use sliding local windows over the grayscale image to build a simple blur—each output pixel is the mean of a small square of input pixels. The same idea (local windows over a grid) appears in time series (rolling averages) and in convolutional layers in deep learning.\n\nLoading the image: grayscale and color\nWe use two files: a grayscale PNG and an RGB PNG of the same scene. The image is of the Lorch Monastery church; the original photograph is available at Wikimedia Commons. Grayscale images give one number per pixel, while RGB images give three numbers per pixel (one for each of red, green, and blue). If your grayscale file is instead stored as three identical channels (R=G=B), we collapse it to 2D so we have a single intensity per pixel.\n\nimport matplotlib.image as mpimg\nimport matplotlib.pyplot as plt\n\nimg_gray = mpimg.imread(\"../../data/image_gray.png\")\nimg_rgb = mpimg.imread(\"../../data/image_rgb.png\")\n\nprint(\"Grayscale shape :\", img_gray.shape, \"→ one value per pixel\")\nprint(\"RGB shape       :\", img_rgb.shape, \"→ three values per pixel\")\n\nGrayscale shape : (317, 500) → one value per pixel\nRGB shape       : (317, 500, 3) → three values per pixel\n\n\n\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\naxes[0].imshow(img_gray, cmap='gray')\naxes[0].set_title(\"Grayscale\")\naxes[0].axis(\"off\")\naxes[1].imshow(img_rgb)\naxes[1].set_title(\"RGB\")\naxes[1].axis(\"off\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nLocal windows and simple blur\nReplace each pixel by the mean of a small square (e.g. 10×10) around it. That gives a blurred image: edges soften and noise is reduced. We do this by sweeping a sliding window over the array—same idea as a rolling mean along a 1D signal, but in 2D.\nA 3×3 window in the top-left corner of the grayscale image looks like this:\n\ntop_left = img_gray[:3, :3]\nprint(\"Top-left 3×3 block:\\n\", top_left)\nprint(\"Mean of this block:\", top_left.mean())\n\nTop-left 3×3 block:\n [[0.85882354 0.85882354 0.85882354]\n [0.83137256 0.83137256 0.8352941 ]\n [0.8235294  0.8235294  0.827451  ]]\nMean of this block: 0.83878\n\n\nDouble loop: For every possible top-left corner (i, j) on the full image, take the block img[i:i+size, j:j+size], compute its mean, and store it. Clear, but many Python iterations.\n\nimport timeit\n\nsize = 10\nm, n = img_gray.shape\nmm, nn = m - size + 1, n - size + 1\n\nresult_loop = np.empty((mm, nn))\nfor i in range(mm):\n    for j in range(nn):\n        result_loop[i, j] = img_gray[i : i + size, j : j + size].mean()\n\ndef run_loop():\n    r = np.empty((mm, nn))\n    for i in range(mm):\n        for j in range(nn):\n            r[i, j] = img_gray[i : i + size, j : j + size].mean()\n    return r\nt_loop = timeit.repeat(run_loop, number=1, repeat=10)\nprint(\"Loop:       {:.4f} s (mean of 10 runs)\".format(np.mean(t_loop)))\nprint(\"Blurred shape:\", result_loop.shape)\n\nLoop:       0.4034 s (mean of 10 runs)\nBlurred shape: (308, 491)\n\n\nVectorized view with as_strided: NumPy’s stride_tricks.as_strided lets you reinterpret the same memory as a 4D array of overlapping windows over the full image. No extra memory for the tiles; we only change how we index into the array. Then we take the mean over the last two axes to get one number per window.\n\nfrom numpy.lib import stride_tricks\n\nshape = (mm, nn, size, size)\nstrides = 2 * img_gray.strides\nwindows = stride_tricks.as_strided(img_gray, shape=shape, strides=strides)\nresult_vec = windows.mean(axis=(-1, -2))\n\ndef run_vec():\n    w = stride_tricks.as_strided(img_gray, shape=shape, strides=strides)\n    return w.mean(axis=(-1, -2))\nt_vec = timeit.repeat(run_vec, number=1, repeat=10)\nprint(\"Vectorized: {:.4f} s (mean of 10 runs)\".format(np.mean(t_vec)))\nprint(\"Same as loop:\", np.allclose(result_loop, result_vec))\nprint(\"Speedup:     {:.1f}x\".format(np.mean(t_loop) / np.mean(t_vec)))\n\nVectorized: 0.0189 s (mean of 10 runs)\nSame as loop: True\nSpeedup:     21.3x\n\n\nOutput comparison: Both methods produce the same blurred image over the full image; the vectorized version is typically much faster.\n\nfig, axes = plt.subplots(1, 3, figsize=(12, 4))\naxes[0].imshow(img_gray, cmap='gray')\naxes[0].set_title(\"Original (full image)\")\naxes[0].axis(\"off\")\naxes[1].imshow(result_loop, cmap='gray')\naxes[1].set_title(\"Blurred (loop)\")\naxes[1].axis(\"off\")\naxes[2].imshow(result_vec, cmap='gray')\naxes[2].set_title(\"Blurred (vectorized)\")\naxes[2].axis(\"off\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipStrides and views\n\n\n\nThe strides of an array tell how many bytes to skip when moving by one step along each dimension. as_strided only changes the shape and strides; it does not copy data, so you get a new view of the same buffer. For production code, libraries like Scikit-Learn provide helpers to extract sliding windows without writing strides by hand.",
     "crumbs": [
       "Exercises",
-      "Lab 01",
-      "Numpy Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/lab01/numpy-basics.html#exercises",
-    "href": "exercises/lab01/numpy-basics.html#exercises",
-    "title": "Lab 01 - NumPy Basics for Machine Learning",
-    "section": "6. Exercises",
-    "text": "6. Exercises\nCreate a vector v and a matrix M with shape (4, 3) where every row of M is exactly v. (Hint: You can achieve this using np.tile or by utilizing broadcasting).\n\nv = np.array([1, 2, 3])\n# M = ???  # Desired shape (4, 3), each row is [1, 2, 3]\n# print(M)\n\nSolutions:\n\n# Solution 1: Using np.tile\nM1 = np.tile(v, (4, 1))\nprint(\"Using tile:\\n\", M1)\n\n# Solution 2: Using broadcasting\n# Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.\nM2 = v + np.zeros((4, 3))\nprint(\"Using broadcasting:\\n\", M2)\n\nUsing tile:\n [[1 2 3]\n [1 2 3]\n [1 2 3]\n [1 2 3]]\nUsing broadcasting:\n [[1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]\n [1. 2. 3.]]",
-    "crumbs": [
-      "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -605,7 +688,7 @@
     "text": "Summary for Machine Learning\n\nIn ML, our datasets are usually represented as 2D arrays with the shape (num_samples, num_features).\nWhen calculating gradients, losses, or passing data through neural network layers, never use Python loops. Always use Vectorization and Broadcasting. It will make your code shorter, significantly faster, and easier to read.",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -617,7 +700,7 @@
     "text": "References\n\nPython for Data Analysis\nWikimedia Commons",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
@@ -629,84 +712,438 @@
     "text": "Further Reading\n\nA Whirlwind Tour of Python\nPython Data Science Handbook\nData Science With Python Core Skills",
     "crumbs": [
       "Exercises",
-      "Lab 01",
+      "Lab1. Introduction to ML",
       "Numpy Basics"
     ]
   },
   {
-    "objectID": "exercises/lab05-numpy-mlp-to-pytorch.html",
-    "href": "exercises/lab05-numpy-mlp-to-pytorch.html",
-    "title": "Numpy MLP to PyTorch",
-    "section": "",
-    "text": "Dataset/DataLoader 구성, TensorBoard 로깅까지 동일 task 재현.",
+    "objectID": "exercises/lab01/python-basics.html#objectives",
+    "href": "exercises/lab01/python-basics.html#objectives",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "Objectives",
+    "text": "Objectives\n\nUnderstand core Python data structures: Lists and Dictionaries.\nFunctions and Control Flow: Learn how to write modular, reusable logic for data processing.\nList Comprehensions: Grasp the “Pythonic” way to create and filter lists efficiently.\nClasses and Objects: Get introduced to the basics of Object-Oriented Programming (OOP), which is crucial for defining neural networks.\n\n\n\n\n\n\n\nNoteBasic Concept: Why Python for Machine Learning?\n\n\n\nPython is the lingua franca of modern Machine Learning. While standard Python is not fast enough for heavy matrix mathematics (which is why we use C-optimized libraries like NumPy or PyTorch), its clean syntax and massive ecosystem make it the perfect “glue” language. We rely on plain Python to load configurations, clean text data, build data loading pipelines, and orchestrate complex model training loops.",
     "crumbs": [
       "Exercises",
-      "Numpy MLP to PyTorch"
+      "Lab1. Introduction to ML",
+      "Python Basics"
     ]
   },
   {
-    "objectID": "exercises/lab03-kfold-cv.html",
-    "href": "exercises/lab03-kfold-cv.html",
-    "title": "K-Fold Cross-Validation",
-    "section": "",
-    "text": "다항 회귀 차수별 train/val loss 곡선 그려보며 overfitting/underfitting 관찰.",
+    "objectID": "exercises/lab01/python-basics.html#core-data-structures-lists-and-dictionaries",
+    "href": "exercises/lab01/python-basics.html#core-data-structures-lists-and-dictionaries",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "1. Core Data Structures: Lists and Dictionaries",
+    "text": "1. Core Data Structures: Lists and Dictionaries\nBefore we get to matrices, we need to know how standard Python stores sequences and key-value pairs.\n\n# Lists: Ordered, mutable sequences\n# Often used to store file paths, feature names, or a sequence of transformations.\nfeatures = ['age', 'income', 'height', 'weight']\nprint(\"Original features:\", features)\n\n# Appending and accessing\nfeatures.append('blood_pressure')\nprint(\"First feature:\", features[0])\nprint(\"Last feature:\", features[-1])\n\nOriginal features: ['age', 'income', 'height', 'weight']\nFirst feature: age\nLast feature: blood_pressure\n\n\n\n# Dictionaries: Unordered key-value pairs (Hash Maps)\n# Essential for storing model hyperparameters or configurations.\nhyperparameters = {\n    'learning_rate': 0.001,\n    'batch_size': 32,\n    'optimizer': 'Adam'\n}\n\nprint(\"Current Learning Rate:\", hyperparameters['learning_rate'])\n\n# Adding a new key-value pair\nhyperparameters['epochs'] = 50\nprint(\"Updated Config:\", hyperparameters)\n\nCurrent Learning Rate: 0.001\nUpdated Config: {'learning_rate': 0.001, 'batch_size': 32, 'optimizer': 'Adam', 'epochs': 50}\n\n\n\n\n\n\n\n\nWarningCaveat: Lists are Slow for Math\n\n\n\nStandard Python lists can hold elements of different data types (e.g., [1, \"hello\", 3.14]). Because of this flexibility, Python must check the type of each element during iteration, making mathematical operations on standard lists extremely slow compared to NumPy arrays.",
     "crumbs": [
       "Exercises",
-      "K-Fold Cross-Validation"
+      "Lab1. Introduction to ML",
+      "Python Basics"
     ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#functions-and-control-flow",
+    "href": "exercises/lab01/python-basics.html#functions-and-control-flow",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "2. Functions and Control Flow",
+    "text": "2. Functions and Control Flow\nMachine learning workflows require modular code. We use functions to isolate tasks like data cleaning, metric calculation, or model evaluation.\n\ndef categorize_age(age):\n    \"\"\"A simple function using control flow to categorize numerical data.\"\"\"\n    if age &lt; 18:\n        return 'Minor'\n    elif age &lt; 65:\n        return 'Adult'\n    else:\n        return 'Senior'\n\n# Testing the function\nages = [15, 34, 72]\nfor a in ages:\n    print(f\"Age {a} is categorized as: {categorize_age(a)}\")\n\nAge 15 is categorized as: Minor\nAge 34 is categorized as: Adult\nAge 72 is categorized as: Senior",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#list-comprehensions",
+    "href": "exercises/lab01/python-basics.html#list-comprehensions",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "3. List Comprehensions",
+    "text": "3. List Comprehensions\nList comprehensions provide a concise, readable, and often faster way to create lists compared to standard for loops. They are ubiquitous in Python data pipelines.\n\n# Non-comprehension approach: Standard loop\nraw_text = [\"  Hello \", \"WORLD  \", \" machine learning\"]\nclean_text_loop = []\nfor word in raw_text:\n    clean_text_loop.append(word.strip().lower())\n\nprint(\"Cleaned with loop:\", clean_text_loop)\n\n# Pythonic approach: List Comprehension\nclean_text_comp = [word.strip().lower() for word in raw_text]\nprint(\"Cleaned with comprehension:\", clean_text_comp)\n\nCleaned with loop: ['hello', 'world', 'machine learning']\nCleaned with comprehension: ['hello', 'world', 'machine learning']\n\n\nYou can also add conditional logic (filtering) inside a comprehension:\n\n# Extract only the positive numbers\nnumbers = [-5, 2, -1, 10, 8]\npositives = [n for n in numbers if n &gt; 0]\nprint(\"Positive numbers only:\", positives)\n\nPositive numbers only: [2, 10, 8]",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#basics-of-classes-oop",
+    "href": "exercises/lab01/python-basics.html#basics-of-classes-oop",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "4. Basics of Classes (OOP)",
+    "text": "4. Basics of Classes (OOP)\nIn modern deep learning frameworks like PyTorch, you define your neural networks by writing a Python class. Understanding how to initialize a class and define its methods is strictly required.\n\nclass SimpleScaler:\n    \"\"\"A mock object mimicking a data scaler (like in scikit-learn).\"\"\"\n    \n    # The __init__ method runs when you create a new instance\n    def __init__(self, scale_factor):\n        self.scale_factor = scale_factor  # Store data inside the object\n        \n    # A method belonging to the class\n    def transform(self, data):\n        return [x * self.scale_factor for x in data]\n\n# Instantiate the object\nscaler = SimpleScaler(scale_factor=0.5)\n\n# Use the object's method\nraw_data = [10, 20, 30]\nscaled_data = scaler.transform(raw_data)\nprint(\"Scaled data:\", scaled_data)\n\nScaled data: [5.0, 10.0, 15.0]",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#summary-for-machine-learning",
+    "href": "exercises/lab01/python-basics.html#summary-for-machine-learning",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "Summary for Machine Learning",
+    "text": "Summary for Machine Learning\n\nUse Dictionaries to manage hyperparameters and configuration settings cleanly.\nMaster List Comprehensions; you will use them constantly for parsing text, filtering file paths, and formatting raw input data before feeding it into NumPy or pandas.\nClasses are the building blocks of Deep Learning frameworks. You will use __init__ to define your network layers and class methods to define how data passes through them.",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#references",
+    "href": "exercises/lab01/python-basics.html#references",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "References",
+    "text": "References\n\nPython for Data Analysis",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab01/python-basics.html#further-reading",
+    "href": "exercises/lab01/python-basics.html#further-reading",
+    "title": "Lab 01 - Python Basics for Machine Learning",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nA Whirlwind Tour of Python (2016)\nPython Data Science Handbook (2016)\nPython for Data Analysis (2023)\nData Science With Python Core Skills",
+    "crumbs": [
+      "Exercises",
+      "Lab1. Introduction to ML",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#objectives",
+    "href": "exercises/lab02/perceptron-limits.html#objectives",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "Objectives",
+    "text": "Objectives\n\nImplement the perceptron learning rule from scratch using NumPy.\nTrain a perceptron on AND and OR gates and confirm that it converges to a perfect decision boundary.\nDemonstrate geometrically that no single straight line can separate XOR, and verify this through an exhaustive search.\n\n\n\n\n\n\n\nNoteCore Concept: The Perceptron\n\n\n\nA perceptron makes a prediction by computing a weighted sum of its inputs and passing it through a step function:\n\\[\\hat{y} = \\text{step}(\\mathbf{w}^\\top \\mathbf{x} + b), \\qquad \\text{step}(z) = \\begin{cases} 1 & z \\geq 0 \\\\ 0 & z &lt; 0 \\end{cases}\\]\nThe weight update rule corrects mistakes one sample at a time:\n\\[\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta\\,(y - \\hat{y})\\,\\mathbf{x}, \\qquad b \\leftarrow b + \\eta\\,(y - \\hat{y})\\]\nwhere \\(\\eta\\) is the learning rate. The Perceptron Convergence Theorem guarantees that this rule finds a perfect solution in finite steps if and only if the data is linearly separable.",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#setup",
+    "href": "exercises/lab02/perceptron-limits.html#setup",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "1. Setup",
+    "text": "1. Setup\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#logic-gate-datasets",
+    "href": "exercises/lab02/perceptron-limits.html#logic-gate-datasets",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "2. Logic Gate Datasets",
+    "text": "2. Logic Gate Datasets\nEach logic gate has four possible input pairs. The table below summarizes the labels for AND, OR, and XOR.\n\nX = np.array([[0, 0],\n              [0, 1],\n              [1, 0],\n              [1, 1]], dtype=float)\n\ny_and = np.array([0, 0, 0, 1])   # AND: 1 only when both inputs are 1\ny_or  = np.array([0, 1, 1, 1])   # OR:  0 only when both inputs are 0\ny_xor = np.array([0, 1, 1, 0])   # XOR: 1 only when inputs differ\n\nBefore training anything, plot the four points for each gate and color them by class. This visual check is important: for AND and OR you should be able to draw a separating line by hand, but not for XOR.\n\nfig, axes = plt.subplots(1, 3, figsize=(13, 4))\n\ngate_data = [\n    (y_and, \"AND\"),\n    (y_or,  \"OR\"),\n    (y_xor, \"XOR\"),\n]\n\nfor ax, (y_gate, name) in zip(axes, gate_data):\n    colors = ['#e15759' if label == 0 else '#4e79a7' for label in y_gate]\n    ax.scatter(X[:, 0], X[:, 1], c=colors, s=250, edgecolors='k', zorder=5)\n    for xi, yi in zip(X, y_gate):\n        ax.annotate(f\"({int(xi[0])},{int(xi[1])})\\ny={yi}\",\n                    xy=xi, xytext=(xi[0] + 0.07, xi[1] + 0.07), fontsize=9)\n    ax.set_xlim(-0.5, 1.5); ax.set_ylim(-0.5, 1.5)\n    ax.set_xlabel(\"$x_1$\"); ax.set_ylabel(\"$x_2$\")\n    ax.set_title(name)\n\nred_patch  = mpatches.Patch(color='#e15759', label='Class 0')\nblue_patch = mpatches.Patch(color='#4e79a7', label='Class 1')\nfig.legend(handles=[red_patch, blue_patch], loc='lower center',\n           ncol=2, fontsize=10, bbox_to_anchor=(0.5, -0.05))\nplt.suptitle(\"Logic Gate Data Points\", fontsize=13, fontweight='bold')\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipBefore You Continue\n\n\n\nLook at the XOR plot. Class 1 (blue) sits at \\((0,1)\\) and \\((1,0)\\), while class 0 (red) sits at \\((0,0)\\) and \\((1,1)\\). Try to draw a single straight line that puts all red points on one side and all blue points on the other. You will find it is impossible. The next sections confirm this rigorously.",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#perceptron-implementation",
+    "href": "exercises/lab02/perceptron-limits.html#perceptron-implementation",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "3. Perceptron Implementation",
+    "text": "3. Perceptron Implementation\n\n\n\nperceptron.py\n\nclass Perceptron:\n    def __init__(self, lr=0.1, n_epochs=50):\n        self.lr = lr\n        self.n_epochs = n_epochs\n        self.w = None\n        self.b = None\n        self.errors_per_epoch = []\n\n    def fit(self, X, y):\n        n_features = X.shape[1]\n        self.w = np.zeros(n_features)\n        self.b = 0.0\n        self.errors_per_epoch = []\n\n        for _ in range(self.n_epochs):\n            errors = 0\n            for xi, yi in zip(X, y):\n                y_hat = self._predict_single(xi)\n                delta = self.lr * (yi - y_hat)\n                self.w += delta * xi\n                self.b += delta\n                errors += int(delta != 0)\n            self.errors_per_epoch.append(errors)\n\n    def _predict_single(self, x):\n        return int(np.dot(self.w, x) + self.b &gt;= 0)\n\n    def predict(self, X):\n        return np.array([self._predict_single(xi) for xi in X])",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#decision-boundary-helper",
+    "href": "exercises/lab02/perceptron-limits.html#decision-boundary-helper",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "4. Decision Boundary Helper",
+    "text": "4. Decision Boundary Helper\nThe decision boundary is the line where the net input is exactly zero. Solving \\(w_1 x_1 + w_2 x_2 + b = 0\\) for \\(x_2\\) gives:\n\\[x_2 = -\\frac{w_1}{w_2}\\,x_1 - \\frac{b}{w_2}\\]\nThe slope is \\(-w_1/w_2\\) and the vertical intercept is \\(-b/w_2\\).\n\n\n\nplot_boundary.py\n\ndef plot_decision_boundary(ax, model, X, y, title, show_result=True):\n    colors = ['#e15759' if label == 0 else '#4e79a7' for label in y]\n    ax.scatter(X[:, 0], X[:, 1], c=colors, s=200, edgecolors='k', zorder=5)\n\n    for xi, yi in zip(X, y):\n        ax.annotate(f\"({int(xi[0])},{int(xi[1])})\",\n                    xy=xi, xytext=(xi[0] + 0.06, xi[1] + 0.06), fontsize=8)\n\n    x_range = np.linspace(-0.5, 1.5, 200)\n    if abs(model.w[1]) &gt; 1e-6:\n        x2_line = -(model.w[0] * x_range + model.b) / model.w[1]\n        ax.plot(x_range, x2_line, 'k--', linewidth=2, label='Decision boundary')\n    elif abs(model.w[0]) &gt; 1e-6:\n        ax.axvline(-model.b / model.w[0], color='k',\n                   linestyle='--', linewidth=2, label='Decision boundary')\n    else:\n        ax.text(0.5, 0.5, 'No boundary\\n(weights still zero)',\n                transform=ax.transAxes, ha='center', va='center',\n                fontsize=9, color='gray')\n\n    ax.set_xlim(-0.5, 1.5); ax.set_ylim(-0.5, 1.5)\n    ax.set_xlabel(\"$x_1$\"); ax.set_ylabel(\"$x_2$\")\n\n    if show_result:\n        preds = model.predict(X)\n        acc   = (preds == y).mean()\n        ax.set_title(f\"{title}\\nAccuracy = {acc:.0%}\")\n    else:\n        ax.set_title(title)\n\n    red_p  = mpatches.Patch(color='#e15759', label='Class 0')\n    blue_p = mpatches.Patch(color='#4e79a7', label='Class 1')\n    line_p = plt.Line2D([0],[0], color='k', linestyle='--',\n                        linewidth=2, label='Boundary')\n    ax.legend(handles=[red_p, blue_p, line_p], fontsize=8, loc='lower right')",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#training-on-and-and-or",
+    "href": "exercises/lab02/perceptron-limits.html#training-on-and-and-or",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "5. Training on AND and OR",
+    "text": "5. Training on AND and OR\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4))\n\nfor ax, (y_gate, name) in zip(axes, [(y_and, 'AND'), (y_or, 'OR')]):\n    p = Perceptron(lr=0.1, n_epochs=20)\n    p.fit(X, y_gate)\n    plot_decision_boundary(ax, p, X, y_gate, name)\n    print(f\"{name} errors per epoch: {p.errors_per_epoch}\")\n\nplt.suptitle(\"AND and OR: Linearly Separable\", fontsize=12, fontweight='bold')\nplt.tight_layout()\nplt.show()\n\nAND errors per epoch: [2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\nOR errors per epoch: [2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n\n\n\n\n\n\n\n\n\nBoth converge within a few epochs. The dashed line cleanly separates the two classes.",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#attempting-xor-with-a-single-perceptron",
+    "href": "exercises/lab02/perceptron-limits.html#attempting-xor-with-a-single-perceptron",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "6. Attempting XOR with a Single Perceptron",
+    "text": "6. Attempting XOR with a Single Perceptron\n\np_xor = Perceptron(lr=0.1, n_epochs=100)\np_xor.fit(X, y_xor)\n\nprint(\"XOR predictions :\", p_xor.predict(X))\nprint(\"XOR ground truth:\", y_xor)\nprint(f\"Accuracy        : {(p_xor.predict(X) == y_xor).mean():.0%}\")\nprint(f\"Errors per epoch: {p_xor.errors_per_epoch}\")\n\nXOR predictions : [1 1 0 0]\nXOR ground truth: [0 1 1 0]\nAccuracy        : 50%\nErrors per epoch: [3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]\n\n\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4))\n\nplot_decision_boundary(axes[0], p_xor, X, y_xor, \"XOR (Single Perceptron)\")\n\naxes[1].plot(p_xor.errors_per_epoch, color='#e15759', linewidth=2)\naxes[1].set_xlabel(\"Epoch\"); axes[1].set_ylabel(\"Number of misclassifications\")\naxes[1].set_title(\"XOR: Errors Never Reach Zero\")\naxes[1].axhline(0, color='gray', linestyle='--')\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarningWhy the Error Never Reaches Zero\n\n\n\nThe perceptron update rule is guaranteed to converge only for linearly separable problems. For XOR, the weights oscillate indefinitely. The errors-per-epoch chart stays above zero regardless of how many epochs you run. This is not a bug in the implementation: it is a mathematical impossibility.",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#geometric-proof-exhaustive-line-search",
+    "href": "exercises/lab02/perceptron-limits.html#geometric-proof-exhaustive-line-search",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "7. Geometric Proof: Exhaustive Line Search",
+    "text": "7. Geometric Proof: Exhaustive Line Search\nTo make the impossibility of XOR separation indisputable, we exhaustively check every possible line in the 2D plane. A line parameterized by slope \\(k\\) and intercept \\(c\\) predicts class 1 whenever \\(x_2 &gt; k x_1 + c\\):\n\\[\\hat{y} = \\mathbf{1}[x_2 &gt; k x_1 + c]\\]\n\ndef best_linear_accuracy(X, y, k_range, c_range):\n    \"\"\"Sweep all (k, c) combinations and return the best accuracy found.\"\"\"\n    best_acc = 0.0\n    best_k, best_c = 0.0, 0.0\n    for k in k_range:\n        for c in c_range:\n            preds = (X[:, 1] &gt; k * X[:, 0] + c).astype(int)\n            acc   = (preds == y).mean()\n            if acc &gt; best_acc:\n                best_acc, best_k, best_c = acc, k, c\n    return best_acc, best_k, best_c\n\nk_vals = np.linspace(-10, 10, 400)\nc_vals = np.linspace(-3,   3, 400)\n\nbest_acc_and, bk_and, bc_and = best_linear_accuracy(X, y_and, k_vals, c_vals)\nbest_acc_or,  bk_or,  bc_or  = best_linear_accuracy(X, y_or,  k_vals, c_vals)\nbest_acc_xor, bk_xor, bc_xor = best_linear_accuracy(X, y_xor, k_vals, c_vals)\n\nprint(f\"Best accuracy on AND by any single line: {best_acc_and:.0%}\")\nprint(f\"Best accuracy on OR  by any single line: {best_acc_or:.0%}\")\nprint(f\"Best accuracy on XOR by any single line: {best_acc_xor:.0%}  &lt;- hard ceiling\")\n\nBest accuracy on AND by any single line: 100%\nBest accuracy on OR  by any single line: 100%\nBest accuracy on XOR by any single line: 75%  &lt;- hard ceiling\n\n\n\nfig, axes = plt.subplots(1, 3, figsize=(14, 4))\n\nx_range = np.linspace(-0.5, 1.5, 200)\n\nfor ax, (y_gate, name, bk, bc, bacc) in zip(axes, [\n    (y_and, \"AND\", bk_and, bc_and, best_acc_and),\n    (y_or,  \"OR\",  bk_or,  bc_or,  best_acc_or),\n    (y_xor, \"XOR\", bk_xor, bc_xor, best_acc_xor),\n]):\n    colors = ['#e15759' if l == 0 else '#4e79a7' for l in y_gate]\n    ax.scatter(X[:, 0], X[:, 1], c=colors, s=200, edgecolors='k', zorder=5)\n    ax.plot(x_range, bk * x_range + bc, 'k--', linewidth=2,\n            label=f'Best line (acc={bacc:.0%})')\n    ax.set_xlim(-0.5, 1.5); ax.set_ylim(-0.5, 1.5)\n    ax.set_xlabel(\"$x_1$\"); ax.set_ylabel(\"$x_2$\")\n    ax.set_title(name)\n    ax.legend(fontsize=9)\n\nplt.suptitle(\"Best Possible Single-Line Separator (Exhaustive Search)\",\n             fontsize=12, fontweight='bold')\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nEven after checking 160,000 candidate lines, XOR cannot exceed 75% accuracy with a single boundary. Three of the four points can be separated, but the fourth is always misclassified.\n\n\n\n\n\n\nImportantKey Takeaway\n\n\n\nAND and OR are linearly separable: a single line achieves 100% accuracy. XOR is not linearly separable: 75% is the hard mathematical ceiling for any single straight line. This limitation motivated the development of multi-layer networks, where stacking two perceptrons creates a non-linear boundary capable of solving XOR.",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#expected-output",
+    "href": "exercises/lab02/perceptron-limits.html#expected-output",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "Expected Output",
+    "text": "Expected Output\nAfter Section 6 (XOR attempt), you should see:\nXOR predictions : [0 1 0 1]   (some wrong pattern that never matches ground truth fully)\nXOR ground truth: [0 1 1 0]\nAccuracy        : 50%  (or 75%, never 100%)\nErrors per epoch: [2, 2, 2, ..., 2]\nAfter Section 7 (exhaustive search):\nBest accuracy on AND by any single line: 100%\nBest accuracy on OR  by any single line: 100%\nBest accuracy on XOR by any single line: 75%  &lt;- hard ceiling",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/perceptron-limits.html#references",
+    "href": "exercises/lab02/perceptron-limits.html#references",
+    "title": "Lab2-1 - Perceptron Limits: Linear Separability and the XOR Problem",
+    "section": "References",
+    "text": "References\n\nRosenblatt, F. (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain.\nMinsky, M. and Papert, S. (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.\nNeural Networks and Deep Learning, Chapter 1 (Nielsen)",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Perceptron Limits"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html",
+    "href": "exercises/lab02/evaluation-metrics.html",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "",
+    "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html#목표",
+    "href": "exercises/lab02/evaluation-metrics.html#목표",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "",
+    "text": "선형 회귀: 최소제곱법으로 직선 피팅하기\n퍼셉트론: AND / OR / XOR 게이트 실험 (선형 분리 가능 vs 불가능)\n로지스틱 회귀: 시그모이드, 결정 경계(decision boundary) 시각화",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html#선형-회귀-1변수",
+    "href": "exercises/lab02/evaluation-metrics.html#선형-회귀-1변수",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "1. 선형 회귀 (1변수)",
+    "text": "1. 선형 회귀 (1변수)\n\\(y \\approx w_0 + w_1 x\\) 형태. 정규방정식 \\(\\hat{w} = (X^T X)^{-1} X^T y\\) 로 한 번에 구할 수 있다.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n# 데이터: y = 2 + 3x + 노이즈\nnp.random.seed(42)\nn = 30\nx = np.linspace(0, 2, n)\ny = 2 + 3 * x + 0.5 * np.random.randn(n)\n\n\n# 설계 행렬 X: 각 행이 [1, x_i]\nX = np.column_stack([np.ones(n), x])\nw_hat = np.linalg.solve(X.T @ X, X.T @ y)\nprint(\"w_0 =\", w_hat[0], \", w_1 =\", w_hat[1])\n\nw_0 = 2.1606891797132195 , w_1 = 2.745237372361261\n\n\n\nplt.scatter(x, y, label=\"data\")\nx_line = np.linspace(0, 2, 100)\ny_line = w_hat[0] + w_hat[1] * x_line\nplt.plot(x_line, y_line, \"r-\", label=\"fitted\")\nplt.xlabel(\"x\"); plt.ylabel(\"y\"); plt.legend(); plt.show()",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html#퍼셉트론-and-or-xor",
+    "href": "exercises/lab02/evaluation-metrics.html#퍼셉트론-and-or-xor",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "2. 퍼셉트론 (AND, OR, XOR)",
+    "text": "2. 퍼셉트론 (AND, OR, XOR)\n퍼셉트론: \\(f(x) = \\mathbb{1}[ w^T x + b &gt; 0 ]\\). 선형 분리 가능한 문제만 풀 수 있다.\n\n# AND, OR, XOR 진리표 (입력 2개)\nX_gate = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])\ny_and = np.array([0, 0, 0, 1])\ny_or  = np.array([0, 1, 1, 1])\ny_xor = np.array([0, 1, 1, 0])\n\n\ndef perceptron_predict(X, w, b):\n    \"\"\" X: (n, d), w: (d,), b: scalar \"\"\"\n    return (X @ w + b &gt; 0).astype(int)\n\ndef fit_perceptron(X, y, lr=0.1, epochs=100):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        pred = perceptron_predict(X, w, b)\n        err = y - pred\n        w += lr * (X.T @ err)\n        b += lr * err.sum()\n    return w, b\n\n\nw_and, b_and = fit_perceptron(X_gate, y_and)\nw_or,  b_or  = fit_perceptron(X_gate, y_or)\nprint(\"AND 예측:\", perceptron_predict(X_gate, w_and, b_and), \" (정답:\", y_and, \")\")\nprint(\"OR  예측:\", perceptron_predict(X_gate, w_or,  b_or),  \" (정답:\", y_or, \")\")\n\nAND 예측: [0 0 0 1]  (정답: [0 0 0 1] )\nOR  예측: [0 1 1 1]  (정답: [0 1 1 1] )\n\n\n\n# XOR: 선형 분리 불가능 → 퍼셉트론 한 개로는 학습 실패\nw_xor, b_xor = fit_perceptron(X_gate, y_xor)\nprint(\"XOR 예측:\", perceptron_predict(X_gate, w_xor, b_xor), \" (정답:\", y_xor, \")\")\n\nXOR 예측: [0 0 0 0]  (정답: [0 1 1 0] )",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html#결정-경계-시각화-and-or",
+    "href": "exercises/lab02/evaluation-metrics.html#결정-경계-시각화-and-or",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "3. 결정 경계 시각화 (AND / OR)",
+    "text": "3. 결정 경계 시각화 (AND / OR)\n\\(w_1 x_1 + w_2 x_2 + b = 0\\) 이 결정 경계(직선)이다. \\(x_2 = -(w_1/w_2)x_1 - b/w_2\\).\n\ndef plot_decision_boundary_2d(X, y, w, b, title=\"\"):\n    plt.scatter(X[y==0, 0], X[y==0, 1], marker=\"o\", label=\"0\")\n    plt.scatter(X[y==1, 0], X[y==1, 1], marker=\"s\", label=\"1\")\n    x1 = np.array([-0.5, 1.5])\n    if np.abs(w[1]) &gt; 1e-8:\n        x2 = -(w[0] * x1 + b) / w[1]\n        plt.plot(x1, x2, \"k-\", label=\"decision boundary\")\n    plt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(title); plt.show()\n\n\nplot_decision_boundary_2d(X_gate, y_and, w_and, b_and, \"AND\")\n\n\n\n\n\n\n\n\n\nplot_decision_boundary_2d(X_gate, y_or, w_or, b_or, \"OR\")",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html#로지스틱-회귀-결정-경계",
+    "href": "exercises/lab02/evaluation-metrics.html#로지스틱-회귀-결정-경계",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "4. 로지스틱 회귀 (결정 경계)",
+    "text": "4. 로지스틱 회귀 (결정 경계)\n로지스틱 회귀: \\(P(y=1|x) = \\sigma(w^T x + b)\\), \\(\\sigma(z) = 1/(1+e^{-z})\\).\n결정 경계는 \\(\\sigma=0.5\\) 인 곳, 즉 \\(w^T x + b = 0\\) (직선).\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-np.clip(z, -500, 500)))\n\n# 2D 예시 데이터: 두 클래스가 약간 겹침\nnp.random.seed(1)\nn1, n2 = 25, 25\nX1 = np.random.randn(n1, 2) + np.array([1, 1])\nX2 = np.random.randn(n2, 2) + np.array([-1, -1])\nX_lr = np.vstack([X1, X2])\ny_lr = np.array([0] * n1 + [1] * n2)\n\n\n# 간단한 경사 하강으로 w, b 추정 (음의 로그우도 최소화)\ndef fit_logistic_simple(X, y, lr=0.1, epochs=2000):\n    n, d = X.shape\n    w, b = np.zeros(d), 0.0\n    for _ in range(epochs):\n        logit = X @ w + b\n        p = sigmoid(logit)\n        grad_w = X.T @ (p - y)\n        grad_b = (p - y).sum()\n        w -= lr * grad_w\n        b -= lr * grad_b\n    return w, b\n\nw_lr, b_lr = fit_logistic_simple(X_lr, y_lr)\npred_lr = (sigmoid(X_lr @ w_lr + b_lr) &gt;= 0.5).astype(int)\nprint(\"정확도:\", (pred_lr == y_lr).mean())\n\n정확도: 0.98\n\n\n\n# 결정 경계 그리기: w1*x1 + w2*x2 + b = 0  →  x2 = -(w1*x1 + b)/w2\nplt.scatter(X_lr[y_lr==0, 0], X_lr[y_lr==0, 1], marker=\"o\", label=\"0\")\nplt.scatter(X_lr[y_lr==1, 0], X_lr[y_lr==1, 1], marker=\"s\", label=\"1\")\nx1_min, x1_max = X_lr[:, 0].min() - 0.5, X_lr[:, 0].max() + 0.5\nx1_grid = np.linspace(x1_min, x1_max, 100)\nif np.abs(w_lr[1]) &gt; 1e-8:\n    x2_boundary = -(w_lr[0] * x1_grid + b_lr) / w_lr[1]\n    plt.plot(x1_grid, x2_boundary, \"k-\", lw=2, label=\"decision boundary\")\nplt.xlabel(\"$x_1$\"); plt.ylabel(\"$x_2$\"); plt.legend(); plt.title(\"Logistic regression\"); plt.show()",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html#연습",
+    "href": "exercises/lab02/evaluation-metrics.html#연습",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "5. 연습",
+    "text": "5. 연습\n\nXOR 데이터에 대해 두 개의 퍼셉트론을 써서 해결하는 방법을 생각해 보세요.\n(힌트: 은닉층 하나를 두고 AND(OR, OR) 같은 구조.)\n위 로지스틱 회귀에서 epochs를 100으로 줄이면 결정 경계가 어떻게 달라지는지 확인해 보세요.",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab02/evaluation-metrics.html#참고",
+    "href": "exercises/lab02/evaluation-metrics.html#참고",
+    "title": "Lab 02 - Linear & Logistic Regression",
+    "section": "참고",
+    "text": "참고\n\n퍼셉트론 하나 = 선형 결정 경계만 가능. XOR은 다층 퍼셉트론(MLP)으로 해결.\n로지스틱 회귀의 결정 경계도 선형; 비선형 경계가 필요하면 특성 추가 또는 신경망을 사용한다.",
+    "crumbs": [
+      "Exercises",
+      "Lab2. Linear Models",
+      "Classification Metrics"
+    ]
+  },
+  {
+    "objectID": "exercises/lab09/lab09.html",
+    "href": "exercises/lab09/lab09.html",
+    "title": "VAE latent space",
+    "section": "",
+    "text": "MNIST VAE 학습 후 2D latent space interpolation, GAN 학습 시 Generator/Discriminator loss 다이나믹스 관찰."
+  },
+  {
+    "objectID": "exercises/lab07/lab07.html",
+    "href": "exercises/lab07/lab07.html",
+    "title": "Feature map 시각화",
+    "section": "",
+    "text": "CIFAR-10 간단 CNN 학습 후 각 layer의 activation map과 학습된 filter 시각화, 파라미터 수 직접 계산 검증."
   },
   {
     "objectID": "assignments/index.html",
     "href": "assignments/index.html",
-    "title": "Assignments",
+    "title": "Assignments Guide",
     "section": "",
-    "text": "과제 목록입니다. 왼쪽 메뉴에서 항목을 선택하세요.",
+    "text": "There will be one homework (HW) for each topical unit of the course, due soon after we finish that unit. These are intended to build your conceptual analysis skills plus your implementation skills in Python. All deadlines are at 11:59 PM KST.\n\n\n\nHW\nTitle\nDue\n\n\n\n\nHW01\nNumerical Programming with NumPy\n26.03.10 26.03.13\n\n\nHW02\nLinear Regression with NumPy\nTBA\n\n\nHW03\nFeedforward Neural Network with PyTorch\nTBA\n\n\nHW04\nConvolutional Neural Network with PyTorch\nTBA\n\n\nHW05\nRecurrent Neural Network with PyTorch\nTBA\n\n\nHW06\nAutoencoder\nTBA\n\n\nHW07\nSVM and Kernel Methods\nTBA\n\n\nHW08\nDecision Tree and Ensemble Methods\nTBA",
     "crumbs": [
       "Assignments"
     ]
   },
   {
-    "objectID": "assignments/hw04-pytorch-cnn.html",
-    "href": "assignments/hw04-pytorch-cnn.html",
-    "title": "CNN",
+    "objectID": "assignments/index.html#homeworks",
+    "href": "assignments/index.html#homeworks",
+    "title": "Assignments Guide",
+    "section": "",
+    "text": "There will be one homework (HW) for each topical unit of the course, due soon after we finish that unit. These are intended to build your conceptual analysis skills plus your implementation skills in Python. All deadlines are at 11:59 PM KST.\n\n\n\nHW\nTitle\nDue\n\n\n\n\nHW01\nNumerical Programming with NumPy\n26.03.10 26.03.13\n\n\nHW02\nLinear Regression with NumPy\nTBA\n\n\nHW03\nFeedforward Neural Network with PyTorch\nTBA\n\n\nHW04\nConvolutional Neural Network with PyTorch\nTBA\n\n\nHW05\nRecurrent Neural Network with PyTorch\nTBA\n\n\nHW06\nAutoencoder\nTBA\n\n\nHW07\nSVM and Kernel Methods\nTBA\n\n\nHW08\nDecision Tree and Ensemble Methods\nTBA",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "assignments/index.html#what-youll-receive",
+    "href": "assignments/index.html#what-youll-receive",
+    "title": "Assignments Guide",
+    "section": "What You’ll Receive",
+    "text": "What You’ll Receive\nFor each assignment, you will receive starter code consisting of two types of files.\n\nhwXX.py (or multiple hwXX_part.py files): Submission file(s). Write your solutions here (e.g., hw0_split.py, hw0_knn.py).\nhwXX.ipynb: Experimentation notebook. Use this to explore, test, and debug your code interactively.",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "assignments/index.html#workflow",
+    "href": "assignments/index.html#workflow",
+    "title": "Assignments Guide",
+    "section": "Workflow",
+    "text": "Workflow\n\nStep 1: Explore in the Notebook\nOpen hwXX.ipynb and use it freely to experiment with your ideas, visualize results, and debug. The notebook imports your functions from the .py files, so any changes you save in the Python scripts will be reflected in the notebook.\nMake sure you have completed the Python setup instructions for this course and activated the appropriate pixi Python environment before running any code.\n\n\n\n\n\n\nWarningTwo Things to Watch Out For\n\n\n\nRestart the kernel after editing .py files. The notebook won’t pick up your changes until you restart the kernel and re-run all cells.\nDon’t leave raise NotImplementedError in place. If this line remains, your function will always throw an error, even if you wrote correct code above it.\n\n\n\n\nStep 2: Implement in Your .py Files\nOpen your assigned .py files and find the TODO blocks inside each function. Remove the raise NotImplementedError line and replace it with your implementation.\nBefore (starter code):\ndef my_function(x):\n    # ========== TODO ==========\n    # Your task description here\n    raise NotImplementedError(\"Remove this line and implement above\")\n    # ==========================\nAfter (your implementation):\ndef my_function(x):\n    # ========== TODO ==========\n    # Your task description here\n    return x ** 2 + 1\n    # ==========================\n\n\n\n\n\n\nImportantRules You Must Follow\n\n\n\nYour submissions will be evaluated not just on whether the code runs, but on whether your implementation reflects the intended logic and approach described in the assignment guide. Violating any of the rules below may result in zero credit for affected test cases.\n\nDo not change function signatures.\n\nKeep the function names and parameters exactly as given.\n\nDo not modify the docstrings.\n\nThe doctests inside them are used for grading.\n\nOutput format must match exactly.\n\nThe autograder compares your function’s return value against the expected output. If the format differs (wrong type, wrong shape, extra print statements, etc.) the test will fail and no credit will be given for that test case.\n\nUse only the packages already imported.\n\nYour solutions should use only the packages already imported in the starter code. Do not import any other packages.\n\n\n\n\n\n\nStep 3: Run Doctests\nBefore submitting, verify all tests pass using one of the two methods below. doctest is part of Python’s standard library, so no extra installation is required.\nMethod 1: Terminal (Recommended)\nNavigate to the directory where your .py file is located using the cd command, then run:\n\n\nterminal\n\npython -m doctest hwXX.py -v\n\nIf all tests pass, you will see output ending with:\nX tests in Y items.\nX passed and 0 failed.\nTest passed.\nIf any test fails, the output will show the expected vs. actual values so you can debug.\nMethod 2: Inside the Notebook\nIf you prefer to stay in the notebook, you can test a specific function by adding a cell with the following code:\nimport doctest\nimport hwXX\n\n# Test a single function\ndoctest.run_docstring_examples(hwXX.my_function, hwXX.__dict__, verbose=True)\nTo run all doctests across the entire file from within the notebook:\nimport doctest\nimport hwXX\n\ndoctest.testmod(hwXX, verbose=True)\nIf all tests pass, the output will end with Test passed. If not, each failure will show the expected value alongside what your function actually returned.\nWant to try your own test cases?\nYou can add extra tests at the bottom of your .py file inside an if __name__ == \"__main__\": block. This block runs only when you execute the file directly with python hwXX.py and is completely ignored during grading.\nif __name__ == \"__main__\":\n    # Try your own test cases here — this block is ignored during grading\n    print(my_function([1, 2, 3]))\n\n    assert my_function([]) == []\n    assert my_function([1]) == [1]\n\n\nStep 4: Submit\n\nSubmit Code: Upload only the requested .py files (e.g., hw0_split.py and hw0_knn.py) to Konkuk eCampus. Do not submit the .ipynb notebooks.\nDo not rename the files. Submitting a file with a modified name (e.g., hw0_split (1).py) may result in zero credit for that file, as the autograder identifies submissions by exact filename.\nVerify Upload: After a successful submission, confirm that exactly the files you were asked to turn in are visible on eCampus.",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "assignments/index.html#evaluation",
+    "href": "assignments/index.html#evaluation",
+    "title": "Assignments Guide",
+    "section": "Evaluation",
+    "text": "Evaluation\nGrading is conducted by the instructor or TAs using an autograder script run against your submitted .py files. Your grade primarily comes from this autograder score, which includes additional hidden test cases beyond the doctests provided in the starter code.\nPassing all local doctests is a good sign, but it does not guarantee a full score. The hidden tests verify that your implementation genuinely follows the intended logic, not just whether it produces the right answer for the given examples.\nLate Submission Policy\nLate submissions are accepted up to 3 days after the deadline, with a penalty applied per day as follows.\n\n1 day late: 20% deduction\n2 days late: 40% deduction\n3 days late: 60% deduction\nMore than 3 days late: no credit accepted",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "assignments/index.html#how-doctests-work",
+    "href": "assignments/index.html#how-doctests-work",
+    "title": "Assignments Guide",
+    "section": "How Doctests Work",
+    "text": "How Doctests Work\nEach function contains test cases embedded in its docstring. Lines starting with &gt;&gt;&gt; are Python commands that get executed automatically, and the line immediately below is the expected output.\nHere is a complete example using sample.py:\n\n\nsample.py\n\ndef add(a, b):\n    \"\"\"\n    Returns the sum of a and b.\n\n    &gt;&gt;&gt; add(2, 3)\n    5\n    &gt;&gt;&gt; add(-1, 1)\n    0\n    &gt;&gt;&gt; add(0, 0)\n    0\n    \"\"\"\n    # ========== TODO ==========\n    # Add a and b and return the result\n    # Hint: use the + operator\n    return a + b\n    # ==========================\n\n\nif __name__ == \"__main__\":\n    # Try your own test cases here — this block is ignored during grading\n    print(add(10, 20))\n    assert add(1, 1) == 2\n\nRunning python -m doctest sample.py -v in your terminal will produce:\nTrying:\n    add(2, 3)\nExpecting:\n    5\nok\nTrying:\n    add(-1, 1)\nExpecting:\n    0\nok\nTrying:\n    add(0, 0)\nExpecting:\n    0\nok\n...\n3 tests in 2 items.\n3 passed and 0 failed.\nTest passed.\nThe output must match exactly. If your function returns 5.0 instead of 5, or prints 5 instead of returning it, the test will fail.\n\n\n\n\n\n\nTipFloating-Point Output\n\n\n\nSince many assignments involve numerical computation, your functions will often return float values. Doctest matches output as a string, so 5.0 and 5 are treated as different results. When the expected output in a docstring is a rounded value, use round() in your return statement to match it precisely. For example, return round(result, 4) ensures your output aligns with the expected format.",
+    "crumbs": [
+      "Assignments"
+    ]
+  },
+  {
+    "objectID": "assignments/hw08/hw08.html",
+    "href": "assignments/hw08/hw08.html",
+    "title": "Decision Tree and Ensemble Methods",
+    "section": "",
+    "text": "Decision Tree 및 Ensemble 방법 실습.",
+    "crumbs": [
+      "Assignments",
+      "HW8 (~TBA)"
+    ]
+  },
+  {
+    "objectID": "assignments/hw04/hw04.html",
+    "href": "assignments/hw04/hw04.html",
+    "title": "Convolutional Neural Network with PyTorch",
     "section": "",
     "text": "PyTorch로 convolutional neural network 구현.",
     "crumbs": [
       "Assignments",
-      "CNN"
+      "HW4 (~TBA)"
     ]
   },
   {
-    "objectID": "assignments/hw03-pytorch-mlp.html",
-    "href": "assignments/hw03-pytorch-mlp.html",
-    "title": "Feedforward NN",
+    "objectID": "assignments/hw03/hw03.html",
+    "href": "assignments/hw03/hw03.html",
+    "title": "Feedforward Neural Network with PyTorch",
     "section": "",
     "text": "PyTorch로 feedforward neural network 구현 및 학습.",
     "crumbs": [
       "Assignments",
-      "Feedforward NN"
+      "HW3 (~TBA)"
     ]
   },
   {
-    "objectID": "assignments/hw02-simple-regression.html",
-    "href": "assignments/hw02-simple-regression.html",
-    "title": "Simple regression",
+    "objectID": "assignments/hw06/hw06.html",
+    "href": "assignments/hw06/hw06.html",
+    "title": "Autoencoder",
     "section": "",
-    "text": "Numpy로 매우 단순한 회귀 모델 구현.",
+    "text": "PyTorch Autoencoder 구현.",
     "crumbs": [
       "Assignments",
-      "Simple regression"
-    ]
-  },
-  {
-    "objectID": "assignments/hw07-svm-kernel.html",
-    "href": "assignments/hw07-svm-kernel.html",
-    "title": "SVM & Kernel",
-    "section": "",
-    "text": "SVM 및 Kernel 기법 실습.",
-    "crumbs": [
-      "Assignments",
-      "SVM & Kernel"
+      "HW6 (~TBA)"
     ]
   }
 ]
