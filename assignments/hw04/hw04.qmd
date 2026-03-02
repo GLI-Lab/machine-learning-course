@@ -1,0 +1,6 @@
+---
+title: "Convolutional Neural Network with PyTorch"
+jupyter: python3
+---
+
+PyTorch로 convolutional neural network 구현.

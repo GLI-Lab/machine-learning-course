@@ -46,7 +46,7 @@ jobs:
           cp -r exercises assignments data _out/ 2>/dev/null || true
           
           # (2) 파이썬 스크립트 실행 (_out 폴더 내의 .qmd Callout 치환)
-          python3 scripts/convert_callouts.py
+          python3 scripts/convert.py
           
           # (3) find 명령어로 하위 폴더 깊이와 상관없이 모든 .qmd 파일을 찾아 변환
           find _out/exercises _out/assignments -type f -name "*.qmd" 2>/dev/null | while read -r f; do

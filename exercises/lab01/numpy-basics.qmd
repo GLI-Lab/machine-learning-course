@@ -291,30 +291,6 @@ plt.show()
 The **strides** of an array tell how many bytes to skip when moving by one step along each dimension. `as_strided` only changes the shape and strides; it does not copy data, so you get a new *view* of the same buffer. For production code, libraries like Scikit-Learn provide helpers to extract sliding windows without writing strides by hand.
 :::
 
-## 6. Exercises
-
-Create a vector `v` and a matrix `M` with shape `(4, 3)` where every row of `M` is exactly `v`.
-*(Hint: You can achieve this using `np.tile` or by utilizing broadcasting).*
-
-```{python}
-v = np.array([1, 2, 3])
-# M = ???  # Desired shape (4, 3), each row is [1, 2, 3]
-# print(M)
-```
-
-**Solutions:**
-
-```{python}
-# Solution 1: Using np.tile
-M1 = np.tile(v, (4, 1))
-print("Using tile:\n", M1)
-
-# Solution 2: Using broadcasting
-# Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.
-M2 = v + np.zeros((4, 3))
-print("Using broadcasting:\n", M2)
-```
-
 ## Summary for Machine Learning
 
 * In ML, our datasets are usually represented as 2D arrays with the shape `(num_samples, num_features)`.

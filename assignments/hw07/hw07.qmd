@@ -1,0 +1,6 @@
+---
+title: "SVM and Kernel Methods"
+jupyter: python3
+---
+
+SVM 및 Kernel 기법 실습.

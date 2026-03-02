@@ -136,33 +136,6 @@ print("Scaled data:", scaled_data)
 
 ```
 
-## 5. Exercises
-
-You are given a list of dictionaries representing a tiny dataset of students and their test scores.
-Write a list comprehension that extracts the names of students who scored **higher than 80**.
-
-```{python}
-students = [
-    {'name': 'Alice', 'score': 85},
-    {'name': 'Bob', 'score': 72},
-    {'name': 'Charlie', 'score': 90},
-    {'name': 'Diana', 'score': 65}
-]
-
-# top_students = ???
-# print(top_students)
-
-```
-
-**Solutions:**
-
-```{python}
-# Solution using list comprehension with a condition
-top_students = [student['name'] for student in students if student['score'] > 80]
-print("Students with score > 80:", top_students)
-
-```
-
 ## Summary for Machine Learning
 
 * Use **Dictionaries** to manage hyperparameters and configuration settings cleanly.
@@ -175,6 +148,7 @@ print("Students with score > 80:", top_students)
 
 ## Further Reading
 
-- [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython/?tab=readme-ov-file)
-- [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook)
+- [A Whirlwind Tour of Python (2016)](https://github.com/jakevdp/WhirlwindTourOfPython/?tab=readme-ov-file)
+- [Python Data Science Handbook (2016)](https://github.com/jakevdp/PythonDataScienceHandbook)
+- [Python for Data Analysis (2023)](https://wesmckinney.com/book/)
 - [Data Science With Python Core Skills](https://realpython.com/learning-paths/data-science-python-core-skills/)

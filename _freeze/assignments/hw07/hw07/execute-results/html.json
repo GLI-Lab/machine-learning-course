@@ -1,0 +1,12 @@
+{
+  "hash": "fca55bd6847e78e63c45724848f6f508",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"SVM and Kernel Methods\"\njupyter: python3\n---\n\n\n\n\nSVM 및 Kernel 기법 실습.\n\n",
+    "supporting": [
+      "hw07_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

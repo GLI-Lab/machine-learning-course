@@ -1,0 +1,151 @@
+Here is a Lab 01 notebook document for **pandas**, matching the exact style, tone, and formatting of your NumPy and Python basics labs.
+
+---
+
+## title: "Lab 01 - Pandas Basics for Machine Learning" jupyter: python3
+
+## Objectives
+
+* Understand core pandas data structures: **Series** and **DataFrames**.
+* **Data Inspection**: Learn how to quickly explore and summarize a dataset.
+* **Indexing and Filtering**: Master extracting specific rows and columns (crucial for separating features from targets).
+* **Handling Missing Data**: Learn techniques to clean dirty data before feeding it into a machine learning model.
+
+::: {.callout-note}
+
+## Basic Concept: Why Pandas for Machine Learning?
+
+While NumPy handles the heavy mathematical lifting, **pandas** is the ultimate tool for data manipulation and analysis. Real-world data is messy: it has missing values, inconsistent formatting, and mixed data types (text, dates, numbers). Pandas is built on top of NumPy but provides a tabular interface (like Excel or SQL) that makes cleaning, filtering, and preparing datasets for Machine Learning highly intuitive.
+:::
+
+## 1. Core Data Structures: Series and DataFrames
+
+Pandas has two primary data structures. A **Series** is a 1-dimensional array (like a single column), and a **DataFrame** is a 2-dimensional table made up of multiple Series.
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# 1-Dimensional: Series
+# You can think of it as a single column of data with an index
+ages = pd.Series([25, 30, 22, 45, 33], name="Age")
+print("Series:\n", ages)
+print("\nShape:", ages.shape)
+
+```
+
+```{python}
+# 2-Dimensional: DataFrame
+# The most common way to create a DataFrame from scratch is using a dictionary
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'],
+    'Age': [25, np.nan, 22, 45, 33], # Note the missing value (NaN) for Bob
+    'Income': [55000, 48000, 32000, 110000, 75000],
+    'Purchased': [0, 1, 0, 1, 1]
+}
+
+df = pd.DataFrame(data)
+print("DataFrame:\n", df)
+
+```
+
+## 2. Inspecting Data
+
+Before applying any Machine Learning algorithm, you must understand the shape, distribution, and types of your data.
+
+```{python}
+# View the first few rows (default is 5)
+print("Head:\n", df.head(3))
+
+# Get a concise summary of the DataFrame, including data types and non-null counts
+print("\n--- DataFrame Info ---")
+df.info()
+
+# Generate descriptive statistics for numerical columns
+print("\n--- Summary Statistics ---")
+print(df.describe())
+
+```
+
+## 3. Indexing and Slicing (Feature Extraction)
+
+In Machine Learning, a standard task is splitting your DataFrame into **Features ($X$)** and **Labels ($y$)**. Pandas provides powerful `.loc` (label-based) and `.iloc` (integer position-based) indexers.
+
+```{python}
+# Selecting a single column returns a Series
+y = df['Purchased'] 
+print("Target Label (y):\n", y.values) # .values converts it to a NumPy array
+
+# Selecting multiple columns returns a smaller DataFrame
+X_subset = df[['Age', 'Income']]
+print("\nFeature Subset (X):\n", X_subset)
+
+```
+
+Using `.iloc` is the most reliable way to split features and targets based on column order.
+
+```{python}
+# df.iloc[rows, columns]
+# Select all rows (:), and all columns EXCEPT the last one (:-1)
+X = df.iloc[:, :-1] 
+print("All Features (X):\n", X)
+
+# Select all rows (:), and ONLY the last column (-1)
+y = df.iloc[:, -1]
+print("\nTarget (y):\n", y)
+
+```
+
+::: {.callout-warning}
+
+## Caveat: `.loc` vs `.iloc`
+
+A very common source of bugs!
+
+* Use `df.loc[]` when you want to select data by its **name/label** (e.g., column 'Age' or row index 'User_5').
+* Use `df.iloc[]` when you want to select data by its **numerical position** (e.g., the 0th row, or the last column `-1`), just like standard NumPy slicing.
+:::
+
+## 4. Filtering and Handling Missing Data
+
+Machine Learning models cannot process `NaN` (Not a Number) values. You must either drop the rows containing them or fill them with a logical replacement (Imputation).
+
+```{python}
+# Filtering: Find all rows where Income is greater than 50,000
+high_income = df[df['Income'] > 50000]
+print("High Income Customers:\n", high_income)
+
+```
+
+```{python}
+# Check for missing values
+print("Missing values per column:\n", df.isna().sum())
+
+# Strategy 1: Drop any row containing a missing value
+df_dropped = df.dropna()
+print("\nDataFrame after dropna():\n", df_dropped)
+
+# Strategy 2: Fill missing values with the column mean (Common ML Imputation)
+mean_age = df['Age'].mean()
+df_filled = df.copy()
+df_filled['Age'] = df_filled['Age'].fillna(mean_age)
+print(f"\nDataFrame after filling NaN with mean ({mean_age}):\n", df_filled)
+
+```
+
+## Summary for Machine Learning
+
+* **Exploratory Data Analysis (EDA):** Always use `.head()`, `.info()`, and `.describe()` to understand your data before building models.
+* **Data Preparation:** Pandas is your primary tool for filtering out noise, handling `NaN` values, and converting categorical text into numbers.
+* **Scikit-Learn Integration:** Most modern ML libraries, like Scikit-Learn, natively accept pandas DataFrames as inputs for training models. When passing data to PyTorch or TensorFlow, you will often convert DataFrames to NumPy arrays first using `.values`.
+
+## References
+
+* [Python for Data Analysis](https://wesmckinney.com/book/) (Written by the creator of pandas, Wes McKinney)
+
+## Further Reading
+
+* [Pandas Official Getting Started Guide](https://pandas.pydata.org/docs/getting_started/index.html)
+* [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython/?tab=readme-ov-file)
+* [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook)
+

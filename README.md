@@ -21,7 +21,14 @@ quarto --version
 ## PM2 등록하기
 ```bash
 # 수업서버 Preview 서버 시작
-pm2 start pixi --name "ml-course-preview" -- run quarto preview --port 4000 --host 0.0.0.0
+pm2 start pixi --name "ml-course" -- run quarto preview --port 4000 --host 0.0.0.0
+
+# 재시작
+pm2 restart ml-course
+
+# 상태 확인
+pm2 status
+pm2 show ml-course
 ```
 
 `<IP>:4000` 으로 접속 가능

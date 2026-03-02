@@ -1,0 +1,6 @@
+---
+title: "Linear Regression with NumPy"
+jupyter: python3
+---
+
+Numpy로 매우 단순한 회귀 모델 구현.

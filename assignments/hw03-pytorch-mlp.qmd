@@ -1,6 +1,0 @@
----
-title: "Feedforward NN"
-jupyter: python3
----
-
-PyTorch로 feedforward neural network 구현 및 학습.

@@ -1,0 +1,12 @@
+{
+  "hash": "c372e91a84551ad9889f3fcc0dc93b1b",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Convolutional Neural Network with PyTorch\"\njupyter: python3\n---\n\n\n\n\nPyTorch로 convolutional neural network 구현.\n\n",
+    "supporting": [
+      "hw04_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

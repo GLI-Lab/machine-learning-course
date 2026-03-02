@@ -9,6 +9,7 @@
 # Quarto
 /.quarto/
 _site/
+*.quarto_ipynb
 
 *.ipynb
 _temp/

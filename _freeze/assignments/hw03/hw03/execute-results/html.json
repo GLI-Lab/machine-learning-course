@@ -1,0 +1,12 @@
+{
+  "hash": "ef871949aa6cd435ba5489611fb2cd3c",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Feedforward Neural Network with PyTorch\"\njupyter: python3\n---\n\n\n\n\nPyTorch로 feedforward neural network 구현 및 학습.\n\n",
+    "supporting": [
+      "hw03_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
