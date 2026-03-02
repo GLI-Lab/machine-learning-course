@@ -28,7 +28,7 @@ where $\eta$ is the learning rate. The **Perceptron Convergence Theorem** guaran
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatch
+import matplotlib.patches as mpatches
 ```
 
 ## 2. Logic Gate Datasets
