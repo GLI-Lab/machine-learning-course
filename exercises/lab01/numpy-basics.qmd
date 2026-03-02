@@ -291,7 +291,7 @@ plt.show()
 The **strides** of an array tell how many bytes to skip when moving by one step along each dimension. `as_strided` only changes the shape and strides; it does not copy data, so you get a new *view* of the same buffer. For production code, libraries like Scikit-Learn provide helpers to extract sliding windows without writing strides by hand.
 :::
 
-## Summary for Machine Learning
+## Summary
 
 * In ML, our datasets are usually represented as 2D arrays with the shape `(num_samples, num_features)`.
 * When calculating gradients, losses, or passing data through neural network layers, **never** use Python loops. Always use **Vectorization** and **Broadcasting**. It will make your code shorter, significantly faster, and easier to read.

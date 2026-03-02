@@ -211,7 +211,7 @@ Test passed.
 
 The output must match **exactly**. If your function returns `5.0` instead of `5`, or prints `5` instead of returning it, the test will fail.
 
-::: {.callout-tip}
+::: {.callout-note}
 ## Floating-Point Output
 
 Since many assignments involve numerical computation, your functions will often return float values. Doctest matches output as a string, so `5.0` and `5` are treated as different results. When the expected output in a docstring is a rounded value, use `round()` in your return statement to match it precisely. For example, `return round(result, 4)` ensures your output aligns with the expected format.

@@ -1,44 +1,111 @@
 ---
-title: "Machine Learning Course"
+title: "Machine Learning"
 ---
 
-Welcome to the Machine Learning Course. This page provides all the materials you need for exercises and assignments throughout the semester.
+This Website is your central hub for all coding materials, including environment setup instructions, in-class Lab notebooks, and Homework starter codes.
 
-## Course Materials
+This practicum adopts a **"From Scratch to Framework"** philosophy. You will first build core algorithms (like Linear Regression, MLPs, and Self-Attention) using fundamental matrix operations in **NumPy**. Once you understand the mechanics, we will transition to **PyTorch** to scale your models, leverage GPU acceleration, and explore modern architectures.
 
-- **Exercises**: In-class practice materials and notebooks
-- **Assignments**: Graded homework submissions
+::: {.callout-note}
+## Konkuk eCampus
 
-## Exercises
+**Konkuk eCampus** is used for official lecture slides, course announcements, grade tracking, and submitting your homework `.py` files.
+:::
 
-| Week | Topic | Materials |
-|------|-------|-----------|
-| Week 1 | Introduction to ML | [Exercise 1](#) |
-| Week 2 | Data Preprocessing | [Exercise 2](#) |
-| Week 3 | K-Nearest Neighbors | [Exercise 3](#) |
-| Week 4 | Linear Regression | [Exercise 4](#) |
-| Week 5 | Logistic Regression | [Exercise 5](#) |
+## The Two Pillars of This Course
 
-## Assignments
+This practicum is divided into two distinct types of activities: **Labs** for learning and exploration, and **Homeworks** for evaluation.
 
-| # | Topic | Due Date | Submission |
-|---|-------|----------|------------|
-| Assignment 1 | KNN Implementation | TBD | `.py` file |
-| Assignment 2 | Regression Analysis | TBD | `.py` file |
+### 1. Labs (In-Class Exercises)
 
-## Submission Guidelines
+Labs are the hands-on companion to each lecture unit. These short, focused sessions are designed to help you build intuition for theoretical concepts by interacting directly with provided code.
 
-- All assignments must be submitted as `.py` files.
-- Your code must pass the provided `doctest` before submission.
-- Late submissions will not be accepted unless prior approval is given.
+- **Grading:** Labs are **not graded**. They exist entirely for your learning benefit.
+- **Format:** You will receive a `labXX.ipynb` Jupyter notebook with complete, runnable code.
 
-## How to Run Doctests
+Every lab notebook follows the same internal layout so you always know where to look.
 
-To verify your assignment before submission, run the following command:
-```bash
-python -m doctest assignment.py -v
-```
+- **Objectives** lists the specific skills or concepts you will practice in that lab. Read this before you start.
+- **Background** gives a concise reminder of the theory needed for the tasks. This is not a replacement for the lecture; it is a quick reference.
+- **Experiments** contains the executable cells where you will run the provided implementations, visualize the results, and observe the internal mechanics of the machine learning models.
 
-## Contact
+**Workflow:**
 
-For questions regarding course materials or assignments, please reach out via the course discussion board or email the instructor.
+1. **Run and Observe:** Execute the cells sequentially, always from top to bottom. Deeply understand how the mathematical equations from the lecture translate into NumPy operations or PyTorch layers. Pay close attention to how data shapes transform at each step.
+2. **Experiment Freely:** Labs are exploratory playgrounds. Once you have run the provided code and observed its default output, tinker freely. Change hyperparameters, alter architectures, or intentionally break the code to see what errors PyTorch throws. Some cells include optional challenge prompts marked with a comment like `# OPTIONAL:`.
+
+::: {.callout-warning}
+## Always Run Cells from Top to Bottom
+
+If you skip a cell or run them out of order, later cells may fail because variables or imports from earlier cells are missing. If something breaks unexpectedly, restart the kernel and re-run all cells from the top.
+:::
+
+### 2. Homeworks (Assignments)
+
+There will be 8 homework assignments intended to test your conceptual analysis and Python implementation skills. All deadlines are at **11:59 PM KST**.
+
+- **Grading:** Homeworks are **strictly graded** via an autograder run against your submitted `.py` files. Your grade primarily comes from this score, which includes **additional hidden test cases** beyond the provided doctests. Passing all local doctests is a good sign, but it does not guarantee a full score.
+- **Format:** You will receive a `.py` submission file (where you write your solution) and a `.ipynb` experimentation notebook (for exploring and debugging).
+
+**Workflow:**
+
+1. **Explore:** Open `hwXX.ipynb` and use it freely to experiment with your ideas, visualize results, and debug. The notebook imports your functions from the `.py` files, so any changes you save in the Python scripts will be reflected in the notebook after a kernel restart.
+2. **Implement:** Open the `.py` file, locate the `TODO` blocks, remove the `raise NotImplementedError` line, and write your code. See the [Assignments Guide](/assignments/index.html#step-2-implement-in-your-.py-files) for a detailed walkthrough.
+3. **Run Doctests:** Verify your code locally by running `python -m doctest hwXX.py -v` in your terminal. See the [Assignments Guide](/assignments/index.html#how-doctests-work) for expected output and troubleshooting tips.
+4. **Submit:** Upload **only** your `.py` files to eCampus before the deadline. Do not submit the `.ipynb` notebook and do not rename the files.
+
+::: {.callout-warning}
+## Two Things to Watch Out For
+
+**Restart the kernel after editing `.py` files.** The notebook will not pick up your changes until you restart the kernel and re-run all cells.
+
+**Remove `raise NotImplementedError` before submitting.** If this line remains in a function, it will always throw an error even if you wrote correct code above it.
+:::
+
+## Schedule & Materials
+
+The timeline and specific contents below are subject to change to adapt to the pace of the class. Labs marked as TBD have tentative topics that may be added, removed, or reordered as the course progresses.
+
+| Unit | Topic | Labs (Ungraded) | HW (Graded) | Due Date |
+|:---|:---|:---|:---|:---|
+| **1** | Introduction to ML | Lab 1 | [HW01](hw01/hw01.html) | TBA |
+| **2** | Linear Models | Lab 2 | - | - |
+| **3** | Multi-Layer Perceptron | Lab 3 | [HW02](hw02/hw02.html) | TBA |
+| **4** | Model Validation | Lab 4 | - | - |
+| **5** | Model Generalization | Lab 5 | [HW03](hw03/hw03.html) | TBA |
+| **6** | Convolutional NNs | Lab 6 | - | - |
+| **7** | Recurrent NNs | Lab 7 | [HW04](hw04/hw04.html) | TBA |
+| **8** | Mid-term Exam | - | - | - |
+| **9** | Attention Mechanisms | Lab 9 | [HW05](hw05/hw05.html) | TBA |
+| **10** | Generative Models | Lab 10 | - | - |
+| **11** | Representations | Lab 11 | [HW06](hw06/hw06.html) | TBA |
+| **12** | SVM & Kernels | Lab 12 | - | - |
+| **13** | Decision Trees | Lab 13 | [HW07](hw07/hw07.html) | TBA |
+| **14** | Ensemble Methods | Lab 14 | - | - |
+| **15** | Bayesian Learning | Lab 15 | [HW08](hw08/hw08.html) | TBA |
+| **16** | Final Exam | - | - | - |
+
+## Course Policies
+
+### Autograder Rules
+
+To avoid receiving zero credit on a working solution, you must follow these rules exactly:
+
+- **Do not change function signatures.** Keep function names and parameters exactly as given.
+- **Do not modify the docstrings.** The doctests inside them are used for grading.
+- **Output format must match exactly.** Wrong type, wrong shape, or extra `print` statements will cause the autograder test to fail even if your logic is correct.
+- **Use only the packages already imported.** Do not `import` any additional external libraries.
+
+### Late Submission Policy
+
+Late submissions are accepted up to 3 days after the deadline with penalties applied per day. A submission 1 day late receives a 20% deduction, 2 days late receives a 40% deduction, and 3 days late receives a 60% deduction. No credit is accepted beyond 3 days.
+
+### Collaboration & Academic Integrity
+
+Our ultimate goal is for each student to fully understand the course material.
+
+**Homeworks must be done individually.** You may not share any code or written solutions with others, regardless of whether they are enrolled in the class.
+
+**High-level interaction is encouraged.** After spending at least 10 minutes thinking about a problem on your own, you may verbally discuss assignments or work out solutions on whiteboards together. However, you are not allowed to take away any written or electronic information from joint work sessions — no notes, no photos, no code. Emails and messages also constitute notes and should not be used when preparing solutions.
+
+**On AI assistance:** For homeworks, using AI tools such as ChatGPT or GitHub Copilot to generate code logic is strictly prohibited. You are expected to write and understand every line of code you submit. We will not hesitate to refer cases of suspected violation to the university disciplinary authorities.

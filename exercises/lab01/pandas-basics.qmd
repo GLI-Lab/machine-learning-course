@@ -133,7 +133,7 @@ print(f"\nDataFrame after filling NaN with mean ({mean_age}):\n", df_filled)
 
 ```
 
-## Summary for Machine Learning
+## Summary
 
 * **Exploratory Data Analysis (EDA):** Always use `.head()`, `.info()`, and `.describe()` to understand your data before building models.
 * **Data Preparation:** Pandas is your primary tool for filtering out noise, handling `NaN` values, and converting categorical text into numbers.

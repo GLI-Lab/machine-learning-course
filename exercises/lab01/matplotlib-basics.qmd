@@ -138,7 +138,7 @@ plt.show()
 
 ```
 
-## Summary for Machine Learning
+## Summary
 
 * **Line Plots (`ax.plot`)**: Use these to visualize time-series data or track training/validation metrics over time (Epochs).
 * **Scatter Plots (`ax.scatter`)**: Your go-to tool for visualizing feature relationships and class separability in classification tasks.

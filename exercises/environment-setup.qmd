@@ -30,17 +30,19 @@ Compared to conda or mamba, pixi offers three main advantages for this course. I
 
 ### Step 1: Install pixi
 
+For the full installation guide, see <https://pixi.prefix.dev/latest/installation>.
+
+**Linux and macOS**
+
 ::: {.callout-warning}
 ## No `sudo` Required
 
 pixi installs by default to `~/.pixi/` under your own user account. Elevated privileges are almost never needed. Each project environment lives inside the project folder under `.pixi/envs/`, so there is no conflict between users or projects on shared machines.
 :::
-
-**Linux and macOS**
 ```bash
 # Choose one depending on what is available on your system
 curl -fsSL https://pixi.sh/install.sh | sh
-# or:
+# or
 wget -qO- https://pixi.sh/install.sh | sh
 
 # Reload your shell to apply PATH changes
@@ -53,12 +55,12 @@ pixi --version
 
 **Windows** — Open PowerShell:
 ```powershell
-iwr -useb https://pixi.sh/install.ps1 | iex
+powershell -ExecutionPolicy Bypass -c "irm -useb https://pixi.sh/install.ps1 | iex"
 ```
 
-Restart your terminal and run `pixi --version` to verify.
+Alternatively, you can download the `.msi` installer directly from the [pixi releases page](https://github.com/prefix-dev/pixi/releases/latest) and run it — no PowerShell required.
 
-For the full installation guide, see <https://pixi.prefix.dev/latest/installation>.
+Restart your terminal and run `pixi --version` to verify.
 
 ### Step 2: Clone the Course Repository
 ```bash
@@ -88,13 +90,23 @@ Navigate into the repository folder and run:
 pixi install
 ```
 
-This reads `pixi.lock` and installs every package at its exact pinned version. Because no version resolution is needed, this step is fast. The following packages are installed as part of the course environment — you do not need to install them separately.
+This reads `pixi.lock` and installs every package at its exact pinned version. The full dependency list is declared in `pixi.toml`:
+```{.toml filename="pixi.toml"}
+[dependencies]
+python = "3.12.*"
+numpy = "*"              # array operations and linear algebra
+pandas = "*"             # data manipulation
+scikit-learn = "*"       # machine learning utilities and datasets
+matplotlib = "*"         # visualization
+seaborn = "*"            # statistical visualization
+plotly = "*"             # interactive visualization
+tqdm = "*"               # progress bars and utilities
+jupyterlab = "*"         # interactive notebook interface
+pytorch = "*"            # deep learning (used from Unit 4 onward)
+torchvision = "*"        # datasets and models for PyTorch
+```
 
-- `numpy`: array operations and linear algebra
-- `matplotlib`: visualization
-- `jupyterlab`: interactive notebook interface
-- `torch` and `torchvision`: deep learning (used from Unit 4 onward)
-- `sklearn`: evaluation utilities and datasets
+You do not need to install any of these separately — `pixi install` takes care of everything.
 
 ::: {.callout-note}
 ## How `pixi install` Behaves

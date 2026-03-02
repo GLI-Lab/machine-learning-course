@@ -136,7 +136,7 @@ print("Scaled data:", scaled_data)
 
 ```
 
-## Summary for Machine Learning
+## Summary
 
 * Use **Dictionaries** to manage hyperparameters and configuration settings cleanly.
 * Master **List Comprehensions**; you will use them constantly for parsing text, filtering file paths, and formatting raw input data before feeding it into NumPy or pandas.
