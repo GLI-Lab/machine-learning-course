@@ -8,7 +8,7 @@
 
 <meta name="author" content="Byungkook Oh">
 
-<title>Machine Learning Course – Machine Learning</title>
+<title>Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -159,12 +124,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#course-materials" id="toc-course-materials" class="nav-link active" data-scroll-target="#course-materials">Course Materials</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#submission-guidelines" id="toc-submission-guidelines" class="nav-link" data-scroll-target="#submission-guidelines">Submission Guidelines</a></li>
-  <li><a href="#how-to-run-doctests" id="toc-how-to-run-doctests" class="nav-link" data-scroll-target="#how-to-run-doctests">How to Run Doctests</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
+  <li><a href="#the-two-pillars-of-this-course" id="toc-the-two-pillars-of-this-course" class="nav-link active" data-scroll-target="#the-two-pillars-of-this-course">The Two Pillars of This Course</a>
+  <ul class="collapse">
+  <li><a href="#labs-in-class-exercises" id="toc-labs-in-class-exercises" class="nav-link" data-scroll-target="#labs-in-class-exercises">1. Labs (In-Class Exercises)</a></li>
+  <li><a href="#homeworks-assignments" id="toc-homeworks-assignments" class="nav-link" data-scroll-target="#homeworks-assignments">2. Homeworks (Assignments)</a></li>
+  </ul></li>
+  <li><a href="#schedule-materials" id="toc-schedule-materials" class="nav-link" data-scroll-target="#schedule-materials">Schedule &amp; Materials</a></li>
+  <li><a href="#course-policies" id="toc-course-policies" class="nav-link" data-scroll-target="#course-policies">Course Policies</a>
+  <ul class="collapse">
+  <li><a href="#autograder-rules" id="toc-autograder-rules" class="nav-link" data-scroll-target="#autograder-rules">Autograder Rules</a></li>
+  <li><a href="#late-submission-policy" id="toc-late-submission-policy" class="nav-link" data-scroll-target="#late-submission-policy">Late Submission Policy</a></li>
+  <li><a href="#collaboration-academic-integrity" id="toc-collaboration-academic-integrity" class="nav-link" data-scroll-target="#collaboration-academic-integrity">Collaboration &amp; Academic Integrity</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning Course</h1>
+<h1 class="title">Machine Learning</h1>
 </div>
 
 
@@ -202,98 +173,240 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Welcome to the Machine Learning Course. This page provides all the materials you need for exercises and assignments throughout the semester.</p>
-<section id="course-materials" class="level2">
-<h2 class="anchored" data-anchor-id="course-materials">Course Materials</h2>
+<p>This Website is your central hub for all coding materials, including environment setup instructions, in-class Lab notebooks, and Homework starter codes.</p>
+<p>This practicum adopts a <strong>“From Scratch to Framework”</strong> philosophy. You will first build core algorithms (like Linear Regression, MLPs, and Self-Attention) using fundamental matrix operations in <strong>NumPy</strong>. Once you understand the mechanics, we will transition to <strong>PyTorch</strong> to scale your models, leverage GPU acceleration, and explore modern architectures.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Konkuk eCampus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Konkuk eCampus</strong> is used for official lecture slides, course announcements, grade tracking, and submitting your homework <code>.py</code> files.</p>
+</div>
+</div>
+<section id="the-two-pillars-of-this-course" class="level2">
+<h2 class="anchored" data-anchor-id="the-two-pillars-of-this-course">The Two Pillars of This Course</h2>
+<p>This practicum is divided into two distinct types of activities: <strong>Labs</strong> for learning and exploration, and <strong>Homeworks</strong> for evaluation.</p>
+<section id="labs-in-class-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="labs-in-class-exercises">1. Labs (In-Class Exercises)</h3>
+<p>Labs are the hands-on companion to each lecture unit. These short, focused sessions are designed to help you build intuition for theoretical concepts by interacting directly with provided code.</p>
 <ul>
-<li><strong>Exercises</strong>: In-class practice materials and notebooks</li>
-<li><strong>Assignments</strong>: Graded homework submissions</li>
+<li><strong>Grading:</strong> Labs are <strong>not graded</strong>. They exist entirely for your learning benefit.</li>
+<li><strong>Format:</strong> You will receive a <code>labXX.ipynb</code> Jupyter notebook with complete, runnable code.</li>
 </ul>
+<p>Every lab notebook follows the same internal layout so you always know where to look.</p>
+<ul>
+<li><strong>Objectives</strong> lists the specific skills or concepts you will practice in that lab. Read this before you start.</li>
+<li><strong>Background</strong> gives a concise reminder of the theory needed for the tasks. This is not a replacement for the lecture; it is a quick reference.</li>
+<li><strong>Experiments</strong> contains the executable cells where you will run the provided implementations, visualize the results, and observe the internal mechanics of the machine learning models.</li>
+</ul>
+<p><strong>Workflow:</strong></p>
+<ol type="1">
+<li><strong>Run and Observe:</strong> Execute the cells sequentially, always from top to bottom. Deeply understand how the mathematical equations from the lecture translate into NumPy operations or PyTorch layers. Pay close attention to how data shapes transform at each step.</li>
+<li><strong>Experiment Freely:</strong> Labs are exploratory playgrounds. Once you have run the provided code and observed its default output, tinker freely. Change hyperparameters, alter architectures, or intentionally break the code to see what errors PyTorch throws. Some cells include optional challenge prompts marked with a comment like <code># OPTIONAL:</code>.</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Always Run Cells from Top to Bottom
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you skip a cell or run them out of order, later cells may fail because variables or imports from earlier cells are missing. If something breaks unexpectedly, restart the kernel and re-run all cells from the top.</p>
+</div>
+</div>
 </section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="homeworks-assignments" class="level3">
+<h3 class="anchored" data-anchor-id="homeworks-assignments">2. Homeworks (Assignments)</h3>
+<p>There will be 8 homework assignments intended to test your conceptual analysis and Python implementation skills. All deadlines are at <strong>11:59 PM KST</strong>.</p>
+<ul>
+<li><strong>Grading:</strong> Homeworks are <strong>strictly graded</strong> via an autograder run against your submitted <code>.py</code> files. Your grade primarily comes from this score, which includes <strong>additional hidden test cases</strong> beyond the provided doctests. Passing all local doctests is a good sign, but it does not guarantee a full score.</li>
+<li><strong>Format:</strong> You will receive a <code>.py</code> submission file (where you write your solution) and a <code>.ipynb</code> experimentation notebook (for exploring and debugging).</li>
+</ul>
+<p><strong>Workflow:</strong></p>
+<ol type="1">
+<li><strong>Explore:</strong> Open <code>hwXX.ipynb</code> and use it freely to experiment with your ideas, visualize results, and debug. The notebook imports your functions from the <code>.py</code> files, so any changes you save in the Python scripts will be reflected in the notebook after a kernel restart.</li>
+<li><strong>Implement:</strong> Open the <code>.py</code> file, locate the <code>TODO</code> blocks, remove the <code>raise NotImplementedError</code> line, and write your code. See the <a href="./assignments/index.html#step-2-implement-in-your-.py-files">Assignments Guide</a> for a detailed walkthrough.</li>
+<li><strong>Run Doctests:</strong> Verify your code locally by running <code>python -m doctest hwXX.py -v</code> in your terminal. See the <a href="./assignments/index.html#how-doctests-work">Assignments Guide</a> for expected output and troubleshooting tips.</li>
+<li><strong>Submit:</strong> Upload <strong>only</strong> your <code>.py</code> files to eCampus before the deadline. Do not submit the <code>.ipynb</code> notebook and do not rename the files.</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Two Things to Watch Out For
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Restart the kernel after editing <code>.py</code> files.</strong> The notebook will not pick up your changes until you restart the kernel and re-run all cells.</p>
+<p><strong>Remove <code>raise NotImplementedError</code> before submitting.</strong> If this line remains in a function, it will always throw an error even if you wrote correct code above it.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="schedule-materials" class="level2">
+<h2 class="anchored" data-anchor-id="schedule-materials">Schedule &amp; Materials</h2>
+<p>The timeline and specific contents below are subject to change to adapt to the pace of the class. Labs marked as TBD have tentative topics that may be added, removed, or reordered as the course progresses.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Week</th>
-<th>Topic</th>
-<th>Materials</th>
+<th style="text-align: left;">Unit</th>
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Labs (Ungraded)</th>
+<th style="text-align: left;">HW (Graded)</th>
+<th style="text-align: left;">Due Date</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Week 1</td>
-<td>Introduction to ML</td>
-<td><a href="#">Exercise 1</a></td>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;">Introduction to ML</td>
+<td style="text-align: left;">Lab 1</td>
+<td style="text-align: left;"><a href="hw01/hw01.html">HW01</a></td>
+<td style="text-align: left;">TBA</td>
 </tr>
 <tr class="even">
-<td>Week 2</td>
-<td>Data Preprocessing</td>
-<td><a href="#">Exercise 2</a></td>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;">Linear Models</td>
+<td style="text-align: left;">Lab 2</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
 </tr>
 <tr class="odd">
-<td>Week 3</td>
-<td>K-Nearest Neighbors</td>
-<td><a href="#">Exercise 3</a></td>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;">Multi-Layer Perceptron</td>
+<td style="text-align: left;">Lab 3</td>
+<td style="text-align: left;"><a href="hw02/hw02.html">HW02</a></td>
+<td style="text-align: left;">TBA</td>
 </tr>
 <tr class="even">
-<td>Week 4</td>
-<td>Linear Regression</td>
-<td><a href="#">Exercise 4</a></td>
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;">Model Validation</td>
+<td style="text-align: left;">Lab 4</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
 </tr>
 <tr class="odd">
-<td>Week 5</td>
-<td>Logistic Regression</td>
-<td><a href="#">Exercise 5</a></td>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;">Model Generalization</td>
+<td style="text-align: left;">Lab 5</td>
+<td style="text-align: left;"><a href="hw03/hw03.html">HW03</a></td>
+<td style="text-align: left;">TBA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>6</strong></td>
+<td style="text-align: left;">Convolutional NNs</td>
+<td style="text-align: left;">Lab 6</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>7</strong></td>
+<td style="text-align: left;">Recurrent NNs</td>
+<td style="text-align: left;">Lab 7</td>
+<td style="text-align: left;"><a href="hw04/hw04.html">HW04</a></td>
+<td style="text-align: left;">TBA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>8</strong></td>
+<td style="text-align: left;">Mid-term Exam</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>9</strong></td>
+<td style="text-align: left;">Attention Mechanisms</td>
+<td style="text-align: left;">Lab 9</td>
+<td style="text-align: left;"><a href="hw05/hw05.html">HW05</a></td>
+<td style="text-align: left;">TBA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>10</strong></td>
+<td style="text-align: left;">Generative Models</td>
+<td style="text-align: left;">Lab 10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>11</strong></td>
+<td style="text-align: left;">Representations</td>
+<td style="text-align: left;">Lab 11</td>
+<td style="text-align: left;"><a href="hw06/hw06.html">HW06</a></td>
+<td style="text-align: left;">TBA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>12</strong></td>
+<td style="text-align: left;">SVM &amp; Kernels</td>
+<td style="text-align: left;">Lab 12</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>13</strong></td>
+<td style="text-align: left;">Decision Trees</td>
+<td style="text-align: left;">Lab 13</td>
+<td style="text-align: left;"><a href="hw07/hw07.html">HW07</a></td>
+<td style="text-align: left;">TBA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>14</strong></td>
+<td style="text-align: left;">Ensemble Methods</td>
+<td style="text-align: left;">Lab 14</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>15</strong></td>
+<td style="text-align: left;">Bayesian Learning</td>
+<td style="text-align: left;">Lab 15</td>
+<td style="text-align: left;"><a href="hw08/hw08.html">HW08</a></td>
+<td style="text-align: left;">TBA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>16</strong></td>
+<td style="text-align: left;">Final Exam</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">-</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>#</th>
-<th>Topic</th>
-<th>Due Date</th>
-<th>Submission</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Assignment 1</td>
-<td>KNN Implementation</td>
-<td>TBD</td>
-<td><code>.py</code> file</td>
-</tr>
-<tr class="even">
-<td>Assignment 2</td>
-<td>Regression Analysis</td>
-<td>TBD</td>
-<td><code>.py</code> file</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="submission-guidelines" class="level2">
-<h2 class="anchored" data-anchor-id="submission-guidelines">Submission Guidelines</h2>
+<section id="course-policies" class="level2">
+<h2 class="anchored" data-anchor-id="course-policies">Course Policies</h2>
+<section id="autograder-rules" class="level3">
+<h3 class="anchored" data-anchor-id="autograder-rules">Autograder Rules</h3>
+<p>To avoid receiving zero credit on a working solution, you must follow these rules exactly:</p>
 <ul>
-<li>All assignments must be submitted as <code>.py</code> files.</li>
-<li>Your code must pass the provided <code>doctest</code> before submission.</li>
-<li>Late submissions will not be accepted unless prior approval is given.</li>
+<li><strong>Do not change function signatures.</strong> Keep function names and parameters exactly as given.</li>
+<li><strong>Do not modify the docstrings.</strong> The doctests inside them are used for grading.</li>
+<li><strong>Output format must match exactly.</strong> Wrong type, wrong shape, or extra <code>print</code> statements will cause the autograder test to fail even if your logic is correct.</li>
+<li><strong>Use only the packages already imported.</strong> Do not <code>import</code> any additional external libraries.</li>
 </ul>
 </section>
-<section id="how-to-run-doctests" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-run-doctests">How to Run Doctests</h2>
-<p>To verify your assignment before submission, run the following command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> doctest assignment.py <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="late-submission-policy" class="level3">
+<h3 class="anchored" data-anchor-id="late-submission-policy">Late Submission Policy</h3>
+<p>Late submissions are accepted up to 3 days after the deadline with penalties applied per day. A submission 1 day late receives a 20% deduction, 2 days late receives a 40% deduction, and 3 days late receives a 60% deduction. No credit is accepted beyond 3 days.</p>
 </section>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>For questions regarding course materials or assignments, please reach out via the course discussion board or email the instructor.</p>
+<section id="collaboration-academic-integrity" class="level3">
+<h3 class="anchored" data-anchor-id="collaboration-academic-integrity">Collaboration &amp; Academic Integrity</h3>
+<p>Our ultimate goal is for each student to fully understand the course material.</p>
+<p><strong>Homeworks must be done individually.</strong> You may not share any code or written solutions with others, regardless of whether they are enrolled in the class.</p>
+<p><strong>High-level interaction is encouraged.</strong> After spending at least 10 minutes thinking about a problem on your own, you may verbally discuss assignments or work out solutions on whiteboards together. However, you are not allowed to take away any written or electronic information from joint work sessions — no notes, no photos, no code. Emails and messages also constitute notes and should not be used when preparing solutions.</p>
+<p><strong>On AI assistance:</strong> For homeworks, using AI tools such as ChatGPT or GitHub Copilot to generate code logic is strictly prohibited. You are expected to write and understand every line of code you submit. We will not hesitate to refer cases of suspected violation to the university disciplinary authorities.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

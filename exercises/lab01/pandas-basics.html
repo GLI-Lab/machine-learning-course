@@ -601,7 +601,7 @@ window.Quarto = {
 <section id="core-data-structures-series-and-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="core-data-structures-series-and-dataframes">1. Core Data Structures: Series and DataFrames</h2>
 <p>Pandas has two primary data structures. A <strong>Series</strong> is a 1-dimensional array (like a single column), and a <strong>DataFrame</strong> is a 2-dimensional table made up of multiple Series.</p>
-<div id="9be2bdd4" class="cell" data-execution_count="1">
+<div id="c167258e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -622,7 +622,7 @@ Name: Age, dtype: int64
 Shape: (5,)</code></pre>
 </div>
 </div>
-<div id="dbcf0677" class="cell" data-execution_count="2">
+<div id="086fd4c5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-Dimensional: DataFrame</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The most common way to create a DataFrame from scratch is using a dictionary</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
@@ -648,7 +648,7 @@ Shape: (5,)</code></pre>
 <section id="inspecting-data" class="level2">
 <h2 class="anchored" data-anchor-id="inspecting-data">2. Inspecting Data</h2>
 <p>Before applying any Machine Learning algorithm, you must understand the shape, distribution, and types of your data.</p>
-<div id="a30b2106" class="cell" data-execution_count="3">
+<div id="89c75681" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows (default is 5)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Head:</span><span class="ch">\n</span><span class="st">"</span>, df.head(<span class="dv">3</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -695,7 +695,7 @@ max    45.000000  110000.000000   1.000000</code></pre>
 <section id="indexing-and-slicing-feature-extraction" class="level2">
 <h2 class="anchored" data-anchor-id="indexing-and-slicing-feature-extraction">3. Indexing and Slicing (Feature Extraction)</h2>
 <p>In Machine Learning, a standard task is splitting your DataFrame into <strong>Features (<span class="math inline">\(X\)</span>)</strong> and <strong>Labels (<span class="math inline">\(y\)</span>)</strong>. Pandas provides powerful <code>.loc</code> (label-based) and <code>.iloc</code> (integer position-based) indexers.</p>
-<div id="543db057" class="cell" data-execution_count="4">
+<div id="a8bf42e0" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting a single column returns a Series</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'Purchased'</span>] </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Target Label (y):</span><span class="ch">\n</span><span class="st">"</span>, y.values) <span class="co"># .values converts it to a NumPy array</span></span>
@@ -717,7 +717,7 @@ Feature Subset (X):
 </div>
 </div>
 <p>Using <code>.iloc</code> is the most reliable way to split features and targets based on column order.</p>
-<div id="45599bbe" class="cell" data-execution_count="5">
+<div id="7986bbdd" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df.iloc[rows, columns]</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all rows (:), and all columns EXCEPT the last one (:-1)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>] </span>
@@ -765,7 +765,7 @@ Name: Purchased, dtype: int64</code></pre>
 <section id="filtering-and-handling-missing-data" class="level2">
 <h2 class="anchored" data-anchor-id="filtering-and-handling-missing-data">4. Filtering and Handling Missing Data</h2>
 <p>Machine Learning models cannot process <code>NaN</code> (Not a Number) values. You must either drop the rows containing them or fill them with a logical replacement (Imputation).</p>
-<div id="cadd43db" class="cell" data-execution_count="6">
+<div id="acf0fcbf" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering: Find all rows where Income is greater than 50,000</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>high_income <span class="op">=</span> df[df[<span class="st">'Income'</span>] <span class="op">&gt;</span> <span class="dv">50000</span>]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"High Income Customers:</span><span class="ch">\n</span><span class="st">"</span>, high_income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -777,7 +777,7 @@ Name: Purchased, dtype: int64</code></pre>
 4    Eve  33.0   75000          1</code></pre>
 </div>
 </div>
-<div id="7c57c16f" class="cell" data-execution_count="7">
+<div id="d069d799" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for missing values</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing values per column:</span><span class="ch">\n</span><span class="st">"</span>, df.isna().<span class="bu">sum</span>())</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>

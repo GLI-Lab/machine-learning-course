@@ -568,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="core-data-structures-lists-and-dictionaries" class="level2">
 <h2 class="anchored" data-anchor-id="core-data-structures-lists-and-dictionaries">1. Core Data Structures: Lists and Dictionaries</h2>
 <p>Before we get to matrices, we need to know how standard Python stores sequences and key-value pairs.</p>
-<div id="de603a74" class="cell" data-execution_count="1">
+<div id="872f9949" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lists: Ordered, mutable sequences</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Often used to store file paths, feature names, or a sequence of transformations.</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">'age'</span>, <span class="st">'income'</span>, <span class="st">'height'</span>, <span class="st">'weight'</span>]</span>
@@ -584,7 +584,7 @@ First feature: age
 Last feature: blood_pressure</code></pre>
 </div>
 </div>
-<div id="b12740e2" class="cell" data-execution_count="2">
+<div id="8974f120" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dictionaries: Unordered key-value pairs (Hash Maps)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Essential for storing model hyperparameters or configurations.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hyperparameters <span class="op">=</span> {</span>
@@ -620,7 +620,7 @@ Updated Config: {'learning_rate': 0.001, 'batch_size': 32, 'optimizer': 'Adam', 
 <section id="functions-and-control-flow" class="level2">
 <h2 class="anchored" data-anchor-id="functions-and-control-flow">2. Functions and Control Flow</h2>
 <p>Machine learning workflows require modular code. We use functions to isolate tasks like data cleaning, metric calculation, or model evaluation.</p>
-<div id="5359f859" class="cell" data-execution_count="3">
+<div id="7027bbeb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> categorize_age(age):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A simple function using control flow to categorize numerical data."""</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> age <span class="op">&lt;</span> <span class="dv">18</span>:</span>
@@ -644,7 +644,7 @@ Age 72 is categorized as: Senior</code></pre>
 <section id="list-comprehensions" class="level2">
 <h2 class="anchored" data-anchor-id="list-comprehensions">3. List Comprehensions</h2>
 <p>List comprehensions provide a concise, readable, and often faster way to create lists compared to standard <code>for</code> loops. They are ubiquitous in Python data pipelines.</p>
-<div id="cd903528" class="cell" data-execution_count="4">
+<div id="39a71bea" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-comprehension approach: Standard loop</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>raw_text <span class="op">=</span> [<span class="st">"  Hello "</span>, <span class="st">"WORLD  "</span>, <span class="st">" machine learning"</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>clean_text_loop <span class="op">=</span> []</span>
@@ -662,7 +662,7 @@ Cleaned with comprehension: ['hello', 'world', 'machine learning']</code></pre>
 </div>
 </div>
 <p>You can also add conditional logic (filtering) inside a comprehension:</p>
-<div id="6003e147" class="cell" data-execution_count="5">
+<div id="134522f3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract only the positive numbers</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="op">-</span><span class="dv">5</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">8</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>positives <span class="op">=</span> [n <span class="cf">for</span> n <span class="kw">in</span> numbers <span class="cf">if</span> n <span class="op">&gt;</span> <span class="dv">0</span>]</span>
@@ -675,7 +675,7 @@ Cleaned with comprehension: ['hello', 'world', 'machine learning']</code></pre>
 <section id="basics-of-classes-oop" class="level2">
 <h2 class="anchored" data-anchor-id="basics-of-classes-oop">4. Basics of Classes (OOP)</h2>
 <p>In modern deep learning frameworks like PyTorch, you define your neural networks by writing a Python <code>class</code>. Understanding how to initialize a class and define its methods is strictly required.</p>
-<div id="a47d4def" class="cell" data-execution_count="6">
+<div id="99b923d5" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleScaler:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A mock object mimicking a data scaler (like in scikit-learn)."""</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span>

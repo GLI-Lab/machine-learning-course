@@ -502,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#scatter-plots-feature-visualization" id="toc-scatter-plots-feature-visualization" class="nav-link" data-scroll-target="#scatter-plots-feature-visualization">2. Scatter Plots (Feature Visualization)</a></li>
   <li><a href="#histograms-data-distributions" id="toc-histograms-data-distributions" class="nav-link" data-scroll-target="#histograms-data-distributions">3. Histograms (Data Distributions)</a></li>
   <li><a href="#subplots-multiple-plots-at-once" id="toc-subplots-multiple-plots-at-once" class="nav-link" data-scroll-target="#subplots-multiple-plots-at-once">4. Subplots (Multiple Plots at Once)</a></li>
-  <li><a href="#summary-for-machine-learning" id="toc-summary-for-machine-learning" class="nav-link" data-scroll-target="#summary-for-machine-learning">Summary for Machine Learning</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
@@ -572,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Axes</strong>: The actual plot (the area with the x and y coordinates, data, labels, etc.). A Figure can contain multiple Axes.</li>
 </ol>
 <p>Let’s start with a simple line plot, which is commonly used to plot training loss over time (epochs).</p>
-<div id="c0f68da5" class="cell" data-execution_count="1">
+<div id="f0e4a4e2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -620,7 +620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="scatter-plots-feature-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="scatter-plots-feature-visualization">2. Scatter Plots (Feature Visualization)</h2>
 <p>Scatter plots are arguably the most important plots in Machine Learning. They allow you to visualize the relationship between two features and see if your classes are easily separable.</p>
-<div id="a41dbc50" class="cell" data-execution_count="2">
+<div id="6e7abf2e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fake dataset: Height (cm) vs Weight (kg) for two different classes</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>height_cats <span class="op">=</span> np.random.normal(<span class="dv">25</span>, <span class="dv">3</span>, <span class="dv">50</span>)</span>
@@ -655,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="histograms-data-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="histograms-data-distributions">3. Histograms (Data Distributions)</h2>
 <p>Machine learning models assume certain distributions in your data. Histograms help you verify if your features are normally distributed or if they are skewed and require normalization.</p>
-<div id="cdd8c451" class="cell" data-execution_count="3">
+<div id="a65ebe84" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random data representing house prices</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> np.random.lognormal(mean<span class="op">=</span><span class="fl">11.5</span>, sigma<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -681,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="subplots-multiple-plots-at-once" class="level2">
 <h2 class="anchored" data-anchor-id="subplots-multiple-plots-at-once">4. Subplots (Multiple Plots at Once)</h2>
 <p>When evaluating models, you rarely look at just one metric. You might want to see Accuracy and Loss side-by-side.</p>
-<div id="6888c7b4" class="cell" data-execution_count="4">
+<div id="51bfe0b3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dummy data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> np.sin(x)</span>
@@ -710,8 +710,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="summary-for-machine-learning" class="level2">
-<h2 class="anchored" data-anchor-id="summary-for-machine-learning">Summary for Machine Learning</h2>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <ul>
 <li><strong>Line Plots (<code>ax.plot</code>)</strong>: Use these to visualize time-series data or track training/validation metrics over time (Epochs).</li>
 <li><strong>Scatter Plots (<code>ax.scatter</code>)</strong>: Your go-to tool for visualizing feature relationships and class separability in classification tasks.</li>
