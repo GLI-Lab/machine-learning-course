@@ -8,7 +8,7 @@
 
 <meta name="author" content="Byungkook Oh">
 
-<title>Lab 01 - Matplotlib Basics for Machine Learning – Machine Learning</title>
+<title>Lab1-3. Matplotlib Basics for Machine Learning – Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -498,10 +498,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">0. Setup</a></li>
   <li><a href="#the-anatomy-of-a-plot-basic-line-plots" id="toc-the-anatomy-of-a-plot-basic-line-plots" class="nav-link" data-scroll-target="#the-anatomy-of-a-plot-basic-line-plots">1. The Anatomy of a Plot &amp; Basic Line Plots</a></li>
   <li><a href="#scatter-plots-feature-visualization" id="toc-scatter-plots-feature-visualization" class="nav-link" data-scroll-target="#scatter-plots-feature-visualization">2. Scatter Plots (Feature Visualization)</a></li>
-  <li><a href="#histograms-data-distributions" id="toc-histograms-data-distributions" class="nav-link" data-scroll-target="#histograms-data-distributions">3. Histograms (Data Distributions)</a></li>
-  <li><a href="#subplots-multiple-plots-at-once" id="toc-subplots-multiple-plots-at-once" class="nav-link" data-scroll-target="#subplots-multiple-plots-at-once">4. Subplots (Multiple Plots at Once)</a></li>
+  <li><a href="#histograms-checking-data-distributions" id="toc-histograms-checking-data-distributions" class="nav-link" data-scroll-target="#histograms-checking-data-distributions">3. Histograms (Checking Data Distributions)</a></li>
+  <li><a href="#subplots-for-comparing-multiple-metrics" id="toc-subplots-for-comparing-multiple-metrics" class="nav-link" data-scroll-target="#subplots-for-comparing-multiple-metrics">4. Subplots for Comparing Multiple Metrics</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
@@ -513,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../../exercises/lab01/python-basics.html">Lab1. Introduction to ML</a></li><li class="breadcrumb-item"><a href="../../exercises/lab01/matplotlib-basics.html">Matplotlib Basics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Lab 01 - Matplotlib Basics for Machine Learning</h1>
+<h1 class="title">Lab1-3. Matplotlib Basics for Machine Learning</h1>
 </div>
 
 
@@ -542,6 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><a href="https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab01/matplotlib-basics.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
@@ -560,89 +562,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In Machine Learning, flying blind is dangerous. You need to visualize your data before training a model (Exploratory Data Analysis) to spot outliers or distinct clusters. During and after training, you must plot “loss curves” to diagnose if your model is learning, overfitting, or underfitting. <strong>Matplotlib</strong> is the foundational plotting library in Python. While libraries like Seaborn or Plotly offer higher-level wrappers, they are almost all built on top of Matplotlib’s core engine.</p>
+<p>In Machine Learning, flying blind is dangerous. You need to visualize your data before training a model to spot outliers or distinct clusters. During and after training, you must plot <strong>loss curves</strong> to diagnose if your model is learning, overfitting, or underfitting. <strong>Matplotlib</strong> is the foundational plotting library in Python. While libraries like Seaborn offer higher-level wrappers, they are almost all built on top of Matplotlib’s core engine.</p>
 </div>
+</div>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">0. Setup</h2>
+<div id="f6a8a2b3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns  <span class="co"># Higher-level visualization library built on top of Matplotlib</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply a clean theme globally to all subsequent Matplotlib figures.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Seaborn is covered in Further Reading if you want to explore it further.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">'whitegrid'</span>, font_scale<span class="op">=</span><span class="fl">1.25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="the-anatomy-of-a-plot-basic-line-plots" class="level2">
 <h2 class="anchored" data-anchor-id="the-anatomy-of-a-plot-basic-line-plots">1. The Anatomy of a Plot &amp; Basic Line Plots</h2>
-<p>Before writing code, it is important to understand Matplotlib’s two main objects:</p>
+<p>Before writing code, it is important to understand Matplotlib’s hierarchy:</p>
 <ol type="1">
-<li><strong>Figure</strong>: The overall window or page that everything is drawn on.</li>
-<li><strong>Axes</strong>: The actual plot (the area with the x and y coordinates, data, labels, etc.). A Figure can contain multiple Axes.</li>
+<li><strong>Figure</strong>: The overall window or page that everything is drawn on. Think of it as the canvas.</li>
+<li><strong>Axes</strong>: The actual plot area with x/y coordinates, data, labels, and ticks. A Figure can contain one or more Axes.</li>
+<li><strong>Artist</strong>: Everything visible on the Figure — lines, text, ticks — is an Artist.</li>
 </ol>
-<p>Let’s start with a simple line plot, which is commonly used to plot training loss over time (epochs).</p>
-<div id="f0e4a4e2" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some dummy data representing training epochs and loss</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">11</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> np.array([<span class="fl">2.5</span>, <span class="fl">1.8</span>, <span class="fl">1.2</span>, <span class="fl">0.9</span>, <span class="fl">0.7</span>, <span class="fl">0.55</span>, <span class="fl">0.45</span>, <span class="fl">0.38</span>, <span class="fl">0.32</span>, <span class="fl">0.30</span>])</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Figure and an Axes object (The Object-Oriented approach)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ax.plot(epochs, loss, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'b'</span>, label<span class="op">=</span><span class="st">'Training Loss'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize the plot</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Model Training Progress"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Epoch"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Loss"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the plot</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
+<p>Knowing this hierarchy is important because the <strong>Object-Oriented (OO) API</strong> lets you control each level independently, while the older Pyplot API (<code>plt.plot()</code>, <code>plt.title()</code>) modifies whichever Axes is currently active, which becomes unpredictable as soon as you have multiple subplots. Throughout this lab we use the OO API exclusively.</p>
+<p>In practice, using the OO API means starting every plot with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>fig</code> is the Figure; <code>ax</code> is the Axes. All plot commands go through <code>ax</code> (e.g.&nbsp;<code>ax.plot()</code>, <code>ax.set_title()</code>).</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="matplotlib-basics_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="https://matplotlib.org/stable/_images/anatomy.png" class="img-fluid figure-img"></p>
+<figcaption>Parts of a Matplotlib Figure — the canvas (Figure), the plot area (Axes), and every visible element (Artist).</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Caveat: The Two Interfaces
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Matplotlib has two ways to write code: the <strong>Pyplot API</strong> (e.g., <code>plt.plot()</code>, <code>plt.title()</code>) and the <strong>Object-Oriented (OO) API</strong> (e.g., <code>ax.plot()</code>, <code>ax.set_title()</code>). <strong>Best Practice in ML:</strong> Use the Object-Oriented API (<code>fig, ax = plt.subplots()</code>). It is much more robust when you need to create complex dashboards with multiple subplots.</p>
-</div>
-</div>
-</section>
-<section id="scatter-plots-feature-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="scatter-plots-feature-visualization">2. Scatter Plots (Feature Visualization)</h2>
-<p>Scatter plots are arguably the most important plots in Machine Learning. They allow you to visualize the relationship between two features and see if your classes are easily separable.</p>
-<div id="6e7abf2e" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate fake dataset: Height (cm) vs Weight (kg) for two different classes</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>height_cats <span class="op">=</span> np.random.normal(<span class="dv">25</span>, <span class="dv">3</span>, <span class="dv">50</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>weight_cats <span class="op">=</span> height_cats <span class="op">*</span> <span class="fl">0.2</span> <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>height_dogs <span class="op">=</span> np.random.normal(<span class="dv">50</span>, <span class="dv">8</span>, <span class="dv">50</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>weight_dogs <span class="op">=</span> height_dogs <span class="op">*</span> <span class="fl">0.4</span> <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">50</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot for Cats (Red)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.scatter(height_cats, weight_cats, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Cats'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot for Dogs (Blue)</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.scatter(height_dogs, weight_dogs, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Dogs'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Height vs Weight by Species"</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Height (cm)"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Weight (kg)"</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A <strong>loss curve</strong> is one of the first plots you draw in any ML project. It shows how training and validation loss change across epochs, and is the primary tool for diagnosing overfitting.</p>
+<div id="8feabbea" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>train_loss <span class="op">=</span> np.array([<span class="fl">2.5</span>, <span class="fl">1.8</span>, <span class="fl">1.2</span>, <span class="fl">0.9</span>, <span class="fl">0.7</span>, <span class="fl">0.55</span>, <span class="fl">0.45</span>, <span class="fl">0.38</span>, <span class="fl">0.32</span>, <span class="fl">0.30</span>])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>val_loss   <span class="op">=</span> np.array([<span class="fl">2.6</span>, <span class="fl">2.0</span>, <span class="fl">1.5</span>, <span class="fl">1.2</span>, <span class="fl">1.05</span>, <span class="fl">1.10</span>, <span class="fl">1.25</span>, <span class="fl">1.45</span>, <span class="fl">1.70</span>, <span class="fl">2.00</span>])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ax.plot(epochs, train_loss, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>,  color<span class="op">=</span><span class="st">'steelblue'</span>, label<span class="op">=</span><span class="st">'Training Loss'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ax.plot(epochs, val_loss,   marker<span class="op">=</span><span class="st">'s'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'tomato'</span>,    label<span class="op">=</span><span class="st">'Validation Loss'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Training vs Validation Loss"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -651,24 +622,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>When a model overfits, training loss continues to fall while validation loss initially decreases but then <strong>rises back up</strong>. The lowest point on the validation curve marks the optimal stopping point; anything beyond that and the model is memorizing the training data rather than learning to generalize. Knowing how to read this chart is as important as knowing how to produce it.</p>
 </section>
-<section id="histograms-data-distributions" class="level2">
-<h2 class="anchored" data-anchor-id="histograms-data-distributions">3. Histograms (Data Distributions)</h2>
-<p>Machine learning models assume certain distributions in your data. Histograms help you verify if your features are normally distributed or if they are skewed and require normalization.</p>
-<div id="a65ebe84" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random data representing house prices</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> np.random.lognormal(mean<span class="op">=</span><span class="fl">11.5</span>, sigma<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram with 30 bins</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ax.hist(prices, bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">'green'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Distribution of House Prices"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Price ($)"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="scatter-plots-feature-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plots-feature-visualization">2. Scatter Plots (Feature Visualization)</h2>
+<p>Scatter plots are one of the most important plots in Machine Learning. They allow you to visualize the relationship between two features and see if your classes are easily separable.</p>
+<div id="dc1e9c29" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>height_cats <span class="op">=</span> np.random.normal(<span class="dv">25</span>, <span class="dv">3</span>, <span class="dv">50</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>weight_cats <span class="op">=</span> height_cats <span class="op">*</span> <span class="fl">0.2</span> <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">50</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>height_dogs <span class="op">=</span> np.random.normal(<span class="dv">50</span>, <span class="dv">8</span>, <span class="dv">50</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>weight_dogs <span class="op">=</span> height_dogs <span class="op">*</span> <span class="fl">0.4</span> <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">50</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.scatter(height_cats, weight_cats, color<span class="op">=</span><span class="st">'red'</span>,  label<span class="op">=</span><span class="st">'Cats'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax.scatter(height_dogs, weight_dogs, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Dogs'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Height vs Weight by Species"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Height (cm)"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Weight (kg)"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -677,30 +654,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="subplots-multiple-plots-at-once" class="level2">
-<h2 class="anchored" data-anchor-id="subplots-multiple-plots-at-once">4. Subplots (Multiple Plots at Once)</h2>
-<p>When evaluating models, you rarely look at just one metric. You might want to see Accuracy and Loss side-by-side.</p>
-<div id="51bfe0b3" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dummy data</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> np.sin(x)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> np.cos(x)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 1x2 grid of plots</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># First subplot (axes[0])</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(x, y1, color<span class="op">=</span><span class="st">'purple'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Sine Wave"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Second subplot (axes[1])</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(x, y2, color<span class="op">=</span><span class="st">'orange'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Cosine Wave"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust spacing between plots to prevent overlapping labels</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When you want to examine the relationship between two continuous variables, a <strong>joint plot</strong> combines a scatter plot in the center with marginal histograms on each axis. The marginal histograms show the individual distribution of each variable, while the scatter plot reveals whether the two variables are correlated.</p>
+<div id="21ef29de" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x_N <span class="op">=</span> np.random.normal(size<span class="op">=</span>N)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y_N <span class="op">=</span> np.random.normal(size<span class="op">=</span>N)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> sns.jointplot(x<span class="op">=</span>x_N, y<span class="op">=</span>y_N, kind<span class="op">=</span><span class="st">'scatter'</span>, height<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>p.set_axis_labels(xlabel<span class="op">=</span><span class="st">'x'</span>, ylabel<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -709,26 +672,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Here <code>x</code> and <code>y</code> are drawn independently from the same normal distribution, so no correlation is visible. Try replacing <code>y_N</code> with <code>y_N = 0.8 * x_N + np.random.normal(scale=0.5, size=N)</code> to see how a strong linear relationship changes the plot.</p>
+</section>
+<section id="histograms-checking-data-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="histograms-checking-data-distributions">3. Histograms (Checking Data Distributions)</h2>
+<p>Machine learning models assume certain distributions in your data. Histograms help you verify if your features are normally distributed or if they are skewed and require normalization.</p>
+<div id="a0894c31" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> np.random.lognormal(mean<span class="op">=</span><span class="fl">11.5</span>, sigma<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ax.hist(prices, bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">'green'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Distribution of House Prices"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Price ($)"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.setp(ax.get_xticklabels(), rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="matplotlib-basics_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="37c757fa" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">70</span>, scale<span class="op">=</span><span class="dv">10</span>, size<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ax.hist(scores, bins<span class="op">=</span><span class="dv">25</span>, color<span class="op">=</span><span class="st">'steelblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Distribution of Exam Scores"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Score"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="matplotlib-basics_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="subplots-for-comparing-multiple-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="subplots-for-comparing-multiple-metrics">4. Subplots for Comparing Multiple Metrics</h2>
+<p>When evaluating models, you rarely look at just one metric. Subplots let you show multiple related charts side-by-side. Using <code>sharey=True</code> keeps the y-axis scale identical across all panels, making it easy to compare magnitudes directly.</p>
+<p>The example below shows training loss curves for the same model trained with three different learning rates — a common hyperparameter comparison.</p>
+<div id="d52f0fa5" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">21</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated training loss for three learning rates</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>loss_high <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.35</span> <span class="op">*</span> epochs) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="dv">20</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>loss_mid  <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.20</span> <span class="op">*</span> epochs) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="dv">20</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>loss_low  <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.08</span> <span class="op">*</span> epochs) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="dv">20</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># We recommend using 'sharey=True' so y-limits are the same across all panels.</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># This makes comparing convergence speed across learning rates much easier.</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(epochs, loss_high, color<span class="op">=</span><span class="st">'tomato'</span>,    marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'LR = 0.1  (too high)'</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Epoch'</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Training Loss'</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(epochs, loss_mid,  color<span class="op">=</span><span class="st">'steelblue'</span>, marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'LR = 0.01  (just right)'</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Epoch'</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].plot(epochs, loss_low,  color<span class="op">=</span><span class="st">'gray'</span>,      marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">'LR = 0.001  (too low)'</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'Epoch'</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="matplotlib-basics_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <ul>
-<li><strong>Line Plots (<code>ax.plot</code>)</strong>: Use these to visualize time-series data or track training/validation metrics over time (Epochs).</li>
+<li><strong>Line Plots (<code>ax.plot</code>)</strong>: Use these to visualize time-series data or track training/validation metrics over time (Epochs). A rising validation loss despite falling training loss is the visual signature of overfitting.</li>
 <li><strong>Scatter Plots (<code>ax.scatter</code>)</strong>: Your go-to tool for visualizing feature relationships and class separability in classification tasks.</li>
 <li><strong>Histograms (<code>ax.hist</code>)</strong>: Essential for checking the distribution of a single variable before feeding it into a model.</li>
+<li><strong>Subplots (<code>plt.subplots</code>)</strong>: Use <code>sharey=True</code> / <code>sharex=True</code> when comparing the same metric across different configurations (e.g., learning rates, architectures).</li>
 </ul>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <ul>
-<li><a href="https://matplotlib.org/">Matplotlib Official Documentation</a></li>
+<li><a href="https://intro-stat-learning.github.io/ISLP/labs.html">An Introduction to Statistical Learning with Python</a></li>
+<li><a href="https://wesmckinney.com/book/">Python for Data Analysis</a></li>
 </ul>
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
 <ul>
-<li><a href="https://matplotlib.org/stable/tutorials/introductory/usage.html">Matplotlib Usage Guide</a></li>
-<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/04.00-introduction-to-matplotlib.html">Python Data Science Handbook - Matplotlib Chapter</a></li>
+<li><a href="https://matplotlib.org/stable/tutorials/introductory/usage.html">Matplotlib Documentation</a></li>
+<li><a href="https://seaborn.pydata.org/">Seaborn Documentation</a></li>
+<li><a href="https://realpython.com/learning-paths/data-science-python-core-skills/">Data Science With Python Core Skills</a></li>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a></li>
 </ul>
 
 

@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -143,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../assignments/hw01/hw01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HW1 (~26.03.10)</span></a>
+ <span class="menu-text">HW1 (~26.03.15)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,7 +261,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>SVM 및 Kernel 기법 실습.</p>
+<p>In this assignment you will implement and experiment with <strong>Support Vector Machines (SVM) and kernel methods</strong>.</p>
+<p>You will cover:</p>
+<ul>
+<li><strong>Hard-margin SVM</strong>: Formulate the maximum-margin classification problem and understand the role of support vectors.</li>
+<li><strong>Soft-margin SVM</strong>: Introduce slack variables and the regularization parameter <span class="math inline">\(C\)</span> to handle non-separable data.</li>
+<li><strong>Kernel trick</strong>: Apply the RBF, polynomial, and linear kernels to map data into higher-dimensional feature spaces without explicit transformation.</li>
+<li><strong>Dual formulation</strong>: Understand the dual problem and how the kernel function appears in it.</li>
+<li><strong>Evaluation</strong>: Compare SVM with different kernels on classification benchmarks and analyze decision boundaries.</li>
+</ul>
+<p>Problems will be released closer to the due date.</p>
 
 
 

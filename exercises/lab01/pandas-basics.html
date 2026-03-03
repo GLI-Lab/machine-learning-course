@@ -8,7 +8,7 @@
 
 <meta name="author" content="Byungkook Oh">
 
-<title>pandas-basics – Machine Learning</title>
+<title>Lab1-4. Pandas Basics – Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -526,13 +529,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#title-lab-01---pandas-basics-for-machine-learning-jupyter-python3" id="toc-title-lab-01---pandas-basics-for-machine-learning-jupyter-python3" class="nav-link active" data-scroll-target="#title-lab-01---pandas-basics-for-machine-learning-jupyter-python3">title: “Lab 01 - Pandas Basics for Machine Learning” jupyter: python3</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#core-data-structures-series-and-dataframes" id="toc-core-data-structures-series-and-dataframes" class="nav-link" data-scroll-target="#core-data-structures-series-and-dataframes">1. Core Data Structures: Series and DataFrames</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">0. Setup</a></li>
+  <li><a href="#core-data-structures-dataframes-and-series" id="toc-core-data-structures-dataframes-and-series" class="nav-link" data-scroll-target="#core-data-structures-dataframes-and-series">1. Core Data Structures: DataFrames and Series</a>
+  <ul class="collapse">
+  <li><a href="#dataframe" id="toc-dataframe" class="nav-link" data-scroll-target="#dataframe">1.1 DataFrame</a></li>
+  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series">1.2 Series</a></li>
+  </ul></li>
   <li><a href="#inspecting-data" id="toc-inspecting-data" class="nav-link" data-scroll-target="#inspecting-data">2. Inspecting Data</a></li>
-  <li><a href="#indexing-and-slicing-feature-extraction" id="toc-indexing-and-slicing-feature-extraction" class="nav-link" data-scroll-target="#indexing-and-slicing-feature-extraction">3. Indexing and Slicing (Feature Extraction)</a></li>
-  <li><a href="#filtering-and-handling-missing-data" id="toc-filtering-and-handling-missing-data" class="nav-link" data-scroll-target="#filtering-and-handling-missing-data">4. Filtering and Handling Missing Data</a></li>
-  <li><a href="#summary-for-machine-learning" id="toc-summary-for-machine-learning" class="nav-link" data-scroll-target="#summary-for-machine-learning">Summary for Machine Learning</a></li>
+  <li><a href="#loading-a-real-dataset" id="toc-loading-a-real-dataset" class="nav-link" data-scroll-target="#loading-a-real-dataset">3. Loading a Real Dataset</a>
+  <ul class="collapse">
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix">3.1 Correlation Matrix</a></li>
+  </ul></li>
+  <li><a href="#scatter-plots-with-seaborn" id="toc-scatter-plots-with-seaborn" class="nav-link" data-scroll-target="#scatter-plots-with-seaborn">4. Scatter Plots with Seaborn</a></li>
+  <li><a href="#categorical-data-box-plots" id="toc-categorical-data-box-plots" class="nav-link" data-scroll-target="#categorical-data-box-plots">5. Categorical Data: Box Plots</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">6. Histograms</a></li>
+  <li><a href="#pair-plots" id="toc-pair-plots" class="nav-link" data-scroll-target="#pair-plots">7. Pair Plots</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
   </ul>
@@ -543,6 +557,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../../exercises/lab01/python-basics.html">Lab1. Introduction to ML</a></li><li class="breadcrumb-item"><a href="../../exercises/lab01/pandas-basics.html">Pandas Basics</a></li></ol></nav>
 <div class="quarto-title">
+<h1 class="title">Lab1-4. Pandas Basics</h1>
 </div>
 
 
@@ -571,18 +586,15 @@ window.Quarto = {
 </header>
 
 
-<p>Here is a Lab 01 notebook document for <strong>pandas</strong>, matching the exact style, tone, and formatting of your NumPy and Python basics labs.</p>
-<hr>
-<section id="title-lab-01---pandas-basics-for-machine-learning-jupyter-python3" class="level2">
-<h2 class="anchored" data-anchor-id="title-lab-01---pandas-basics-for-machine-learning-jupyter-python3">title: “Lab 01 - Pandas Basics for Machine Learning” jupyter: python3</h2>
-</section>
+<p><a href="https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab01/pandas-basics.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
 <li>Understand core pandas data structures: <strong>Series</strong> and <strong>DataFrames</strong>.</li>
 <li><strong>Data Inspection</strong>: Learn how to quickly explore and summarize a dataset.</li>
-<li><strong>Indexing and Filtering</strong>: Master extracting specific rows and columns (crucial for separating features from targets).</li>
-<li><strong>Handling Missing Data</strong>: Learn techniques to clean dirty data before feeding it into a machine learning model.</li>
+<li><strong>Data Loading and Cleaning</strong>: Load a real CSV dataset, handle missing values, and prepare it for a model.</li>
+<li><strong>NumPy Conversion</strong>: Convert a cleaned DataFrame into NumPy arrays ready for sklearn or PyTorch.</li>
+<li><strong>Visualization with Seaborn</strong>: Practice creating scatter plots, box plots, histograms, and pair plots directly from a DataFrame.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -594,22 +606,81 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>While NumPy handles the heavy mathematical lifting, <strong>pandas</strong> is the ultimate tool for data manipulation and analysis. Real-world data is messy: it has missing values, inconsistent formatting, and mixed data types (text, dates, numbers). Pandas is built on top of NumPy but provides a tabular interface (like Excel or SQL) that makes cleaning, filtering, and preparing datasets for Machine Learning highly intuitive.</p>
+<p>While NumPy handles the heavy mathematical lifting, <strong>pandas</strong> is the ultimate tool for data manipulation and analysis. Real-world data is messy: it has missing values, inconsistent formatting, and mixed data types such as text, dates, and numbers. Pandas is built on top of NumPy but provides a tabular interface (similar to Excel or SQL) that makes cleaning, filtering, and preparing datasets for machine learning highly intuitive.</p>
 </div>
 </div>
 </section>
-<section id="core-data-structures-series-and-dataframes" class="level2">
-<h2 class="anchored" data-anchor-id="core-data-structures-series-and-dataframes">1. Core Data Structures: Series and DataFrames</h2>
-<p>Pandas has two primary data structures. A <strong>Series</strong> is a 1-dimensional array (like a single column), and a <strong>DataFrame</strong> is a 2-dimensional table made up of multiple Series.</p>
-<div id="c167258e" class="cell" data-execution_count="1">
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Pandas revolves around two core data structures.</p>
+<p>A <strong>Series</strong> is a one-dimensional labeled array. Think of it as a single column in a spreadsheet, where each element has an index label. A <strong>DataFrame</strong> is a two-dimensional table composed of multiple Series objects sharing the same index. Each column is a Series, and the DataFrame itself holds them together under a unified row index.</p>
+<p>The relationship can be summarized as:</p>
+<p><span class="math display">\[\text{DataFrame} \supset \text{Series} \supset \{\text{Scalar values}\}\]</span></p>
+<p>Understanding this hierarchy is essential because most pandas operations, such as filtering, grouping, and aggregation, work on either the Series level or the DataFrame level, and mixing them up is one of the most common sources of bugs for beginners.</p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">0. Setup</h2>
+<p>Run this cell first. All subsequent cells depend on these imports and the dataset URL.</p>
+<div id="4c51133c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1-Dimensional: Series</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You can think of it as a single column of data with an index</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> pd.Series([<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">45</span>, <span class="dv">33</span>], name<span class="op">=</span><span class="st">"Age"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Series:</span><span class="ch">\n</span><span class="st">"</span>, ages)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Shape:"</span>, ages.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">'whitegrid'</span>, font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>AUTO_CSV <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/GLI-Lab/machine-learning-course/students/data/auto.csv'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="core-data-structures-dataframes-and-series" class="level2">
+<h2 class="anchored" data-anchor-id="core-data-structures-dataframes-and-series">1. Core Data Structures: DataFrames and Series</h2>
+<section id="dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe">1.1 DataFrame</h3>
+<p>A <strong>DataFrame</strong> is a two-dimensional table. The most common way to construct one from scratch is to pass a Python dictionary where each key becomes a column name and each value is a list of column entries.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pandas.pydata.org/docs/_images/01_table_dataframe.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Pandas Data Table Representation</figcaption>
+</figure>
+</div>
+<div id="23fb89c8" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-Dimensional: DataFrame</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bob's age is intentionally left as NaN to simulate a missing value</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Name'</span>:      [<span class="st">'Alice'</span>, <span class="st">'Bob'</span>, <span class="st">'Charlie'</span>, <span class="st">'Diana'</span>, <span class="st">'Eve'</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Age'</span>:       [<span class="dv">25</span>, np.nan, <span class="dv">22</span>, <span class="dv">45</span>, <span class="dv">33</span>],</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Income'</span>:    [<span class="dv">55000</span>, <span class="dv">48000</span>, <span class="dv">32000</span>, <span class="dv">110000</span>, <span class="dv">75000</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Purchased'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DataFrame:</span><span class="ch">\n</span><span class="st">"</span>, df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DataFrame:
+       Name   Age  Income  Purchased
+0    Alice  25.0   55000          0
+1      Bob   NaN   48000          1
+2  Charlie  22.0   32000          0
+3    Diana  45.0  110000          1
+4      Eve  33.0   75000          1</code></pre>
+</div>
+</div>
+<p>Observe that Bob’s <code>Age</code> shows as <code>NaN</code> (Not a Number). This is how pandas represents missing data.</p>
+</section>
+<section id="series" class="level3">
+<h3 class="anchored" data-anchor-id="series">1.2 Series</h3>
+<p>A <strong>Series</strong> is a one-dimensional array with a labeled index. You can think of it as a single column of data.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pandas.pydata.org/docs/_images/02_series.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Each column in a DataFrame is a Series</figcaption>
+</figure>
+</div>
+<div id="3405864f" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1-Dimensional: Series</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Each element has an automatically assigned integer index (0, 1, 2, ...)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> pd.Series([<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">45</span>, <span class="dv">33</span>], name<span class="op">=</span><span class="st">"Age"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Series:</span><span class="ch">\n</span><span class="st">"</span>, ages)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Shape:"</span>, ages.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Series:
  0    25
@@ -622,51 +693,32 @@ Name: Age, dtype: int64
 Shape: (5,)</code></pre>
 </div>
 </div>
-<div id="086fd4c5" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-Dimensional: DataFrame</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The most common way to create a DataFrame from scratch is using a dictionary</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Name'</span>: [<span class="st">'Alice'</span>, <span class="st">'Bob'</span>, <span class="st">'Charlie'</span>, <span class="st">'Diana'</span>, <span class="st">'Eve'</span>],</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Age'</span>: [<span class="dv">25</span>, np.nan, <span class="dv">22</span>, <span class="dv">45</span>, <span class="dv">33</span>], <span class="co"># Note the missing value (NaN) for Bob</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Income'</span>: [<span class="dv">55000</span>, <span class="dv">48000</span>, <span class="dv">32000</span>, <span class="dv">110000</span>, <span class="dv">75000</span>],</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Purchased'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DataFrame:</span><span class="ch">\n</span><span class="st">"</span>, df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>DataFrame:
-       Name   Age  Income  Purchased
-0    Alice  25.0   55000          0
-1      Bob   NaN   48000          1
-2  Charlie  22.0   32000          0
-3    Diana  45.0  110000          1
-4      Eve  33.0   75000          1</code></pre>
-</div>
-</div>
+<p>Notice that the output shows both the <strong>index</strong> (left column) and the <strong>values</strong> (right column). This index is what makes a Series different from a plain NumPy array.</p>
+</section>
 </section>
 <section id="inspecting-data" class="level2">
 <h2 class="anchored" data-anchor-id="inspecting-data">2. Inspecting Data</h2>
-<p>Before applying any Machine Learning algorithm, you must understand the shape, distribution, and types of your data.</p>
-<div id="89c75681" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows (default is 5)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Head:</span><span class="ch">\n</span><span class="st">"</span>, df.head(<span class="dv">3</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a concise summary of the DataFrame, including data types and non-null counts</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- DataFrame Info ---"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df.info()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate descriptive statistics for numerical columns</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Summary Statistics ---"</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Before applying any machine learning algorithm, you must understand the shape, data types, and statistical distribution of your data. These three methods are the first thing you should run on any new dataset.</p>
+<div id="a3f19731" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows (default is 5; here we request 3)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Head ==="</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">3</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a concise summary: column names, non-null counts, and dtypes</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== DataFrame Info ==="</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>df.info()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate descriptive statistics for all numeric columns</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Summary Statistics ==="</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Head:
-       Name   Age  Income  Purchased
+<pre><code>=== Head ===
+      Name   Age  Income  Purchased
 0    Alice  25.0   55000          0
 1      Bob   NaN   48000          1
 2  Charlie  22.0   32000          0
 
---- DataFrame Info ---
+=== DataFrame Info ===
 &lt;class 'pandas.DataFrame'&gt;
 RangeIndex: 5 entries, 0 to 4
 Data columns (total 4 columns):
@@ -679,7 +731,7 @@ Data columns (total 4 columns):
 dtypes: float64(1), int64(2), str(1)
 memory usage: 292.0 bytes
 
---- Summary Statistics ---
+=== Summary Statistics ===
              Age         Income  Purchased
 count   4.000000       5.000000   5.000000
 mean   31.250000   64000.000000   0.600000
@@ -691,150 +743,414 @@ min    22.000000   32000.000000   0.000000
 max    45.000000  110000.000000   1.000000</code></pre>
 </div>
 </div>
-</section>
-<section id="indexing-and-slicing-feature-extraction" class="level2">
-<h2 class="anchored" data-anchor-id="indexing-and-slicing-feature-extraction">3. Indexing and Slicing (Feature Extraction)</h2>
-<p>In Machine Learning, a standard task is splitting your DataFrame into <strong>Features (<span class="math inline">\(X\)</span>)</strong> and <strong>Labels (<span class="math inline">\(y\)</span>)</strong>. Pandas provides powerful <code>.loc</code> (label-based) and <code>.iloc</code> (integer position-based) indexers.</p>
-<div id="a8bf42e0" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting a single column returns a Series</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'Purchased'</span>] </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Target Label (y):</span><span class="ch">\n</span><span class="st">"</span>, y.values) <span class="co"># .values converts it to a NumPy array</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting multiple columns returns a smaller DataFrame</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>X_subset <span class="op">=</span> df[[<span class="st">'Age'</span>, <span class="st">'Income'</span>]]</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Feature Subset (X):</span><span class="ch">\n</span><span class="st">"</span>, X_subset)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Target Label (y):
- [0 1 0 1 1]
-
-Feature Subset (X):
-     Age  Income
-0  25.0   55000
-1   NaN   48000
-2  22.0   32000
-3  45.0  110000
-4  33.0   75000</code></pre>
-</div>
-</div>
-<p>Using <code>.iloc</code> is the most reliable way to split features and targets based on column order.</p>
-<div id="7986bbdd" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df.iloc[rows, columns]</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all rows (:), and all columns EXCEPT the last one (:-1)</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.iloc[:, :<span class="op">-</span><span class="dv">1</span>] </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"All Features (X):</span><span class="ch">\n</span><span class="st">"</span>, X)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all rows (:), and ONLY the last column (-1)</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df.iloc[:, <span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Target (y):</span><span class="ch">\n</span><span class="st">"</span>, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>All Features (X):
-       Name   Age  Income
-0    Alice  25.0   55000
-1      Bob   NaN   48000
-2  Charlie  22.0   32000
-3    Diana  45.0  110000
-4      Eve  33.0   75000
-
-Target (y):
- 0    0
-1    1
-2    0
-3    1
-4    1
-Name: Purchased, dtype: int64</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Caveat: <code>.loc</code> vs <code>.iloc</code>
+<span class="screen-reader-only">Tip</span>What to Look for in <code>.info()</code> and <code>.describe()</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A very common source of bugs!</p>
-<ul>
-<li>Use <code>df.loc[]</code> when you want to select data by its <strong>name/label</strong> (e.g., column ‘Age’ or row index ‘User_5’).</li>
-<li>Use <code>df.iloc[]</code> when you want to select data by its <strong>numerical position</strong> (e.g., the 0th row, or the last column <code>-1</code>), just like standard NumPy slicing.</li>
-</ul>
+<p><code>.info()</code> tells you how many non-null values each column has. A column whose non-null count is less than the total row count contains missing values that need to be addressed before training.</p>
+<p><code>.describe()</code> gives you the count, mean, standard deviation, and quartiles. A large gap between the 75th percentile (<code>75%</code>) and the maximum (<code>max</code>) often signals an outlier.</p>
 </div>
 </div>
 </section>
-<section id="filtering-and-handling-missing-data" class="level2">
-<h2 class="anchored" data-anchor-id="filtering-and-handling-missing-data">4. Filtering and Handling Missing Data</h2>
-<p>Machine Learning models cannot process <code>NaN</code> (Not a Number) values. You must either drop the rows containing them or fill them with a logical replacement (Imputation).</p>
-<div id="acf0fcbf" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering: Find all rows where Income is greater than 50,000</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>high_income <span class="op">=</span> df[df[<span class="st">'Income'</span>] <span class="op">&gt;</span> <span class="dv">50000</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"High Income Customers:</span><span class="ch">\n</span><span class="st">"</span>, high_income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="loading-a-real-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="loading-a-real-dataset">3. Loading a Real Dataset</h2>
+<p>The <strong>Auto MPG</strong> dataset contains fuel consumption and other attributes for 397 cars manufactured in the 1970s and 1980s. The raw CSV uses the symbol <code>?</code> to represent missing values, so we pass <code>na_values=['?']</code> to convert them to <code>NaN</code> automatically on load.</p>
+<div id="eba98e4f" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>auto_df <span class="op">=</span> pd.read_csv(AUTO_CSV, na_values<span class="op">=</span>[<span class="st">'?'</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, auto_df.shape)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>auto_df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>High Income Customers:
-     Name   Age  Income  Purchased
-0  Alice  25.0   55000          0
-3  Diana  45.0  110000          1
-4    Eve  33.0   75000          1</code></pre>
+<pre><code>Shape: (397, 9)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mpg</th>
+<th data-quarto-table-cell-role="th">cylinders</th>
+<th data-quarto-table-cell-role="th">displacement</th>
+<th data-quarto-table-cell-role="th">horsepower</th>
+<th data-quarto-table-cell-role="th">weight</th>
+<th data-quarto-table-cell-role="th">acceleration</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">origin</th>
+<th data-quarto-table-cell-role="th">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>18.0</td>
+<td>8</td>
+<td>307.0</td>
+<td>130.0</td>
+<td>3504</td>
+<td>12.0</td>
+<td>70</td>
+<td>1</td>
+<td>chevrolet chevelle malibu</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>15.0</td>
+<td>8</td>
+<td>350.0</td>
+<td>165.0</td>
+<td>3693</td>
+<td>11.5</td>
+<td>70</td>
+<td>1</td>
+<td>buick skylark 320</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>18.0</td>
+<td>8</td>
+<td>318.0</td>
+<td>150.0</td>
+<td>3436</td>
+<td>11.0</td>
+<td>70</td>
+<td>1</td>
+<td>plymouth satellite</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>16.0</td>
+<td>8</td>
+<td>304.0</td>
+<td>150.0</td>
+<td>3433</td>
+<td>12.0</td>
+<td>70</td>
+<td>1</td>
+<td>amc rebel sst</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>17.0</td>
+<td>8</td>
+<td>302.0</td>
+<td>140.0</td>
+<td>3449</td>
+<td>10.5</td>
+<td>70</td>
+<td>1</td>
+<td>ford torino</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<div id="d069d799" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for missing values</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing values per column:</span><span class="ch">\n</span><span class="st">"</span>, df.isna().<span class="bu">sum</span>())</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Strategy 1: Drop any row containing a missing value</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>df_dropped <span class="op">=</span> df.dropna()</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame after dropna():</span><span class="ch">\n</span><span class="st">"</span>, df_dropped)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Strategy 2: Fill missing values with the column mean (Common ML Imputation)</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>mean_age <span class="op">=</span> df[<span class="st">'Age'</span>].mean()</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>df_filled <span class="op">=</span> df.copy()</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>df_filled[<span class="st">'Age'</span>] <span class="op">=</span> df_filled[<span class="st">'Age'</span>].fillna(mean_age)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">DataFrame after filling NaN with mean (</span><span class="sc">{</span>mean_age<span class="sc">}</span><span class="ss">):</span><span class="ch">\n</span><span class="ss">"</span>, df_filled)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="8b2007bf" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect column names</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(auto_df.columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>['mpg',
+ 'cylinders',
+ 'displacement',
+ 'horsepower',
+ 'weight',
+ 'acceleration',
+ 'year',
+ 'origin',
+ 'name']</code></pre>
+</div>
+</div>
+<div id="e72b81d5" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting a single column: returns a Series</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>auto_df[<span class="st">'mpg'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>0      18.0
+1      15.0
+2      18.0
+3      16.0
+4      17.0
+       ... 
+392    27.0
+393    44.0
+394    32.0
+395    28.0
+396    31.0
+Name: mpg, Length: 397, dtype: float64</code></pre>
+</div>
+</div>
+<div id="4dc4fc9d" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting multiple columns: returns a DataFrame</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>auto_df[[<span class="st">'mpg'</span>, <span class="st">'weight'</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mpg</th>
+<th data-quarto-table-cell-role="th">weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>18.0</td>
+<td>3504</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>15.0</td>
+<td>3693</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>18.0</td>
+<td>3436</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>16.0</td>
+<td>3433</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>17.0</td>
+<td>3449</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">392</th>
+<td>27.0</td>
+<td>2790</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">393</th>
+<td>44.0</td>
+<td>2130</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">394</th>
+<td>32.0</td>
+<td>2295</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">395</th>
+<td>28.0</td>
+<td>2625</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">396</th>
+<td>31.0</td>
+<td>2720</td>
+</tr>
+</tbody>
+</table>
+
+<p>397 rows × 2 columns</p>
+</div>
+</div>
+</div>
+<div id="1e72b840" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with any missing value and confirm the new shape</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>auto_df.dropna(axis<span class="op">=</span><span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape after dropna:"</span>, auto_df.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Missing values per column:
- Name         0
-Age          1
-Income       0
-Purchased    0
-dtype: int64
-
-DataFrame after dropna():
-       Name   Age  Income  Purchased
-0    Alice  25.0   55000          0
-2  Charlie  22.0   32000          0
-3    Diana  45.0  110000          1
-4      Eve  33.0   75000          1
-
-DataFrame after filling NaN with mean (31.25):
-       Name    Age  Income  Purchased
-0    Alice  25.00   55000          0
-1      Bob  31.25   48000          1
-2  Charlie  22.00   32000          0
-3    Diana  45.00  110000          1
-4      Eve  33.00   75000          1</code></pre>
+<pre><code>Shape after dropna: (392, 9)</code></pre>
+</div>
+</div>
+<section id="correlation-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-matrix">3.1 Correlation Matrix</h3>
+<p>Before building a model it is important to understand which features move together. The <strong>Pearson correlation</strong> between columns <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> ranges from <span class="math inline">\(-1\)</span> (perfect negative) to <span class="math inline">\(+1\)</span> (perfect positive). A heatmap makes these relationships immediately visible.</p>
+<div id="f293a14b" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> [<span class="st">'mpg'</span>, <span class="st">'displacement'</span>, <span class="st">'horsepower'</span>, <span class="st">'weight'</span>, <span class="st">'acceleration'</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> auto_df[numeric_cols].corr()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.2f'</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, center<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>            vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Feature Correlation Matrix"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas-basics_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>weight</code>, <code>displacement</code>, and <code>horsepower</code> are all strongly correlated with each other (r &gt; 0.8) and negatively correlated with <code>mpg</code>. Plotting these relationships will be the focus of the next few sections.</p>
+<p>Once the DataFrame is clean, convert it to NumPy arrays before passing it to a model. sklearn and PyTorch both expect NumPy arrays or tensors, not DataFrames.</p>
+<div id="ba49c354" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All feature columns except the last</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> auto_df.iloc[:, :<span class="op">-</span><span class="dv">1</span>].to_numpy()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Last column as the label</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> auto_df.iloc[:, <span class="op">-</span><span class="dv">1</span>].to_numpy()</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X shape:"</span>, X.shape)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y shape:"</span>, y.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>X shape: (392, 8)
+y shape: (392,)</code></pre>
 </div>
 </div>
 </section>
-<section id="summary-for-machine-learning" class="level2">
-<h2 class="anchored" data-anchor-id="summary-for-machine-learning">Summary for Machine Learning</h2>
-<ul>
-<li><strong>Exploratory Data Analysis (EDA):</strong> Always use <code>.head()</code>, <code>.info()</code>, and <code>.describe()</code> to understand your data before building models.</li>
-<li><strong>Data Preparation:</strong> Pandas is your primary tool for filtering out noise, handling <code>NaN</code> values, and converting categorical text into numbers.</li>
-<li><strong>Scikit-Learn Integration:</strong> Most modern ML libraries, like Scikit-Learn, natively accept pandas DataFrames as inputs for training models. When passing data to PyTorch or TensorFlow, you will often convert DataFrames to NumPy arrays first using <code>.values</code>.</li>
-</ul>
+</section>
+<section id="scatter-plots-with-seaborn" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plots-with-seaborn">4. Scatter Plots with Seaborn</h2>
+<p>A <strong>joint plot</strong> from Seaborn combines a central scatter plot with marginal histograms along each axis. This lets you simultaneously see the relationship between two variables and their individual distributions.</p>
+<div id="855b2f8b" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">'weight'</span>, y<span class="op">=</span><span class="st">'mpg'</span>, data<span class="op">=</span>auto_df)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas-basics_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="60ae62a4" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">'horsepower'</span>, y<span class="op">=</span><span class="st">'mpg'</span>, data<span class="op">=</span>auto_df)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas-basics_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both plots reveal a clear <strong>negative correlation</strong>: heavier cars and more powerful engines are associated with lower fuel efficiency. This kind of pre-modeling insight can inform feature selection decisions later.</p>
+</section>
+<section id="categorical-data-box-plots" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-data-box-plots">5. Categorical Data: Box Plots</h2>
+<p>A <strong>box plot</strong> summarizes the distribution of a continuous variable across discrete groups. The box spans the interquartile range (IQR, from the 25th to the 75th percentile), the line inside the box marks the median, and the whiskers extend to roughly 1.5 times the IQR. Points beyond the whiskers are plotted as individual dots and are potential outliers.</p>
+<p>Before plotting, we cast the <code>cylinders</code> column to the <code>category</code> dtype. This tells both pandas and Seaborn to treat its unique integer values as discrete labels rather than as a continuous numeric axis.</p>
+<div id="db77a79b" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>auto_df[<span class="st">'cylinders'</span>] <span class="op">=</span> auto_df[<span class="st">'cylinders'</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">'cylinders'</span>, y<span class="op">=</span><span class="st">'mpg'</span>, data<span class="op">=</span>auto_df)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas-basics_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot makes it immediately clear that 4-cylinder engines tend to achieve much higher fuel efficiency than 6- or 8-cylinder engines, and that the 8-cylinder group shows relatively low variance.</p>
+</section>
+<section id="histograms" class="level2">
+<h2 class="anchored" data-anchor-id="histograms">6. Histograms</h2>
+<p><code>sns.displot</code> draws a histogram of a single numeric column. Setting <code>kde=True</code> overlays a <strong>kernel density estimate (KDE)</strong>, which is a smooth, continuous approximation of the underlying distribution.</p>
+<div id="82572248" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sns.histplot(auto_df[<span class="st">'mpg'</span>], bins<span class="op">=</span><span class="dv">31</span>, kde<span class="op">=</span><span class="va">True</span>,  ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'With KDE Overlay'</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlim([<span class="dv">0</span>, <span class="dv">50</span>])</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>sns.histplot(auto_df[<span class="st">'mpg'</span>], bins<span class="op">=</span><span class="dv">31</span>, kde<span class="op">=</span><span class="va">False</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Without KDE Overlay'</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlim([<span class="dv">0</span>, <span class="dv">50</span>])</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas-basics_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The distribution is mildly right-skewed, with most cars clustered between 15 and 30 MPG and a tail extending toward higher values. Checking this distribution before training is important: if a feature is heavily skewed, applying a log transformation (as seen in Lab 1-3) can improve model performance.</p>
+</section>
+<section id="pair-plots" class="level2">
+<h2 class="anchored" data-anchor-id="pair-plots">7. Pair Plots</h2>
+<p>A <strong>pair plot</strong> draws a scatter plot for every pair of selected numeric features and a histogram on the diagonal. Coloring points by <code>cylinders</code> reveals whether different engine types cluster differently across feature combinations, which is a quick way to assess class separability before modeling.</p>
+<div id="f8d296d6" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    auto_df,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">vars</span><span class="op">=</span>[<span class="st">'mpg'</span>, <span class="st">'displacement'</span>, <span class="st">'horsepower'</span>, <span class="st">'weight'</span>, <span class="st">'acceleration'</span>],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    hue<span class="op">=</span><span class="st">'cylinders'</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas-basics_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="1e73cf1e" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics for a single column</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>auto_df[<span class="st">'mpg'</span>].describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>count    392.000000
+mean      23.445918
+std        7.805007
+min        9.000000
+25%       17.000000
+50%       22.750000
+75%       29.000000
+max       46.600000
+Name: mpg, dtype: float64</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reading a Pair Plot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Focus on the off-diagonal cells. A tight, elongated ellipse of points indicates a strong linear correlation between those two features. Features that are highly correlated with each other but not with the target may be redundant and can sometimes be dropped without hurting model performance, a concept you will revisit when studying dimensionality reduction.</p>
+</div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p><strong>Core data structures.</strong> A <code>Series</code> is a one-dimensional labeled array; a <code>DataFrame</code> is a two-dimensional table of Series objects sharing a common index. Most pandas operations work on one of these two levels.</p>
+<p><strong>Exploratory Data Analysis.</strong> Always run <code>.head()</code>, <code>.info()</code>, and <code>.describe()</code> on a new dataset before building any model. They reveal shape, missing values, data types, and distributional properties at a glance.</p>
+<p><strong>Data cleaning.</strong> Use <code>na_values=['?']</code> on load to convert non-standard missing markers to <code>NaN</code>. Use <code>.dropna()</code> to remove incomplete rows before training.</p>
+<p><strong>Correlation matrix.</strong> <code>df[cols].corr()</code> with <code>sns.heatmap</code> gives a quick overview of which features move together. Strongly correlated pairs (r ≈ ±1) often carry redundant information.</p>
+<p><strong>NumPy conversion.</strong> Use <code>df.iloc[:, :-1].to_numpy()</code> to extract the feature matrix <span class="math inline">\(X\)</span> and <code>df.iloc[:, -1].to_numpy()</code> to extract the label vector <span class="math inline">\(y\)</span>. Most ML libraries (sklearn, PyTorch) expect NumPy arrays, not DataFrames.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <ul>
-<li><a href="https://wesmckinney.com/book/">Python for Data Analysis</a> (Written by the creator of pandas, Wes McKinney)</li>
+<li><a href="https://intro-stat-learning.github.io/ISLP/labs.html">An Introduction to Statistical Learning with Python</a></li>
+<li><a href="https://wesmckinney.com/book/">Python for Data Analysis</a></li>
 </ul>
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
 <ul>
-<li><a href="https://pandas.pydata.org/docs/getting_started/index.html">Pandas Official Getting Started Guide</a></li>
-<li><a href="https://github.com/jakevdp/WhirlwindTourOfPython/?tab=readme-ov-file">A Whirlwind Tour of Python</a></li>
-<li><a href="https://github.com/jakevdp/PythonDataScienceHandbook">Python Data Science Handbook</a></li>
+<li><a href="https://pandas.pydata.org/docs/getting_started/index.html">Pandas Documentation</a></li>
+<li><a href="https://realpython.com/learning-paths/data-science-python-core-skills/">Data Science With Python Core Skills</a></li>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a></li>
 </ul>
 
 

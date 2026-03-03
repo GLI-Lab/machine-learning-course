@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -143,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../assignments/hw01/hw01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HW1 (~26.03.10)</span></a>
+ <span class="menu-text">HW1 (~26.03.15)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,7 +261,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>PyTorch Autoencoder 구현.</p>
+<p>In this assignment you will build an <strong>autoencoder</strong> using PyTorch for unsupervised representation learning.</p>
+<p>You will cover:</p>
+<ul>
+<li><strong>Encoder</strong>: Design a network that compresses input data into a compact latent vector <span class="math inline">\(z\)</span>.</li>
+<li><strong>Decoder</strong>: Design a symmetric network that reconstructs the original input from <span class="math inline">\(z\)</span>.</li>
+<li><strong>Reconstruction loss</strong>: Train the model end-to-end by minimizing the difference between the input and its reconstruction (MSE or binary cross-entropy).</li>
+<li><strong>Latent space visualization</strong>: Reduce the latent vectors to 2D (e.g., with t-SNE or PCA) and visualize the learned representation.</li>
+<li><strong>Denoising autoencoder</strong> <em>(optional)</em>: Corrupt inputs with noise during training and evaluate whether the model learns a more robust representation.</li>
+</ul>
+<p>Problems will be released closer to the due date.</p>
 
 
 

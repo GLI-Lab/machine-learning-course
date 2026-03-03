@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -143,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../assignments/hw01/hw01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HW1 (~26.03.10)</span></a>
+ <span class="menu-text">HW1 (~26.03.15)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,7 +261,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>PyTorch로 recurrent neural network 구현.</p>
+<p>In this assignment you will implement <strong>recurrent neural networks (RNN / LSTM)</strong> using PyTorch for sequence modeling.</p>
+<p>You will cover:</p>
+<ul>
+<li><strong>Vanilla RNN</strong>: Implement a simple RNN cell manually and understand the hidden-state recurrence <span class="math inline">\(h_t = \tanh(W_h h_{t-1} + W_x x_t + b)\)</span>.</li>
+<li><strong>LSTM</strong>: Use <code>nn.LSTM</code> to handle long-range dependencies and compare it with the vanilla RNN.</li>
+<li><strong>Sequence processing</strong>: Prepare variable-length sequences, apply padding, and use <code>pack_padded_sequence</code> for efficient batching.</li>
+<li><strong>Training</strong>: Train on a sequential dataset (e.g., time-series prediction or character-level language modeling) and analyze gradient flow.</li>
+<li><strong>Evaluation</strong>: Measure performance on held-out sequences and visualize predicted vs.&nbsp;true values.</li>
+</ul>
+<p>Problems will be released closer to the due date.</p>
 
 
 
