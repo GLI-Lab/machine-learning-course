@@ -59,14 +59,14 @@ website:
             - exercises/environment-setup.qmd
             - section: "Lab1. Introduction to ML"
               contents:
-                - text: "Python Basics"
+                - text: "Python Basics (⭐)"
                   href: exercises/lab01/python-basics.qmd
-                - text: "Numpy Basics"
+                - text: "Numpy Basics (⭐⭐)"
                   href: exercises/lab01/numpy-basics.qmd
-                - text: "Pandas Basics"
-                  href: exercises/lab01/pandas-basics.qmd
                 - text: "Matplotlib Basics"
                   href: exercises/lab01/matplotlib-basics.qmd
+                - text: "Pandas Basics"
+                  href: exercises/lab01/pandas-basics.qmd
             - section: "Lab2. Linear Models"
               contents:
                 - text: "Perceptron Limits"
