@@ -1,10 +1,10 @@
 {
-  "hash": "a8903d18f7e42aad106eaebe362d921b",
+  "hash": "076ed1484f4d3e4b4cf9e5a0f884d2f6",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Linear Regression with NumPy\"\njupyter: python3\n---\n\n\n\n\nNumpy로 매우 단순한 회귀 모델 구현.\n\n",
+    "markdown": "---\ntitle: \"Linear Regression with NumPy\"\njupyter: python3\n---\n\n\n\n\nIn this assignment you will implement linear regression **from scratch using only NumPy** — no sklearn, no autograd.\n\nYou will cover:\n\n- **Closed-form solution**: Derive and implement the Normal Equation $\\hat{w} = (X^\\top X)^{-1} X^\\top y$ to find the optimal weights analytically.\n- **Gradient descent**: Implement batch gradient descent by computing the MSE loss and its gradient with respect to the weights at each iteration.\n- **Evaluation**: Measure model quality using Mean Squared Error (MSE) and $R^2$ score on a held-out test set.\n- **Visualization**: Plot the fitted regression line against the data and the loss curve over training epochs.\n\nProblems will be released closer to the due date.\n\n",
     "supporting": [
-      "hw02_files"
+      "hw02_files/figure-html"
     ],
     "filters": [],
     "includes": {}

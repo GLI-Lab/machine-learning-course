@@ -4,24 +4,22 @@ title: "Exercises Guide"
 
 ## Labs
 
-Labs are the hands-on companion to each lecture unit. Each lab is a short, focused session designed to help you build intuition for the theoretical concepts introduced in class by working directly with code. You will run, visualize, and experiment with the ideas so that by the time you reach a homework assignment, the underlying mechanics feel familiar.
-
-Labs are **not graded**. They exist entirely for your learning benefit.
-
-The table below maps each lab to its parent unit. Labs within the same unit share a prefix (e.g., Lab 2-1, Lab 2-2).
+Labs are **not graded** and are the hands-on companion to each lecture unit. Each lab is a short, focused session designed to help you build intuition for the theoretical concepts introduced in class by working directly with code. You will run, visualize, and experiment with the ideas so that by the time you reach a homework assignment, the underlying mechanics feel familiar.
 
 ::: {.callout-note}
 ## Labs Marked TBD
+
 Labs marked as TBD have tentative topics that may be added, removed, or reordered as the course progresses.
 :::
 
-**Lab 1: Introduction to ML**
+**Lab 1: Introduction to Machine Learning**
 
-- Lab 1-1: Setting Up the Programming Environment
-- Lab 1-2: Python Basics and NumPy Fundamentals (Vectorization, Broadcasting)
-- Lab 1-3: K-NN Distance Computation via NumPy Broadcasting
+- [Lab 1-1](lab01/python-basics.html): Python Basics
+- [Lab 1-2](lab01/numpy-basics.html): NumPy Basics
+- [Lab 1-3](lab01/matplotlib-basics.html): Matplotlib Basics
+- [Lab 1-4](lab01/pandas-basics.html): Pandas Basics
 
-**Lab 2: Linear Models**
+**Lab 2: Linear Models (TBD)**
 
 - Lab 2-1: Perceptron Limits and Decision Boundaries
 - Lab 2-2: Linear and Logistic Regression via Gradient Descent
@@ -120,14 +118,20 @@ Unlike the homework assignments, **labs do not require you to write code from sc
 
 Labs are exploratory playgrounds. Once you have run the provided code and observed its default output, you are highly encouraged to tinker with it. 
 
-Try changing hyperparameters (like learning rates, batch sizes, or network depth), altering architectures, or even breaking things on purpose to see what kind of error messages PyTorch throws. Some cells include optional challenge prompts marked with a comment like `# OPTIONAL:`. Tinkering freely is one of the best ways to build intuition before tackling the homework.
+Try changing hyperparameters (like learning rates, batch sizes, or network depth), altering architectures, or even breaking things on purpose to see what kind of error messages PyTorch throws. Tinkering freely is one of the best ways to build intuition before tackling the homework.
 
 ## Navigating the Notebook Structure
 
 Every lab notebook follows the same internal layout so you always know where to look.
 
-**Objectives** lists the specific skills or concepts you will practice in that lab. Read this before you start.
+- **Objectives** lists the specific skills or concepts you will practice in that lab. Read this before you start.
 
-**Background** gives a concise reminder of the theory needed for the tasks. This is not a replacement for the lecture; it is a quick reference.
+- **Background (optional)** gives a concise reminder of the theory needed for the tasks. This is not a replacement for the lecture; it is a quick reference.
 
-**Experiments** contains the executable cells where you will run the provided implementations, visualize the results, and observe the internal mechanics of the machine learning models.
+- **Experiments** is organized as a sequence of numbered topics, each covering one focused concept or technique. Within each topic you will run the provided implementations, visualize the results, and observe the internal mechanics of the machine learning models. Work through the topics in order, since later topics often build on the results of earlier ones.
+
+- **Summary** distills the key takeaways from the lab into a short list of bullet points. Read this after you finish to reinforce what you learned and to check whether anything needs revisiting.
+
+- **References** cites the primary sources (textbooks, papers, or datasets) that the lab content is based on.
+
+- **Further Reading** points to optional resources — tutorials, documentation pages, or deeper dives — for students who want to go beyond the lab material.
