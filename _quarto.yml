@@ -40,7 +40,7 @@ website:
       - href: assignments/index.qmd
         text: Assignments
       - icon: link-45deg
-        href: http://203.252.149.219:3000/
+        href: http://gli.konkuk.ac.kr
         text: GLI Lab
     tools:
       - icon: github
