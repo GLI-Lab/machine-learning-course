@@ -138,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="http://203.252.149.219:3000/"> <i class="bi bi-link-45deg" role="img">
+    <a class="nav-link" href="http://gli.konkuk.ac.kr"> <i class="bi bi-link-45deg" role="img">
 </i> 
 <span class="menu-text">GLI Lab</span></a>
   </li>  
@@ -227,14 +227,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/lab02/perceptron-limits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perceptron Limits</span></a>
+  <a href="../exercises/lab02/linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/lab02/linear-and-logistic-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear and Logistic Regression</span></a>
+  <a href="../exercises/lab02/logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -498,15 +498,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#option-a-vscode-or-jupyterlab-pixi-local" id="toc-option-a-vscode-or-jupyterlab-pixi-local" class="nav-link" data-scroll-target="#option-a-vscode-or-jupyterlab-pixi-local">Option A: VSCode or JupyterLab + pixi (Local)</a>
+  <li><a href="#option-a-local-pixi-vscode-or-jupyterlab" id="toc-option-a-local-pixi-vscode-or-jupyterlab" class="nav-link" data-scroll-target="#option-a-local-pixi-vscode-or-jupyterlab">Option A (Local): pixi + VSCode or JupyterLab</a>
   <ul class="collapse">
   <li><a href="#why-pixi" id="toc-why-pixi" class="nav-link" data-scroll-target="#why-pixi">Why pixi?</a></li>
-  <li><a href="#step-1-install-pixi" id="toc-step-1-install-pixi" class="nav-link" data-scroll-target="#step-1-install-pixi">Step 1: Install pixi</a></li>
-  <li><a href="#step-2-clone-the-course-repository" id="toc-step-2-clone-the-course-repository" class="nav-link" data-scroll-target="#step-2-clone-the-course-repository">Step 2: Clone the Course Repository</a></li>
-  <li><a href="#step-3-install-all-required-packages" id="toc-step-3-install-all-required-packages" class="nav-link" data-scroll-target="#step-3-install-all-required-packages">Step 3: Install All Required Packages</a></li>
-  <li><a href="#step-4-open-a-lab-notebook" id="toc-step-4-open-a-lab-notebook" class="nav-link" data-scroll-target="#step-4-open-a-lab-notebook">Step 4: Open a Lab Notebook</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#step-1-clone-the-course-repository" id="toc-step-1-clone-the-course-repository" class="nav-link" data-scroll-target="#step-1-clone-the-course-repository">Step 1: Clone the Course Repository</a></li>
+  <li><a href="#step-2-install-all-required-packages" id="toc-step-2-install-all-required-packages" class="nav-link" data-scroll-target="#step-2-install-all-required-packages">Step 2: Install All Required Packages</a></li>
+  <li><a href="#step-3-open-a-lab-notebook" id="toc-step-3-open-a-lab-notebook" class="nav-link" data-scroll-target="#step-3-open-a-lab-notebook">Step 3: Open a Lab Notebook</a></li>
   </ul></li>
-  <li><a href="#option-b-google-colab-cloud" id="toc-option-b-google-colab-cloud" class="nav-link" data-scroll-target="#option-b-google-colab-cloud">Option B: Google Colab (Cloud)</a></li>
+  <li><a href="#option-b-cloud-google-colab" id="toc-option-b-cloud-google-colab" class="nav-link" data-scroll-target="#option-b-cloud-google-colab">Option B (Cloud): Google Colab</a></li>
   </ul>
 </nav>
     </div>
@@ -533,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2026.03.03</p>
+      <p class="date-modified">2026.03.15</p>
     </div>
   </div>
     
@@ -547,8 +547,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>This course supports two ways to run labs. Choose the one that fits your setup.</p>
-<p><strong>Option A: VSCode or JupyterLab + pixi (Local)</strong> — Recommended for consistent, reproducible environments. All dependencies are pinned via a lock file, so your environment matches every other student’s exactly. Requires a one-time setup on your machine.</p>
-<p><strong>Option B: Google Colab (Cloud)</strong> — No installation needed. Open any lab notebook directly in your browser using the Colab badge at the top of each notebook. Best if you do not want to manage a local environment.</p>
+<p><strong>Option A (Local): pixi + VSCode or JupyterLab</strong> — Recommended for consistent, reproducible environments. All dependencies are pinned via a lock file, so your environment matches every other student’s exactly. Requires a one-time setup on your machine.</p>
+<p><strong>Option B (Cloud): Google Colab</strong> — No installation needed. Open any lab notebook directly in your browser using the Colab badge at the top of each notebook. Best if you do not want to manage a local environment.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -559,54 +559,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We recommend <strong>Option A</strong> for all students. The pixi environment guarantees that your code runs identically to the instructor’s setup, which makes debugging and grading straightforward. Option B is a convenient fallback, but Colab sessions are ephemeral and require re-running setup cells every time you reconnect.</p>
-<p>However, if your lab requires access to high-performance GPUs or you need to replicate a specific computing environment (e.g., for reproducibility experiments or benchmarking), <strong>Option B</strong> may be more appropriate. Colab provides free access to cloud GPUs that may not be available on your local machine.</p>
+<p>We recommend <strong>Option A</strong> for all students. The pixi environment guarantees that your code runs identically to the instructor’s setup, which makes debugging and grading straightforward. If your machine has an NVIDIA GPU, the local environment is configured to use it automatically via CUDA.</p>
+<p>Option B is a convenient fallback if you do not want to manage a local environment, or if you need access to a GPU but do not have one on your machine. Note that Colab sessions are ephemeral and require re-running setup cells every time you reconnect.</p>
 </div>
 </div>
 <p>Both options provide access to all required packages. The sections below walk through each option in detail.</p>
 </section>
-<section id="option-a-vscode-or-jupyterlab-pixi-local" class="level2">
-<h2 class="anchored" data-anchor-id="option-a-vscode-or-jupyterlab-pixi-local">Option A: VSCode or JupyterLab + pixi (Local)</h2>
+<section id="option-a-local-pixi-vscode-or-jupyterlab" class="level2">
+<h2 class="anchored" data-anchor-id="option-a-local-pixi-vscode-or-jupyterlab">Option A (Local): pixi + VSCode or JupyterLab</h2>
 <section id="why-pixi" class="level3">
 <h3 class="anchored" data-anchor-id="why-pixi">Why pixi?</h3>
 <p>The PyTorch team discontinued distribution via the Anaconda <code>pytorch</code> channel in November 2024. The recommended approach is now conda-forge or PyPI, both of which pixi handles natively.</p>
 <p>Compared to conda or mamba, pixi offers three main advantages for this course. It is significantly faster at solving and installing environments. It uses a lock file (<code>pixi.lock</code>) that pins every dependency to an exact version, so every student gets an identical environment. It also handles the common conflict between conda-managed and pip-managed packages in a single unified workflow.</p>
 </section>
-<section id="step-1-install-pixi" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-install-pixi">Step 1: Install pixi</h3>
-<p>For the full installation guide, see <a href="https://pixi.prefix.dev/latest/installation" class="uri">https://pixi.prefix.dev/latest/installation</a>.</p>
-<p><strong>Linux and macOS</strong></p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<section id="prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
+<p>Before starting, install the following tools on your machine.</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>No <code>sudo</code> Required
+<span class="screen-reader-only">Important</span>Windows Users
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>pixi installs by default to <code>~/.pixi/</code> under your own user account. Elevated privileges are almost never needed. Each project environment lives inside the project folder under <code>.pixi/envs/</code>, so there is no conflict between users or projects on shared machines.</p>
+<p>This course environment supports <strong>Linux</strong> and <strong>macOS</strong> only. Windows users must use <strong>WSL2 (Windows Subsystem for Linux)</strong> to run in a Linux environment. Install WSL2 first, then follow the Linux instructions below inside your WSL2 terminal.</p>
+<ol type="1">
+<li>Open PowerShell as Administrator and run:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Restart your computer when prompted.</li>
+<li>Open the <strong>Ubuntu</strong> app from the Start menu to finish setup (username and password).</li>
+<li>All remaining steps in this guide should be run inside this Ubuntu terminal.</li>
+</ol>
+<p>For the full WSL2 installation guide, see <a href="https://learn.microsoft.com/en-us/windows/wsl/install" class="uri">https://learn.microsoft.com/en-us/windows/wsl/install</a>.</p>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose one depending on what is available on your system</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reload your shell to apply PATH changes</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc     <span class="co"># use ~/.zshrc if you are on zsh</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify installation</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> <span class="at">--version</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected: pixi 0.63.2  (or newer)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Windows</strong> — Open PowerShell:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy Bypass <span class="op">-</span>c <span class="st">"irm -useb https://pixi.sh/install.ps1 | iex"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Alternatively, you can download the <code>.msi</code> installer directly from the <a href="https://github.com/prefix-dev/pixi/releases/latest">pixi releases page</a> and run it — no PowerShell required.</p>
-<p>Restart your terminal and run <code>pixi --version</code> to verify.</p>
+<p><strong>git</strong> — Required for cloning the course repository.</p>
+<ul>
+<li><strong>Linux (WSL2 included)</strong>: <code>sudo apt update &amp;&amp; sudo apt install git</code></li>
+<li><strong>macOS</strong>: Verify with <code>git --version</code>. If not installed, macOS will prompt you to install Xcode Command Line Tools automatically, or run <code>xcode-select --install</code>.</li>
+</ul>
+<p><strong>pixi</strong> — A fast, cross-platform package manager. <code>sudo</code> is not required — pixi installs to <code>~/.pixi/</code> under your own user account, and each project environment lives inside the project folder under <code>.pixi/envs/</code>. For the full installation guide, see <a href="https://pixi.prefix.dev/latest/installation" class="uri">https://pixi.prefix.dev/latest/installation</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose one depending on what is available on your system</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reload your shell to apply PATH changes</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc     <span class="co"># use ~/.zshrc if you are on zsh</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify installation</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> <span class="at">--version</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected: pixi 0.63.2  (or newer)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>VSCode</strong> — Download and install from <a href="https://code.visualstudio.com" class="uri">https://code.visualstudio.com</a>. After installation, open the <strong>Extensions</strong> panel (<code>Ctrl+Shift+X</code> / <code>Cmd+Shift+X</code>) and install the <strong>Python</strong> extension by Microsoft. This provides Jupyter notebook support and Python IntelliSense. Windows users should also install the <strong>WSL</strong> extension to open projects inside WSL2 directly from VSCode.</p>
+<p><strong>NVIDIA GPU (Optional)</strong> — If your machine has an NVIDIA GPU, make sure the driver is installed so that PyTorch can use CUDA. Run <code>nvidia-smi</code> to check. If the command is not found, install the driver from <a href="https://www.nvidia.com/en-us/drivers/" class="uri">https://www.nvidia.com/en-us/drivers/</a>. WSL2 users do not need to install the driver inside Linux — the Windows host driver is shared automatically. If you do not have an NVIDIA GPU, PyTorch will use CPU, which is sufficient for all course assignments.</p>
 </section>
-<section id="step-2-clone-the-course-repository" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-clone-the-course-repository">Step 2: Clone the Course Repository</h3>
+<section id="step-1-clone-the-course-repository" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-clone-the-course-repository">Step 1: Clone the Course Repository</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--branch</span> students https://github.com/GLI-Lab/machine-learning-course.git</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> machine-learning-course</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After cloning, the repository structure will look like this:</p>
@@ -622,8 +635,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── lab02/</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="step-3-install-all-required-packages" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-install-all-required-packages">Step 3: Install All Required Packages</h3>
+<section id="step-2-install-all-required-packages" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-install-all-required-packages">Step 2: Install All Required Packages</h3>
 <p>Navigate into the repository folder and run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This reads <code>pixi.lock</code> and installs every package at its exact pinned version. The full dependency list is declared in <code>pixi.toml</code>:</p>
@@ -633,18 +646,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="pixi.toml"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">python</span> <span class="op">=</span> <span class="st">"3.12.*"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">numpy</span> <span class="op">=</span> <span class="st">"*"</span>              <span class="co"># array operations and linear algebra</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">numpy</span> <span class="op">=</span> <span class="st">"*"</span>              <span class="co"># numerical computing</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">pandas</span> <span class="op">=</span> <span class="st">"*"</span>             <span class="co"># data manipulation</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">scikit-learn</span> <span class="op">=</span> <span class="st">"*"</span>       <span class="co"># machine learning utilities and datasets</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">scikit-learn</span> <span class="op">=</span> <span class="st">"*"</span>       <span class="co"># machine learning</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dt">matplotlib</span> <span class="op">=</span> <span class="st">"*"</span>         <span class="co"># visualization</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">seaborn</span> <span class="op">=</span> <span class="st">"*"</span>            <span class="co"># statistical visualization</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dt">plotly</span> <span class="op">=</span> <span class="st">"*"</span>             <span class="co"># interactive visualization</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dt">tqdm</span> <span class="op">=</span> <span class="st">"*"</span>               <span class="co"># progress bars and utilities</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dt">jupyterlab</span> <span class="op">=</span> <span class="st">"*"</span>         <span class="co"># interactive notebook interface</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="dt">pytorch</span> <span class="op">=</span> <span class="st">"*"</span>            <span class="co"># deep learning (used from Unit 4 onward)</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="dt">torchvision</span> <span class="op">=</span> <span class="st">"*"</span>        <span class="co"># datasets and models for PyTorch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">seaborn</span> <span class="op">=</span> <span class="st">"*"</span>            <span class="co"># visualization</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dt">plotly</span> <span class="op">=</span> <span class="st">"*"</span>             <span class="co"># visualization (interactive)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dt">tqdm</span> <span class="op">=</span> <span class="st">"*"</span>               <span class="co"># utils</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dt">jupyterlab</span> <span class="op">=</span> <span class="st">"*"</span>         <span class="co"># notebook</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">[pypi-dependencies]</span>  <span class="co"># linux-64: CUDA 활용</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="dt">torch</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">version</span><span class="op"> =</span> <span class="st">"==2.10.*"</span><span class="op">, </span><span class="dt">index</span><span class="op"> =</span> <span class="st">"https://download.pytorch.org/whl/cu128"</span><span class="op"> }</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="dt">torchvision</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">version</span><span class="op"> =</span> <span class="st">"*"</span><span class="op">, </span><span class="dt">index</span><span class="op"> =</span> <span class="st">"https://download.pytorch.org/whl/cu128"</span><span class="op"> }</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">[target.osx-arm64.pypi-dependencies]</span>  <span class="co"># osx-arm64: CUDA 없음</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="dt">torch</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">version</span><span class="op"> =</span> <span class="st">"==2.10.*"</span><span class="op">, </span><span class="dt">index</span><span class="op"> =</span> <span class="st">"https://download.pytorch.org/whl/cpu"</span><span class="op"> }</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="dt">torchvision</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">version</span><span class="op"> =</span> <span class="st">"*"</span><span class="op">, </span><span class="dt">index</span><span class="op"> =</span> <span class="st">"https://download.pytorch.org/whl/cpu"</span><span class="op"> }</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">[tasks]</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="dt">jupyter</span> <span class="op">=</span> <span class="st">"jupyter lab --ip=0.0.0.0 --port=8888 --no-browser"</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="dt">gpu-test</span> <span class="op">=</span> <span class="st">'</span><span class="vs">python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"</span><span class="st">'</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="dt">gpu-info</span> <span class="op">=</span> <span class="st">'</span><span class="vs">python -c "import torch; [print(f\"GPU {i}: {torch.cuda.get_device_name(i)}, {torch.cuda.get_device_properties(i).total_memory // 1024**3}GB\") for i in range(torch.cuda.device_count())]"</span><span class="st">'</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="kw">[target.osx-arm64.tasks]</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="dt">gpu-test</span> <span class="op">=</span> <span class="st">'</span><span class="vs">python -c "import torch; print(torch.__version__); print(torch.backends.mps.is_available())"</span><span class="st">'</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="dt">gpu-info</span> <span class="op">=</span> <span class="st">'</span><span class="vs">python -c "import subprocess, torch; mem=int(subprocess.check_output([\"sysctl\",\"-n\",\"hw.memsize\"])); print(f\"MPS available: {torch.backends.mps.is_available()}\"); print(f\"Unified Memory: {mem // 1024**3}GB (CPU+GPU shared)\")"</span><span class="st">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You do not need to install any of these separately — <code>pixi install</code> takes care of everything.</p>
+<p>You do not need to install any of these separately — <code>pixi install</code> takes care of everything. On macOS (Apple Silicon), pixi automatically selects the CPU-only PyTorch build.</p>
+<p>After installation, verify that PyTorch is working:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run gpu-test</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run gpu-info</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This prints the PyTorch version and whether GPU acceleration is available (<code>True</code> for CUDA or MPS, <code>False</code> for CPU-only). Either result is fine — GPU is not required for this course.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -661,13 +693,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="step-4-open-a-lab-notebook" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-open-a-lab-notebook">Step 4: Open a Lab Notebook</h3>
+<section id="step-3-open-a-lab-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-open-a-lab-notebook">Step 3: Open a Lab Notebook</h3>
 <p>You can open lab notebooks using either JupyterLab or VSCode. Both work with the pixi environment.</p>
 <p><strong>JupyterLab</strong> — Launch from the repository root:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This starts a JupyterLab server on port 8888. It does not open a browser automatically, so copy the URL printed in your terminal and paste it into your browser. The URL will look like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http://127.0.0.1:8888/lab?token=your_token_here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http://127.0.0.1:8888/lab?token=your_token_here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use this command at the start of every lab session.</p>
 <p><strong>VSCode</strong> — Open the repository folder in VSCode, then select the pixi kernel for your notebooks:</p>
 <ol type="1">
@@ -690,16 +722,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="option-b-google-colab-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="option-b-google-colab-cloud">Option B: Google Colab (Cloud)</h2>
+<section id="option-b-cloud-google-colab" class="level2">
+<h2 class="anchored" data-anchor-id="option-b-cloud-google-colab">Option B (Cloud): Google Colab</h2>
 <p>Google Colab lets you run any lab notebook directly in your browser with no local installation. To open a lab, click the Colab badge at the top of each notebook:</p>
 <p><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></p>
 <p>Colab already has most course packages pre-installed, including <code>numpy</code>, <code>matplotlib</code>, <code>sklearn</code>, and recent versions of <code>torch</code>. You may need to install any course-specific utilities by running the setup cell at the very top of each notebook, which will look like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell only if you are on Google Colab</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">&lt;</span>course<span class="op">-</span>specific<span class="op">-</span>package<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Lab notebooks that use datasets stored in the course repository (under <code>data/</code>) require an extra step on Colab. Since Colab cannot access your local file system, clone the course repository at the start of each session:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell only if you are on Google Colab</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>git clone <span class="op">--</span>branch students https:<span class="op">//</span>github.com<span class="op">/</span>GLI<span class="op">-</span>Lab<span class="op">/</span>machine<span class="op">-</span>learning<span class="op">-</span>course.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">&lt;</span>course<span class="op">-</span>specific<span class="op">-</span>package<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lab notebooks that use datasets stored in the course repository (under <code>data/</code>) require an extra step on Colab. Since Colab cannot access your local file system, clone the course repository at the start of each session:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell only if you are on Google Colab</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>git clone <span class="op">--</span>branch students https:<span class="op">//</span>github.com<span class="op">/</span>GLI<span class="op">-</span>Lab<span class="op">/</span>machine<span class="op">-</span>learning<span class="op">-</span>course.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Each notebook will include this cell already. You just need to run it before proceeding.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">

@@ -167,7 +167,7 @@ window.Quarto = {
 <span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="http://203.252.149.219:3000/"> <i class="bi bi-link-45deg" role="img">
+    <a class="nav-link" href="http://gli.konkuk.ac.kr"> <i class="bi bi-link-45deg" role="img">
 </i> 
 <span class="menu-text">GLI Lab</span></a>
   </li>  
@@ -294,7 +294,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2026.03.03</p>
+      <p class="date-modified">2026.03.15</p>
     </div>
   </div>
     
@@ -309,7 +309,7 @@ window.Quarto = {
 <section id="python-basics-lab-01" class="level1">
 <h1>Python Basics (Lab 01)</h1>
 <p>You are given a list of dictionaries representing a tiny dataset of students and their test scores. Write a list comprehension that extracts the names of students who scored <strong>higher than 80</strong>.</p>
-<div id="00cdff1f" class="cell" data-execution_count="1">
+<div id="e97fbdf6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> [</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'name'</span>: <span class="st">'Alice'</span>, <span class="st">'score'</span>: <span class="dv">85</span>},</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'name'</span>: <span class="st">'Bob'</span>, <span class="st">'score'</span>: <span class="dv">72</span>},</span>
@@ -321,7 +321,7 @@ window.Quarto = {
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print(top_students)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Solutions:</strong></p>
-<div id="ba99cf0a" class="cell" data-execution_count="2">
+<div id="6f7fcbbb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution using list comprehension with a condition</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>top_students <span class="op">=</span> [student[<span class="st">'name'</span>] <span class="cf">for</span> student <span class="kw">in</span> students <span class="cf">if</span> student[<span class="st">'score'</span>] <span class="op">&gt;</span> <span class="dv">80</span>]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Students with score &gt; 80:"</span>, top_students)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -333,7 +333,7 @@ window.Quarto = {
 <section id="numpy-basics-lab-01" class="level1">
 <h1>NumPy Basics (Lab 01)</h1>
 <p>Create a vector <code>v</code> and a matrix <code>M</code> with shape <code>(4, 3)</code> where every row of <code>M</code> is exactly <code>v</code>. <em>(Hint: You can achieve this using <code>np.tile</code> or by utilizing broadcasting).</em></p>
-<div id="89ab1a35" class="cell" data-execution_count="3">
+<div id="f9a143e2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
@@ -341,7 +341,7 @@ window.Quarto = {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print(M)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Solutions:</strong></p>
-<div id="037b14a7" class="cell" data-execution_count="4">
+<div id="d4766ae0" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 1: Using np.tile</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> np.tile(v, (<span class="dv">4</span>, <span class="dv">1</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using tile:</span><span class="ch">\n</span><span class="st">"</span>, M1)</span>
@@ -371,7 +371,7 @@ Using broadcasting:
 <li>Extract all houses with more than 2 bedrooms.</li>
 <li>Separate the filtered data into features (<span class="math inline">\(X\)</span>) containing ‘Bedrooms’ and ‘SqFt’, and the target label (<span class="math inline">\(y\)</span>) containing ‘Price’.</li>
 </ol>
-<div id="f4d5f995" class="cell" data-execution_count="5">
+<div id="5442a74c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>housing_data <span class="op">=</span> {</span>
@@ -389,7 +389,7 @@ Using broadcasting:
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># print("y:\n", y)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Solutions:</strong></p>
-<div id="70f3b130" class="cell" data-execution_count="6">
+<div id="c5e7b480" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Filter for houses with &gt; 2 bedrooms</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>large_houses <span class="op">=</span> houses_df[houses_df[<span class="st">'Bedrooms'</span>] <span class="op">&gt;</span> <span class="dv">2</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -422,7 +422,7 @@ Name: Price, dtype: int64</code></pre>
 <li>Add a title: “Engine Size vs.&nbsp;Horsepower”.</li>
 <li>Label the x-axis “Engine Size (L)” and the y-axis “Horsepower”.</li>
 </ol>
-<div id="0bd23f16" class="cell" data-execution_count="7">
+<div id="53f5185a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -435,7 +435,7 @@ Name: Price, dtype: int64</code></pre>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Solutions:</strong></p>
-<div id="167a952b" class="cell" data-execution_count="8">
+<div id="057b47cd" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Plot green triangles</span></span>
