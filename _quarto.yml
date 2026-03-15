@@ -69,10 +69,10 @@ website:
                   href: exercises/lab01/pandas-basics.qmd
             - section: "Lab2. Linear Models"
               contents:
-                - text: "Perceptron Limits"
-                  href: exercises/lab02/perceptron-limits.qmd
-                - text: "Linear and Logistic Regression"
-                  href: exercises/lab02/linear-and-logistic-regression.qmd
+                - text: "Linear Regression"
+                  href: exercises/lab02/linear-regression.qmd
+                - text: "Logistic Regression"
+                  href: exercises/lab02/logistic-regression.qmd
                 - text: "Classification Metrics"
                   href: exercises/lab02/evaluation-metrics.qmd
             - section: "Lab3. Multi-Layer Perceptron"
