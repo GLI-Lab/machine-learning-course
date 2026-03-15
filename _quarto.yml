@@ -75,6 +75,8 @@ website:
                   href: exercises/lab02/logistic-regression.qmd
                 - text: "Classification Metrics"
                   href: exercises/lab02/evaluation-metrics.qmd
+                - text: "Softmax Regression"
+                  href: exercises/lab02/softmax-regression.qmd
             - section: "Lab3. Multi-Layer Perceptron"
               contents:
                 - text: "TBA1"
@@ -179,7 +181,7 @@ website:
         - section: "Assignments"
           href: assignments/index.qmd
           contents:
-            - text: "HW1 (~26.03.15)"
+            - text: "HW1 (~TBA)"
               href: assignments/hw01/hw01.qmd
             - text: "HW2 (~TBA)"
               href: assignments/hw02/hw02.qmd

@@ -24,6 +24,7 @@ Labs marked as TBD have tentative topics that may be added, removed, or reordere
 - [Lab 2-1](lab02/linear-regression.html): Linear Regression via Gradient Descent
 - [Lab 2-2](lab02/logistic-regression.html): Logistic Regression via Gradient Descent
 - [Lab 2-3](lab02/evaluation-metrics.html): Classification Metrics and ROC Curves
+- [Lab 2-4](lab02/softmax-regression.html): Softmax Regression via Gradient Descent
 
 **Lab 3: Multi-Layer Perceptron (TBD)**
 

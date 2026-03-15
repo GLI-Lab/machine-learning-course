@@ -558,3 +558,4 @@ If your model does not converge, the first thing to try is reducing the learning
 - [Gradient Descent, How Neural Networks Learn (3Blue1Brown)](https://www.youtube.com/watch?v=IHZwWFHWa-w)
 - [Matplotlib Animation API](https://matplotlib.org/stable/api/animation_api.html)
 - [Visualizing Gradient Descent (distill.pub)](https://distill.pub/2017/momentum/)
+- [https://colab.research.google.com/drive/1F7m0OFDT2vu_SKmIYaHBJy4OyRgZ2w_u?usp=sharing](https://colab.research.google.com/drive/1F7m0OFDT2vu_SKmIYaHBJy4OyRgZ2w_u?usp=sharing)

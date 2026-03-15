@@ -72,7 +72,7 @@ The timeline and specific contents below are subject to change as the course pro
 | Unit | Topic | Labs (Ungraded) | HW (Graded) |
 |:---|:---|:---|:---|
 | **1** | Introduction to Machine Learning | [Lab1](/exercises/lab01/python-basics.html) | [HW01](/assignments/hw01/hw01.html) |
-| **2** | Linear Models | Lab 2 | - | - |
+| **2** | Linear Models | [Lab2](/exercises/lab02/linear-regression.html) | - | - |
 | **3** | Multi-Layer Perceptron | Lab 3 | [HW02](/assignments/hw02/hw02.html) |
 | **4** | Model Validation | Lab 4 | - | - |
 | **5** | Model Generalization | Lab 5 | [HW03](/assignments/hw03/hw03.html) |
