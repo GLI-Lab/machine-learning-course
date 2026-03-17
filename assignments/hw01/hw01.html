@@ -8,7 +8,7 @@
 
 <meta name="author" content="Byungkook Oh">
 
-<title>Numerical Programming with NumPy – Machine Learning</title>
+<title>HW1. Numerical Programming with NumPy – Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -183,7 +183,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/index.html">Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/hw01/hw01.html">HW1 (~TBA)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/index.html">Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/hw01/hw01.html">HW1 (~26.03.27)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -207,7 +207,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../assignments/hw01/hw01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">HW1 (~TBA)</span></a>
+ <span class="menu-text">HW1 (~26.03.27)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -264,19 +264,27 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#python-basics-lab-01" id="toc-python-basics-lab-01" class="nav-link active" data-scroll-target="#python-basics-lab-01">Python Basics (Lab 01)</a></li>
-  <li><a href="#numpy-basics-lab-01" id="toc-numpy-basics-lab-01" class="nav-link" data-scroll-target="#numpy-basics-lab-01">NumPy Basics (Lab 01)</a></li>
-  <li><a href="#pandas-basics-lab-01" id="toc-pandas-basics-lab-01" class="nav-link" data-scroll-target="#pandas-basics-lab-01">Pandas Basics (Lab 01)</a></li>
-  <li><a href="#matplotlib-basics-lab-01" id="toc-matplotlib-basics-lab-01" class="nav-link" data-scroll-target="#matplotlib-basics-lab-01">Matplotlib Basics (Lab 01)</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#background-k-nearest-neighbors" id="toc-background-k-nearest-neighbors" class="nav-link" data-scroll-target="#background-k-nearest-neighbors">Background: K-Nearest Neighbors</a></li>
+  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a>
+  <ul class="collapse">
+  <li><a href="#problem-definition" id="toc-problem-definition" class="nav-link" data-scroll-target="#problem-definition">Problem Definition</a></li>
+  <li><a href="#function-1-euclidean_distances" id="toc-function-1-euclidean_distances" class="nav-link" data-scroll-target="#function-1-euclidean_distances">Function 1: <code>euclidean_distances</code></a></li>
+  <li><a href="#function-2-find_k_nearest_indices" id="toc-function-2-find_k_nearest_indices" class="nav-link" data-scroll-target="#function-2-find_k_nearest_indices">Function 2: <code>find_k_nearest_indices</code></a></li>
+  <li><a href="#function-3-calc_k_nearest_neighbors" id="toc-function-3-calc_k_nearest_neighbors" class="nav-link" data-scroll-target="#function-3-calc_k_nearest_neighbors">Function 3: <code>calc_k_nearest_neighbors</code></a></li>
+  <li><a href="#function-4-predict_knn_classification" id="toc-function-4-predict_knn_classification" class="nav-link" data-scroll-target="#function-4-predict_knn_classification">Function 4: <code>predict_knn_classification</code></a></li>
+  </ul></li>
+  <li><a href="#running-doctests" id="toc-running-doctests" class="nav-link" data-scroll-target="#running-doctests">Running Doctests</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/index.html">Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/hw01/hw01.html">HW1 (~TBA)</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/index.html">Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/hw01/hw01.html">HW1 (~26.03.27)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Numerical Programming with NumPy</h1>
+<h1 class="title">HW1. Numerical Programming with NumPy</h1>
 </div>
 
 
@@ -294,7 +302,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2026.03.15</p>
+      <p class="date-modified">2026.03.17</p>
     </div>
   </div>
     
@@ -305,155 +313,174 @@ window.Quarto = {
 </header>
 
 
-<p>Lab 01 (Python, NumPy, Pandas, Matplotlib)에서 다룬 연습 문제를 모았습니다.</p>
-<section id="python-basics-lab-01" class="level1">
-<h1>Python Basics (Lab 01)</h1>
-<p>You are given a list of dictionaries representing a tiny dataset of students and their test scores. Write a list comprehension that extracts the names of students who scored <strong>higher than 80</strong>.</p>
-<div id="e97fbdf6" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> [</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'name'</span>: <span class="st">'Alice'</span>, <span class="st">'score'</span>: <span class="dv">85</span>},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'name'</span>: <span class="st">'Bob'</span>, <span class="st">'score'</span>: <span class="dv">72</span>},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'name'</span>: <span class="st">'Charlie'</span>, <span class="st">'score'</span>: <span class="dv">90</span>},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'name'</span>: <span class="st">'Diana'</span>, <span class="st">'score'</span>: <span class="dv">65</span>}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># top_students = ???</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print(top_students)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>Solutions:</strong></p>
-<div id="6f7fcbbb" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution using list comprehension with a condition</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>top_students <span class="op">=</span> [student[<span class="st">'name'</span>] <span class="cf">for</span> student <span class="kw">in</span> students <span class="cf">if</span> student[<span class="st">'score'</span>] <span class="op">&gt;</span> <span class="dv">80</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Students with score &gt; 80:"</span>, top_students)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Students with score &gt; 80: ['Alice', 'Charlie']</code></pre>
-</div>
-</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>In this assignment you will implement a complete <strong>K-Nearest Neighbors (KNN)</strong> classification pipeline using only NumPy. Each function targets a specific NumPy skill from Lab 1-2: broadcasting for pairwise distance computation, <code>argsort</code> for neighbor retrieval, fancy indexing for feature gathering, and reductions for majority-vote prediction.</p>
+<p>You will implement four functions inside <code>hw1_knn.py</code>. A separate file <code>test_knn.py</code> contains doctests you can run locally to check your work before submitting.</p>
 </section>
-<section id="numpy-basics-lab-01" class="level1">
-<h1>NumPy Basics (Lab 01)</h1>
-<p>Create a vector <code>v</code> and a matrix <code>M</code> with shape <code>(4, 3)</code> where every row of <code>M</code> is exactly <code>v</code>. <em>(Hint: You can achieve this using <code>np.tile</code> or by utilizing broadcasting).</em></p>
-<div id="f9a143e2" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># M = ???  # Desired shape (4, 3), each row is [1, 2, 3]</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print(M)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>Solutions:</strong></p>
-<div id="d4766ae0" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 1: Using np.tile</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> np.tile(v, (<span class="dv">4</span>, <span class="dv">1</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using tile:</span><span class="ch">\n</span><span class="st">"</span>, M1)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution 2: Using broadcasting</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a (3,) vector to a (4, 3) matrix of zeros automatically broadcasts it.</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>M2 <span class="op">=</span> v <span class="op">+</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using broadcasting:</span><span class="ch">\n</span><span class="st">"</span>, M2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Using tile:
- [[1 2 3]
- [1 2 3]
- [1 2 3]
- [1 2 3]]
-Using broadcasting:
- [[1. 2. 3.]
- [1. 2. 3.]
- [1. 2. 3.]
- [1. 2. 3.]]</code></pre>
-</div>
-</div>
-</section>
-<section id="pandas-basics-lab-01" class="level1">
-<h1>Pandas Basics (Lab 01)</h1>
-<p>You are given a small dataset of housing prices. Write pandas code to:</p>
+<section id="background-k-nearest-neighbors" class="level2">
+<h2 class="anchored" data-anchor-id="background-k-nearest-neighbors">Background: K-Nearest Neighbors</h2>
+<p>KNN is one of the simplest supervised learning algorithms. Given a labeled dataset of <span class="math inline">\(N\)</span> points and a new unlabeled query point, KNN finds the <span class="math inline">\(K\)</span> closest points in the dataset (measured by Euclidean distance) and predicts the query’s label by majority vote among those <span class="math inline">\(K\)</span> neighbors.</p>
+<p>The <strong>Euclidean distance</strong> between two <span class="math inline">\(F\)</span>-dimensional vectors <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> is</p>
+<p><span class="math display">\[
+d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{f=1}^{F} (a_f - b_f)^2}
+\]</span></p>
+<p>Given <span class="math inline">\(N\)</span> data points in matrix <span class="math inline">\(\mathbf{X} \in \mathbb{R}^{N \times F}\)</span> and <span class="math inline">\(Q\)</span> query points in matrix <span class="math inline">\(\mathbf{Z} \in \mathbb{R}^{Q \times F}\)</span>, you need to compute the full <span class="math inline">\(Q \times N\)</span> distance matrix where entry <span class="math inline">\((q, n)\)</span> stores <span class="math inline">\(d(\mathbf{z}_q, \mathbf{x}_n)\)</span>.</p>
+<p>The KNN pipeline proceeds in three stages:</p>
 <ol type="1">
-<li>Extract all houses with more than 2 bedrooms.</li>
-<li>Separate the filtered data into features (<span class="math inline">\(X\)</span>) containing ‘Bedrooms’ and ‘SqFt’, and the target label (<span class="math inline">\(y\)</span>) containing ‘Price’.</li>
+<li>Compute all pairwise distances between queries and data points.</li>
+<li>For each query, identify the indices of the <span class="math inline">\(K\)</span> nearest data points.</li>
+<li>Gather the neighbors’ labels and predict via majority vote.</li>
 </ol>
-<div id="5442a74c" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>housing_data <span class="op">=</span> {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bedrooms'</span>: [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>],</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SqFt'</span>: [<span class="dv">1200</span>, <span class="dv">1800</span>, <span class="dv">2400</span>, <span class="dv">900</span>, <span class="dv">3000</span>],</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Price'</span>: [<span class="dv">250000</span>, <span class="dv">350000</span>, <span class="dv">500000</span>, <span class="dv">200000</span>, <span class="dv">650000</span>]</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>houses_df <span class="op">=</span> pd.DataFrame(housing_data)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. large_houses = ???</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. X = ???</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. y = ???</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># print("X:\n", X)</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># print("y:\n", y)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p><strong>Solutions:</strong></p>
-<div id="c5e7b480" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Filter for houses with &gt; 2 bedrooms</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>large_houses <span class="op">=</span> houses_df[houses_df[<span class="st">'Bedrooms'</span>] <span class="op">&gt;</span> <span class="dv">2</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Extract X (features) and y (target)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> large_houses[[<span class="st">'Bedrooms'</span>, <span class="st">'SqFt'</span>]]</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> large_houses[<span class="st">'Price'</span>]</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Features (X):</span><span class="ch">\n</span><span class="st">"</span>, X)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Target (y):</span><span class="ch">\n</span><span class="st">"</span>, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Features (X):
-    Bedrooms  SqFt
-1         3  1800
-2         4  2400
-4         5  3000
-
-Target (y):
- 1    350000
-2    500000
-4    650000
-Name: Price, dtype: int64</code></pre>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>NumPy Skills Exercised
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each function in this assignment maps directly to a core NumPy concept from Lab 1-2. <code>euclidean_distances</code> requires <strong>broadcasting</strong> and <strong>reductions</strong> (Sections 6, 9). <code>find_k_nearest_indices</code> uses <strong>argsort</strong> and <strong>slicing</strong> (Sections 2, 4). <code>calc_k_nearest_neighbors</code> combines the above with <strong>fancy indexing</strong> (Section 2). <code>predict_knn_classification</code> uses fancy indexing plus <code>np.bincount</code> / <code>np.argmax</code> for counting-based reductions.</p>
 </div>
 </div>
 </section>
-<section id="matplotlib-basics-lab-01" class="level1">
-<h1>Matplotlib Basics (Lab 01)</h1>
-<p>Using the <code>numpy</code> arrays provided below, create a scatter plot.</p>
+<section id="problems" class="level2">
+<h2 class="anchored" data-anchor-id="problems">Problems</h2>
+<section id="problem-definition" class="level3">
+<h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
+<p>Complete the four <code>TODO</code> functions in <code>hw1_knn.py</code>. Each function builds on the previous one, so implement them in order. <code>test_knn.py</code> provides doctests for each function. Do not modify it.</p>
+<p>Throughout this assignment, the doctests use a simple 2D dataset of <span class="math inline">\(N = 4\)</span> points lying on the unit circle, with <span class="math inline">\(Q = 2\)</span> query points slightly inside it:</p>
+<p><span class="math display">\[
+\mathbf{X} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ -1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}, \quad
+\mathbf{Z} = \begin{bmatrix} 0.9 &amp; 0 \\ 0 &amp; -0.9 \end{bmatrix}
+\]</span></p>
+<p>The <strong>Finding Nearest Neighbors via Euclidean Distance</strong> pipeline flows as follows for <span class="math inline">\(K = 3\)</span>:</p>
 <ol type="1">
-<li>Make the points green triangles (<code>marker='^'</code>).</li>
-<li>Add a title: “Engine Size vs.&nbsp;Horsepower”.</li>
-<li>Label the x-axis “Engine Size (L)” and the y-axis “Horsepower”.</li>
+<li><strong><code>euclidean_distances</code></strong> produces a <span class="math inline">\((2, 4)\)</span> distance matrix. For example, the distance from query <span class="math inline">\(\mathbf{z}_0 = [0.9,\; 0]\)</span> to data point <span class="math inline">\(\mathbf{x}_0 = [1,\; 0]\)</span> is <span class="math inline">\(0.1\)</span>.</li>
+<li><strong><code>find_k_nearest_indices</code></strong> sorts each row and returns the first <span class="math inline">\(K\)</span> column indices: query 0 gets neighbors at indices <span class="math inline">\([0, 1, 3]\)</span>.</li>
+<li><strong><code>calc_k_nearest_neighbors</code></strong> gathers the actual feature vectors at those indices, producing a <span class="math inline">\((2, 3, 2)\)</span> array.</li>
+<li><strong><code>predict_knn_classification</code></strong> looks up each neighbor’s label, counts votes, and returns the winning class per query.</li>
 </ol>
-<div id="53f5185a" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>engine_size <span class="op">=</span> np.array([<span class="fl">1.5</span>, <span class="fl">2.0</span>, <span class="fl">2.5</span>, <span class="fl">3.0</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>])</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>horsepower <span class="op">=</span> np.array([<span class="dv">110</span>, <span class="dv">150</span>, <span class="dv">180</span>, <span class="dv">220</span>, <span class="dv">260</span>, <span class="dv">300</span>, <span class="dv">380</span>, <span class="dv">450</span>])</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, ax = plt.subplots()</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Your plotting code here...</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.show()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Keep this example in mind as you implement each function below.</p>
+</section>
+<section id="function-1-euclidean_distances" class="level3">
+<h3 class="anchored" data-anchor-id="function-1-euclidean_distances">Function 1: <code>euclidean_distances</code></h3>
+<p>Compute the full pairwise Euclidean distance matrix between data and query points <strong>without any Python loops</strong>. The key idea is to use <code>np.newaxis</code> so that NumPy’s broadcasting computes all <span class="math inline">\(Q \times N\)</span> differences in one shot.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>hw1_knn.py</strong></pre>
 </div>
-<p><strong>Solutions:</strong></p>
-<div id="057b47cd" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Plot green triangles</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(engine_size, horsepower, color<span class="op">=</span><span class="st">'green'</span>, marker<span class="op">=</span><span class="st">'^'</span>, s<span class="op">=</span><span class="dv">100</span>) <span class="co"># s sets the marker size</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 &amp; 3. Add titles and labels</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Engine Size vs. Horsepower"</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Engine Size (L)"</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Horsepower"</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hw01_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> euclidean_distances(data_NF, query_QF):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  data_NF  shape (N, F)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         query_QF shape (Q, F)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: dist_QN  shape (Q, N)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p><strong>Strategy.</strong> Reshape <code>query_QF</code> to <code>(Q, 1, F)</code> and <code>data_NF</code> to <code>(1, N, F)</code>. Their difference broadcasts to shape <code>(Q, N, F)</code>. Square each element, sum over the last axis (features), and take the square root.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Broadcasting Alignment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you write <code>query_QF[:, np.newaxis, :] - data_NF[np.newaxis, :, :]</code>, NumPy aligns the shapes from the right: <code>(Q, 1, F)</code> and <code>(1, N, F)</code> are compatible because every dimension pair is either equal or one of them is 1. The result has shape <code>(Q, N, F)</code>, giving you the per-feature difference for every query-data pair at once.</p>
+</div>
+</div>
+</section>
+<section id="function-2-find_k_nearest_indices" class="level3">
+<h3 class="anchored" data-anchor-id="function-2-find_k_nearest_indices">Function 2: <code>find_k_nearest_indices</code></h3>
+<p>Given a distance matrix of shape <code>(Q, N)</code>, return the indices of the <span class="math inline">\(K\)</span> closest data points for each query.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>hw1_knn.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_k_nearest_indices(dist_QN, K):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  dist_QN     shape (Q, N)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         K           int</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: indices_QK  shape (Q, K), dtype int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Strategy.</strong> Apply <code>np.argsort</code> along <code>axis=1</code> to sort each row of distances. Then slice the first <span class="math inline">\(K\)</span> columns. NumPy’s <code>argsort</code> is stable, so ties (equal distances) are broken by smaller index first.</p>
+</section>
+<section id="function-3-calc_k_nearest_neighbors" class="level3">
+<h3 class="anchored" data-anchor-id="function-3-calc_k_nearest_neighbors">Function 3: <code>calc_k_nearest_neighbors</code></h3>
+<p>Combine the previous two functions, then use fancy indexing to gather the actual feature vectors of the neighbors.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>hw1_knn.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_k_nearest_neighbors(data_NF, query_QF, K<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  data_NF    shape (N, F)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         query_QF   shape (Q, F)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         K          int</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: neighb_QKF shape (Q, K, F)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Strategy.</strong> Call <code>euclidean_distances</code>, then <code>find_k_nearest_indices</code>, then index into <code>data_NF</code> with the resulting integer array. When you write <code>data_NF[indices_QK]</code> where <code>indices_QK</code> has shape <code>(Q, K)</code>, NumPy replaces each index with the corresponding row of <code>data_NF</code>, producing shape <code>(Q, K, F)</code> directly.</p>
+</section>
+<section id="function-4-predict_knn_classification" class="level3">
+<h3 class="anchored" data-anchor-id="function-4-predict_knn_classification">Function 4: <code>predict_knn_classification</code></h3>
+<p>Given integer class labels for all data points and the neighbor indices for each query, predict each query’s class by majority vote.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>hw1_knn.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict_knn_classification(labels_N, nearest_indices_QK):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  labels_N            shape (N,), dtype int</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         nearest_indices_QK  shape (Q, K), dtype int</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: predictions_Q       shape (Q,), dtype int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Strategy.</strong> Use fancy indexing <code>labels_N[nearest_indices_QK]</code> to get a <code>(Q, K)</code> array of neighbor labels. Then loop over queries: for each row, call <code>np.bincount</code> to count occurrences of each class and <code>np.argmax</code> to pick the most frequent one. Since <code>np.argmax</code> returns the first occurrence of the maximum value, ties are automatically broken in favor of the smallest class label.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Rules You Must Follow
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not change function signatures or docstrings. Use only <code>numpy</code> (already imported). Do not add extra <code>import</code> statements. Make sure no <code>raise NotImplementedError</code> lines remain in your submitted code. The autograder compares return values exactly, so match the expected shapes and dtypes.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="running-doctests" class="level2">
+<h2 class="anchored" data-anchor-id="running-doctests">Running Doctests</h2>
+<p>Place <code>hw1_knn.py</code> and <kbd>test_knn.py</kbd> in the same directory, then run from the terminal:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> doctest test_knn.py <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If all tests pass you will see output ending with:</p>
+<pre class="text"><code>14 tests in 1 items.
+14 passed and 0 failed.
+Test passed.</code></pre>
+<p>You can also test from inside a notebook:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> doctest</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> test_knn</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>doctest.testmod(test_knn, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>Upload only <code>hw1_knn.py</code> to eCampus. Do not rename the file. Do not submit the notebook or <code>test_knn.py</code>. The autograder will run both the public doctests shown above and additional hidden test cases covering edge cases such as K=N, single-query inputs, higher-dimensional features, and multi-class labels.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common Mistakes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Forgetting to remove <code>raise NotImplementedError</code> is the most frequent cause of zero scores. Also watch out for returning the wrong shape (e.g., <code>(Q, N)</code> instead of <code>(Q, K)</code> in <code>find_k_nearest_indices</code>) and using Python loops where broadcasting is expected (the hidden tests may include timing checks for <code>euclidean_distances</code>).</p>
 </div>
 </div>
 
