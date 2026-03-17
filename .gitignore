@@ -7,7 +7,7 @@ __pycache__/
 *.pyc
 
 # Solution files (local only, never push)
-**/solution/
+solution/
 
 # VSCode & Jupyter
 .vscode/
