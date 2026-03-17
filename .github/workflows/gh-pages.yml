@@ -37,7 +37,11 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # 3. .qmd 렌더링 → gh-pages 브랜치에 자동 push (_freeze 캐시가 있으면 Python 없이 빌드 가능)
+      # 3. Strip solution blocks from .py files before rendering
+      - name: Strip solution blocks from .py files
+        run: python3 scripts/convert.py assignments --py-only
+
+      # 4. .qmd 렌더링 → gh-pages 브랜치에 자동 push (_freeze 캐시가 있으면 Python 없이 빌드 가능)
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:

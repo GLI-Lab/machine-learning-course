@@ -1,5 +1,6 @@
 import re
 import os
+import sys
 
 EMOJI_MAP = {
     'NOTE': '📝',
@@ -99,9 +100,13 @@ def strip_solution_blocks(file_path):
         print(f"✅ Stripped solution blocks in: {file_path}")
 
 
-for root, dirs, files in os.walk('_out'):
-    for file in files:
-        if file.endswith('.qmd'):
-            convert_qmd(os.path.join(root, file))
-        elif file.endswith('.py'):
-            strip_solution_blocks(os.path.join(root, file))
+py_only = '--py-only' in sys.argv
+target_dirs = [a for a in sys.argv[1:] if not a.startswith('--')] or ['_out']
+
+for target_dir in target_dirs:
+    for root, dirs, files in os.walk(target_dir):
+        for file in files:
+            if not py_only and file.endswith('.qmd'):
+                convert_qmd(os.path.join(root, file))
+            elif file.endswith('.py'):
+                strip_solution_blocks(os.path.join(root, file))
