@@ -47,11 +47,7 @@ def euclidean_distances(data_NF, query_QF):
     #       data_NF[np.newaxis, :, :]  has shape (1, N, F)
     #       Their difference has shape (Q, N, F).
     #       Then square, sum over axis=2, and take the square root.
-    # ### BEGIN SOLUTION
-    diff_QNF = query_QF[:, np.newaxis, :] - data_NF[np.newaxis, :, :]
-    dist_QN = np.sqrt(np.sum(diff_QNF ** 2, axis=2))
-    return dist_QN
-    # ### END SOLUTION
+    raise NotImplementedError("Remove this line and implement above")
     # ==========================
 
 
@@ -81,10 +77,7 @@ def find_k_nearest_indices(dist_QN, K):
     # ========== TODO ==========
     # Use np.argsort along axis=1 to get sorted indices per query,
     # then slice the first K columns.
-    # ### BEGIN SOLUTION
-    indices_QK = np.argsort(dist_QN, axis=1)[:, :K]
-    return indices_QK
-    # ### END SOLUTION
+    raise NotImplementedError("Remove this line and implement above")
     # ==========================
 
 
@@ -121,12 +114,7 @@ def calc_k_nearest_neighbors(data_NF, query_QF, K=1):
     # 1. Call euclidean_distances to get dist_QN of shape (Q, N)
     # 2. Call find_k_nearest_indices to get indices_QK of shape (Q, K)
     # 3. Use fancy indexing: data_NF[indices_QK] produces shape (Q, K, F)
-    # ### BEGIN SOLUTION
-    dist_QN = euclidean_distances(data_NF, query_QF)
-    indices_QK = find_k_nearest_indices(dist_QN, K)
-    neighb_QKF = data_NF[indices_QK]
-    return neighb_QKF
-    # ### END SOLUTION
+    raise NotImplementedError("Remove this line and implement above")
     # ==========================
 
 
@@ -155,11 +143,5 @@ def predict_knn_classification(labels_N, nearest_indices_QK):
     #          np.bincount counts how many times each label appears,
     #          and np.argmax returns the label with the highest count.
     #          np.bincount naturally breaks ties toward the smallest index.
-    # ### BEGIN SOLUTION
-    neighbor_labels_QK = labels_N[nearest_indices_QK]
-    predictions_Q = np.array([
-        np.argmax(np.bincount(row)) for row in neighbor_labels_QK
-    ])
-    return predictions_Q
-    # ### END SOLUTION
+    raise NotImplementedError("Remove this line and implement above")
     # ==========================

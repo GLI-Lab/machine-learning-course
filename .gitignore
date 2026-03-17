@@ -6,6 +6,9 @@
 __pycache__/
 *.pyc
 
+# Solution files (local only, never push)
+**/solution/
+
 # VSCode & Jupyter
 .vscode/
 .ipynb_checkpoints/
