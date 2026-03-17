@@ -8,7 +8,7 @@ There will be one homework (HW) for each topical unit of the course, due soon af
 
 | HW | Title | Due |
 |:---|:-----|:-----|
-| [HW01](hw01/hw01.html) | Numerical Programming with NumPy | 26.03.27 |
+| [HW01](hw01/hw01.html) | Numerical Programming with NumPy | 26.03.29 |
 | [HW02](hw02/hw02.html) | Linear Regression with NumPy | TBA |
 | [HW03](hw03/hw03.html) | Feedforward Neural Network with PyTorch | TBA |
 | [HW04](hw04/hw04.html) | Convolutional Neural Network with PyTorch | TBA |

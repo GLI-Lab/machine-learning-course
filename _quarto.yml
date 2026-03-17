@@ -181,7 +181,7 @@ website:
         - section: "Assignments"
           href: assignments/index.qmd
           contents:
-            - text: "HW1 (~26.03.27)"
+            - text: "HW1 (~26.03.29)"
               href: assignments/hw01/hw01.qmd
             - text: "HW2 (~TBA)"
               href: assignments/hw02/hw02.qmd
