@@ -75,7 +75,33 @@ def convert_qmd(file_path):
             f.write(text)
         print(f"✅ Processed title and callouts in: {file_path}")
 
+def strip_solution_blocks(file_path):
+    """Replace ### BEGIN SOLUTION ... ### END SOLUTION blocks with raise NotImplementedError."""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        text = f.read()
+
+    original_text = text
+
+    pattern = re.compile(
+        r'(?P<indent>[ \t]*)# ### BEGIN SOLUTION\n.*?# ### END SOLUTION[ \t]*\n',
+        re.DOTALL
+    )
+
+    def solution_replacer(match):
+        indent = match.group('indent')
+        return f'{indent}raise NotImplementedError("Remove this line and implement above")\n'
+
+    text = pattern.sub(solution_replacer, text)
+
+    if text != original_text:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(text)
+        print(f"✅ Stripped solution blocks in: {file_path}")
+
+
 for root, dirs, files in os.walk('_out'):
     for file in files:
         if file.endswith('.qmd'):
             convert_qmd(os.path.join(root, file))
+        elif file.endswith('.py'):
+            strip_solution_blocks(os.path.join(root, file))

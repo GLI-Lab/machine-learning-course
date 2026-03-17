@@ -7,14 +7,16 @@ jupyter: python3
 
 ## Objectives
 
-- Understand the basic concepts of NumPy arrays: creation, `shape`, `dtype`, and `ndim`.
-- **Indexing**: Select rows, columns, and subsets using slice notation and fancy indexing.
-- **Reshaping**: Change array dimensions with `reshape` and `np.newaxis`.
-- **Vectorization**: Learn how to replace slow Python loops with fast, C-optimized array operations.
-- **Broadcasting**: Grasp the rules NumPy uses to perform operations on arrays of different shapes.
+- **Array Creation and Attributes**: Create arrays and inspect `shape`, `dtype`, and `ndim`.
+- **Indexing and Slicing**: Select rows, columns, and subsets using slice notation and fancy indexing.
+- **Reshaping and newaxis**: Change array dimensions with `reshape` and insert size-1 axes with `np.newaxis`.
+- **Sorting and comparison**: Sort arrays and compare elements using `sort`, `argsort`, and `allclose`.
+- **Vectorization**: Replace slow Python loops with fast, C-optimized array operations.
+- **Broadcasting**: Perform operations on arrays of different shapes using NumPy's shape-alignment rules.
 - **Matrix Multiplication**: Use `np.matmul` (the `@` operator) for linear algebra.
-- **Random Number Generation**: Produce reproducible random data with a seeded PRNG.
-- **Reductions**: Summarize arrays along one or more axes with `sum`, `min`, `max`, etc.
+- **Array Creation & Random Numbers**: Initialize arrays with built-in factories and generate reproducible random data with a seeded PRNG.
+- **Reductions**: Summarize arrays along one or more axes with `sum`, `min`, `max`, `mean`, etc.
+- **Views vs. Copies**: Understand when NumPy shares memory (view) vs. allocates new data (copy) to avoid accidental mutations.
 
 ::: {.callout-note}
 ## Basic Concept: Why NumPy?
@@ -78,55 +80,6 @@ print("result dtype:", z.dtype)
 In deep learning, memory is expensive. Most frameworks default to `float32` rather than `float64`. When you load data or create arrays, explicitly pass `dtype=np.float32` to halve memory usage without meaningful loss in precision for gradient-based training.
 :::
 
-```{python}
-# 2-Dimensional Array (Matrix)
-B = np.array([[1, 2], [3, 4], [5, 6]])
-print("B =\n", B)
-print("dtype:", B.dtype)
-print("shape:", B.shape)   # (rows, columns)
-print("ndim :", B.ndim)
-```
-
-```{python}
-# Frequently used creation functions
-print("Zeros:\n", np.zeros(5))
-print("Ones:\n", np.ones((2, 3)))
-print("Arange:\n", np.arange(0, 10, 2))       # start, stop (exclusive), step
-print("Linspace:\n", np.linspace(0, 1, 5))    # 5 evenly spaced values (inclusive)
-```
-
-```{python}
-# Log-spaced values — common for sweeping learning rates or regularisation strengths
-print("Logspace:\n", np.logspace(-2, 2, num=5, base=10))  # 0.01, 0.1, 1, 10, 100
-```
-
-`np.sort` returns a sorted copy; `np.argsort` returns the **indices** that would sort the array — useful for ranking predictions or retrieving nearest neighbours.
-
-```{python}
-arr = np.array([5.9, 0.0, 3.0, -2.1])
-print("sorted       :", np.sort(arr))
-print("argsort      :", np.argsort(arr))           # [3, 1, 2, 0]
-print("arr[argsort] :", arr[np.argsort(arr)])       # same as sorted
-```
-
-For 2-D arrays, pass `axis` to sort along rows or columns.
-
-```{python}
-A_25 = np.array([[3, 4, 5, 1, 2], [9, 7, 8, 6, 0]])
-print("sort each row (axis=1):\n",    np.sort(A_25, axis=1))
-print("argsort each row (axis=1):\n", np.argsort(A_25, axis=1))
-```
-
-`np.allclose` checks element-wise equality up to a tolerance — handy when unit-testing numerical implementations.
-
-```{python}
-a = np.array([1.0, 2.0, 3.0])
-b = a + 1e-8
-print("Exact equal  :", np.all(a == b))
-print("Close enough :", np.allclose(a, b, atol=1e-6))
-```
-
-
 ## 2. Indexing and Slicing
 
 Accessing elements in NumPy is similar to standard Python lists but extends to multiple dimensions.
@@ -164,7 +117,7 @@ x_slice = x[1:4].copy()
 
 The following examples use a 4×4 matrix to practise all common 2D indexing patterns.
 
-![Row and column indexing on a 2-D array. A single integer selects a row; a colon in the first position with an integer in the second selects a column.](https://numpy.org/doc/stable/_images/np_matrix_indexing.png){fig-align="center" width="100%"}
+![Row and column indexing on a 2-D array. A single integer selects a row; a colon in the first position with an integer in the second selects a column.](../../figures/np_matrix_indexing.png){fig-align="center" width="100%"}
 
 ```{python}
 # np.arange(1, 17) gives [1..16]; reshape(4,4) makes it 4×4; transpose flips rows/cols
@@ -209,7 +162,7 @@ A_44[row_ids_f64]   # IndexError: arrays used as indices must be of integer (or 
 ```
 :::
 
-## 3. Reshaping and `np.newaxis`
+## 3. Reshaping and newaxis
 
 Machine learning code frequently needs to change an array's shape without changing its data. Two tools cover almost every case: **`reshape`** and **`np.newaxis`**.
 
@@ -217,7 +170,7 @@ Machine learning code frequently needs to change an array's shape without changi
 
 `array.reshape(new_shape)` returns a *view* with a different shape. The total number of elements must stay the same.
 
-![\`reshape\` changes how the same block of memory is interpreted — the data is not copied.](https://numpy.org/doc/stable/_images/np_reshape.png){fig-align="center" width="100%"}
+![\`reshape\` changes how the same block of memory is interpreted — the data is not copied.](../../figures/np_reshape.png){fig-align="center" width="100%"}
 
 ```{python}
 y = np.array([1.0, 4, 3])
@@ -244,33 +197,44 @@ print("y_31  shape:", y_31.shape)
 print("y_311 shape:", y_311.shape)
 ```
 
-### Example: pairwise subtraction with `np.newaxis`
-
-Suppose you have a (3×3) matrix `x` and a (2×3) matrix `y`, and you want to subtract every row of `y` from every row of `x`, producing a **(3, 2, 3)** result. Direct subtraction fails because the shapes are incompatible.
+## 4. Sorting & comparison
 
 ```{python}
-x_33 = np.array([[5., 2, 1], [4, 2, 6], [1, 1, 0]])
-y_23 = np.array([[1.0, 4, 3], [2, 1, 4]])
-
-try:
-    x_33 - y_23
-except ValueError as e:
-    print("ValueError:", e)
+# 2-Dimensional Array (Matrix)
+B = np.array([[1, 2], [3, 4], [5, 6]])
+print("B =\n", B)
+print("dtype:", B.dtype)
+print("shape:", B.shape)   # (rows, columns)
+print("ndim :", B.ndim)
 ```
 
-Inserting `np.newaxis` makes the shapes broadcast-compatible:
+`np.sort` returns a sorted copy; `np.argsort` returns the **indices** that would sort the array — useful for ranking predictions or retrieving nearest neighbours.
 
 ```{python}
-# x_33[:, np.newaxis, :] → (3, 1, 3)
-# y_23[np.newaxis, :, :] → (1, 2, 3)
-# result                  → (3, 2, 3) via broadcasting
-z_323 = x_33[:, np.newaxis, :] - y_23[np.newaxis, :, :]
-print("result shape:", z_323.shape)
-print("row 0 of y subtracted from all rows of x:\n", z_323[:, 0, :])
-print("row 1 of y subtracted from all rows of x:\n", z_323[:, 1, :])
+arr = np.array([5.9, 0.0, 3.0, -2.1])
+print("sorted       :", np.sort(arr))
+print("argsort      :", np.argsort(arr))           # [3, 1, 2, 0]
+print("arr[argsort] :", arr[np.argsort(arr)])       # same as sorted
 ```
 
-## 4. Vectorization
+For 2-D arrays, pass `axis` to sort along rows or columns.
+
+```{python}
+A_25 = np.array([[3, 4, 5, 1, 2], [9, 7, 8, 6, 0]])
+print("sort each row (axis=1):\n",    np.sort(A_25, axis=1))
+print("argsort each row (axis=1):\n", np.argsort(A_25, axis=1))
+```
+
+`np.allclose` checks element-wise equality up to a tolerance — handy when unit-testing numerical implementations.
+
+```{python}
+a = np.array([1.0, 2.0, 3.0])
+b = a + 1e-8
+print("Exact equal  :", np.all(a == b))
+print("Close enough :", np.allclose(a, b, atol=1e-6))
+```
+
+## 5. Vectorization
 
 Vectorization is the process of applying an operation to an entire array at once, rather than iterating through its elements using a `for` loop. This results in cleaner code and massive performance boosts.
 
@@ -291,8 +255,10 @@ Let's test the speed difference:
 
 ```{python}
 large = np.random.randn(100_000)
+
 print("Loop time:")
 %timeit sum_squares_loop(large)
+
 print("Vectorized time:")
 %timeit sum_squares_vec(large)
 ```
@@ -308,17 +274,11 @@ print("z          =", z)
 print("sigmoid(z) =", sigmoid(z))
 ```
 
-## 5. Broadcasting
+## 6. Broadcasting
 
 Broadcasting is a powerful mechanism that allows NumPy to perform operations on arrays of different shapes.
 
-**The Rule of Broadcasting:** NumPy compares array shapes from right to left. Two dimensions are compatible if:
-
-1. They are equal, or
-2. One of them is 1.
-If an array has fewer dimensions, a dimension of `1` is implicitly prepended to its shape.
-
-![Broadcasting stretches the smaller array along size-1 dimensions so that it matches the shape of the larger array. No data is actually copied.](https://numpy.org/doc/stable/_images/broadcasting_2.svg){fig-align="center" width="100%"}
+**The Rule of Broadcasting:** NumPy aligns shapes from the **right** and checks each dimension pair. A pair is compatible when the sizes are equal, or when one of them is `1` (the size-1 dimension is virtually repeated to match the other). If one array has fewer dimensions, NumPy silently prepends `1`s on the left until the ranks match. Crucially, no data is ever physically copied — the repetition happens lazily during computation.
 
 ```{python}
 # Shape (3, 4) + Shape (4,) 
@@ -338,28 +298,18 @@ print("c =\n", c)
 print("A + c =\n", A + c)
 ```
 
-**Practical Example: Normalizing Data**
-A very common task in ML is normalizing data (e.g., making rows sum to 1).
-
 ```{python}
-# keepdims=True ensures the shape remains (3, 1) instead of dropping to (3,)
-row_sums = A.sum(axis=1, keepdims=True)  
-print("row_sums (shape", row_sums.shape, ") =\n", row_sums)
-
-normalized = A / row_sums
-print("Normalized A (rows sum to 1):\n", normalized)
-print("Verify row sums:", normalized.sum(axis=1))
+# Shape (1, 4) + Shape (3, 1)  — both dimensions expand simultaneously
+# (1, 4) is copied down  3 rows  →  (3, 4)
+# (3, 1) is copied right 4 cols  →  (3, 4)
+row = np.array([[1, 2, 3, 4]])    # shape (1, 4)
+col = np.array([[10], [20], [30]])  # shape (3, 1)
+print("row =", row)
+print("col =\n", col)
+print("row + col =\n", row + col)
 ```
 
-::: {.callout-warning}
-
-## Caveat: The Danger of Rank-1 Arrays
-
-Arrays with shape `(N,)` are called Rank-1 arrays (e.g., `b` in the example above). They do not behave like traditional row or column vectors and can cause confusing broadcasting bugs.
-**Best Practice in ML:** Always reshape your 1D vectors into explicit 2D row matrices `(1, N)` or column matrices `(N, 1)` using `.reshape(-1, 1)` or `np.newaxis` to avoid unintended broadcasting behaviors.
-:::
-
-## 6. Matrix Multiplication
+## 7. Matrix Multiplication
 
 Use `np.matmul` (or the `@` operator) for standard matrix multiplication. Unlike `*`, which is element-wise, `matmul` computes the inner product of rows and columns:
 
@@ -367,7 +317,7 @@ $$C[i, k] = \sum_j A[i, j] \cdot B[j, k]$$
 
 Shapes must satisfy `(M, K) @ (K, N) → (M, N)`.
 
-![Each entry $C[i,k]$ is the dot product of row $i$ of $A$ with column $k$ of $B$.](https://upload.wikimedia.org/wikipedia/commons/e/eb/Matrix_multiplication_diagram_2.svg){fig-align="center" width="100%"}
+![Each entry $C[i,k]$ is the dot product of row $i$ of $A$ with column $k$ of $B$.](../../figures/Matrix_multiplication_diagram_2.svg){fig-align="center" width="50%"}
 
 ```{python}
 M_33 = np.array([[1., 4, 7], [2, 5, 8], [3, 6, 9]])
@@ -383,25 +333,50 @@ print("\nM @ M:\n", np.matmul(M_33, M_33))
 When both inputs are 1-D, `matmul` computes the **inner (dot) product** and returns a scalar.
 
 ```{python}
-print("y · y =", np.matmul(y_3, y_3))     # scalar inner product
-print("y · y =", np.inner(y_3, y_3))       # equivalent
-print("y · y =", np.sum(y_3 ** 2))         # another way to write it
+print("y · y =", np.matmul(y_3, y_3))  # scalar inner product
+print("y · y =", np.inner(y_3, y_3))   # equivalent
+print("y · y =", np.sum(y_3 ** 2))     # another way to write it
 ```
 
-## 7. Random Number Generation
+## 8. Arrays & Random
 
-Reproducible randomness is essential in ML — experiments must produce identical results when re-run. Always seed your generator with `np.random.RandomState`.
+NumPy provides a set of factory functions to create arrays from scratch: fixed-value initializers for setting up weights or test tensors, structured sequences for iteration and plotting, and random samplers for reproducible experiments.
+
+### Initializers
 
 ```{python}
-# Without a seed — different values on every run
-x = np.random.uniform(size=5)
+# Create array of all zeros of desired shape and dtype
+print("Zeros:\n", np.zeros(5))
+
+# Create array of all ones of desired shape and dtype
+print("Ones:\n", np.ones((2, 3)))
+
+# evenly spaced values in given interval
+print("Arange:\n", np.arange(0, 10, 2))       # start, stop (exclusive), step
+
+# Linearly spaced numbers between provided low and high values
+print("Linspace:\n", np.linspace(0, 1, 5))    # 5 evenly spaced values (inclusive)
+
+# Linearly spaced numbers between provided low and high values
+print("Logspace:\n", np.logspace(-2, 2, num=5, base=10))  # 0.01, 0.1, 1, 10, 100
+```
+
+### Random Number Generation
+
+Reproducible randomness is essential in ML: experiments must produce identical results when re-run. Always seed your generator with `np.random.RandomState`.
+
+```{python}
+# Generate 15 values uniformly distributed between 0 and 1
+x = np.random.uniform(size=15)
 print("Uniform [0, 1):", x)
 
-x = np.random.normal(size=5)
+# Generate 15 float values normally distributed according to 'standard' normal (mean 0, variance 1)
+x = np.random.normal(size=15)
 print("Standard normal:", x)
 ```
 
 ```{python}
+# To make repeatable pseudo-randomness, use a generator with the same seed!
 seed = 9876
 prng = np.random.RandomState(seed)
 print("Run 1:", prng.uniform(size=5))
@@ -413,24 +388,26 @@ prng = np.random.RandomState(1234)   # different seed → different sequence
 print("Run 3:", prng.uniform(size=5))
 ```
 
-`permutation` returns a shuffled copy of an array — useful for randomising the order of training examples before each epoch.
+`np.random.permutation` returns a shuffled copy of an array: useful for randomising the order of training examples before each epoch.
 
 ```{python}
+# To "shuffle" or permute a sequence, use the permutation function
 arr = np.arange(1, 6)
 prng = np.random.RandomState(8675309)
 print("Shuffle 1:", prng.permutation(arr))
 print("Shuffle 2:", prng.permutation(arr))
 ```
 
-## 8. Reductions
+## 9. Reductions
 
 Functions like `np.sum`, `np.min`, `np.max`, and `np.mean` **reduce** an array by collapsing one or more axes into a single value. The optional `axis` argument controls which dimension is collapsed.
 
-![\`axis=0\` collapses across rows (one result per column); \`axis=1\` collapses across columns (one result per row).](https://numpy.org/doc/stable/_images/np_matrix_aggregation_row.png){fig-align="center" width="100%"}
+![\`axis=0\` collapses across rows (one result per column); \`axis=1\` collapses across columns (one result per row).](../../figures/np_matrix_aggregation_row.png){fig-align="center" width="100%"}
 
 ```{python}
 A_44 = np.arange(1, 17).reshape(4, 4).transpose()
 print("A_44:\n", A_44)
+print("A_44 shape:", A_44.shape)
 
 print("sum all     :", np.sum(A_44))
 print("sum axis=0  :", np.sum(A_44, axis=0))   # collapse rows → one value per column
@@ -442,14 +419,131 @@ The same `axis` argument works on higher-dimensional arrays.
 
 ```{python}
 Q_234 = np.arange(1, 25).reshape(2, 3, 4)
+print("Q_234:\n", Q_234)
 print("Q_234 shape:", Q_234.shape)
+
 print("min axis=0:\n",   np.min(Q_234, axis=0))       # shape (3, 4)
 print("min axis=1:\n",   np.min(Q_234, axis=1))       # shape (2, 4)
 print("min axis=2:\n",   np.min(Q_234, axis=2))       # shape (2, 3)
 print("min axis=(1,2):", np.min(Q_234, axis=(1, 2)))  # shape (2,) — collapse both dims
 ```
 
-## 9. Image Feature Extraction
+## 10. Views vs. Copies
+
+Understanding whether an operation returns a **view** (a window into the same memory) or a **copy** (a completely new allocation) is critical — accidentally mutating shared data is a common source of hard-to-track bugs in NumPy code.
+
+### reshape — returns a view when possible
+
+`reshape` reuses the same memory buffer and just changes the shape metadata. Modifying the reshaped array therefore modifies the original.
+
+```{python}
+a = np.array([1, 2, 3, 4, 5, 6])
+b = a.reshape(2, 3)
+
+b[0, 0] = 999
+print("a after modifying b:", a)   # [999, 2, 3, 4, 5, 6] — original changed
+
+print("b.base is a:", b.base is a)  # True → b is a view of a
+```
+
+Use `.copy()` to get an independent array:
+
+```{python}
+c = a.reshape(2, 3).copy()
+c[0, 0] = 0
+print("a after modifying c:", a)   # unchanged
+print("c.base is a:", c.base is a)  # False → c is independent
+```
+
+::: {.callout-note}
+## When does reshape return a copy?
+If the array is non-contiguous in memory (e.g. after transposing or fancy indexing), NumPy cannot create a view and silently returns a copy instead. You can always check with `.base`: if it is `None`, the array owns its data.
+:::
+
+### Broadcasting operations — always return a new array
+
+`A + b`, `A * b`, etc. produce a **new array**. Modifying the result never affects the original operands.
+
+```{python}
+A = np.arange(6).reshape(2, 3)
+b = np.array([10, 20, 30])
+
+result = A + b
+result[0, 0] = 999
+
+print("A unchanged:\n", A)
+print("b unchanged:", b)
+```
+
+In-place operators (`+=`, `*=`, …) are the exception — they **write directly into** the left-hand array:
+
+```{python}
+A_copy = A.copy()
+A_copy += b          # A_copy is modified in-place
+print("A_copy after +=:\n", A_copy)
+print("b unchanged:", b)
+```
+
+## EX) pairwise subtraction
+
+Suppose you have a (3×3) matrix `x` and a (2×3) matrix `y`, and you want to subtract every row of `y` from every row of `x`, producing a **(3, 2, 3)** result. Direct subtraction fails because the shapes are incompatible.
+
+```{python}
+x_33 = np.array([[5., 2, 1], [4, 2, 6], [1, 1, 0]])
+y_23 = np.array([[1.0, 4, 3], [2, 1, 4]])
+
+try:
+    x_33 - y_23
+except ValueError as e:
+    print("ValueError:", e)
+```
+
+Inserting `np.newaxis` makes the shapes broadcast-compatible:
+
+```{python}
+# x_33[:, np.newaxis, :] → (3, 1, 3)
+# y_23[np.newaxis, :, :] → (1, 2, 3)
+# result                 → (3, 2, 3) via broadcasting
+z_323 = x_33[:, np.newaxis, :] - y_23[np.newaxis, :, :]
+print("result shape:", z_323.shape)
+print("row 0 of y subtracted from all rows of x:\n", z_323[:, 0, :])
+print("row 1 of y subtracted from all rows of x:\n", z_323[:, 1, :])
+```
+
+## EX) MSE Loss
+
+The ease of implementing mathematical formulas that work on arrays is one of the things that make NumPy so widely used in the scientific Python community.
+
+For example, this is the mean square error formula (a central formula used in supervised machine learning models that deal with regression):
+
+![](../../figures/np_MSE_formula.png)
+
+Implementing this formula is simple and straightforward in NumPy:
+
+![](../../figures/np_MSE_implementation.png)
+
+```{python}
+predictions = np.array([1, 2, 3])
+labels = np.array([1.5, 2.5, 3.5])
+
+error = (1/len(predictions)) * np.sum(np.square(predictions - labels))
+print(error)
+```
+
+What makes this work so well is that predictions and labels can contain one or a thousand values. They only need to be the same size.
+
+You can visualize it this way:
+
+![](../../figures/np_mse_viz1.png)
+
+In this example, both the predictions and labels vectors contain three values, meaning n has a value of three. After we carry out subtractions the values in the vector are squared. Then NumPy sums the values, and your result is the error value for that prediction and a score for the quality of the model.
+
+![](../../figures/np_mse_viz2.png)
+
+![](../../figures/np_MSE_explanation2.png)  
+
+
+## EX) Image Blurring
 
 A single photo (e.g. of a house or street) is just a NumPy array: **grayscale** images have shape `(height, width)` and **color** images `(height, width, 3)` for red, green, and blue. We will load both versions of the same scene, compare how they are stored, then use **sliding local windows** over the grayscale image to build a simple blur—each output pixel is the mean of a small square of input pixels. The same idea (local windows over a grid) appears in time series (rolling averages) and in convolutional layers in deep learning.
 
@@ -458,24 +552,20 @@ A single photo (e.g. of a house or street) is just a NumPy array: **grayscale** 
 We use two files: a grayscale PNG and an RGB PNG of the same scene. The image is of the Lorch Monastery church; the original photograph is available at [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lorch_(W.)_-_Kloster_Lorch_-_Klosterkirche_-_Ansicht_von_SO_(1).jpg). Grayscale images give one number per pixel, while RGB images give three numbers per pixel (one for each of red, green, and blue). If your grayscale file is instead stored as three identical channels (R=G=B), we collapse it to 2D so we have a single intensity per pixel.
 
 ```{python}
-import subprocess
+import io
+import urllib.request
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-from pathlib import Path
 
-_local = Path("../../data")
-if _local.exists():
-    DATA_DIR = _local
-else:
-    !git clone --branch students --depth 1 --filter=blob:none --sparse \
-        https://github.com/GLI-Lab/machine-learning-course.git /tmp/ml-course-data
-    !git -C /tmp/ml-course-data sparse-checkout set data
-    DATA_DIR = Path("/tmp/ml-course-data/data")
+BASE_URL = "https://raw.githubusercontent.com/GLI-Lab/machine-learning-course/main/data"
 
-print("DATA_DIR:", DATA_DIR.resolve())
+def load_image(filename):
+    url = f"{BASE_URL}/{filename}"
+    with urllib.request.urlopen(url) as response:
+        return mpimg.imread(io.BytesIO(response.read()), format="png")
 
-img_gray = mpimg.imread(DATA_DIR / "image_gray.png")
-img_rgb  = mpimg.imread(DATA_DIR / "image_rgb.png")
+img_gray = load_image("image_gray.png")
+img_rgb  = load_image("image_rgb.png")
 
 # If grayscale was stored as 3-channel (R=G=B), collapse to 2D
 if img_gray.ndim == 3:
