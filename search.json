@@ -4,28 +4,14 @@
     "href": "README-students.html",
     "title": "Machine Learning Course (for students)",
     "section": "",
-    "text": "The lab environment is set up with pixi. Follow the steps below.\n\n\n\n\n\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\n\n\n\nIf you already cloned the students branch, just pull the latest changes:\ngit pull   # updates from origin/students when you're on the students branch\n\n\n\n\n\n\n\n\nInstall: https://pixi.sh/latest/getting_started/installation/\n\n\n\n\nFrom the repo root (machine-learning-course):\npixi install\nDependencies and Jupyter will be installed automatically.\n\n\n\npixi run jupyter\nOpen the URL shown in your browser\n\n\n\n\n\n\n\n\n\n\n\n\nWhen\nCommand\n\n\n\n\nFirst-time clone\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git → cd machine-learning-course\n\n\nUpdate materials\ngit pull\n\n\nInstall environment\npixi install\n\n\nRun Jupyter\npixi run jupyter"
+    "text": "The lab environment is set up with pixi.\n\n\n\n\nInstall Pixi:\n\nhttps://pixi.sh/latest/getting_started/installation/\n\nClone the student branch and enter the repo:\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\nInstall the environment:\nPixi reads the project configuration from pixi.toml (and the lock file, if present) and installs the required packages automatically.\npixi install\nRun Jupyter Lab:\nThis runs the jupyter task defined in the Pixi project and starts Jupyter Lab with the course environment activated.\npixi run jupyter\nOpen the URL shown in the terminal in your browser.\n\n\n\nFrom the repo root, run:\ngit pull   # updates from origin/students when you're on the students branch"
   },
   {
-    "objectID": "README-students.html#git-get-the-repo-update",
-    "href": "README-students.html#git-get-the-repo-update",
+    "objectID": "README-students.html#workflow",
+    "href": "README-students.html#workflow",
     "title": "Machine Learning Course (for students)",
     "section": "",
-    "text": "git clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\n\n\n\nIf you already cloned the students branch, just pull the latest changes:\ngit pull   # updates from origin/students when you're on the students branch"
-  },
-  {
-    "objectID": "README-students.html#pixi-install-environment-and-run",
-    "href": "README-students.html#pixi-install-environment-and-run",
-    "title": "Machine Learning Course (for students)",
-    "section": "",
-    "text": "Install: https://pixi.sh/latest/getting_started/installation/\n\n\n\n\nFrom the repo root (machine-learning-course):\npixi install\nDependencies and Jupyter will be installed automatically.\n\n\n\npixi run jupyter\nOpen the URL shown in your browser"
-  },
-  {
-    "objectID": "README-students.html#summary",
-    "href": "README-students.html#summary",
-    "title": "Machine Learning Course (for students)",
-    "section": "",
-    "text": "When\nCommand\n\n\n\n\nFirst-time clone\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git → cd machine-learning-course\n\n\nUpdate materials\ngit pull\n\n\nInstall environment\npixi install\n\n\nRun Jupyter\npixi run jupyter"
+    "text": "Install Pixi:\n\nhttps://pixi.sh/latest/getting_started/installation/\n\nClone the student branch and enter the repo:\ngit clone -b students https://github.com/GLI-Lab/machine-learning-course.git\ncd machine-learning-course\nInstall the environment:\nPixi reads the project configuration from pixi.toml (and the lock file, if present) and installs the required packages automatically.\npixi install\nRun Jupyter Lab:\nThis runs the jupyter task defined in the Pixi project and starts Jupyter Lab with the course environment activated.\npixi run jupyter\nOpen the URL shown in the terminal in your browser.\n\n\n\nFrom the repo root, run:\ngit pull   # updates from origin/students when you're on the students branch"
   },
   {
     "objectID": "assignments/hw05/hw05.html",

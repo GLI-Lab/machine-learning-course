@@ -163,18 +163,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#machine-learning-course-for-students" id="toc-machine-learning-course-for-students" class="nav-link active" data-scroll-target="#machine-learning-course-for-students">Machine Learning Course (for students)</a>
   <ul class="collapse">
-  <li><a href="#git-get-the-repo-update" id="toc-git-get-the-repo-update" class="nav-link" data-scroll-target="#git-get-the-repo-update">1. Git — Get the repo / Update</a>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a>
   <ul class="collapse">
-  <li><a href="#first-time-clone" id="toc-first-time-clone" class="nav-link" data-scroll-target="#first-time-clone">First time (clone)</a></li>
-  <li><a href="#update-get-latest-course-materials" id="toc-update-get-latest-course-materials" class="nav-link" data-scroll-target="#update-get-latest-course-materials">Update (get latest course materials)</a></li>
+  <li><a href="#first-time-setup" id="toc-first-time-setup" class="nav-link" data-scroll-target="#first-time-setup">1. First-time setup</a></li>
+  <li><a href="#update-course-materials" id="toc-update-course-materials" class="nav-link" data-scroll-target="#update-course-materials">2. Update course materials</a></li>
   </ul></li>
-  <li><a href="#pixi-install-environment-and-run" id="toc-pixi-install-environment-and-run" class="nav-link" data-scroll-target="#pixi-install-environment-and-run">2. Pixi — Install environment and run</a>
-  <ul class="collapse">
-  <li><a href="#if-you-dont-have-pixi-one-time" id="toc-if-you-dont-have-pixi-one-time" class="nav-link" data-scroll-target="#if-you-dont-have-pixi-one-time">If you don’t have Pixi (one-time)</a></li>
-  <li><a href="#install-project-environment" id="toc-install-project-environment" class="nav-link" data-scroll-target="#install-project-environment">Install project environment</a></li>
-  <li><a href="#run-jupyter-lab" id="toc-run-jupyter-lab" class="nav-link" data-scroll-target="#run-jupyter-lab">Run Jupyter Lab</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -214,77 +207,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="machine-learning-course-for-students" class="level1">
 <h1>Machine Learning Course (for students)</h1>
-<p>The lab environment is set up with <strong>pixi</strong>. Follow the steps below.</p>
-<hr>
-<section id="git-get-the-repo-update" class="level2">
-<h2 class="anchored" data-anchor-id="git-get-the-repo-update">1. Git — Get the repo / Update</h2>
-<section id="first-time-clone" class="level3">
-<h3 class="anchored" data-anchor-id="first-time-clone">First time (clone)</h3>
+<p>The lab environment is set up with <strong>pixi</strong>.</p>
+<section id="workflow" class="level2">
+<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
+<section id="first-time-setup" class="level3">
+<h3 class="anchored" data-anchor-id="first-time-setup">1. First-time setup</h3>
+<p>Install Pixi:</p>
+<ul>
+<li>https://pixi.sh/latest/getting_started/installation/</li>
+</ul>
+<p>Clone the student branch and enter the repo:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-b</span> students https://github.com/GLI-Lab/machine-learning-course.git</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> machine-learning-course</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Install the environment:</p>
+<p>Pixi reads the project configuration from <code>pixi.toml</code> (and the lock file, if present) and installs the required packages automatically.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run Jupyter Lab:</p>
+<p>This runs the <code>jupyter</code> task defined in the Pixi project and starts Jupyter Lab with the course environment activated.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Open the URL shown in the terminal in your browser.</p>
 </section>
-<section id="update-get-latest-course-materials" class="level3">
-<h3 class="anchored" data-anchor-id="update-get-latest-course-materials">Update (get latest course materials)</h3>
-<p>If you already cloned the <code>students</code> branch, just pull the latest changes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull   <span class="co"># updates from origin/students when you're on the students branch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
-</section>
-</section>
-<section id="pixi-install-environment-and-run" class="level2">
-<h2 class="anchored" data-anchor-id="pixi-install-environment-and-run">2. Pixi — Install environment and run</h2>
-<section id="if-you-dont-have-pixi-one-time" class="level3">
-<h3 class="anchored" data-anchor-id="if-you-dont-have-pixi-one-time">If you don’t have Pixi (one-time)</h3>
-<ul>
-<li><strong>Install</strong>: https://pixi.sh/latest/getting_started/installation/</li>
-</ul>
-</section>
-<section id="install-project-environment" class="level3">
-<h3 class="anchored" data-anchor-id="install-project-environment">Install project environment</h3>
-<p>From the repo root (<code>machine-learning-course</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Dependencies and Jupyter will be installed automatically.</p>
-</section>
-<section id="run-jupyter-lab" class="level3">
-<h3 class="anchored" data-anchor-id="run-jupyter-lab">Run Jupyter Lab</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Open the URL shown in your browser</p>
-<hr>
-</section>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 60%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>When</th>
-<th>Command</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>First-time clone</td>
-<td><code>git clone -b students https://github.com/GLI-Lab/machine-learning-course.git</code> → <code>cd machine-learning-course</code></td>
-</tr>
-<tr class="even">
-<td>Update materials</td>
-<td><code>git pull</code></td>
-</tr>
-<tr class="odd">
-<td>Install environment</td>
-<td><code>pixi install</code></td>
-</tr>
-<tr class="even">
-<td>Run Jupyter</td>
-<td><code>pixi run jupyter</code></td>
-</tr>
-</tbody>
-</table>
+<section id="update-course-materials" class="level3">
+<h3 class="anchored" data-anchor-id="update-course-materials">2. Update course materials</h3>
+<p>From the repo root, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull   <span class="co"># updates from origin/students when you're on the students branch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 </section>
 
