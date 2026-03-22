@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>HW1. Numerical Programming with NumPy – Machine Learning</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ecb46bfe561b067a0a38c457edee2079.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2416ebaa8fc79b5b75730edbe6366d72.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -213,7 +215,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../assignments/hw02/hw02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HW2 (~TBA)</span></a>
+ <span class="menu-text">HW2 (~26.04.05)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -265,7 +267,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#background-k-nearest-neighbors" id="toc-background-k-nearest-neighbors" class="nav-link" data-scroll-target="#background-k-nearest-neighbors">Background: K-Nearest Neighbors</a></li>
+  <li><a href="#background-k-nearest-neighbors" id="toc-background-k-nearest-neighbors" class="nav-link" data-scroll-target="#background-k-nearest-neighbors">Background: K-Nearest Neighbors</a>
+  <ul class="collapse">
+  <li><a href="#grading-preview-doctests" id="toc-grading-preview-doctests" class="nav-link" data-scroll-target="#grading-preview-doctests">Grading-Preview Doctests</a></li>
+  </ul></li>
   <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a>
   <ul class="collapse">
   <li><a href="#problem-definition" id="toc-problem-definition" class="nav-link" data-scroll-target="#problem-definition">Problem Definition</a></li>
@@ -302,7 +307,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2026.03.17</p>
+      <p class="date-modified">2026.03.22</p>
     </div>
   </div>
     
@@ -345,25 +350,43 @@ d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{f=1}^{F} (a_f - b_f)^2}
 <p>Each function in this assignment maps directly to a core NumPy concept from Lab 1-2. <code>euclidean_distances</code> requires <strong>broadcasting</strong> and <strong>reductions</strong> (Sections 6, 9). <code>find_k_nearest_indices</code> uses <strong>argsort</strong> and <strong>slicing</strong> (Sections 2, 4). <code>calc_k_nearest_neighbors</code> combines the above with <strong>fancy indexing</strong> (Section 2). <code>predict_knn_classification</code> uses fancy indexing plus <code>np.bincount</code> / <code>np.argmax</code> for counting-based reductions.</p>
 </div>
 </div>
+<section id="grading-preview-doctests" class="level3">
+<h3 class="anchored" data-anchor-id="grading-preview-doctests">Grading-Preview Doctests</h3>
+<p>The public doctests are intentionally small and deterministic so you can quickly sanity-check your implementation. They use a small fixed 2D example from <code>test_knn.py</code>, with <span class="math inline">\(N = 20\)</span> data points and <span class="math inline">\(Q = 5\)</span> query points. For readability, the matrices below show only part of that example, with some entries abbreviated using <span class="math inline">\(\ldots\)</span>. The exact coordinates used for grading-preview doctests are defined in <code>test_knn.py</code>.</p>
+<p><span class="math display">\[
+\mathbf{X} =
+\begin{bmatrix}
+0 &amp; 0 \\
+1 &amp; 1 \\
+2 &amp; 0 \\
+\ldots &amp; \ldots \\
+18 &amp; 6 \\
+19 &amp; 5 \\
+\end{bmatrix},
+\qquad
+\mathbf{Z} =
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+\ldots &amp; \ldots \\
+12.7 &amp; 8.2 \\
+17.8 &amp; 5.8
+\end{bmatrix}
+\]</span></p>
+<p>The <strong>Finding Nearest Neighbors via Euclidean Distance</strong> pipeline flows as follows for <span class="math inline">\(K = 3\)</span>:</p>
+<ol type="1">
+<li><strong><code>euclidean_distances</code></strong> produces a <span class="math inline">\((5, 20)\)</span> distance matrix. For example, the distance from query <span class="math inline">\(\mathbf{z}_0 = [0.2,\; 0.1]\)</span> to data point <span class="math inline">\(\mathbf{x}_0 = [0,\; 0]\)</span> is <span class="math inline">\(\sqrt{0.05}\)</span>.</li>
+<li><strong><code>find_k_nearest_indices</code></strong> sorts each row and returns the first <span class="math inline">\(K\)</span> column indices: query 0 gets neighbors at indices $[0, 1, 2]`.</li>
+<li><strong><code>calc_k_nearest_neighbors</code></strong> gathers the actual feature vectors at those indices, producing a <span class="math inline">\((5, 3, 2)\)</span> array.</li>
+<li><strong><code>predict_knn_classification</code></strong> looks up each neighbor’s label, counts votes, and returns the winning class per query.</li>
+</ol>
+<p>These doctests are only a grading preview. The hidden tests will additionally check edge cases such as different feature dimensions, different values of <span class="math inline">\(K\)</span>, and multi-class labels.</p>
+</section>
 </section>
 <section id="problems" class="level2">
 <h2 class="anchored" data-anchor-id="problems">Problems</h2>
 <section id="problem-definition" class="level3">
 <h3 class="anchored" data-anchor-id="problem-definition">Problem Definition</h3>
 <p>Complete the four <code>TODO</code> functions in <code>hw1_knn.py</code>. Each function builds on the previous one, so implement them in order. <code>test_knn.py</code> provides doctests for each function. Do not modify it.</p>
-<p>Throughout this assignment, the doctests use a simple 2D dataset of <span class="math inline">\(N = 4\)</span> points lying on the unit circle, with <span class="math inline">\(Q = 2\)</span> query points slightly inside it:</p>
-<p><span class="math display">\[
-\mathbf{X} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ -1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}, \quad
-\mathbf{Z} = \begin{bmatrix} 0.9 &amp; 0 \\ 0 &amp; -0.9 \end{bmatrix}
-\]</span></p>
-<p>The <strong>Finding Nearest Neighbors via Euclidean Distance</strong> pipeline flows as follows for <span class="math inline">\(K = 3\)</span>:</p>
-<ol type="1">
-<li><strong><code>euclidean_distances</code></strong> produces a <span class="math inline">\((2, 4)\)</span> distance matrix. For example, the distance from query <span class="math inline">\(\mathbf{z}_0 = [0.9,\; 0]\)</span> to data point <span class="math inline">\(\mathbf{x}_0 = [1,\; 0]\)</span> is <span class="math inline">\(0.1\)</span>.</li>
-<li><strong><code>find_k_nearest_indices</code></strong> sorts each row and returns the first <span class="math inline">\(K\)</span> column indices: query 0 gets neighbors at indices <span class="math inline">\([0, 1, 3]\)</span>.</li>
-<li><strong><code>calc_k_nearest_neighbors</code></strong> gathers the actual feature vectors at those indices, producing a <span class="math inline">\((2, 3, 2)\)</span> array.</li>
-<li><strong><code>predict_knn_classification</code></strong> looks up each neighbor’s label, counts votes, and returns the winning class per query.</li>
-</ol>
-<p>Keep this example in mind as you implement each function below.</p>
 </section>
 <section id="function-1-euclidean_distances" class="level3">
 <h3 class="anchored" data-anchor-id="function-1-euclidean_distances">Function 1: <code>euclidean_distances</code></h3>
@@ -373,9 +396,38 @@ d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{f=1}^{F} (a_f - b_f)^2}
 <pre><strong>hw1_knn.py</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> euclidean_distances(data_NF, query_QF):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  data_NF  shape (N, F)</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         query_QF shape (Q, F)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: dist_QN  shape (Q, N)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' Compute pairwise Euclidean distances between data and query points.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Uses NumPy broadcasting to compute all Q*N distances without explicit</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Python loops.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Args</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    ----</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    data_NF : 2D np.array, shape (N, F)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Each row is a feature vector of one data point.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    query_QF : 2D np.array, shape (Q, F)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Each row is a feature vector of one query point.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    dist_QN : 2D np.array, shape (Q, N)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">        dist_QN[q, n] is the Euclidean distance from query q to data point n.</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    N, F <span class="op">=</span> data_NF.shape</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    Q, F2 <span class="op">=</span> query_QF.shape</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> F <span class="op">==</span> F2</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ========== </span><span class="al">TODO</span><span class="co"> ==========</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute pairwise Euclidean distances using broadcasting.</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">#</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Hint: Expand dimensions with np.newaxis so that subtraction</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">#       broadcasts over Q and N simultaneously.</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#       query_QF[:, np.newaxis, :] has shape (Q, 1, F)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">#       data_NF[np.newaxis, :, :]  has shape (1, N, F)</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">#       Their difference has shape (Q, N, F).</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">#       Then square, sum over axis=2, and take the square root.</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">NotImplementedError</span>(<span class="st">"Remove this line and implement above"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Strategy.</strong> Reshape <code>query_QF</code> to <code>(Q, 1, F)</code> and <code>data_NF</code> to <code>(1, N, F)</code>. Their difference broadcasts to shape <code>(Q, N, F)</code>. Square each element, sum over the last axis (features), and take the square root.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -400,9 +452,33 @@ d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{f=1}^{F} (a_f - b_f)^2}
 <pre><strong>hw1_knn.py</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_k_nearest_indices(dist_QN, K):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  dist_QN     shape (Q, N)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         K           int</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: indices_QK  shape (Q, K), dtype int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' Find indices of the K nearest neighbors from a distance matrix.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    ----</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    dist_QN : 2D np.array, shape (Q, N)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">        Pairwise distance matrix.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    K : int, must satisfy 1 &lt;= K &lt;= N</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Number of nearest neighbors to retrieve.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    indices_QK : 2D np.array of ints, shape (Q, K)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">        indices_QK[q, k] is the index into the original data array</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">        of the k-th nearest neighbor of query q.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Neighbors are ordered from closest to farthest.</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">        Ties are broken by smaller index first (guaranteed by argsort stability).</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    Q, N <span class="op">=</span> dist_QN.shape</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> <span class="bu">int</span>(K)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> K <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> K <span class="op">&gt;</span> N:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"K must satisfy 1 &lt;= K &lt;= N"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ========== </span><span class="al">TODO</span><span class="co"> ==========</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use np.argsort along axis=1 to get sorted indices per query,</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># then slice the first K columns.</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">NotImplementedError</span>(<span class="st">"Remove this line and implement above"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Strategy.</strong> Apply <code>np.argsort</code> along <code>axis=1</code> to sort each row of distances. Then slice the first <span class="math inline">\(K\)</span> columns. NumPy’s <code>argsort</code> is stable, so ties (equal distances) are broken by smaller index first.</p>
 </section>
@@ -414,10 +490,40 @@ d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{f=1}^{F} (a_f - b_f)^2}
 <pre><strong>hw1_knn.py</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_k_nearest_neighbors(data_NF, query_QF, K<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  data_NF    shape (N, F)</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         query_QF   shape (Q, F)</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         K          int</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: neighb_QKF shape (Q, K, F)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' Compute and return k-nearest neighbors under Euclidean distance.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">    This function combines euclidean_distances and find_k_nearest_indices,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    then gathers the actual feature vectors of the neighbors.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Args</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    ----</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    data_NF : 2D np.array, shape (N, F)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Each row is a feature vector of one data point.</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    query_QF : 2D np.array, shape (Q, F)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Each row is a feature vector of one query point.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    K : int, must satisfy 1 &lt;= K &lt;= N</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">        Number of neighbors to find per query.</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    neighb_QKF : 3D np.array, shape (Q, K, F)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">        Entry [q, k] is the feature vector of the k-th nearest neighbor</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">        of the q-th query.</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">        Ties are broken by the original row order in data_NF.</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    N, F <span class="op">=</span> data_NF.shape</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    Q, F2 <span class="op">=</span> query_QF.shape</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> F <span class="op">==</span> F2</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> <span class="bu">int</span>(K)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> K <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> K <span class="op">&gt;</span> N:</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"K must satisfy 1 &lt;= K &lt;= N"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ========== </span><span class="al">TODO</span><span class="co"> ==========</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Call euclidean_distances to get dist_QN of shape (Q, N)</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Call find_k_nearest_indices to get indices_QK of shape (Q, K)</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Use fancy indexing: data_NF[indices_QK] produces shape (Q, K, F)</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">NotImplementedError</span>(<span class="st">"Remove this line and implement above"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Strategy.</strong> Call <code>euclidean_distances</code>, then <code>find_k_nearest_indices</code>, then index into <code>data_NF</code> with the resulting integer array. When you write <code>data_NF[indices_QK]</code> where <code>indices_QK</code> has shape <code>(Q, K)</code>, NumPy replaces each index with the corresponding row of <code>data_NF</code>, producing shape <code>(Q, K, F)</code> directly.</p>
 </section>
@@ -429,9 +535,32 @@ d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{f=1}^{F} (a_f - b_f)^2}
 <pre><strong>hw1_knn.py</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="hw1_knn.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict_knn_classification(labels_N, nearest_indices_QK):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  labels_N            shape (N,), dtype int</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         nearest_indices_QK  shape (Q, K), dtype int</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: predictions_Q       shape (Q,), dtype int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' Predict class labels via majority vote among K nearest neighbors.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    ----</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    labels_N : 1D np.array of ints, shape (N,)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">        Integer class label for each data point (e.g., 0, 1, 2, ...).</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    nearest_indices_QK : 2D np.array of ints, shape (Q, K)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Indices of K nearest neighbors for each query.</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    predictions_Q : 1D np.array of ints, shape (Q,)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">        Predicted class for each query by majority vote.</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Ties are broken in favor of the smallest class label.</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    Q, K <span class="op">=</span> nearest_indices_QK.shape</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ========== </span><span class="al">TODO</span><span class="co"> ==========</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Gather neighbor labels: labels_N[nearest_indices_QK] -&gt; shape (Q, K)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. For each query, find the most common label.</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">#    Hint: loop over Q queries. For each row of neighbor labels,</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">#          np.bincount counts how many times each label appears,</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">#          and np.argmax returns the label with the highest count.</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">#          np.bincount naturally breaks ties toward the smallest index.</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">NotImplementedError</span>(<span class="st">"Remove this line and implement above"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Strategy.</strong> Use fancy indexing <code>labels_N[nearest_indices_QK]</code> to get a <code>(Q, K)</code> array of neighbor labels. Then loop over queries: for each row, call <code>np.bincount</code> to count occurrences of each class and <code>np.argmax</code> to pick the most frequent one. Since <code>np.argmax</code> returns the first occurrence of the maximum value, ties are automatically broken in favor of the smallest class label.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -456,7 +585,7 @@ d(\mathbf{a}, \mathbf{b}) = \sqrt{\sum_{f=1}^{F} (a_f - b_f)^2}
 <div class="code-with-filename-file">
 <pre><strong>terminal</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> doctest test_knn.py <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run python <span class="at">-m</span> doctest test_knn.py <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If all tests pass you will see output ending with:</p>
 <pre class="text"><code>14 tests in 1 items.

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Lab2-1. Linear Regression via Gradient Descent – Machine Learning</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,15 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ecb46bfe561b067a0a38c457edee2079.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2416ebaa8fc79b5b75730edbe6366d72.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -586,7 +588,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2026.03.17</p>
+      <p class="date-modified">2026.03.22</p>
     </div>
   </div>
     
@@ -612,7 +614,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="closed-form-solution">Closed-Form Solution</h3>
 <p>Linear regression has an exact closed-form solution. For a single feature <span class="math inline">\(x\)</span> with model <span class="math inline">\(\hat{y} = w_0 + w_1 x\)</span>, the optimal weights can be computed directly:</p>
 <p><span class="math display">\[w_1 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n}(x_i - \bar{x})^2}, \qquad w_0 = \bar{y} - w_1 \bar{x}\]</span></p>
-<p>This generalizes to multiple features via the Normal Equation:</p>
+<p>This lab uses a two-feature model <span class="math inline">\(\hat{y}_i = w_1 x_{i1} + w_2 x_{i2} + b\)</span>. Collecting the parameters into <span class="math inline">\(\mathbf{w} = [b,\, w_1,\, w_2]^\top\)</span> and prepending a column of ones to form the design matrix <span class="math inline">\(\mathbf{X} \in \mathbb{R}^{n \times 3}\)</span>, the closed-form solution is given by the Normal Equation:</p>
 <p><span class="math display">\[\hat{\mathbf{w}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\]</span></p>
 <p>So why bother with gradient descent? The Normal Equation requires inverting a <span class="math inline">\(d \times d\)</span> matrix, which costs <span class="math inline">\(O(d^3)\)</span> time. When <span class="math inline">\(d\)</span> (the number of features) reaches tens of thousands — as in image or text models — that inversion becomes completely infeasible. Gradient descent scales to any number of features and generalizes naturally to neural networks, where no closed form exists at all. Learning gradient descent on simple linear regression is the foundation for everything else in the course.</p>
 </section>
@@ -630,13 +632,15 @@ window.Quarto = {
 <p><span class="math display">\[\mathcal{L}_{\text{MSE}} = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2\]</span></p>
 <p>Let <span class="math inline">\(r_i = \hat{y}_i - y_i\)</span> denote the residual of sample <span class="math inline">\(i\)</span>. The partial derivatives are:</p>
 <p><span class="math display">\[\frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n} \sum_{i=1}^{n} r_i, \qquad \frac{\partial \mathcal{L}}{\partial w_1} = \frac{2}{n} \sum_{i=1}^{n} r_i \, x_{i1}, \qquad \frac{\partial \mathcal{L}}{\partial w_2} = \frac{2}{n} \sum_{i=1}^{n} r_i \, x_{i2}\]</span></p>
-<p>Each partial derivative has the same pattern: the mean residual, weighted by the corresponding input feature (with the bias term using <span class="math inline">\(1\)</span>). In matrix form this is:</p>
+<p>Each partial derivative has the same pattern: the mean residual, weighted by the corresponding input feature (with the bias term using <span class="math inline">\(1\)</span>). Stacking the three partial derivatives into a gradient vector gives:</p>
+<p><span class="math display">\[\nabla_\mathbf{w} \mathcal{L} = \begin{bmatrix} \frac{\partial \mathcal{L}}{\partial b} \\[4pt] \frac{\partial \mathcal{L}}{\partial w_1} \\[4pt] \frac{\partial \mathcal{L}}{\partial w_2} \end{bmatrix} = \frac{2}{n} \begin{bmatrix} \sum_{i=1}^{n} r_i \cdot 1 \\[4pt] \sum_{i=1}^{n} r_i \, x_{i1} \\[4pt] \sum_{i=1}^{n} r_i \, x_{i2} \end{bmatrix}\]</span></p>
+<p>Since the design matrix <span class="math inline">\(\mathbf{X}\)</span> has rows <span class="math inline">\([1,\, x_{i1},\, x_{i2}]\)</span>, the column <span class="math inline">\(j\)</span> of <span class="math inline">\(\mathbf{X}^\top\)</span> contains the <span class="math inline">\(j\)</span>-th feature values across all samples, so <span class="math inline">\(\mathbf{X}^\top \mathbf{r} = \bigl[\sum r_i \cdot 1,\; \sum r_i x_{i1},\; \sum r_i x_{i2}\bigr]^\top\)</span>. Substituting the residual vector <span class="math inline">\(\mathbf{r} = \mathbf{X}\mathbf{w} - \mathbf{y}\)</span> yields the compact matrix form:</p>
 <p><span class="math display">\[\nabla_\mathbf{w} \mathcal{L}_{\text{MSE}} = \frac{2}{n} \mathbf{X}^\top (\mathbf{X}\mathbf{w} - \mathbf{y})\]</span></p>
 </section>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">0. Setup</h2>
-<div id="259f3b34" class="cell" data-execution_count="1">
+<div id="3193c44c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -650,7 +654,7 @@ window.Quarto = {
 <section id="generating-synthetic-data" class="level3">
 <h3 class="anchored" data-anchor-id="generating-synthetic-data">1.1 Generating Synthetic Data</h3>
 <p>We create a 2-feature regression dataset drawn from <span class="math inline">\(y = 1 + 2x_1 + 3x_2 + \varepsilon\)</span>, where <span class="math inline">\(\varepsilon \sim \mathcal{N}(0,\, 0.5^2)\)</span>. The true parameters are <span class="math inline">\(b=1\)</span>, <span class="math inline">\(w_1=2\)</span>, <span class="math inline">\(w_2=3\)</span>.</p>
-<div id="0277db55" class="cell" data-execution_count="2">
+<div id="d08b3bd0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -676,7 +680,7 @@ y_data shape: (100,)</code></pre>
 <p>We implement the loss and gradient following the formulas from the Background section. Recall that for our model <span class="math inline">\(\hat{y}_i = w_1 x_{i1} + w_2 x_{i2} + b\)</span>, the residual of sample <span class="math inline">\(i\)</span> is <span class="math inline">\(r_i = \hat{y}_i - y_i\)</span>, and the three partial derivatives are:</p>
 <p><span class="math display">\[\frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n} \sum r_i, \qquad \frac{\partial \mathcal{L}}{\partial w_1} = \frac{2}{n} \sum r_i \, x_{i1}, \qquad \frac{\partial \mathcal{L}}{\partial w_2} = \frac{2}{n} \sum r_i \, x_{i2}\]</span></p>
 <p>We first implement this element-wise to see each step clearly, then show the equivalent matrix form.</p>
-<div id="fed596af" class="cell" data-execution_count="3">
+<div id="189a9e09" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mse_loss(X, y, w):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the Mean Squared Error loss.</span></span>
@@ -713,7 +717,7 @@ y_data shape: (100,)</code></pre>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="fl">2.0</span> <span class="op">/</span> n) <span class="op">*</span> (X.T <span class="op">@</span> residuals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let us verify that both implementations produce the same gradient:</p>
-<div id="ec45f7b2" class="cell" data-execution_count="4">
+<div id="ac93cff3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>w_init <span class="op">=</span> np.zeros(<span class="dv">3</span>)  <span class="co"># [b=0, w1=0, w2=0]</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>grad_elem   <span class="op">=</span> mse_gradient_elementwise(X, y_data, w_init)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grad_matrix <span class="op">=</span> mse_gradient(X, y_data, w_init)</span>
@@ -734,7 +738,7 @@ Match             : True</code></pre>
 <section id="writing-the-training-loop" class="level3">
 <h3 class="anchored" data-anchor-id="writing-the-training-loop">1.3 Writing the Training Loop</h3>
 <p>The training loop applies the update rule at every epoch and records both the weights and the loss so we can inspect the full trajectory afterward.</p>
-<div id="f8afc822" class="cell" data-execution_count="5">
+<div id="5bc78274" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_linear(X, y, lr<span class="op">=</span><span class="fl">0.1</span>, epochs<span class="op">=</span><span class="dv">500</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Full-batch gradient descent for linear regression.</span></span>
@@ -778,7 +782,7 @@ Match             : True</code></pre>
 </section>
 <section id="running-the-optimizer" class="level3">
 <h3 class="anchored" data-anchor-id="running-the-optimizer">1.4 Running the Optimizer</h3>
-<div id="78a74802" class="cell" data-execution_count="6">
+<div id="7e85d6d1" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>w_hist, loss_hist <span class="op">=</span> train_linear(X, y_data, lr<span class="op">=</span><span class="fl">0.1</span>, epochs<span class="op">=</span><span class="dv">300</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Initial loss : </span><span class="sc">{</span>loss_hist[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
@@ -804,7 +808,7 @@ Learned w_2  : ~3.0</code></pre>
 </section>
 <section id="visualizing-the-loss-curve-and-weight-convergence" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-loss-curve-and-weight-convergence">1.5 Visualizing the Loss Curve and Weight Convergence</h3>
-<div id="17335267" class="cell" data-execution_count="7">
+<div id="5fa05492" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">5</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Left panel: loss curve ---</span></span>
@@ -843,7 +847,7 @@ Learned w_2  : ~3.0</code></pre>
 <section id="loss-surface-and-gradient-descent-trajectory" class="level3">
 <h3 class="anchored" data-anchor-id="loss-surface-and-gradient-descent-trajectory">1.6 Loss Surface and Gradient Descent Trajectory</h3>
 <p>To visualize what gradient descent is doing geometrically, we plot the loss as a function of <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> while fixing the bias <span class="math inline">\(b\)</span> at its optimal value. The resulting surface is a convex bowl — gradient descent rolls downhill from the initial point toward the minimum.</p>
-<div id="cecc65f4" class="cell" data-execution_count="8">
+<div id="e12bbd42" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>w_final <span class="op">=</span> w_hist[<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix b at the trained value, sweep w1 and w2</span></span>
@@ -916,7 +920,7 @@ Learned w_2  : ~3.0</code></pre>
 </section>
 <section id="visualizing-the-fitted-plane" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-fitted-plane">1.7 Visualizing the Fitted Plane</h3>
-<div id="f3c8c4ff" class="cell" data-execution_count="9">
+<div id="cfed95a0" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -948,7 +952,7 @@ Learned w_2  : ~3.0</code></pre>
 <section id="effect-of-learning-rate-on-convergence" class="level2">
 <h2 class="anchored" data-anchor-id="effect-of-learning-rate-on-convergence">2. Effect of Learning Rate on Convergence</h2>
 <p>The learning rate <span class="math inline">\(\eta\)</span> controls how large each update step is. Choosing the right value is critical: too small and training takes forever; too large and the updates overshoot, causing oscillation or divergence. We now compare three representative values.</p>
-<div id="d3e64df6" class="cell" data-execution_count="10">
+<div id="81eea62d" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>learning_rates <span class="op">=</span> [<span class="fl">0.005</span>, <span class="fl">0.1</span>, <span class="fl">0.3</span>]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>lr_colors      <span class="op">=</span> [<span class="st">'tomato'</span>, <span class="st">'steelblue'</span>, <span class="st">'seagreen'</span>]</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1014,7 +1018,7 @@ Learned w_2  : ~3.0</code></pre>
 <h3 class="anchored" data-anchor-id="why-stochasticity-matters-a-non-convex-example">3.1 Why Stochasticity Matters: A Non-Convex Example</h3>
 <p>The MSE loss for linear regression is convex (a single global minimum), so full-batch GD always finds the optimum and the stochasticity advantage does not show up. But most real ML models — neural networks, deep learning — have <strong>non-convex</strong> loss surfaces with many local minima and saddle points.</p>
 <p>To illustrate this, we minimize a simple non-convex function <span class="math inline">\(f(w) = w^2 + 3\sin^2(2w)\)</span> that has a global minimum near <span class="math inline">\(w = 0\)</span> but also local minima where GD can get trapped.</p>
-<div id="2dd40a70" class="cell" data-execution_count="11">
+<div id="2e8fef98" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(w):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> np.sin(<span class="dv">2</span> <span class="op">*</span> w)<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1040,7 +1044,7 @@ Learned w_2  : ~3.0</code></pre>
 </div>
 </div>
 <p>Now we run full-batch GD (exact gradient) and “SGD” (gradient + random noise) from the same starting point <span class="math inline">\(w_0 = 3.5\)</span>, which sits in a local minimum.</p>
-<div id="c5a73039" class="cell" data-execution_count="12">
+<div id="6633db52" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_gd(w0, lr<span class="op">=</span><span class="fl">0.05</span>, steps<span class="op">=</span><span class="dv">200</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    trajectory <span class="op">=</span> [w0]</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> w0</span>
@@ -1104,7 +1108,7 @@ SGD final: w=1.3786, f(w)=2.3224</code></pre>
 <section id="implementing-mini-batch-sgd-for-linear-regression" class="level3">
 <h3 class="anchored" data-anchor-id="implementing-mini-batch-sgd-for-linear-regression">3.2 Implementing Mini-Batch SGD for Linear Regression</h3>
 <p>Returning to our linear regression problem: here the loss surface is convex, so both methods find the same minimum. The advantage of SGD in this setting is <strong>computational efficiency</strong> — on large datasets, many cheap mini-batch steps make more progress than a few expensive full-batch steps for the same compute budget.</p>
-<div id="368863ad" class="cell" data-execution_count="13">
+<div id="39b2cf13" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>n_large <span class="op">=</span> <span class="dv">10_000</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1114,7 +1118,7 @@ SGD final: w=1.3786, f(w)=2.3224</code></pre>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>X_large <span class="op">=</span> np.column_stack([np.ones(n_large), x1_large, x2_large])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="4bde82c0" class="cell" data-execution_count="14">
+<div id="a65c19fa" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_linear_sgd(X, y, lr<span class="op">=</span><span class="fl">0.01</span>, epochs<span class="op">=</span><span class="dv">500</span>, batch_size<span class="op">=</span><span class="dv">32</span>):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Mini-batch stochastic gradient descent for linear regression.</span></span>
@@ -1138,7 +1142,7 @@ SGD final: w=1.3786, f(w)=2.3224</code></pre>
 <section id="comparing-by-computational-cost" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-by-computational-cost">3.3 Comparing by Computational Cost</h3>
 <p>A fair comparison uses <strong>total samples processed</strong> as the x-axis, not epochs. We give both methods the same computational budget (100k sample accesses) and see who gets further.</p>
-<div id="32ca67b6" class="cell" data-execution_count="15">
+<div id="311104f2" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>budget <span class="op">=</span> <span class="dv">100_000</span>  <span class="co"># total samples to process</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Full-batch GD: each epoch costs n_large samples</span></span>
