@@ -74,7 +74,7 @@ website:
                 - text: "Logistic Regression"
                   href: exercises/lab02/logistic-regression.qmd
                 - text: "Classification Metrics"
-                  href: exercises/lab02/evaluation-metrics.qmd
+                  href: exercises/lab02/classification-metrics.qmd
                 - text: "Softmax Regression"
                   href: exercises/lab02/softmax-regression.qmd
             - section: "Lab3. Multi-Layer Perceptron"

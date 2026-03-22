@@ -3,7 +3,7 @@ title: "Lab 2-3. Classification Metrics and ROC Curves"
 jupyter: python3
 ---
 
-[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/labXX/classification-metrics.ipynb)
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab02/classification-metrics.ipynb)
 
 ## Objectives
 
@@ -186,6 +186,8 @@ def compute_metrics_at_threshold(y_true, y_prob, threshold):
     tn = int(((y_pred == 0) & (y_true == 0)).sum())
     fn = int(((y_pred == 0) & (y_true == 1)).sum())
 
+    # If there are no predicted positives, precision is undefined.
+    # We set it to 1.0 by convention so the threshold sweep remains well-defined.
     precision = tp / (tp + fp) if (tp + fp) > 0 else 1.0
     recall    = tp / (tp + fn) if (tp + fn) > 0 else 0.0
     f1        = (2 * precision * recall / (precision + recall)
@@ -257,7 +259,7 @@ As you lower $\tau$, the model classifies more samples as positive. This recover
 
 ## 5. Building the ROC Curve Manually
 
-The ROC curve is built from the same threshold sweep, but plots TPR (y-axis) against FPR (x-axis) instead of Precision against Recall. The key step is to sort thresholds so that the curve traces from the top-right corner $(1, 1)$ down to the bottom-left corner $(0, 0)$ as $\tau$ increases from 0 to 1.
+The ROC curve is built from the same threshold sweep, but plots TPR (y-axis) against FPR (x-axis) instead of Precision against Recall. As the threshold is lowered, the classifier predicts more positives, so the ROC point moves from $(0,0)$ toward $(1,1)$. To draw the curve in that order, we sort thresholds from high to low.
 
 ```{python}
 # Sort thresholds from high to low so the ROC curve goes from (0,0) to (1,1)

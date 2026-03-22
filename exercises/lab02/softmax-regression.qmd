@@ -37,21 +37,60 @@ $$\mathcal{L}_{\text{CE}} = -\frac{1}{n} \sum_{i=1}^{n} \log p_{i,\, c_i}$$
 
 where $c_i$ is the true class of sample $i$. This is the negative log-probability of the correct class, averaged over all samples.
 
-### Gradient
+### Gradient (Not included in the exam)
 
-The gradient has the same elegant form as in logistic regression:
+In logistic regression, the gradient is
 
-$$\nabla_\mathbf{W} \mathcal{L}_{\text{CE}} = \frac{1}{n} \mathbf{X}^\top (\mathbf{P} - \mathbf{Y})$$
+$$
+\nabla_\mathbf{w} \mathcal{L}_{\text{BCE}} = \frac{1}{n}\mathbf{X}^\top (\mathbf{p} - \mathbf{y})
+$$
 
-where $\mathbf{P}$ is the $n \times K$ matrix of predicted probabilities and $\mathbf{Y}$ is the $n \times K$ one-hot label matrix. The error matrix $\mathbf{E} = \mathbf{P} - \mathbf{Y}$ has the same interpretation as before: for each sample, the error is positive for over-predicted classes and negative for the under-predicted (true) class. Multiplying by $\mathbf{X}^\top$ computes the feature-weighted average of these errors — exactly the same pattern as the binary case.
+Softmax regression keeps the same **feature-weighted error** pattern, but now there is one probability/error term per class, so the gradient becomes a matrix rather than a vector. We will not derive this from scratch here, but the stacking structure is useful to see.
 
-### Decision Boundaries
+If we define the error matrix $\mathbf{E} = \mathbf{P} - \mathbf{Y}$, then each entry of the gradient is
 
-With $K$ classes, the decision boundary between class $j$ and class $k$ is the set of points where $p_j = p_k$. Since softmax is monotonic, this happens when the logits are equal:
+$$\frac{\partial \mathcal{L}}{\partial W_{jk}} = \frac{1}{n}\sum_{i=1}^{n} e_{ik} \, x_{ij}$$
 
-$$\mathbf{w}_j^\top \mathbf{x} = \mathbf{w}_k^\top \mathbf{x} \quad \Longleftrightarrow \quad (\mathbf{w}_j - \mathbf{w}_k)^\top \mathbf{x} = 0$$
+For a fixed class $k$, collecting the partial derivatives with respect to all feature weights gives one gradient column:
 
-Each pairwise boundary is a hyperplane, so the feature space is partitioned into $K$ convex regions. In 2D with 3 classes, the boundaries form a pattern similar to a Voronoi diagram, meeting at a central point.
+$$
+\begin{bmatrix}
+\frac{\partial \mathcal{L}}{\partial W_{1k}} \\
+\frac{\partial \mathcal{L}}{\partial W_{2k}} \\
+\vdots \\
+\frac{\partial \mathcal{L}}{\partial W_{dk}}
+\end{bmatrix}
+=
+\frac{1}{n}
+\begin{bmatrix}
+\sum_{i=1}^{n} e_{ik} x_{i1} \\
+\sum_{i=1}^{n} e_{ik} x_{i2} \\
+\vdots \\
+\sum_{i=1}^{n} e_{ik} x_{id}
+\end{bmatrix}
+$$
+
+Doing this for every class and placing those columns side by side gives the full gradient matrix:
+
+$$
+\nabla_\mathbf{W}\mathcal{L}
+=
+\begin{bmatrix}
+\frac{\partial \mathcal{L}}{\partial W_{11}} & \frac{\partial \mathcal{L}}{\partial W_{12}} & \cdots & \frac{\partial \mathcal{L}}{\partial W_{1K}} \\
+\frac{\partial \mathcal{L}}{\partial W_{21}} & \frac{\partial \mathcal{L}}{\partial W_{22}} & \cdots & \frac{\partial \mathcal{L}}{\partial W_{2K}} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial \mathcal{L}}{\partial W_{d1}} & \frac{\partial \mathcal{L}}{\partial W_{d2}} & \cdots & \frac{\partial \mathcal{L}}{\partial W_{dK}}
+\end{bmatrix}
+=
+\frac{1}{n}\mathbf{X}^\top \mathbf{E}
+=
+\frac{1}{n}\mathbf{X}^\top (\mathbf{P} - \mathbf{Y})
+$$
+
+where $\mathbf{P}$ is the $n \times K$ matrix of predicted probabilities and $\mathbf{Y}$ is the $n \times K$ one-hot label matrix.
+
+This is the same stacking idea as before, now lifted from a vector to a matrix: in logistic regression we stacked partial derivatives into one gradient vector, while in softmax regression we stack one such vector per class to form the gradient matrix. Multiplying by $\mathbf{X}^\top$ computes the feature-weighted average of these class-wise errors — exactly the same pattern as the binary case.
+
 
 ## 0. Setup
 ```{python}

@@ -17,6 +17,7 @@ solution/
 /.quarto/
 _site/
 *.quarto_ipynb
+*.qmd.bak
 
 *.ipynb
 _temp/
