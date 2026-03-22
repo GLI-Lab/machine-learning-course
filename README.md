@@ -25,8 +25,9 @@ pm2 start pixi --name "ml-course" -- run quarto preview --port 4000 --host 0.0.0
 # 수업서버 Preview 서버 시작
 pm2 start pixi --name "ml-course" -- run quarto preview --port 4000 --host 0.0.0.0 --no-watch-inputs
 
-# 재시작
+# 재시작 / 제거
 pm2 restart ml-course
+pm2 delete ml-course
 
 # 상태 확인
 pm2 status
