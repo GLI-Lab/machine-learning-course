@@ -35,18 +35,33 @@ Each function in this assignment maps directly to a core NumPy concept from Lab 
 
 ### Grading-Preview Doctests
 
-The public doctests are intentionally small and deterministic so you can quickly sanity-check your implementation. They use a simple 2D dataset of $N = 4$ points lying on the unit circle, with $Q = 2$ query points slightly inside it:
+The public doctests are intentionally small and deterministic so you can quickly sanity-check your implementation. They use a small fixed 2D example from `test_knn.py`, with $N = 20$ data points and $Q = 5$ query points. For readability, the matrices below show only part of that example, with some entries abbreviated using $\ldots$. The exact coordinates used for grading-preview doctests are defined in `test_knn.py`.
 
 $$
-\mathbf{X} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ -1 & 0 \\ 0 & -1 \end{bmatrix}, \quad
-\mathbf{Z} = \begin{bmatrix} 0.9 & 0 \\ 0 & -0.9 \end{bmatrix}
+\mathbf{X} =
+\begin{bmatrix}
+0 & 0 \\
+1 & 1 \\
+2 & 0 \\
+\ldots & \ldots \\
+18 & 6 \\
+19 & 5 \\
+\end{bmatrix},
+\qquad
+\mathbf{Z} =
+\begin{bmatrix}
+0.2 & 0.1 \\
+\ldots & \ldots \\
+12.7 & 8.2 \\
+17.8 & 5.8
+\end{bmatrix}
 $$
 
 The **Finding Nearest Neighbors via Euclidean Distance** pipeline flows as follows for $K = 3$:
 
-1. **`euclidean_distances`** produces a $(2, 4)$ distance matrix. For example, the distance from query $\mathbf{z}_0 = [0.9,\; 0]$ to data point $\mathbf{x}_0 = [1,\; 0]$ is $0.1$.
-2. **`find_k_nearest_indices`** sorts each row and returns the first $K$ column indices: query 0 gets neighbors at indices $[0, 1, 3]$.
-3. **`calc_k_nearest_neighbors`** gathers the actual feature vectors at those indices, producing a $(2, 3, 2)$ array.
+1. **`euclidean_distances`** produces a $(5, 20)$ distance matrix. For example, the distance from query $\mathbf{z}_0 = [0.2,\; 0.1]$ to data point $\mathbf{x}_0 = [0,\; 0]$ is $\sqrt{0.05}$.
+2. **`find_k_nearest_indices`** sorts each row and returns the first $K$ column indices: query 0 gets neighbors at indices $[0, 1, 2]`.
+3. **`calc_k_nearest_neighbors`** gathers the actual feature vectors at those indices, producing a $(5, 3, 2)$ array.
 4. **`predict_knn_classification`** looks up each neighbor's label, counts votes, and returns the winning class per query.
 
 These doctests are only a grading preview. The hidden tests will additionally check edge cases such as different feature dimensions, different values of $K$, and multi-class labels.
@@ -230,7 +245,7 @@ Do not change function signatures or docstrings. Use only `numpy` (already impor
 
 Place `hw1_knn.py` and [test_knn.py]{.kbd} in the same directory, then run from the terminal:
 ````{.bash filename="terminal"}
-python -m doctest test_knn.py -v
+pixi run python -m doctest test_knn.py -v
 ````
 
 If all tests pass you will see output ending with:

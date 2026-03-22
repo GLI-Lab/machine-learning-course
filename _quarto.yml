@@ -183,7 +183,7 @@ website:
           contents:
             - text: "HW1 (~26.03.29)"
               href: assignments/hw01/hw01.qmd
-            - text: "HW2 (~TBA)"
+            - text: "HW2 (~26.04.05)"
               href: assignments/hw02/hw02.qmd
             - text: "HW3 (~TBA)"
               href: assignments/hw03/hw03.qmd

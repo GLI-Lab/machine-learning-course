@@ -40,3 +40,17 @@ pm2 show ml-course
 
 .github/workflows 활용
 
+## Workflow
+
+이 저장소는 `*.qmd` 원본과 `_freeze/` 아래의 렌더 결과를 함께 관리합니다. 따라서 문서를 수정한 뒤 `git push` 하기 전에는 보통 아래 순서로 작업하는 것이 안전합니다.
+
+```bash
+pixi run quarto render
+git status
+git add ...
+git commit -m "..."
+git push
+```
+
+즉, `qmd`만 수정하고 렌더 결과를 갱신하지 않으면 원본과 산출물이 서로 어긋날 수 있습니다.
+
