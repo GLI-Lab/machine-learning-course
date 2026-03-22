@@ -185,7 +185,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/linear-regression.html">Lab2. Linear Models</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/evaluation-metrics.html">Classification Metrics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/linear-regression.html">Lab2. Linear Models</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/classification-metrics.html">Classification Metrics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -270,7 +270,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/lab02/evaluation-metrics.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../exercises/lab02/classification-metrics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Classification Metrics</span></a>
   </div>
 </li>
@@ -557,7 +557,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/linear-regression.html">Lab2. Linear Models</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/evaluation-metrics.html">Classification Metrics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../exercises/index.html">Exercises</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/linear-regression.html">Lab2. Linear Models</a></li><li class="breadcrumb-item"><a href="../../exercises/lab02/classification-metrics.html">Classification Metrics</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Lab 2-3. Classification Metrics and ROC Curves</h1>
 </div>
@@ -588,7 +588,7 @@ window.Quarto = {
 </header>
 
 
-<p><a href="https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/labXX/classification-metrics.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<p><a href="https://colab.research.google.com/github/GLI-Lab/machine-learning-course/blob/students/exercises/lab02/classification-metrics.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
@@ -644,7 +644,7 @@ window.Quarto = {
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">0. Setup</h2>
-<div id="f712649c" class="cell" data-execution_count="1">
+<div id="7a75efc4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -658,7 +658,7 @@ window.Quarto = {
 <section id="generating-an-imbalanced-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="generating-an-imbalanced-dataset">1. Generating an Imbalanced Dataset</h2>
 <p>We simulate a binary classification problem where the positive class (class 1) makes up only about 10 % of the data. This mirrors realistic scenarios such as disease screening or anomaly detection.</p>
-<div id="75e64d98" class="cell" data-execution_count="2">
+<div id="1e08cb56" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n_neg <span class="op">=</span> <span class="dv">900</span>   <span class="co"># majority class (y = 0)</span></span>
@@ -683,7 +683,7 @@ Negative class: 900  (90.0 %)</code></pre>
 </div>
 </div>
 <p>Let us visualise the two classes to get a feel for the overlap.</p>
-<div id="716b7592" class="cell" data-execution_count="3">
+<div id="8799e65a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(X[y <span class="op">==</span> <span class="dv">0</span>, <span class="dv">0</span>], X[y <span class="op">==</span> <span class="dv">0</span>, <span class="dv">1</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           alpha<span class="op">=</span><span class="fl">0.3</span>, s<span class="op">=</span><span class="dv">15</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, label<span class="op">=</span><span class="st">"Negative (y=0)"</span>)</span>
@@ -698,7 +698,7 @@ Negative class: 900  (90.0 %)</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="evaluation-metrics_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="classification-metrics_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -708,7 +708,7 @@ Negative class: 900  (90.0 %)</code></pre>
 <section id="training-logistic-regression" class="level2">
 <h2 class="anchored" data-anchor-id="training-logistic-regression">2. Training Logistic Regression</h2>
 <p>We split the data into a training set and a test set, then fit a logistic regression model. We intentionally hold off on picking any threshold — the model outputs raw probabilities <span class="math inline">\(\hat{p} = P(y=1 \mid x)\)</span>, and we will explore different thresholds ourselves in the next section.</p>
-<div id="7b52f28c" class="cell" data-execution_count="4">
+<div id="fbc1ada8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -745,7 +745,7 @@ Score range    : [0.000, 0.989]</code></pre>
 <section id="the-danger-of-accuracy-on-imbalanced-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-danger-of-accuracy-on-imbalanced-data">3. The Danger of Accuracy on Imbalanced Data</h2>
 <p>Before examining proper metrics, let us first confirm that accuracy is deceptive here.</p>
-<div id="c3b9fd50" class="cell" data-execution_count="5">
+<div id="1d7585fb" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Default threshold = 0.5</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y_pred_default <span class="op">=</span> (y_prob <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -786,7 +786,7 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 <section id="sweeping-the-decision-threshold" class="level2">
 <h2 class="anchored" data-anchor-id="sweeping-the-decision-threshold">4. Sweeping the Decision Threshold</h2>
 <p>The default threshold <span class="math inline">\(\tau = 0.5\)</span> is rarely optimal for imbalanced problems. We now iterate over a range of thresholds and compute Precision and Recall at each one to understand the full trade-off.</p>
-<div id="372a987c" class="cell" data-execution_count="6">
+<div id="75d58081" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_metrics_at_threshold(y_true, y_prob, threshold):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute TP, FP, TN, FN, Precision, Recall, and F1</span></span>
@@ -798,18 +798,20 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    tn <span class="op">=</span> <span class="bu">int</span>(((y_pred <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (y_true <span class="op">==</span> <span class="dv">0</span>)).<span class="bu">sum</span>())</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    fn <span class="op">=</span> <span class="bu">int</span>(((y_pred <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (y_true <span class="op">==</span> <span class="dv">1</span>)).<span class="bu">sum</span>())</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fp) <span class="cf">if</span> (tp <span class="op">+</span> fp) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">1.0</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    recall    <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fn) <span class="cf">if</span> (tp <span class="op">+</span> fn) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    f1        <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> precision <span class="op">*</span> recall <span class="op">/</span> (precision <span class="op">+</span> recall)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">if</span> (precision <span class="op">+</span> recall) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    tpr <span class="op">=</span> recall                                       <span class="co"># TPR = Recall</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    fpr <span class="op">=</span> fp <span class="op">/</span> (fp <span class="op">+</span> tn) <span class="cf">if</span> (fp <span class="op">+</span> tn) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">dict</span>(tp<span class="op">=</span>tp, fp<span class="op">=</span>fp, tn<span class="op">=</span>tn, fn<span class="op">=</span>fn,</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                precision<span class="op">=</span>precision, recall<span class="op">=</span>recall,</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                f1<span class="op">=</span>f1, tpr<span class="op">=</span>tpr, fpr<span class="op">=</span>fpr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If there are no predicted positives, precision is undefined.</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We set it to 1.0 by convention so the threshold sweep remains well-defined.</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fp) <span class="cf">if</span> (tp <span class="op">+</span> fp) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">1.0</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    recall    <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fn) <span class="cf">if</span> (tp <span class="op">+</span> fn) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    f1        <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> precision <span class="op">*</span> recall <span class="op">/</span> (precision <span class="op">+</span> recall)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">if</span> (precision <span class="op">+</span> recall) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    tpr <span class="op">=</span> recall                                       <span class="co"># TPR = Recall</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    fpr <span class="op">=</span> fp <span class="op">/</span> (fp <span class="op">+</span> tn) <span class="cf">if</span> (fp <span class="op">+</span> tn) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">dict</span>(tp<span class="op">=</span>tp, fp<span class="op">=</span>fp, tn<span class="op">=</span>tn, fn<span class="op">=</span>fn,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                precision<span class="op">=</span>precision, recall<span class="op">=</span>recall,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                f1<span class="op">=</span>f1, tpr<span class="op">=</span>tpr, fpr<span class="op">=</span>fpr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="12e0cbc3" class="cell" data-execution_count="7">
+<div id="411cc85e" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="fl">0.99</span>, <span class="dv">200</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> [compute_metrics_at_threshold(y_test, y_prob, t) <span class="cf">for</span> t <span class="kw">in</span> thresholds]</span>
@@ -818,7 +820,7 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>recalls    <span class="op">=</span> np.array([r[<span class="st">"recall"</span>]    <span class="cf">for</span> r <span class="kw">in</span> results])</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>f1_scores  <span class="op">=</span> np.array([r[<span class="st">"f1"</span>]        <span class="cf">for</span> r <span class="kw">in</span> results])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="871b4710" class="cell" data-execution_count="8">
+<div id="e30371a3" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">5</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Left: Precision and Recall vs Threshold</span></span>
@@ -860,7 +862,7 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="evaluation-metrics_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="classification-metrics_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -887,8 +889,8 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 </section>
 <section id="building-the-roc-curve-manually" class="level2">
 <h2 class="anchored" data-anchor-id="building-the-roc-curve-manually">5. Building the ROC Curve Manually</h2>
-<p>The ROC curve is built from the same threshold sweep, but plots TPR (y-axis) against FPR (x-axis) instead of Precision against Recall. The key step is to sort thresholds so that the curve traces from the top-right corner <span class="math inline">\((1, 1)\)</span> down to the bottom-left corner <span class="math inline">\((0, 0)\)</span> as <span class="math inline">\(\tau\)</span> increases from 0 to 1.</p>
-<div id="9ca42e6c" class="cell" data-execution_count="9">
+<p>The ROC curve is built from the same threshold sweep, but plots TPR (y-axis) against FPR (x-axis) instead of Precision against Recall. As the threshold is lowered, the classifier predicts more positives, so the ROC point moves from <span class="math inline">\((0,0)\)</span> toward <span class="math inline">\((1,1)\)</span>. To draw the curve in that order, we sort thresholds from high to low.</p>
+<div id="b67a461d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort thresholds from high to low so the ROC curve goes from (0,0) to (1,1)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sorted_idx <span class="op">=</span> np.argsort(thresholds)[::<span class="op">-</span><span class="dv">1</span>]   <span class="co"># descending threshold order</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -899,7 +901,7 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>tprs_full <span class="op">=</span> np.concatenate([[<span class="fl">0.0</span>], tprs, [<span class="fl">1.0</span>]])</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>fprs_full <span class="op">=</span> np.concatenate([[<span class="fl">0.0</span>], fprs, [<span class="fl">1.0</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="af718874" class="cell" data-execution_count="10">
+<div id="eca1e6ef" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute AUC via the trapezoidal rule</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>auc <span class="op">=</span> <span class="bu">float</span>(np.trapezoid(tprs_full, fprs_full))</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -933,7 +935,7 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="evaluation-metrics_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="classification-metrics_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -959,7 +961,7 @@ Naive baseline accuracy (always predict 0): 0.9000</code></pre>
 <section id="verifying-against-scikit-learn" class="level2">
 <h2 class="anchored" data-anchor-id="verifying-against-scikit-learn">6. Verifying Against scikit-learn</h2>
 <p>It is good practice to verify your manual implementation against a trusted reference. The values should match to within floating-point tolerance.</p>
-<div id="464e0881" class="cell" data-execution_count="11">
+<div id="63d75582" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score, roc_curve, average_precision_score</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>auc_sklearn <span class="op">=</span> roc_auc_score(y_test, y_prob)</span>

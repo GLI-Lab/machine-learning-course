@@ -270,7 +270,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises/lab02/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../exercises/lab02/classification-metrics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classification Metrics</span></a>
   </div>
 </li>
@@ -626,14 +626,16 @@ window.Quarto = {
 <p><span class="math display">\[\mathcal{L}_{\text{BCE}}(\mathbf{w}) = -\frac{1}{n} \sum_{i=1}^{n} \left[ y_i \log p_i + (1 - y_i) \log(1 - p_i) \right]\]</span></p>
 <p>Let <span class="math inline">\(e_i = p_i - y_i\)</span> denote the prediction error of sample <span class="math inline">\(i\)</span>. The partial derivatives are:</p>
 <p><span class="math display">\[\frac{\partial \mathcal{L}}{\partial b} = \frac{1}{n} \sum_{i=1}^{n} e_i, \qquad \frac{\partial \mathcal{L}}{\partial w_1} = \frac{1}{n} \sum_{i=1}^{n} e_i \, x_{i1}, \qquad \frac{\partial \mathcal{L}}{\partial w_2} = \frac{1}{n} \sum_{i=1}^{n} e_i \, x_{i2}\]</span></p>
-<p>Each partial derivative has the same pattern as in MSE: the mean prediction error, weighted by the corresponding input feature (with the bias term using <span class="math inline">\(1\)</span>). In matrix form this is:</p>
+<p>Each partial derivative has the same pattern as in MSE: the mean prediction error, weighted by the corresponding input feature (with the bias term using <span class="math inline">\(1\)</span>). Stacking the three partial derivatives into a gradient vector gives:</p>
+<p><span class="math display">\[\nabla_\mathbf{w} \mathcal{L} = \begin{bmatrix} \frac{\partial \mathcal{L}}{\partial b} \\[4pt] \frac{\partial \mathcal{L}}{\partial w_1} \\[4pt] \frac{\partial \mathcal{L}}{\partial w_2} \end{bmatrix} = \frac{1}{n} \begin{bmatrix} \sum_{i=1}^{n} e_i \cdot 1 \\[4pt] \sum_{i=1}^{n} e_i \, x_{i1} \\[4pt] \sum_{i=1}^{n} e_i \, x_{i2} \end{bmatrix}\]</span></p>
+<p>Since the design matrix <span class="math inline">\(\mathbf{X}\)</span> has rows <span class="math inline">\([1,\, x_{i1},\, x_{i2}]\)</span>, the column <span class="math inline">\(j\)</span> of <span class="math inline">\(\mathbf{X}^\top\)</span> contains the <span class="math inline">\(j\)</span>-th feature values across all samples, so <span class="math inline">\(\mathbf{X}^\top (\mathbf{p} - \mathbf{y}) = \bigl[\sum e_i \cdot 1,\; \sum e_i x_{i1},\; \sum e_i x_{i2}\bigr]^\top\)</span>. In matrix form this is:</p>
 <p><span class="math display">\[\nabla_\mathbf{w} \mathcal{L}_{\text{BCE}} = \frac{1}{n} \mathbf{X}^\top (\mathbf{p} - \mathbf{y})\]</span></p>
 <p>where <span class="math inline">\(\mathbf{p} = \sigma(\mathbf{X}\mathbf{w})\)</span> is the vector of predicted probabilities. This structural similarity with the MSE gradient is not a coincidence; it arises from the choice of the sigmoid with cross-entropy, which together form a <strong>canonical</strong> exponential family model.</p>
 </section>
 <section id="decision-boundary" class="level3">
 <h3 class="anchored" data-anchor-id="decision-boundary">Decision Boundary</h3>
 <p>The decision boundary is the set of all points <span class="math inline">\(\mathbf{x}\)</span> for which <span class="math inline">\(p = 0.5\)</span>, i.e., where the model is maximally uncertain. Since <span class="math inline">\(\sigma(z) = 0.5\)</span> exactly when <span class="math inline">\(z = 0\)</span>, the boundary is defined by:</p>
-<p><span class="math display">\[\mathbf{w}^\top \mathbf{x} + b = 0\]</span></p>
+<p><span class="math display">\[b + w_1 x_1 + w_2 x_2 = 0\]</span></p>
 <p>In 2D with features <span class="math inline">\(x_1, x_2\)</span>, this resolves to a straight line:</p>
 <p><span class="math display">\[x_2 = -\frac{w_1 x_1 + b}{w_2}\]</span></p>
 <p>As gradient descent updates <span class="math inline">\(\mathbf{w}\)</span>, this line rotates and translates until it correctly separates the two classes.</p>
@@ -641,7 +643,7 @@ window.Quarto = {
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">0. Setup</h2>
-<div id="40f4dce3" class="cell" data-execution_count="1">
+<div id="e74bd498" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.animation <span class="im">as</span> animation</span>
@@ -658,7 +660,7 @@ window.Quarto = {
 <section id="generating-synthetic-data" class="level3">
 <h3 class="anchored" data-anchor-id="generating-synthetic-data">1.1 Generating Synthetic Data</h3>
 <p>We create a 2-feature classification dataset using <code>make_blobs</code> with three cluster centers. The original labels (0, 1, 2) are converted to a binary problem: cluster 0 becomes class 0, and clusters 1 and 2 become class 1. This gives a dataset where the positive class forms two groups on the upper-right side of the feature space, while the negative class sits near the origin.</p>
-<div id="82711719" class="cell" data-execution_count="2">
+<div id="b070046b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X_cls, y_raw <span class="op">=</span> make_blobs(</span>
@@ -686,7 +688,7 @@ Class 0: 84, Class 1: 166</code></pre>
 </div>
 </div>
 <p>The leading column of ones allows us to absorb the bias <span class="math inline">\(b\)</span> into the weight vector <span class="math inline">\(\mathbf{w} = [b, w_1, w_2]^\top\)</span>, so the model becomes <span class="math inline">\(\mathbf{p} = \sigma(\mathbf{X}\mathbf{w})\)</span> with no separate bias term in the code.</p>
-<div id="4c8087ec" class="cell" data-execution_count="3">
+<div id="75d777f0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">5</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Left: original 3-cluster labels ---</span></span>
@@ -732,7 +734,7 @@ Class 0: 84, Class 1: 166</code></pre>
 <p>We implement the loss and gradient following the formulas from the Background section. Recall that for our model <span class="math inline">\(p_i = \sigma(b + w_1 x_{i1} + w_2 x_{i2})\)</span>, the prediction error of sample <span class="math inline">\(i\)</span> is <span class="math inline">\(e_i = p_i - y_i\)</span>, and the three partial derivatives are:</p>
 <p><span class="math display">\[\frac{\partial \mathcal{L}}{\partial b} = \frac{1}{n} \sum e_i, \qquad \frac{\partial \mathcal{L}}{\partial w_1} = \frac{1}{n} \sum e_i \, x_{i1}, \qquad \frac{\partial \mathcal{L}}{\partial w_2} = \frac{1}{n} \sum e_i \, x_{i2}\]</span></p>
 <p>We first implement this element-wise to see each step clearly, then show the equivalent matrix form.</p>
-<div id="311d9614" class="cell" data-execution_count="4">
+<div id="4c1cef00" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Numerically stable sigmoid: clips z to avoid overflow in exp.</span></span>
@@ -779,7 +781,7 @@ Class 0: 84, Class 1: 166</code></pre>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="fl">1.0</span> <span class="op">/</span> n) <span class="op">*</span> (X.T <span class="op">@</span> (p <span class="op">-</span> y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let us verify that both implementations produce the same gradient:</p>
-<div id="805a6f21" class="cell" data-execution_count="5">
+<div id="0df9b20a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>w_init <span class="op">=</span> np.zeros(<span class="dv">3</span>)  <span class="co"># [b=0, w1=0, w2=0]</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>grad_elem   <span class="op">=</span> bce_gradient_elementwise(X_cls_aug, y_cls, w_init)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>grad_matrix <span class="op">=</span> bce_gradient(X_cls_aug, y_cls, w_init)</span>
@@ -800,7 +802,7 @@ Match             : True</code></pre>
 <section id="writing-the-training-loop" class="level3">
 <h3 class="anchored" data-anchor-id="writing-the-training-loop">1.3 Writing the Training Loop</h3>
 <p>The training loop applies the update rule at every epoch and records both the weights and the loss so we can inspect the full trajectory afterward.</p>
-<div id="2cceee06" class="cell" data-execution_count="6">
+<div id="34bfded3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_logistic(X, y, lr<span class="op">=</span><span class="fl">0.5</span>, epochs<span class="op">=</span><span class="dv">500</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Full-batch gradient descent for logistic regression.</span></span>
@@ -844,7 +846,7 @@ Match             : True</code></pre>
 </section>
 <section id="running-the-optimizer" class="level3">
 <h3 class="anchored" data-anchor-id="running-the-optimizer">1.4 Running the Optimizer</h3>
-<div id="407a85bd" class="cell" data-execution_count="7">
+<div id="68f99921" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>w_cls_hist, loss_cls_hist <span class="op">=</span> train_logistic(X_cls_aug, y_cls, lr<span class="op">=</span><span class="fl">0.5</span>, epochs<span class="op">=</span><span class="dv">300</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>w_final     <span class="op">=</span> w_cls_hist[<span class="op">-</span><span class="dv">1</span>]</span>
@@ -877,7 +879,7 @@ Learned w_2  : &gt;0</code></pre>
 </section>
 <section id="visualizing-the-loss-curve-and-weight-convergence" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-loss-curve-and-weight-convergence">1.5 Visualizing the Loss Curve and Weight Convergence</h3>
-<div id="0d7a0b5a" class="cell" data-execution_count="8">
+<div id="1b4a18ec" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">5</span>))</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Left panel: loss curve ---</span></span>
@@ -914,7 +916,7 @@ Learned w_2  : &gt;0</code></pre>
 <section id="loss-surface-and-gradient-descent-trajectory" class="level3">
 <h3 class="anchored" data-anchor-id="loss-surface-and-gradient-descent-trajectory">1.6 Loss Surface and Gradient Descent Trajectory</h3>
 <p>To visualize what gradient descent is doing geometrically, we plot the loss as a function of <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> while fixing the bias <span class="math inline">\(b\)</span> at its optimal value. Unlike the MSE loss surface (which is a perfect paraboloid), the BCE loss surface is convex but not quadratic — notice the slightly different curvature compared to the linear regression case.</p>
-<div id="95d1373b" class="cell" data-execution_count="9">
+<div id="6a1b3a7f" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix b at the trained value, sweep w1 and w2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>b_fixed <span class="op">=</span> w_final[<span class="dv">0</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -985,7 +987,7 @@ Learned w_2  : &gt;0</code></pre>
 </section>
 <section id="visualizing-the-decision-boundary-at-different-epochs" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-decision-boundary-at-different-epochs">1.7 Visualizing the Decision Boundary at Different Epochs</h3>
-<div id="08603cba" class="cell" data-execution_count="10">
+<div id="985f538e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_decision_boundary(X_aug, y, w, ax, title<span class="op">=</span><span class="st">""</span>, line_color<span class="op">=</span><span class="st">'k'</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Scatter-plot the data and draw the linear decision boundary.</span></span>
@@ -1014,7 +1016,7 @@ Learned w_2  : &gt;0</code></pre>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="38b832d7" class="cell" data-execution_count="11">
+<div id="c234a7d9" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">4</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>snapshot_epochs <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">30</span>, <span class="dv">300</span>]</span>
@@ -1039,7 +1041,7 @@ Learned w_2  : &gt;0</code></pre>
 <h3 class="anchored" data-anchor-id="animating-the-decision-boundary">1.8 Animating the Decision Boundary</h3>
 <p>Seeing the boundary move frame-by-frame is one of the best ways to build intuition for what gradient descent is actually optimizing. The animation below replays the first 300 epochs, sampling every 3rd epoch to keep the file size reasonable.</p>
 <p>This cell uses <code>matplotlib.animation.FuncAnimation</code> and renders the result as an HTML5 video via <code>to_jshtml()</code>. It works in both JupyterLab and Google Colab. In a static Quarto HTML export the animation will not auto-play; only the first frame will be visible. Run the cell interactively to see the full animation.</p>
-<div id="65df8b3f" class="cell" data-execution_count="12">
+<div id="80cb3352" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig_a, ax_a <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>x1_lo <span class="op">=</span> X_cls[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.5</span></span>
@@ -1084,7 +1086,7 @@ Learned w_2  : &gt;0</code></pre>
 <section id="effect-of-learning-rate-on-convergence" class="level2">
 <h2 class="anchored" data-anchor-id="effect-of-learning-rate-on-convergence">2. Effect of Learning Rate on Convergence</h2>
 <p>The learning rate <span class="math inline">\(\eta\)</span> controls how large each update step is. Choosing the right value is critical: too small and training takes forever; too large and the updates overshoot, causing oscillation or divergence. We now compare three representative values.</p>
-<div id="80107801" class="cell" data-execution_count="13">
+<div id="36ac6da6" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>learning_rates <span class="op">=</span> [<span class="fl">0.01</span>, <span class="fl">0.5</span>, <span class="fl">3.0</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lr_colors      <span class="op">=</span> [<span class="st">'tomato'</span>, <span class="st">'steelblue'</span>, <span class="st">'seagreen'</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>lr_results     <span class="op">=</span> {}</span>
@@ -1132,7 +1134,7 @@ Learned w_2  : &gt;0</code></pre>
 <li><code>lr = 3.0</code> may oscillate wildly or produce <code>nan</code> values, signaling divergence.</li>
 </ul>
 <p>We can also compare the final decision boundaries produced by each learning rate:</p>
-<div id="790cb5fe" class="cell" data-execution_count="14">
+<div id="055b346a" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(X_cls[y_cls <span class="op">==</span> <span class="dv">1</span>, <span class="dv">0</span>], X_cls[y_cls <span class="op">==</span> <span class="dv">1</span>, <span class="dv">1</span>],</span>
