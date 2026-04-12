@@ -79,20 +79,18 @@ website:
                   href: exercises/lab02/softmax-regression.qmd
             - section: "Lab3. Multi-Layer Perceptron"
               contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab4. Model Validation"
+                - text: "Linear Regression (Scratch)"
+                  href: exercises/lab03/linear-regression-scratch.qmd
+                - text: "Logistic Regression (Scratch)"
+                  href: exercises/lab03/logistic-regression-scratch.qmd
+                - text: "Softmax Regression (Scratch)"
+                  href: exercises/lab03/softmax-regression-scratch.qmd
+            - section: "Lab4. Model Selection and Generalization"
               contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
+                - text: "MLP Regression (Scratch)"
+                  href: exercises/lab03/mlp-regression-scratch.qmd
+                - text: "MLP Regression-Improved (Scratch)"
+                  href: exercises/lab03/mlp-regression-scratch2.qmd
             - section: "Lab5. Model Generalization"
               contents:
                 - text: "TBA1"
