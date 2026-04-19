@@ -88,9 +88,9 @@ website:
             - section: "Lab4. Model Selection and Generalization"
               contents:
                 - text: "MLP Regression (Scratch)"
-                  href: exercises/lab03/mlp-regression-scratch.qmd
+                  href: exercises/lab04/mlp-regression-scratch.qmd
                 - text: "MLP Regression-Improved (Scratch)"
-                  href: exercises/lab03/mlp-regression-scratch2.qmd
+                  href: exercises/lab04/mlp-regression-scratch2.qmd
             - section: "Lab5. Model Generalization"
               contents:
                 - text: "TBA1"

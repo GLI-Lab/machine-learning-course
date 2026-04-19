@@ -26,18 +26,16 @@ Labs marked as TBD have tentative topics that may be added, removed, or reordere
 - [Lab 2-3](lab02/classification-metrics.html): Classification Metrics and ROC Curves
 - [Lab 2-4](lab02/softmax-regression.html): Softmax Regression via Gradient Descent
 
-**Lab 3: Multi-Layer Perceptron (TBD)**
+**Lab 3: Multi-Layer Perceptron**
 
-- Lab 3-1: MLP Forward/Backward Pass and Numerical Gradient Checking
-- Lab 3-2: Vanishing Gradient: Sigmoid vs. ReLU
+- [Lab 3-1](lab03/linear-regression-scratch.html): Linear Regression from Scratch
+- [Lab 3-2](lab03/logistic-regression-scratch.html): Logistic Regression from Scratch
+- [Lab 3-3](lab03/softmax-regression-scratch.html): Softmax Regression from Scratch
 
-**Lab 4: Model Validation (TBD)**
+**Lab 4: Model Selection **
 
-- Lab 4-1: From NumPy to PyTorch (Dataset, DataLoader, TensorBoard)
-- Lab 4-2: Autograd and Automatic Differentiation
-- Lab 4-3: K-Fold Cross-Validation with PyTorch DataLoader
-- Lab 4-4: Custom Dataset and DataLoader
-- Lab 4-5: Data Leakage Demo
+- [Lab 4-1](lab04/mlp-regression-scratch.html): MLP Regression from Scratch
+- [Lab 4-2](lab04/mlp-regression-scratch2.html): Improving MLP Regression from Scratch (ReLU and Adam)
 
 **Lab 5: Model Generalization (TBD)**
 
