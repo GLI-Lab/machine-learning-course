@@ -32,61 +32,18 @@ Labs marked as TBD have tentative topics that may be added, removed, or reordere
 - [Lab 3-2](lab03/logistic-regression-scratch.html): Logistic Regression from Scratch
 - [Lab 3-3](lab03/softmax-regression-scratch.html): Softmax Regression from Scratch
 
-**Lab 4: Model Selection **
+**Lab 4: Model Selection and Generalization **
 
 - [Lab 4-1](lab04/mlp-regression-scratch.html): MLP Regression from Scratch
 - [Lab 4-2](lab04/mlp-regression-scratch2.html): Improving MLP Regression from Scratch (ReLU and Adam)
 
-**Lab 5: Model Generalization (TBD)**
+**Lab 5: Convolutional Neural Networks**
 
-- Lab 5-1: Overfitting and Underfitting via MLP Capacity
-- Lab 5-2: Regularization (Dropout, Weight Decay, BatchNorm)
-- Lab 5-3: Early Stopping and Model Checkpointing
+- [Lab 5-1](lab05/cnn-architecture.html): CNN Architecture Design & Parameter Counting
 
-**Lab 6: Convolutional Neural Networks (TBD)**
+**Lab 6: Recurrent Neural Networks**
 
-- Lab 6-1: CNN Architecture Design and Parameter Counting
-- Lab 6-2: Effect of Kernel Size, Stride, and Padding on Feature Maps
-- Lab 6-3: Visualizing Learned First-Layer Filters
-
-**Lab 8: Recurrent Neural Networks (TBD)**
-
-- Lab 8-1: RNN vs. GRU vs. LSTM on Variable-Length Sequences
-- Lab 8-2: Character-Level Language Model and Text Generation
-- Lab 8-3: Gradient Norm Tracking and Vanishing Gradients in RNNs
-
-**Lab 9: Attention Mechanisms (TBD)**
-
-- Lab 9-1: Self-Attention from Scratch with NumPy
-- Lab 9-2: Vision Transformer Input Pipeline (Patch Embedding and Positional Encoding)
-
-**Lab 10: Generative Models (TBD)**
-
-- Lab 10-1: Autoencoder Latent Space Visualization on MNIST
-- Lab 10-2: VAE Latent Space Interpolation
-- Lab 10-3: GAN Training Dynamics
-
-**Lab 11: Representations (TBD)**
-
-- Lab 11-1: Fine-Tuning vs. Feature Extraction with Pretrained ResNet
-- Lab 11-2: High-Dimensional Feature Visualization and Clustering
-- Lab 11-3: Cross-Entropy Loss vs. Triplet Loss Feature Space
-
-**Lab 12: Support Vector Machines and Kernels (TBD)**
-
-- Lab 12-1: Kernel Visualization and Hyperparameter Effects (C and gamma)
-
-**Lab 13: Decision Trees (TBD)**
-
-- Lab 13-1: Decision Tree Implementation from Scratch (Gini/Entropy Split)
-
-**Lab 14: Ensemble Methods (TBD)**
-
-- Lab 14-1: Bagging vs. Boosting: Bias-Variance Tradeoff and Feature Importance
-
-**Lab 15: Bayesian Learning (TBD)**
-
-- Lab 15-1: Naive Bayes Spam Classifier from Scratch with NumPy
+- [Lab 6-1](lab06/rnn-architecture.html): RNN Architecture Design & Parameter Counting
 
 ## What You Will Receive
 

@@ -91,86 +91,14 @@ website:
                   href: exercises/lab04/mlp-regression-scratch.qmd
                 - text: "MLP Regression-Improved (Scratch)"
                   href: exercises/lab04/mlp-regression-scratch2.qmd
-            - section: "Lab5. Model Generalization"
+            - section: "Lab5. Convolutional NNs"
               contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab6. Convolutional NNs"
+                - text: "CNN Architecture"
+                  href: exercises/lab05/cnn-architecture.qmd
+            - section: "Lab6. Recurrent NNs"
               contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab7. Recurrent NNs"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab9. Attention Mechanisms"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab10. Generative Models"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab11. Representations"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmdd
-            - section: "Lab12. SVM and Kernels"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab13. Decision Trees"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab14. Ensemble Methods"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-            - section: "Lab15. Bayesian Learning"
-              contents:
-                - text: "TBA1"
-                  # href: exercises/lab14-naive-bayes.qmd
-                - text: "TBA2"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
-                - text: "TBA3"
-                  # href: exercises/lab02/lab02-01-perceptron-limits.qmd
+                - text: "RNN Architecture"
+                  href: exercises/lab06/rnn-architecture.qmd
     - id: assignments
       title: "Assignments"
       collapse-level: 1

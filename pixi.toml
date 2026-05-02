@@ -20,10 +20,14 @@ jupyterlab = "*"         # notebook
 [pypi-dependencies]  # linux-64: CUDA 활용
 torch = { version = "==2.10.*", index = "https://download.pytorch.org/whl/cu128" }
 torchvision = { version = "*", index = "https://download.pytorch.org/whl/cu128" }
+torchinfo = "*"
+datasets = "*"
 
 [target.osx-arm64.pypi-dependencies]  # osx-arm64: CUDA 없음
 torch = { version = "==2.10.*", index = "https://download.pytorch.org/whl/cpu" }
 torchvision = { version = "*", index = "https://download.pytorch.org/whl/cpu" }
+torchinfo = "*"
+datasets = "*"
 
 [tasks]
 jupyter = "jupyter lab --ip=0.0.0.0 --port=8888 --no-browser"

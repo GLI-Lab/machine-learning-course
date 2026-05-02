@@ -73,20 +73,11 @@ The timeline and specific contents below are subject to change as the course pro
 |:---|:---|:---|:---|
 | **1** | Introduction to Machine Learning | [Lab1](/exercises/lab01/python-basics.html) | [HW01](/assignments/hw01/hw01.html) |
 | **2** | Linear Models | [Lab2](/exercises/lab02/linear-regression.html) | - | [HW02](/assignments/hw02/hw02.html) |
-| **3** | Multi-Layer Perceptron | Lab 3 | [HW02](/assignments/hw02/hw02.html) |
-| **4** | Model Validation | Lab 4 | - | - |
-| **5** | Model Generalization | Lab 5 | [HW03](/assignments/hw03/hw03.html) |
-| **6** | Convolutional Neural Networks | Lab 6 | - | - |
-| **7** | Recurrent Neural Networks | Lab 7 | [HW04](/assignments/hw04/hw04.html) |
-| **8** | Mid-term Exam | - | - | - |
-| **9** | Attention Mechanisms | Lab 9 | [HW05](/assignments/hw05/hw05.html) |
-| **10** | Generative Models | Lab 10 | - | - |
-| **11** | Representations | Lab 11 | [HW06](/assignments/hw06/hw06.html) |
-| **12** | Support Vector Machines and Kernels | Lab 12 | - | - |
-| **13** | Decision Trees | Lab 13 | [HW07](/assignments/hw07/hw07.html) |
-| **14** | Ensemble Methods | Lab 14 | - | - |
-| **15** | Bayesian Learning | Lab 15 | [HW08](/assignments/hw08/hw08.html) |
-| **16** | Final Exam | - | - | - |
+| **3** | Multi-Layer Perceptron | [Lab3](/exercises/lab03/linear-regression-scratch.html) | [HW02](/assignments/hw02/hw02.html) |
+| **4** | Model Validation and Generalization | [Lab4](/exercises/lab04/mlp-regression-scratch.html) | - | - |
+| **5** | Convolutional Neural Networks | [Lab5](/exercises/lab05/cnn-architecture.html) | HW03 |
+| **6** | Recurrent Neural Networks | [Lab6](/exercises/lab06/rnn-architecture.html) | HW04 |
+
 
 ## Course Policies
 
